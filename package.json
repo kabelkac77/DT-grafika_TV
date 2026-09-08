@@ -1,0 +1,16 @@
+{
+  "name": "svdt-tv-graphics",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Grafické podklady pro televizní přenos Svatohorského Downtownu Příbram",
+  "scripts": {
+    "render": "node karta-jezdce/render.cjs",
+    "test": "node karta-jezdce/render.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.55.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
