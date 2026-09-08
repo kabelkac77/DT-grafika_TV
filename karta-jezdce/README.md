@@ -46,6 +46,10 @@ Chybějící volitelná pole se skryjí bez prázdných oddělovačů. Chybějí
 
 V Chrome znovu vyrenderováno 18 kompozic a ověřeno 5 funkčních stavů: zobrazení/skrytí, chybějící povinná i volitelná pole, neplatný portrét. Všech 23 kontrol prošlo bez chyby JavaScriptu a bez detekovaného přetečení textu; načetlo se písmo i obrazové podklady. Výsledky v `kontrola.json`. Vizuálně zkontrolovány oba hlavní směry, dlouhá jména, světlé pozadí a poloviční náhled. Jezdec na zvoleném podkladu zůstává viditelný.
 
-`render.cjs` slouží k opětovnému exportu v tomto prostředí (Node.js, Playwright, Chrome). Na jiném počítači nastavte `PLAYWRIGHT_MODULE` na instalovaný modul Playwright. Otevření běžného náhledu tyto nástroje nepotřebuje.
+`render.cjs` slouží k opětovnému exportu a automatické kontrole. Lokálně vyžaduje Node.js 22 a příkazy `npm install`, `npx playwright install chromium` a `npm run render`. Pevná cesta ke konkrétnímu počítači se nepoužívá. Otevření běžného náhledu tyto nástroje nepotřebuje.
+
+### Generování z iPadu
+
+V GitHubu otevřete záložku **Actions**, vyberte workflow **SVDT — generování náhledů** a použijte **Run workflow**. GitHub provede kontrolu na vzdáleném počítači a nabídne balíček `svdt-karta-jezdce-nahledy` ke stažení. Stejná kontrola se spustí automaticky také při změně souborů karty v Pull Requestu.
 
 Stále jde o statickou vizuální studii. Kontrola pohybujícího se závodního obrazu, skutečné portréty, finální formát režie, pozice televizního loga a produkční odbavení zůstávají pro navazující tvorbu vysílacích šablon.
