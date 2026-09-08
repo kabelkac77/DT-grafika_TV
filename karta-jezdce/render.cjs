@@ -1,7 +1,7 @@
-const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'C:/Users/kaj2/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const {chromium}=require('playwright');
 const fs=require('fs');const path=require('path');const {pathToFileURL}=require('url');
 (async()=>{
-const browser=await chromium.launch({headless:true,channel:'chrome'});
+const browser=await chromium.launch({headless:true});
 const page=await browser.newPage({viewport:{width:1920,height:1080},deviceScaleFactor:1});
 const base=pathToFileURL(path.join(__dirname,'index.html')).href;
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -32,7 +32,9 @@ await page.locator('#scenario').selectOption('normal');await page.evaluate(()=>w
 await page.goto(base);await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(400);await page.screenshot({path:path.join(__dirname,'nahledy','lokalni-nahled.png'),fullPage:true});
 await page.goto(pathToFileURL(path.join(__dirname,'srovnani.html')).href);await page.evaluate(()=>document.fonts.ready);await page.setViewportSize({width:2048,height:920});await page.screenshot({path:path.join(__dirname,'nahledy','SVDT-srovnani-A-B.png'),fullPage:true});
 fs.writeFileSync(path.join(__dirname,'kontrola.json'),JSON.stringify({errors,checks},null,2));
-console.log(JSON.stringify({errors,total:checks.length,failures:checks.filter(c=>c.overflow?.length||c.images?.length||c.font===false||Object.values(c).includes(false))}));
+const failures=checks.filter(c=>c.overflow?.length||c.images?.length||c.font===false||Object.values(c).includes(false));
+console.log(JSON.stringify({errors,total:checks.length,failures}));
 await browser.close();
+if(errors.length||failures.length)process.exitCode=1;
 })();
 
