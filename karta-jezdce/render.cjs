@@ -6,13 +6,17 @@ const page=await browser.newPage({viewport:{width:1920,height:1080},deviceScaleF
 const base=pathToFileURL(path.join(__dirname,'index.html')).href;
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 const checks=[];
+fs.mkdirSync(path.join(__dirname,'nahledy'),{recursive:true});
 for(const v of ['A','B'])for(const [name,scenario,portrait,bg] of [
-['plna','normal',1,'race'],['bez-portretu','normal',0,'race'],['dlouhe-jmeno','long',1,'race'],['dlouhe-bez-portretu','long',0,'race'],['neuplne-udaje','incomplete',0,'race'],['svetle','normal',1,'light'],['tmave','normal',1,'dark'],['overlay','normal',1,'transparent'],['overlay-bez-portretu','normal',0,'transparent']]){
+['detail','normal',1,'transparent'],['detail-bez-portretu','normal',0,'transparent'],['plna','normal',1,'race'],['bez-portretu','normal',0,'race'],['dlouhe-jmeno','long',1,'race'],['dlouhe-bez-portretu','long',0,'race'],['neuplne-udaje','incomplete',0,'race'],['svetle','normal',1,'light'],['tmave','normal',1,'dark'],['overlay','normal',1,'transparent'],['overlay-bez-portretu','normal',0,'transparent']]){
 await page.goto(base+`?capture=1&variant=${v}&scenario=${scenario}&portrait=${portrait}&background=${bg}`);
 await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(i=>i.complete?Promise.resolve():new Promise(r=>{i.onload=r;i.onerror=r})));});
 await page.waitForTimeout(400);
 checks.push({variant:v,scenario,portrait,bg,...await page.evaluate(()=>({font:document.fonts.check('900 72px Exo'),status:document.getElementById('status').textContent,images:[...document.images].filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src),overflow:[...document.querySelectorAll('.identity,.last,.team,.bib')].filter(e=>e.scrollWidth>e.clientWidth+1).map(e=>e.className)}))});
-await page.screenshot({path:path.join(__dirname,'nahledy',`${v}-${name}.png`),omitBackground:bg==='transparent'});
+if(name.startsWith('detail')){
+const clip=await page.locator('.rider-card').evaluate(el=>{const a=el.getBoundingClientRect(),r=el.querySelector('.architecture').getBoundingClientRect(),p=el.querySelector('.portrait-area')?.getBoundingClientRect();const top=Math.min(a.top,r.top,p?.top??a.top)-8;return {x:a.x-8,y:top,width:a.width+16,height:a.bottom-top+8}});
+await page.screenshot({path:path.join(__dirname,'nahledy',`${v}-${name}.png`),clip,omitBackground:true});
+}else await page.screenshot({path:path.join(__dirname,'nahledy',`${v}-${name}.png`),omitBackground:bg==='transparent'});
 if(name==='plna'){
 await page.addStyleTag({content:'body.capture .viewport{width:960px;height:540px}body.capture .stage{transform:scale(.5)!important}'});
 await page.setViewportSize({width:960,height:540});
@@ -30,11 +34,12 @@ await page.locator('#scenario').selectOption('invalid');checks.push({missingRequ
 await page.locator('#scenario').selectOption('incomplete');checks.push({missingOptionalHidden:await page.locator('.team,.country').count()===0});
 await page.locator('#scenario').selectOption('normal');await page.evaluate(()=>window.svdt.setPortraitURL('missing-image.png'));await page.waitForTimeout(200);checks.push({badImageFallback:await page.locator('.no-portrait').count()===1});
 await page.goto(base);await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(400);await page.screenshot({path:path.join(__dirname,'nahledy','lokalni-nahled.png'),fullPage:true});
-await page.goto(pathToFileURL(path.join(__dirname,'srovnani.html')).href);await page.evaluate(()=>document.fonts.ready);await page.setViewportSize({width:2048,height:920});await page.screenshot({path:path.join(__dirname,'nahledy','SVDT-srovnani-A-B.png'),fullPage:true});
+await page.goto(pathToFileURL(path.join(__dirname,'srovnani.html')).href);await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(i=>i.decode()))});await page.setViewportSize({width:1600,height:1200});await page.screenshot({path:path.join(__dirname,'nahledy','SVDT-srovnani-A-B.png'),fullPage:true});
 fs.writeFileSync(path.join(__dirname,'kontrola.json'),JSON.stringify({errors,checks},null,2));
-const failures=checks.filter(c=>c.overflow?.length||c.images?.length||c.font===false||Object.values(c).includes(false));
+const failures=checks.filter(c=>c.overflow?.length||c.images?.length||c.font===false||c.status?.startsWith('NEPŘIPRAVENO')||Object.values(c).includes(false));
 console.log(JSON.stringify({errors,total:checks.length,failures}));
 await browser.close();
 if(errors.length||failures.length)process.exitCode=1;
 })();
+
 

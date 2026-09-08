@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SVDT — návrh karty jezdce</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="relief.css"><link rel="stylesheet" href="relief-mask.css"><link rel="stylesheet" href="production.css"></head>
+<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SVDT — návrh karty jezdce</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="relief-mask.css"><link rel="stylesheet" href="production.css"></head>
 <body>
-<header class="page-head"><div><p class="eyebrow">SVDT / G02 / VIZUÁLNÍ STUDIE 03 — ZÁVOD</p><h1>Jezdec v hlavní roli.</h1><p>Dvě kompozice. Jedna identita. Svatohorský Downtown Příbram.</p></div><img src="assets/logo-svdt.png" alt="Svatohorský Downtown"></header>
+<header class="page-head"><div><p class="eyebrow">SVDT / G02 / VERZE 06.4</p><h1>Jezdec v hlavní roli.</h1><p>Čtyři varianty. Jedna identita. Svatohorský Downtown Příbram.</p></div><img src="assets/logo-svdt.png" alt="Svatohorský Downtown"></header>
 <main>
+<p class="version-link"><a href="srovnani.html">Zobrazit všechny čtyři varianty 06.4 ↗</a></p>
 <section class="controls" aria-label="Ovládání náhledu">
 <label>Rozložení<select id="variant"><option value="A">A — horizontální lišta</option><option value="B">B — kompaktní blok</option></select></label>
 <label>Ukázková data<select id="scenario"><option value="normal">Adam Novák</option><option value="long">Dlouhé jméno a tým</option><option value="incomplete">Chybějící volitelné údaje</option><option value="invalid">Chybějící jméno / číslo</option></select></label>
@@ -15,9 +16,10 @@
 <div class="viewport" id="viewport"><div class="stage" id="stage"><div class="scene"></div><div class="safe-area"></div><div id="overlay"></div></div></div>
 <p id="status" class="status" role="status"></p>
 <details class="editor"><summary>Upravit údaje v náhledu</summary><div class="fields"><label>Jméno<input id="first" value="Adam"></label><label>Příjmení<input id="last" value="Novák"></label><label>Startovní číslo<input id="number" value="27"></label><label>Tým<input id="team" value="Ukázkový tým"></label><label>Kód země<input id="country" value="CZE"></label><label>Kategorie<input id="category" value="Elite"></label><label class="check"><input id="flag" type="checkbox" checked>Zobrazit dostupnou vlajku</label><label>Vlastní portrét<input type="file" id="upload" accept="image/*"></label></div><p class="small">Změny se projeví okamžitě. Data jsou fiktivní a slouží jen k návrhu; neukládají se automaticky.</p></details>
-<section class="comparison"><div><p class="eyebrow">A / HORIZONTÁLNÍ LIŠTA</p><h2>Šířka pro jméno.</h2><p>Portrét vystupuje nad spodní lištu. Velké příjmení vede pohled ke startovnímu číslu. Reliéf Svaté Hory vystupuje z horní hrany; bílé logo a červené číslo sdílejí souvislou tmavou plochu.</p><a href="nahledy/A-plna.png">Statický náhled A ↗</a></div><div><p class="eyebrow">B / KOMPAKTNÍ BLOK</p><h2>Volná pravá strana.</h2><p>Portrét, číslo a začleněné bílé logo tvoří horní část pod architektonickým reliéfem. Jméno a tým sedí pod nimi v užším bloku. Bez portrétu se horní část stáhne na nízké záhlaví.</p><a href="nahledy/B-plna.png">Statický náhled B ↗</a></div></section>
-<footer>Vizuální studie 03, nikoliv schválená vysílací šablona. Závodní fotografie a logo: <a href="https://svdtpribram.cz/fotogalerie/">oficiální galerie SVDT</a>. Fotografie je pouze podklad náhledu; fiktivní jméno neoznačuje jezdce na záběru. Ilustrační portrét: AI. Zdroj a další informace v <a href="README.md">README.md</a>.</footer>
+<section class="comparison"><div><p class="eyebrow">A / HORIZONTÁLNÍ LIŠTA</p><h2>Šířka pro jméno.</h2><p>Portrét vystupuje nad spodní lištu. Červené číslo navazuje na portrét; jméno a příjmení jsou v jedné úrovni. Celý reliéf Svaté Hory vystupuje z horní hrany. Grafitový podklad obsahuje jemnou stopu MTB pneumatiky.</p><a href="nahledy/A-plna.png">Statický náhled A ↗</a></div><div><p class="eyebrow">B / KOMPAKTNÍ BLOK</p><h2>Volná pravá strana.</h2><p>Portrét vlevo, číslo a jméno vpravo. Celý reliéf je vidět nad kartou, bez opakovaného loga. Bez portrétu se blok zúží a údaje přeskládají.</p><a href="nahledy/B-plna.png">Statický náhled B ↗</a></div></section>
+<footer>Aktuální zdrojová verze 06.4 podle schváleného návrhu. Formát odbavení musí ověřit režie. Závodní fotografie a logo: <a href="https://svdtpribram.cz/fotogalerie/">oficiální galerie SVDT</a>. Fotografie je pouze podklad náhledu; fiktivní jméno neoznačuje jezdce na záběru. Ilustrační portrét: AI. Zdroj a další informace v <a href="README.md">README.md</a>.</footer>
 </main><script src="data.js"></script><script src="app.js"></script></body></html>
+
 
 
 

@@ -1,55 +1,55 @@
-# SVDT — karta jezdce, studie 03
+# SVDT — karta jezdce, verze 06.4
 
-Aktuální náhled používá skutečnou závodní fotografii z oficiální fotogalerie. Reliéf Svaté Hory je nižší, má vyhlazený obrys, tenkou světelnou hranu a jemný červený boční akcent. Je propojen se souvislou grafitově tmavou plochou karty. Startovní číslo používá akcentní červenou #FF1A1A; značková #E30613 zůstává na drobných plochách a linkách. Bílé logo je začleněné do společného tmavého pole.
+Aktuální zdrojová verze podle návrhu 06.4 schváleného zadavatelem v konverzaci. Nahrazuje studii 03. Jde o skutečné HTML/CSS s editovatelnými údaji, ne o vložený obrázek návrhu. Formát odbavení a kontrola v pohybujícím se obrazu zůstávají k ověření s režií.
 
-## Otevření a úpravy
+## Čtyři varianty
 
-Otevřete `index.html` v Chrome nebo Edge. Náhled funguje lokálně bez internetu a instalace. Nabízí varianty A/B, plnou podobu i podobu bez portrétu, ukázkové scénáře, světlé a tmavé pozadí, průhledné okolí, bezpečné okraje a zobrazení/skrytí karty. V sekci „Upravit údaje v náhledu“ lze změnit data a nahrát vlastní portrét. Tyto změny se neukládají automaticky.
+| Rozložení | Portrét | Výsledek |
+| --- | --- | --- |
+| A | ano | Vodorovná karta s portrétem, číslem vlevo od jména |
+| A | ne | Kratší vodorovná karta bez prázdného místa |
+| B | ano | Rohová karta, portrét vlevo, údaje vpravo |
+| B | ne | Užší rohová karta s přeskládanými údaji |
 
-- `data.js`: trvalá fiktivní ukázková data.
-- `style.css`: základní rozložení a skutečné lokální fonty Exo.
-- `relief.css`: kompozice reliéfu ze studie 02.
-- `production.css`: aktuální úpravy studie 03; rozměry, materiál, akcenty, fotografie.
-- `build-relief.cjs`: skládá SVG podklady ze skutečného loga a vyhlazuje architektonickou masku, bez ručního překreslení značky.
-- `relief-mask.css`: vložená SVG maska pro offline provoz, generovaná uvedeným skriptem.
-- `app.js`: přepínání a chování ukázkových dat.
+Celý reliéf Svaté Hory je součástí horní hrany, u rohových variant leží mimo portrét. Samostatné bílé logo bylo na žádost zadavatele odstraněno. Grafitovou plochu doplňuje jemná vektorová stopa MTB pneumatiky. Jméno a příjmení sdílejí řádek, příjmení je výraznější. Číslo je červené #FF1A1A; drobná spodní linka používá #E30613. Portrét má měkký přechod do podkladu a číslo leží mimo rameno.
 
-## Náhledy
+Schválené změny (textura, smíšená velikost písmen jména a lokální měkký přechod portrétu) mají pro tuto kartu přednost před obecnými webovými pravidly design systému. Původní architektonická maska zůstává zdrojem celého reliéfu; generovaný návrh není zdrojem loga.
 
-`nahledy/SVDT-srovnani-A-B.png` je společná prezentační tabule. `srovnani.html` je její editovatelný zdroj.
+## Otevření a editace
 
-Pro oba směry jsou v `nahledy/` plné náhledy, podoby bez portrétu, dlouhá jména s portrétem i bez něj, neúplné volitelné údaje, světlé/tmavé pozadí, poloviční 960 × 540 náhledy a samostatné transparentní PNG (`*-overlay.png`, `*-overlay-bez-portretu.png`). Hlavní pracovní plátno je 1920 × 1080. Karta je 96 px od levého a 80 px od spodního okraje. Okolí karty je průhledné; závodní fotografie není součástí overlay exportů.
+Otevřete `index.html`. Přepněte rozložení A/B a přepínač portrétu. Údaje lze upravit v editoru; okamžité změny v prohlížeči se neukládají. Trvalé ukázkové údaje jsou v `data.js`. `srovnani.html` zobrazuje všechny čtyři varianty ze zdrojového vykreslení.
 
-Varianta A má šířku 1560 px (bez portrétu 1280 px) a nízkou spodní lištu. Varianta B má šířku 640 px a skládá informace nad sebe. Výška viditelného reliéfu je A 132 px, B 108 px; světlá hrana je přibližně 1,5 px. Žádné opakované pohyby, vržené stíny ani plošné zatmavení závodní fotografie. Přechod zobrazení/skrytí 350 ms respektuje omezený pohyb.
+- `app.js`: společná struktura a chování všech variant, bezpečné vkládání textu.
+- `style.css`: písmo Exo, ovládání a pracovní plátno.
+- `production.css`: aktuální kompozice 06.4, rozměry, textura a portrét.
+- `relief-mask.css`: původní vložená maska reliéfu pro offline provoz.
+- `assets/mtb-tread.svg`: editovatelný dekorativní vzorek špalkového MTB dezénu, není značkou výrobce.
+- `render.cjs`: generování náhledů a kontroly.
+- `relief.css`: historická studie 02; aktuální stránka ji již nenačítá.
 
-Předchozí studie 01 a 02 byly pracovními etapami této varianty a nejsou uložené jako samostatné složky v tomto repozitáři. Aktuálním zdrojem pro další práci je studie 03 v této složce.
+Pracovní plátno je 1920 × 1080, karta je 96 px od levého a 80 px od spodního okraje. A má šířku 1120 px (bez portrétu 940 px), B 610 px (bez portrétu 470 px). Dlouhé texty mohou zvýšit výšku karty; pevné bezpečné okraje se kontrolují. Okolí overlaye je průhledné. Závodní fotografie není součástí průhledných exportů.
+
+## Generování na počítači i iPadu
+
+Lokálně: Node.js 22+, `npm install`, `npx playwright install chromium`, `npm run render`.
+
+Na iPadu v GitHubu: **Actions → SVDT — generování náhledů → Run workflow**. Balíček `svdt-karta-jezdce-nahledy` obsahuje náhledy a `kontrola.json`. Stejná kontrola se spouští při Pull Requestu a změně karty v `main`.
+
+`nahledy/SVDT-srovnani-A-B.png` nyní zobrazuje všechny čtyři varianty (název zachován kvůli existujícím odkazům). `A/B-detail*.png` jsou výřezy pro přehledovou kompozici; `A/B-overlay*.png` jsou průhledná pracovní plátna 1920 × 1080. Staré PNG je nutné po změně kódu regenerovat; zdrojem pravdy je HTML/CSS.
+
+## Data a kontrola
+
+Ukázkové údaje jsou fiktivní. Skutečný portrét je možné nahrát, neplatný obrázek přepne na podobu bez portrétu. Chybějící volitelná pole se skryjí bez prázdných oddělovačů. Chybějící jméno nebo číslo potlačí kartu. Dlouhá jména se zalamují bez vynechávání částí, tým může zabrat více řádků. Při překročení kapacity se zobrazí upozornění obsluze. Česká vlajka je CSS geometrie; jiné země používají textový kód.
+
+Render kontroluje načtení písem a obrázků, přetečení, bezpečnou horní hranici, povinná i volitelná data, přepínání viditelnosti a neplatný portrét. Exportuje také světlé/tmavé pozadí a poloviční náhledy. Výsledek konkrétního běhu je v `kontrola.json` a v GitHub Actions; tento dokument nepředjímá jeho úspěch.
 
 ## Použité podklady
 
 - Zadání `ZADANI_KARTA_JEZDCE.md`, nadřazené `../ZADANI.md`, rozbalený `../design-system/` a původní referenční fotografie poskytnutá mimo tento repozitář. Samotný archiv design systému ani původní referenční složka nejsou v repozitáři uloženy. Cizí grafika z reference nebyla převzata.
 - **Závodní fotografie:** [oficiální fotogalerie SVDT](https://svdtpribram.cz/fotogalerie/), [přímý zdroj DSC_2695-45.jpg](https://svdtpribram.cz/wp-content/uploads/2026/03/DSC_2695-45.jpg). Lokálně `assets/zavod-skocny-zaber.jpg`. Záběr skoku v příbramské ulici. Použita jako podklad návrhu na výslovný pokyn zadavatele, s kompozičním výřezem do 16 : 9; bez retuše a bez dodatečného zatmavení. Autor není v načteném výpisu galerie uveden, není zde domýšlen.
-- **Logo:** [originální PNG SVDT](https://svdtpribram.cz/wp-content/uploads/2026/03/SVDT-logo-cervene_bile_uvnitr.png), beze změny uložené jako `assets/logo-svdt.png`. Na přání lepšího začlenění je ve vysílané kartě návrhová bílá adaptace `assets/logo-ink.svg` s potlačeným kruhovým podkladem. Reliéf využívá skutečný horní motiv loga, nikoliv nově vymyšlenou značku. Proporce samotného motivu zůstávají zachované; základna je zakomponovaná do těla karty.
+- **Logo:** [originální PNG SVDT](https://svdtpribram.cz/wp-content/uploads/2026/03/SVDT-logo-cervene_bile_uvnitr.png), beze změny uložené jako `assets/logo-svdt.png`. Historická návrhová bílá adaptace `assets/logo-ink.svg` s potlačeným kruhovým podkladem se od verze 06.4 v kartě nezobrazuje. Reliéf využívá skutečný horní motiv loga, nikoliv nově vymyšlenou značku. Proporce samotného motivu zůstávají zachované; základna je zakomponovaná do těla karty.
 - **Exo:** skutečné lokální fonty 400/500/700/800/900, [Google Fonts](https://fonts.google.com/specimen/Exo). Licence v `assets/Exo-OFL.txt`. Bez náhradního písma.
 - **Ilustrační portrét:** anonymní postava v helmě, vytvořená vestavěným imagegen v první studii. Soubor `assets/portrait.png`, prompt a režim v `PROMPT.md`. V této revizi nebyl generován nový obraz.
 
 Fotografie Svaté Hory z předchozích studií zůstává pouze v podkladech: Jirka Jiroušek, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Svat%C3%A1_Hora_u_P%C5%99%C3%ADbrami_-_leteck%C3%BD_pohled.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Aktuální náhled ji nepoužívá. Dřívější fotografické výřezy a úpravy v archivovaných studiích jsou pod touto licencí.
 
-## Ukázková data a krajní případy
-
-Údaje jsou fiktivní. Jméno na kartě **neoznačuje jezdce v závodní fotografii**. Ilustrační postava rovněž není jeho portrét. Žádné datum, ročník, výsledek ani partner nebyl přidán do grafiky. Reklamy zachycené na skutečné fotografii jsou součástí záběru, nikoliv novými partnerskými bloky.
-
-Dlouhé příjmení může využít další řádek; písmo má pevné větší a menší návrhové velikosti (aktuální dlouhé jméno: A 52 px, B 44 px). Tým se zalamuje. Navržené redakční pravidlo: nejvýše dva řádky týmu, poté schválená kratší oficiální podoba. Automatická trojtečka ani neomezené zmenšování se nepoužívají. Extrémní text nad kapacitu vyžaduje úpravu kompozice před vysíláním.
-
-Chybějící volitelná pole se skryjí bez prázdných oddělovačů. Chybějící jméno nebo číslo kartu potlačí a zobrazí zprávu obsluze. Neplatný portrét aktivuje variantu bez portrétu. Česká vlajka je CSS geometrie; další kódy zemí se zobrazí textově. Náhled není produkční validátor dat.
-
-## Kontrola
-
-V Chrome znovu vyrenderováno 18 kompozic a ověřeno 5 funkčních stavů: zobrazení/skrytí, chybějící povinná i volitelná pole, neplatný portrét. Všech 23 kontrol prošlo bez chyby JavaScriptu a bez detekovaného přetečení textu; načetlo se písmo i obrazové podklady. Výsledky v `kontrola.json`. Vizuálně zkontrolovány oba hlavní směry, dlouhá jména, světlé pozadí a poloviční náhled. Jezdec na zvoleném podkladu zůstává viditelný.
-
-`render.cjs` slouží k opětovnému exportu a automatické kontrole. Lokálně vyžaduje Node.js 22 a příkazy `npm install`, `npx playwright install chromium` a `npm run render`. Pevná cesta ke konkrétnímu počítači se nepoužívá. Otevření běžného náhledu tyto nástroje nepotřebuje.
-
-### Generování z iPadu
-
-V GitHubu otevřete záložku **Actions**, vyberte workflow **SVDT — generování náhledů** a použijte **Run workflow**. GitHub provede kontrolu na vzdáleném počítači a nabídne balíček `svdt-karta-jezdce-nahledy` ke stažení. Stejná kontrola se spustí automaticky také při změně souborů karty v Pull Requestu.
-
-Stále jde o statickou vizuální studii. Kontrola pohybujícího se závodního obrazu, skutečné portréty, finální formát režie, pozice televizního loga a produkční odbavení zůstávají pro navazující tvorbu vysílacích šablon.

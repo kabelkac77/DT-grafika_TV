@@ -1,49 +1,31 @@
-/* Study 03 — unified graphite body, low architectural relief, precise edge light. */
+/* 06.4 — approved four-card family. Coordinates use the 1920 × 1080 stage. */
+.version-link{margin:0 0 20px;font-size:14px}.capture .version-link{display:none}
 .scene{background-image:url('assets/zavod-skocny-zaber.jpg');background-position:center bottom}
-.rider-card.A{width:1560px}
-.rider-card .shell,.B .shell{background:linear-gradient(110deg,#151e29 0%,#101720 36%,#0b1017 78%,#111923 100%)}
-.rider-card .shell:after{height:2px;background:linear-gradient(90deg,#e30613 0 19%,#38424e 19% 78%,#e30613 78% 100%)}
-.rider-card .architecture{width:390px;height:132px;top:-132px;right:34px}
-.architecture .red-edge{transform:translate(1.5px,1px);background:linear-gradient(100deg,#252f3a 0 72%,#e30613 95%)}
-.architecture .edge{transform:translateY(-1.5px);background:linear-gradient(105deg,#26313e 0%,#637180 25%,#87929d 40%,#4a5969 62%,#28323f 90%)}
-.architecture .face{background:linear-gradient(180deg,#28323f 0%,#1a2430 37%,#111923 100%)}
-.rider-card .brand-panel,.rider-card .bib,.B .brand-panel,.B.no-portrait .brand-panel{background:transparent}
-.rider-card .brand-panel img{width:130px;height:113px;opacity:.95}
-.rider-card .bib strong{color:var(--accent);font-size:88px;line-height:1.15}
-.rider-card .bib small{color:#bec7d2;font-size:15px;letter-spacing:.08em}
-.rider-card .bib:after{background:linear-gradient(transparent,#62718188,transparent);top:20%;height:60%}
-.A .shell{grid-template-columns:280px minmax(0,1fr) 160px 204px}
-.A .portrait-area{width:270px;height:334px;left:0;bottom:2px}
-.A .portrait-area:before{inset:49% 0 0;background:linear-gradient(130deg,#e30613 0%,#8c0712 67%,#381018 100%);clip-path:polygon(35% 0,100% 0,100% 100%,0 100%)}
-.A .portrait-area:after{background:linear-gradient(transparent,#151e29);height:50px}
-.A .identity{padding:25px 32px 24px}
-.A .identity:before{left:32px;right:0;background:linear-gradient(90deg,#a9b7c45c,#46536030)}
-.A .brand-panel{padding-right:0;clip-path:none}
-.A .shell:after{right:0}
-.A.no-portrait{width:1280px}
-.A.no-portrait .shell{grid-template-columns:minmax(0,1fr) 160px 204px}
-.A.no-portrait .architecture{right:34px}
-.A .first{font-size:30px;color:#d2d8df}
-.A .last{font-size:70px}
-.A.long .last{font-size:52px}
-.A .meta{font-size:24px;margin-top:17px}
-.A .meta>span+span{border-color:#8995a13b}
-.B{width:640px!important}
-.B .shell{grid-template-columns:1fr 160px;grid-template-rows:180px auto}
-.B .architecture,.B.no-portrait .architecture{width:320px;height:108px;top:-108px;right:22px}
-.B .brand-panel{padding:0 24px 0 0;justify-content:flex-end}
-.B .brand-panel img{width:118px;height:102px}
-.B .bib strong{font-size:88px}
-.B .portrait-area{left:6px;top:-70px;width:250px;height:253px}
-.B .portrait-area:after{height:42px;background:linear-gradient(transparent,#151e29)}
-.B .identity{padding:23px 28px 24px;border-top:1px solid #66738350}
-.B .first{font-size:27px;color:#d2d8df}
-.B .last{font-size:62px}
-.B .meta{margin-top:17px;font-size:23px;gap:14px}
-.B .team{font-size:23px}
-.B .category small{font-size:16px}
-.B.no-portrait .shell{grid-template-rows:132px auto}
-.B.no-portrait .brand-panel img{width:118px;height:102px}
-.B.long .last{font-size:44px}
-.B.long .team{font-size:23px}
-.B .meta>span+span{border-color:#8995a13b}
+.rider-card{--surface:#19232e;position:absolute;left:96px;bottom:80px;color:#fff;font-variant-numeric:tabular-nums;transition:opacity .35s ease,transform .35s ease;isolation:isolate}
+.rider-card.off{opacity:0;transform:translateY(24px)}
+.shell{position:relative;isolation:isolate;background:var(--surface);border-top:1px solid #83919e80;clip-path:polygon(12px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 12px)}
+.shell:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#17212c 0%,#17212cf5 30%,#17212c80 62%,transparent),url('assets/mtb-tread.svg') right center/168px 168px;z-index:-1;opacity:.35}
+.shell:after{content:'';position:absolute;left:0;bottom:0;width:170px;height:4px;background:var(--brand)}
+.architecture{position:absolute;right:16px;top:-106px;width:290px;height:108px;pointer-events:none;z-index:-1;overflow:visible}
+.architecture i{position:absolute;inset:0;mask-position:center top;mask-size:100% auto;mask-repeat:no-repeat;-webkit-mask-position:center top;-webkit-mask-size:100% auto;-webkit-mask-repeat:no-repeat}
+.architecture .edge{transform:translateY(-1px);background:#8795a3}
+.architecture .face{background:linear-gradient(180deg,#26323f,#19232e 85%)}
+.bib{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-width:0;z-index:2}
+.bib small{font-size:16px;font-weight:500;letter-spacing:.035em;color:#c1cad3;line-height:1.3}
+.bib strong{font-size:74px;line-height:1.05;font-weight:900;letter-spacing:-.04em;color:var(--accent)}
+.identity{min-width:0;position:relative;z-index:2}.name{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:10px;line-height:1.18;overflow-wrap:anywhere}.name>span{min-width:0;max-width:100%}.first{font-size:42px;font-weight:400}.last{font-size:44px;font-weight:900;text-transform:uppercase;letter-spacing:-.015em}
+.meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:23px;line-height:1.3;color:#e2e7ec;font-weight:500;margin-top:12px;padding:8px 14px 8px 16px;background:linear-gradient(100deg,#101a25db,#101a2590 80%,transparent);border-top:1px solid #8c9aa54d;clip-path:polygon(10px 0,100% 0,100% 100%,0 100%,0 10px)}
+.meta>span+span{border-left:1px solid #b2bdc45c;padding-left:14px}.country{display:flex;align-items:center;gap:12px;font-weight:800;white-space:nowrap}.category{white-space:nowrap}.team{overflow-wrap:anywhere;min-width:0}
+.flag{position:relative;display:inline-block;width:34px;height:23px;flex:none;background:linear-gradient(#fff 50%,#d7141a 50%);overflow:hidden}.flag:before{content:'';position:absolute;inset:0;background:#11457e;clip-path:polygon(0 0,50% 50%,0 100%)}
+.portrait-area{position:absolute;left:0;bottom:3px;width:170px;height:198px;overflow:hidden;z-index:3;mask-image:linear-gradient(90deg,#000 0 87%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,#000 0 87%,transparent 100%)}
+.portrait-area img{position:absolute;width:135%;height:auto;max-width:none;left:-17.5%;top:0}
+.portrait-area:after{content:'';position:absolute;inset:70% 0 0;background:linear-gradient(transparent,#17212c9c)}
+/* A: short lower third; optional portrait column collapses completely. */
+.A{width:1120px}.A .shell{display:grid;grid-template-columns:180px 125px minmax(0,1fr);min-height:138px;align-items:center;padding:14px 28px 12px 0}
+.A .bib{grid-column:2;padding-right:20px;border-right:1px solid #a9b5c050}.A .identity{grid-column:3;padding-left:24px}.A .meta{width:fit-content;max-width:100%;margin-top:8px;font-size:22px}
+.A.no-portrait{width:940px}.A.no-portrait .shell{grid-template-columns:125px minmax(0,1fr);padding-left:24px}.A.no-portrait .bib{grid-column:1}.A.no-portrait .identity{grid-column:2}
+.A.long .first,.A.long .last{font-size:36px}.A.long .team{max-width:330px}
+/* B: corner block; full skyline sits to the right of the portrait. */
+.B{width:610px}.B .shell{display:grid;grid-template-columns:190px minmax(0,1fr);padding:18px 22px 14px 0;min-height:254px;align-content:center;row-gap:8px}.B .bib{grid-column:2}.B .bib strong{font-size:68px}.B .identity{grid-column:2}.B .first{font-size:32px}.B .last{font-size:34px}.B .name{line-height:1.18}.B .meta{font-size:22px;gap:10px;margin-top:10px;padding:8px 0 0;clip-path:none;background:transparent}.B .meta .team{flex:0 0 100%;border:0;padding:0;font-weight:400}.B .meta>span+span{padding-left:12px}.B .portrait-area{width:185px;height:248px}.B .architecture{width:280px;height:104px;top:-102px;right:18px}
+.B.no-portrait{width:470px}.B.no-portrait .shell{grid-template-columns:minmax(0,1fr);min-height:218px;padding:18px 26px}.B.no-portrait .bib,.B.no-portrait .identity{grid-column:1}.B.no-portrait .architecture{width:280px;right:16px}.B.long .first,.B.long .last{font-size:31px}
+@media(prefers-reduced-motion:reduce){.rider-card{transition:none;transform:none!important}}
