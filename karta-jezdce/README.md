@@ -22,11 +22,11 @@ Pro oba směry jsou v `nahledy/` plné náhledy, podoby bez portrétu, dlouhá j
 
 Varianta A má šířku 1560 px (bez portrétu 1280 px) a nízkou spodní lištu. Varianta B má šířku 640 px a skládá informace nad sebe. Výška viditelného reliéfu je A 132 px, B 108 px; světlá hrana je přibližně 1,5 px. Žádné opakované pohyby, vržené stíny ani plošné zatmavení závodní fotografie. Přechod zobrazení/skrytí 350 ms respektuje omezený pohyb.
 
-Předchozí kompletní návrhy jsou zachované v `../karta-jezdce-v01/` a `../karta-jezdce-v02/`.
+Předchozí studie 01 a 02 byly pracovními etapami této varianty a nejsou uložené jako samostatné složky v tomto repozitáři. Aktuálním zdrojem pro další práci je studie 03 v této složce.
 
 ## Použité podklady
 
-- Zadání `ZADANI_KARTA_JEZDCE.md`, nadřazené `ZADANI.md`, `SVDT Design System.zip` a referenční fotografie ze složky `Zadání_foto`. Cizí grafika z reference nebyla převzata.
+- Zadání `ZADANI_KARTA_JEZDCE.md`, nadřazené `../ZADANI.md`, rozbalený `../design-system/` a původní referenční fotografie poskytnutá mimo tento repozitář. Samotný archiv design systému ani původní referenční složka nejsou v repozitáři uloženy. Cizí grafika z reference nebyla převzata.
 - **Závodní fotografie:** [oficiální fotogalerie SVDT](https://svdtpribram.cz/fotogalerie/), [přímý zdroj DSC_2695-45.jpg](https://svdtpribram.cz/wp-content/uploads/2026/03/DSC_2695-45.jpg). Lokálně `assets/zavod-skocny-zaber.jpg`. Záběr skoku v příbramské ulici. Použita jako podklad návrhu na výslovný pokyn zadavatele, s kompozičním výřezem do 16 : 9; bez retuše a bez dodatečného zatmavení. Autor není v načteném výpisu galerie uveden, není zde domýšlen.
 - **Logo:** [originální PNG SVDT](https://svdtpribram.cz/wp-content/uploads/2026/03/SVDT-logo-cervene_bile_uvnitr.png), beze změny uložené jako `assets/logo-svdt.png`. Na přání lepšího začlenění je ve vysílané kartě návrhová bílá adaptace `assets/logo-ink.svg` s potlačeným kruhovým podkladem. Reliéf využívá skutečný horní motiv loga, nikoliv nově vymyšlenou značku. Proporce samotného motivu zůstávají zachované; základna je zakomponovaná do těla karty.
 - **Exo:** skutečné lokální fonty 400/500/700/800/900, [Google Fonts](https://fonts.google.com/specimen/Exo). Licence v `assets/Exo-OFL.txt`. Bez náhradního písma.
