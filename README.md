@@ -1,32 +1,45 @@
-# DT grafika
+# SVDT — grafika pro televizní přenos
 
-Repozitář s grafickými podklady pro projekt **Downtown (DT)**.
+Repozitář obsahuje zadání, společný design systém a pracovní grafické výstupy pro televizní přenos a velkoplošné obrazovky závodu **Svatohorský Downtown Příbram (SVDT)**.
 
-## Struktura
+Projekt je ve fázi návrhu. Aktuální grafiky jsou vizuální studie, nikoliv schválené vysílací šablony.
 
-Každý druh výstupu má vlastní složku:
+## Aktuální struktura
 
-| Složka | Co do ní patří |
-|---|---|
-| `karta-jezdce/` | Grafika karty jezdce (finální i podklady) |
-| `loga/` | Loga a jejich varianty |
-| `bannery/` | Bannery (web, sociální sítě, tisk) |
-| `zdroje/` | Zdrojové soubory (PSD, AI, INDD…) |
+| Cesta | Obsah |
+| --- | --- |
+| `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
+| `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
+| `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
 
-## Jak přidat další sekci
+Složky pro další grafické části budou vytvořeny až při zahájení jejich realizace, aby prázdná struktura nepředstírala hotový rozsah.
 
-Novou složku přidáš tak, že při vytváření souboru na GitHubu
-(Add file → Create new file) napíšeš do názvu např.:
+## Aktuální stav
 
-```
-nazev-nove-sekce/README.md
-```
+- G02 — karta jezdce: existuje interaktivní vizuální studie ve variantách A a B.
+- G01 a G03–G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
+- G08 — ztráta nebo zisk na úsecích: volitelné rozšíření závislé na dostupnosti mezičasů.
+- Produkční formát, napojení časomíry a způsob odbavení musí být potvrzeny s režií.
 
-Lomítko `/` GitHub pochopí jako složku a rovnou ji založí.
+## Jak otevřít kartu jezdce
 
-## Velikost souborů (důležité u grafiky)
+1. Stáhněte nebo naklonujte repozitář.
+2. Otevřete `karta-jezdce/index.html` v aktuálním Chrome nebo Edge.
+3. Náhled funguje lokálně bez serveru a bez připojení k internetu.
 
-- Nahrávání přes prohlížeč: **max 25 MB na soubor**.
-- Přes příkazovou řádku: varování nad 50 MB, blok nad 100 MB.
-- Velké zdrojáky (PSD, AI, TIFF) proto nahrávej přes příkazovou
-  řádku, nebo použij Git LFS. Do složky `zdroje/` viz poznámka tam.
+Podrobnosti, použité podklady a kontrolní scénáře jsou popsány v [dokumentaci karty jezdce](karta-jezdce/README.md).
+
+## Pravidla pro další grafické části
+
+- Každá grafická část G01–G07 dostane vlastní složku a vlastní `README.md`.
+- Společné barvy, typografie a vizuální principy vycházejí z `design-system/`.
+- Zdrojové soubory, editovatelné podklady a exporty musí být jasně rozlišené.
+- Externí nebo neveřejné podklady se v dokumentaci označí jako podklady mimo repozitář.
+- Ukázková data musí být označena jako fiktivní a nesmí se zaměnit za skutečné výsledky.
+- Produkční rozhodnutí se nezafixují, dokud je nepotvrdí režie, časomíra nebo zadavatel.
+
+## Grafické soubory a velikost repozitáře
+
+GitHub blokuje běžné Git soubory nad 100 MB a u velkých souborů může zobrazovat varování. Velké editovatelné zdroje, například PSD, AI nebo TIFF, proto později uložíme přes Git LFS nebo do dohodnutého úložiště.
+
+Vygenerované náhledy se mají udržovat pouze v rozsahu potřebném pro kontrolu a schválení. Pravidla pro exporty a automatické kontroly doplníme v navazujícím technickém kroku.
