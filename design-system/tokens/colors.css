@@ -1,0 +1,8 @@
+:root{
+--svdt-bg:#05060a;--svdt-bg-soft:#070c12;--svdt-bg-card:#0b0f13;--svdt-bg-card-soft:#0e141d;--svdt-bg-elevated:#131a23;
+--svdt-text:#ffffff;--svdt-text-mid:#bfc2c9;--svdt-text-soft:#9ca3af;--svdt-text-muted:#6b7280;
+--svdt-brand:#e30613;--svdt-brand-hover:#b80510;--svdt-brand-ink:#ffffff;
+--svdt-red:#ff1a1a;--svdt-red-strong:#ff1111;--svdt-red-glow:rgba(255,26,26,.40);
+--svdt-border:#1f2933;--svdt-line:rgba(255,255,255,.08);--svdt-line-strong:rgba(255,255,255,.22);
+--svdt-ok:#2ee08a;--svdt-warn:#fcb900;--svdt-err:#ff6b6b;
+}

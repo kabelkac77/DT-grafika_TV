@@ -1,0 +1,21 @@
+<!-- @dsCard group="Components" viewport="700x460" name="Partners" subtitle="Logo-wall tiers and sponsorship packages" -->
+<meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:var(--svdt-bg);padding:20px;display:flex;flex-direction:column;gap:24px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}</style>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { PartnerWall, SponsorPackage } = window.DesignSystem_d54f35;
+function Demo(){return (<>
+<PartnerWall tier="main" label="Hlavní partneři" sublabel="3 sloupce · 110px" partners={['Hlavní A','Hlavní B','Hlavní C']} />
+<PartnerWall tier="support" label="Partneři" sublabel="5 sloupců · 78px" partners={['Partner 1','Partner 2','Partner 3','Partner 4','Partner 5']} />
+<div className="g3">
+<SponsorPackage name="Partner" price="25 000" priceUnit="Kč" features={['Logo na webu a plakátu','2× post na sítích','Banner v cíli']} />
+<SponsorPackage name="Hlavní partner" price="80 000" priceUnit="Kč" highlighted features={['Vše z úrovně Partner','Logo na startovních číslech','Branding divácké zóny','Stánek v areálu']} />
+<SponsorPackage name="Generální partner" price="Individuálně" features={['Vše z úrovně Hlavní partner','Exkluzivita v oboru','Branding cílové brány']} />
+</div>
+</>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>

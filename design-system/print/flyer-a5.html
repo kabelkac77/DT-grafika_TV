@@ -1,0 +1,155 @@
+<!-- @dsCard group="Print" -->
+<link rel="stylesheet" href="../styles.css">
+<meta charset="utf-8">
+<title>SVDT — Leták A5 / Flyer</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--svdt-bg);color:var(--svdt-text);font-family:var(--svdt-font);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);line-height:1;margin:0 0 14px}
+h1{font-size:44px;font-weight:900;line-height:1;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--svdt-text-soft);font-size:15px;line-height:1.7;max-width:62ch;margin:0}
+h2{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:52px 0 8px;padding-bottom:10px;border-bottom:1px solid var(--svdt-line);line-height:1}
+.sub{font-size:13px;color:var(--svdt-text-muted);margin:0 0 22px;line-height:1.6}
+.en{color:var(--svdt-text-muted);font-weight:700;letter-spacing:.06em}
+.row{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start}
+.cap{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);margin:12px 0 0;text-align:center}
+
+/* A5 148×210 → 280×397 */
+.a5{width:280px;aspect-ratio:148/210;position:relative;overflow:hidden;background:var(--svdt-bg);border:1px solid var(--svdt-border);flex:0 0 auto}
+.photo{position:absolute;inset:0;background:radial-gradient(circle at 50% 28%,#525c6b 0,transparent 45%),linear-gradient(170deg,#5a6472 0%,#20262e 50%,#0b0f13 100%)}
+.ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.45) 0%,rgba(5,6,10,.35) 26%,rgba(5,6,10,.98) 62%)}
+.in{position:absolute;inset:0;padding:22px 20px;display:flex;flex-direction:column}
+.lg{width:44px;height:44px;align-self:center}
+.spacer{flex:1}
+.claim{font-size:40px;font-weight:900;line-height:.86;text-transform:uppercase;margin:0;letter-spacing:-.025em;text-align:center}
+.claim em{font-style:normal;color:var(--svdt-red)}
+.psub{font-size:9.5px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#fff;margin:10px 0 0;text-align:center;line-height:1.5}
+.pdate{background:var(--svdt-brand);color:#fff;font-size:14px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;padding:9px 6px;text-align:center;margin:13px 0 0;line-height:1.2}
+.pdate small{display:block;font-size:7.5px;font-weight:700;letter-spacing:.16em;margin-top:3px;opacity:.9}
+.url{font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#fff;text-align:center;margin:13px 0 0}
+
+/* verso */
+.a5b{background:var(--svdt-bg);padding:22px 20px;display:flex;flex-direction:column}
+.bh{font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--svdt-red);margin:0 0 9px;line-height:1}
+.prow{display:grid;grid-template-columns:44px 1fr;gap:9px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:9.5px;line-height:1.4}
+.prow:last-of-type{border-bottom:0}
+.prow time{font-weight:900;font-variant-numeric:tabular-nums;color:#fff}
+.prow span{color:var(--svdt-text-soft)}
+.map{height:96px;background:var(--svdt-bg-card);border:1px solid var(--svdt-border);margin:9px 0 0;position:relative;overflow:hidden}
+.map .path{position:absolute;left:12%;top:14%;width:76%;height:72%;border-left:2px solid var(--svdt-brand);border-bottom:2px solid var(--svdt-brand);border-radius:0 0 0 40px}
+.map .pin{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--svdt-brand);display:grid;place-items:center;font-size:7px;font-weight:900;color:#fff}
+.qr{width:56px;height:56px;background:#fff;display:grid;place-items:center;flex:0 0 auto}
+.qr div{width:44px;height:44px;background:repeating-conic-gradient(#05060a 0 25%,#fff 0 50%) 0 0/9px 9px}
+.bfoot{display:flex;gap:11px;align-items:center;margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,.12)}
+.bfoot p{margin:0;font-size:8px;color:var(--svdt-text-muted);line-height:1.5}
+.bfoot b{display:block;font-size:10px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.plogos{display:flex;gap:4px;margin-top:9px;flex-wrap:wrap}
+.plogos i{height:12px;width:30px;background:rgba(255,255,255,.14);border-radius:2px;display:block}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);padding:0 12px 12px;border-bottom:1px solid var(--svdt-border)}
+td{padding:13px 12px;border-bottom:1px solid var(--svdt-line);color:var(--svdt-text-mid)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff}
+.note{margin-top:20px;padding:14px 18px;background:rgba(255,26,26,.06);border-left:3px solid var(--svdt-red);border-radius:0 6px 6px 0;font-size:13px;line-height:1.65;color:var(--svdt-text-mid)}
+.spec{background:var(--svdt-bg-card);border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);padding:24px;flex:1;min-width:260px}
+.spec h4{margin:0 0 12px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red)}
+.spec dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:13px}
+.spec dt{color:var(--svdt-text-muted);white-space:nowrap}
+.spec dd{margin:0;color:#fff;font-weight:700}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Print · A5 oboustranně</p>
+  <h1>Leták <span class="en">/ Flyer</span></h1>
+  <p class="lede">
+    Leták je plakát, který si divák odnese domů. Přední strana je zmenšený plakát,
+    <strong style="color:#fff">zadní nese program, mapu a QR</strong> — všechno, co plakát na sloupu unést nemůže.
+    <br><em style="color:var(--svdt-text-muted)">Front is the poster; the back carries schedule, map and QR — everything a street poster can't.</em>
+  </p>
+
+  <h2>Obě strany <span class="en">/ Both sides</span></h2>
+  <p class="sub">Přední strana kopíruje plakát v poměru 1:0,7 · zadní je informační</p>
+  <div class="row">
+    <div>
+      <div class="a5">
+        <div class="photo"></div><div class="ov"></div>
+        <div class="in">
+          <svg class="lg" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="84" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="32" font-weight="900">SVDT</text><text x="75" y="102" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="8" font-weight="700" letter-spacing="2.4">PŘÍBRAM</text></svg>
+          <div class="spacer"></div>
+          <h3 class="claim">Zažij<br>atmo<br>sféru<em>.</em></h3>
+          <p class="psub">Svatohorský Downtown Příbram<br>10. ročník</p>
+          <div class="pdate">Sobota 23. 5. 2026<small>Start 15:00 · Vstup zdarma</small></div>
+          <p class="url">svdtpribram.cz</p>
+        </div>
+      </div>
+      <p class="cap">Přední strana / Front</p>
+    </div>
+
+    <div>
+      <div class="a5 a5b">
+        <p class="bh">Program dne</p>
+        <div class="prow"><time>09:00</time><span>Otevření depa, výdej čísel</span></div>
+        <div class="prow"><time>11:00</time><span>Volný trénink</span></div>
+        <div class="prow"><time>13:30</time><span>Dětský závod</span></div>
+        <div class="prow"><time>15:00</time><span>Hlavní závod — start</span></div>
+        <div class="prow"><time>17:30</time><span>Finálová jízda</span></div>
+        <div class="prow"><time>19:00</time><span>Vyhlášení výsledků</span></div>
+        <div class="prow"><time>20:00</time><span>Afterparty — Klub Šachta</span></div>
+
+        <p class="bh" style="margin-top:14px">Trať a divácká místa</p>
+        <div class="map">
+          <div class="path"></div>
+          <span class="pin" style="left:9%;top:9%">1</span>
+          <span class="pin" style="left:9%;top:46%">2</span>
+          <span class="pin" style="left:44%;bottom:8%">3</span>
+          <span class="pin" style="right:9%;bottom:8%">4</span>
+        </div>
+        <p style="margin:7px 0 0;font-size:8px;color:var(--svdt-text-muted);line-height:1.55">
+          1 Start — Svatá Hora · 2 Šalina jump · 3 Náměstí T. G. M. (cíl) · 4 Klub Šachta
+        </p>
+
+        <div class="bfoot">
+          <div class="qr"><div></div></div>
+          <p><b>Registrace a výsledky</b>svdtpribram.cz<br>Pořádá COWÁRNA z.s.<br>Za podpory města Příbram</p>
+        </div>
+        <div class="plogos"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <p class="cap">Zadní strana / Back</p>
+    </div>
+
+    <div class="spec">
+      <h4>Tiskové zadání / Print spec</h4>
+      <dl>
+        <dt>Formát</dt><dd>A5 148 × 210 mm</dd>
+        <dt>Strany</dt><dd>4/4 (oboustranně barevně)</dd>
+        <dt>Spad</dt><dd>3 mm</dd>
+        <dt>Bezpečná zóna</dt><dd>8 mm od ořezu</dd>
+        <dt>Papír</dt><dd>250 g/m² lesklá křída</dd>
+        <dt>Rozlišení</dt><dd>300 dpi</dd>
+        <dt>Barevnost</dt><dd>CMYK, ISO Coated v2</dd>
+        <dt>Claim</dt><dd>min. 44 pt</dd>
+        <dt>Program</dt><dd>min. 8 pt — pod tuto hranici nejít</dd>
+        <dt>QR kód</dt><dd>min. 20 × 20 mm, klidová zóna 4 moduly</dd>
+        <dt>Export</dt><dd>PDF/X-4, spad + značky</dd>
+      </dl>
+    </div>
+  </div>
+
+  <h2>Pravidla <span class="en">/ Rules</span></h2>
+  <table>
+    <tr><th>Pravidlo</th><th>Detail</th></tr>
+    <tr><td>Minimální velikost písma</td><td>8 pt pro program a poznámky. Nikdy méně — na křídě se rozpije</td></tr>
+    <tr><td>QR kód</td><td>Min. 20 mm, vysoká korekce chyb (H), bílá klidová zóna kolem</td></tr>
+    <tr><td>Zadní strana</td><td>Podklad plná černá <code>rich black</code>, bez fotografie — text musí být čitelný</td></tr>
+    <tr><td>Čísla míst</td><td>Musí odpovídat orientačnímu plánku na webu i cedulím na místě</td></tr>
+    <tr><td>Program</td><td>Vždy doplnit „Změna programu vyhrazena“</td></tr>
+    <tr><td>Loga partnerů</td><td>Pouze na zadní straně, výška min. 6 mm</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>QR na tmavém podkladu:</strong> QR kód musí mít <em>bílé pozadí</em> a černé moduly — inverzní
+    varianta se řadě čteček nepřečte. Nikdy ho neumísťuj přímo na černou plochu bez bílé podložky.
+    <br><span style="color:var(--svdt-text-muted)">QR codes need a white quiet zone — inverted codes fail on many scanners.</span>
+  </div>
+</div>

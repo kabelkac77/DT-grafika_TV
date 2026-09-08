@@ -1,0 +1,144 @@
+<!-- @dsCard group="Social" -->
+<link rel="stylesheet" href="../styles.css">
+<meta charset="utf-8">
+<title>SVDT — Instagram post 1:1</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--svdt-bg);color:var(--svdt-text);font-family:var(--svdt-font);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);line-height:1;margin:0 0 14px}
+h1{font-size:44px;font-weight:900;line-height:1;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--svdt-text-soft);font-size:15px;line-height:1.7;max-width:62ch;margin:0}
+h2{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:52px 0 8px;padding-bottom:10px;border-bottom:1px solid var(--svdt-line);line-height:1}
+.sub{font-size:13px;color:var(--svdt-text-muted);margin:0 0 22px;line-height:1.6}
+.en{color:var(--svdt-text-muted);font-weight:700;letter-spacing:.06em}
+.row{display:flex;gap:24px;flex-wrap:wrap}
+.cap{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);margin:12px 0 0;text-align:center}
+
+/* --- 1080×1080 canvas rendered at 340px --- */
+.sq{width:340px;height:340px;position:relative;overflow:hidden;background:var(--svdt-bg);border:1px solid var(--svdt-border);flex:0 0 auto}
+.photo{position:absolute;inset:0;background:radial-gradient(circle at 32% 38%,#4a5568 0,transparent 46%),radial-gradient(circle at 72% 68%,#39424e 0,transparent 50%),linear-gradient(135deg,#5a6472,#161b21)}
+.ov55{position:absolute;inset:0;background:rgba(5,6,10,.62)}
+.ovgrad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.25) 0%,rgba(5,6,10,.35) 40%,rgba(5,6,10,.96) 100%)}
+.pad{position:absolute;inset:0;padding:28px;display:flex;flex-direction:column}
+.logo{width:44px;height:44px;flex:0 0 auto}
+.kick{font-size:10px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--svdt-brand);padding:6px 11px;border-radius:var(--svdt-radius-pill);line-height:1;display:inline-block}
+.big{font-size:44px;font-weight:900;line-height:.92;text-transform:uppercase;margin:0;letter-spacing:-.015em}
+.big em{font-style:normal;color:var(--svdt-red)}
+.meta{font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:0}
+.rule{height:3px;background:var(--svdt-brand);width:56px;border-radius:2px}
+.spacer{flex:1}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.handle{font-size:10px;font-weight:900;letter-spacing:.14em;color:var(--svdt-text-soft);text-transform:uppercase}
+
+/* results variant */
+.rrow{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.rrow:last-child{border-bottom:0}
+.rrow b{font-size:22px;font-weight:900;line-height:1;color:var(--svdt-red);width:22px;font-variant-numeric:tabular-nums}
+.rrow span{font-size:15px;font-weight:900;text-transform:uppercase;flex:1;line-height:1.15}
+.rrow time{font-size:14px;font-weight:900;font-variant-numeric:tabular-nums;color:#fff}
+
+/* countdown variant */
+.cds{display:flex;gap:8px}
+.cdu{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:12px 6px;text-align:center}
+.cdu b{display:block;font-size:28px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.cdu span{display:block;font-size:8px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);margin-top:5px}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);padding:0 12px 12px;border-bottom:1px solid var(--svdt-border)}
+td{padding:13px 12px;border-bottom:1px solid var(--svdt-line);color:var(--svdt-text-mid)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff}
+.note{margin-top:20px;padding:14px 18px;background:rgba(255,26,26,.06);border-left:3px solid var(--svdt-red);border-radius:0 6px 6px 0;font-size:13px;line-height:1.65;color:var(--svdt-text-mid)}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Social · 1080 × 1080</p>
+  <h1>Instagram post <span class="en">/ 1:1</span></h1>
+  <p class="lede">
+    Tři šablony pokryjí 90 % postů: <strong style="color:#fff">oznámení</strong>, <strong style="color:#fff">výsledky</strong>
+    a <strong style="color:#fff">odpočet</strong>. Značka je vždy vlevo nahoře, sdělení dole, mezi tím fotka.
+    Náhledy níž jsou v měřítku 340/1080 — proporce sedí, hodnoty násob 3,18×.
+    <br><em style="color:var(--svdt-text-muted)">Previews are scaled to 340 px; multiply all values by 3.18 for the 1080 px canvas.</em>
+  </p>
+
+  <h2>Šablony <span class="en">/ Templates</span></h2>
+  <p class="sub">Bezpečná zóna 28 px (≈ 90 px na 1080) od každé hrany</p>
+  <div class="row">
+
+    <div>
+      <div class="sq">
+        <div class="photo"></div><div class="ovgrad"></div>
+        <div class="pad">
+          <svg class="logo" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="88" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="38" font-weight="900">SVDT</text></svg>
+          <div class="spacer"></div>
+          <span class="kick" style="align-self:flex-start;margin-bottom:14px">10. ročník</span>
+          <h3 class="big">Zažij<br>atmosféru<em>.</em></h3>
+          <div class="rule" style="margin:16px 0 12px"></div>
+          <p class="meta">23. 5. 2026 · Příbram · Vstup zdarma</p>
+          <div class="foot" style="margin-top:16px"><span class="handle">svdtpribram.cz</span><span class="handle">@svdtpribram</span></div>
+        </div>
+      </div>
+      <p class="cap">Oznámení / Announcement</p>
+    </div>
+
+    <div>
+      <div class="sq">
+        <div class="photo" style="filter:saturate(.4)"></div><div class="ov55"></div>
+        <div class="pad">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <svg class="logo" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="88" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="38" font-weight="900">SVDT</text></svg>
+            <span class="kick">Výsledky</span>
+          </div>
+          <h3 class="big" style="font-size:30px;margin:18px 0 4px">Elite muži</h3>
+          <p class="meta" style="margin-bottom:14px">Finále · 23. 5. 2026</p>
+          <div>
+            <div class="rrow"><b>1</b><span>Jakub Říha</span><time>1:46.312</time></div>
+            <div class="rrow"><b>2</b><span>Tomáš Zíta</span><time>1:47.905</time></div>
+            <div class="rrow"><b>3</b><span>Martin Kraus</span><time>1:48.240</time></div>
+          </div>
+          <div class="spacer"></div>
+          <div class="foot"><span class="handle">Kompletní výsledky na webu</span><span class="handle">@svdtpribram</span></div>
+        </div>
+      </div>
+      <p class="cap">Výsledky / Results</p>
+    </div>
+
+    <div>
+      <div class="sq">
+        <div class="photo" style="filter:saturate(.25) brightness(.7)"></div><div class="ov55"></div>
+        <div class="pad">
+          <svg class="logo" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="88" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="38" font-weight="900">SVDT</text></svg>
+          <div class="spacer"></div>
+          <h3 class="big" style="font-size:34px;margin-bottom:18px">Start<br>závodu za</h3>
+          <div class="cds">
+            <div class="cdu"><b>128</b><span>Dní</span></div>
+            <div class="cdu"><b>06</b><span>Hod</span></div>
+            <div class="cdu"><b>42</b><span>Min</span></div>
+          </div>
+          <div class="foot" style="margin-top:18px"><span class="handle">Registrace otevřená</span><span class="handle">@svdtpribram</span></div>
+        </div>
+      </div>
+      <p class="cap">Odpočet / Countdown</p>
+    </div>
+
+  </div>
+
+  <h2>Specifikace <span class="en">/ Specification</span></h2>
+  <table>
+    <tr><th>Prvek</th><th>Hodnota na 1080 × 1080</th></tr>
+    <tr><td>Bezpečná zóna</td><td>90 px od každé hrany — nic důležitého mimo</td></tr>
+    <tr><td>Značka</td><td>140 px, vždy levý horní roh</td></tr>
+    <tr><td>Hlavní nadpis</td><td>140 px / váha 900 / leading 0,92 / verzálky · max. 3 řádky</td></tr>
+    <tr><td>Doplňkový text</td><td>36 px / váha 900 / letter-spacing 0,14em / verzálky</td></tr>
+    <tr><td>Štítek (kick)</td><td>32 px, plocha <code>--svdt-brand</code>, rádius 999px</td></tr>
+    <tr><td>Překryv fotky</td><td>Gradient <code>rgba(5,6,10,.25) → .96</code> nebo plochých <code>.62</code></td></tr>
+    <tr><td>Handle</td><td>32 px, pravý dolní roh, <code>--svdt-text-soft</code></td></tr>
+    <tr><td>Export</td><td>PNG, sRGB, 1080 × 1080, kvalita max.</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Ořez v profilové mřížce:</strong> Instagram ořezává čtvercové posty v gridu na 1:1, ale
+    náhled v profilu může být ořezán na 4:5. Klíčové sdělení drž ve středních 80 % výšky.
+    <br><span style="color:var(--svdt-text-muted)">Keep key content within the middle 80 % of height — grid previews may crop.</span>
+  </div>
+</div>

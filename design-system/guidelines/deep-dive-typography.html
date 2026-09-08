@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="../styles.css">
+<meta charset="utf-8">
+<title>SVDT — Typografie / Typography</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--svdt-bg);color:var(--svdt-text);font-family:var(--svdt-font);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);line-height:1;margin:0 0 14px}
+h1.pg{font-size:44px;font-weight:900;line-height:1;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--svdt-text-soft);font-size:15px;line-height:1.7;max-width:62ch;margin:0}
+h2{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:56px 0 24px;padding-bottom:10px;border-bottom:1px solid var(--svdt-line);line-height:1}
+.en{color:var(--svdt-text-muted);font-weight:700;letter-spacing:.06em}
+.row{display:grid;grid-template-columns:1fr 190px;gap:28px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--svdt-line)}
+.spec{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:var(--svdt-text-muted);line-height:1.75;text-align:right;white-space:nowrap}
+.spec b{color:var(--svdt-red);font-weight:700}
+.d-display{font-size:64px;font-weight:900;line-height:.95;text-transform:uppercase;letter-spacing:-.015em;margin:0}
+.d-h1{font-size:54px;font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.01em;margin:0}
+.d-h2{font-size:42px;font-weight:900;line-height:1.06;text-transform:uppercase;margin:0}
+.d-h3{font-size:24px;font-weight:800;line-height:1.2;margin:0}
+.d-h4{font-size:18px;font-weight:700;line-height:1.2;margin:0}
+.d-stat{font-size:38px;font-weight:900;line-height:1;margin:0}
+.d-lead{font-size:17px;font-weight:400;line-height:1.7;color:var(--svdt-text-mid);margin:0}
+.d-body{font-size:15px;font-weight:400;line-height:2;color:var(--svdt-text-soft);margin:0}
+.d-small{font-size:13px;font-weight:400;line-height:1.6;color:var(--svdt-text-soft);margin:0}
+.d-label{font-size:12px;font-weight:900;line-height:1;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);margin:0}
+.d-btn{font-size:13px;font-weight:900;line-height:1;letter-spacing:.04em;text-transform:uppercase;margin:0}
+.weights{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.w{background:var(--svdt-bg-card);border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);padding:20px}
+.w .n{font-size:28px;line-height:1.1;text-transform:uppercase;margin:0 0 10px}
+.w .l{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:var(--svdt-text-muted);display:block}
+.w .u{font-size:12px;color:var(--svdt-text-soft);line-height:1.5;display:block;margin-top:6px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--svdt-bg-card);border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);padding:24px}
+.card h3{margin:0 0 12px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.14em}
+.card ul{margin:0;padding-left:18px;color:var(--svdt-text-soft);font-size:13.5px;line-height:1.85}
+.y h3{color:#2ee08a}.n2 h3{color:#ff5c5c}
+.note{margin-top:20px;padding:14px 18px;background:rgba(255,26,26,.06);border-left:3px solid var(--svdt-red);border-radius:0 6px 6px 0;font-size:13px;line-height:1.65;color:var(--svdt-text-mid)}
+code{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:#fff}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Foundations · 03</p>
+  <h1 class="pg">Typografie <span class="en">/ Typography</span></h1>
+  <p class="lede">
+    Jediné písmo: <strong style="color:#fff">Exo</strong>. Nadpisy jdou vždy verzálkami ve váze 900 s těsným
+    prokladem — to je hlavní poznávací znak značky. Tělový text naopak zůstává v běžné velikosti
+    s velkorysým řádkováním 2,0, aby dlouhé české texty zůstaly čitelné.
+    <br><em style="color:var(--svdt-text-muted)">One typeface: Exo. Headlines are always uppercase 900 with tight leading; body copy stays airy at line-height 2.</em>
+  </p>
+
+  <h2>Škála <span class="en">/ Scale</span></h2>
+  <div class="row"><p class="d-display">Zažij atmosféru</p><div class="spec"><b>display</b><br>64 / 0.95 / 900<br>uppercase</div></div>
+  <div class="row"><p class="d-h1">Svatohorský Downtown</p><div class="spec"><b>h1</b><br>54 / 0.98 / 900<br>uppercase</div></div>
+  <div class="row"><p class="d-h2">Hlavní divácká místa</p><div class="spec"><b>h2</b><br>42 / 1.06 / 900<br>uppercase</div></div>
+  <div class="row"><p class="d-h3">Doprovodný program</p><div class="spec"><b>h3</b><br>24 / 1.2 / 800</div></div>
+  <div class="row"><p class="d-h4">Tesyho zahrádka</p><div class="spec"><b>h4</b><br>18 / 1.2 / 700</div></div>
+  <div class="row"><p class="d-stat">140<span style="color:var(--svdt-red)">+</span></p><div class="spec"><b>stat</b><br>38 / 1.0 / 900<br>tabular-nums</div></div>
+  <div class="row"><p class="d-lead">Městský sjezd plný rychlosti, schodů a show přímo v centru Příbrami.</p><div class="spec"><b>lead</b><br>17 / 1.7 / 400</div></div>
+  <div class="row"><p class="d-body">Závod se jede po uzavřené trati vedoucí historickým centrem. Diváci mají přístup zdarma na všechna stanoviště podél trati.</p><div class="spec"><b>body</b><br>15 / 2.0 / 400</div></div>
+  <div class="row"><p class="d-small">Změna programu vyhrazena. Pořadatel: COWÁRNA z.s.</p><div class="spec"><b>small</b><br>13 / 1.6 / 400</div></div>
+  <div class="row"><p class="d-label">23. května 2026</p><div class="spec"><b>label</b><br>12 / 1.0 / 900<br>ls .14em</div></div>
+  <div class="row" style="border-bottom:0"><p class="d-btn">Registrace</p><div class="spec"><b>button</b><br>13 / 1.0 / 900<br>ls .04em</div></div>
+
+  <h2>Řezy <span class="en">/ Weights</span></h2>
+  <div class="weights">
+    <div class="w"><p class="n" style="font-weight:500">Downtown</p><code class="l">--svdt-fw-medium · 500</code><span class="u">Podnadpisy v kartách</span></div>
+    <div class="w"><p class="n" style="font-weight:700">Downtown</p><code class="l">--svdt-fw-bold · 700</code><span class="u">Sekční tlačítka, h4</span></div>
+    <div class="w"><p class="n" style="font-weight:800">Downtown</p><code class="l">--svdt-fw-heavy · 800</code><span class="u">h3, mezistupeň</span></div>
+    <div class="w"><p class="n" style="font-weight:900">Downtown</p><code class="l">--svdt-fw-black · 900</code><span class="u">Všechny hlavní nadpisy</span></div>
+  </div>
+
+  <h2>Pravidla <span class="en">/ Rules</span></h2>
+  <div class="split">
+    <div class="card y">
+      <h3>Ano / Do</h3>
+      <ul>
+        <li>Nadpisy verzálkami, váha 900</li>
+        <li>Leading nadpisů 0,95–1,06 — písmena se skoro dotýkají</li>
+        <li>Čísla vždy <code>font-variant-numeric: tabular-nums</code></li>
+        <li>Maximálně 2 velikosti nadpisů v jednom bloku</li>
+        <li>Diakritika: kontrolovat, že háčky nekolidují s řádkem nad</li>
+      </ul>
+    </div>
+    <div class="card n2">
+      <h3>Ne / Don't</h3>
+      <ul>
+        <li>Verzálky v odstavci delším než 2 řádky</li>
+        <li>Jiné písmo než Exo (kromě systémového fallbacku)</li>
+        <li>Váhy 100–400 v nadpisech</li>
+        <li>Kurzíva — v systému se nepoužívá</li>
+        <li>Tělový text pod 13 px</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Diakritika a leading:</strong> u nadpisů s <code>line-height: .95</code> může „Ř“, „Ž“ nebo „Ý“
+    najet do řádku nad. Ve dvouřádkových nadpisech s diakritikou v horní polovině zvyš leading na <code>1.02</code>.
+    <br><span style="color:var(--svdt-text-muted)">Czech diacritics can collide at 0.95 leading — bump to 1.02 on two-line headings.</span>
+  </div>
+</div>

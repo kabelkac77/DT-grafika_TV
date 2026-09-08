@@ -1,0 +1,193 @@
+<!-- @dsCard group="Deck" -->
+<link rel="stylesheet" href="../styles.css">
+<meta charset="utf-8">
+<title>SVDT — Partnerská prezentace / Partner deck</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--svdt-bg);color:var(--svdt-text);font-family:var(--svdt-font);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);line-height:1;margin:0 0 14px}
+h1{font-size:44px;font-weight:900;line-height:1;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--svdt-text-soft);font-size:15px;line-height:1.7;max-width:62ch;margin:0}
+h2{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:52px 0 8px;padding-bottom:10px;border-bottom:1px solid var(--svdt-line);line-height:1}
+.sub{font-size:13px;color:var(--svdt-text-muted);margin:0 0 22px;line-height:1.6}
+.en{color:var(--svdt-text-muted);font-weight:700;letter-spacing:.06em}
+.cap{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);margin:10px 0 30px}
+
+/* 16:9 slide */
+.s{width:100%;max-width:800px;aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--svdt-bg);border:1px solid var(--svdt-border);border-radius:6px}
+.sp{position:absolute;inset:0;padding:6% 7%;display:flex;flex-direction:column}
+.slogo{width:6.5%;aspect-ratio:1;position:absolute;top:5%;left:7%}
+.slogo-br{width:5%;aspect-ratio:1;position:absolute;bottom:5.5%;right:7%;opacity:.75}
+.pno{position:absolute;bottom:5.5%;left:7%;font-size:clamp(7px,1vw,11px);font-weight:900;letter-spacing:.14em;color:var(--svdt-text-muted)}
+.spacer{flex:1}
+.kick{font-size:clamp(7px,1.05vw,11px);font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--svdt-red);margin:0 0 2%;line-height:1}
+.st{font-size:clamp(20px,4.6vw,46px);font-weight:900;line-height:.95;text-transform:uppercase;margin:0;letter-spacing:-.02em}
+.st em{font-style:normal;color:var(--svdt-red)}
+.sd{font-size:clamp(8px,1.5vw,15px);color:var(--svdt-text-mid);line-height:1.65;margin:2.5% 0 0;max-width:62%}
+.rule{height:3px;background:var(--svdt-brand);width:9%;border-radius:2px;margin:3% 0}
+.photo{position:absolute;inset:0;background:radial-gradient(circle at 66% 40%,#4a5568 0,transparent 44%),linear-gradient(110deg,#0b0f13 20%,#3b444f 65%,#5a6472 100%)}
+.ov{position:absolute;inset:0;background:linear-gradient(95deg,rgba(5,6,10,.97) 32%,rgba(5,6,10,.45) 100%)}
+
+/* stat slide */
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3%;margin-top:auto;margin-bottom:auto}
+.sgrid div{border-top:2px solid var(--svdt-brand);padding-top:5%}
+.sgrid b{display:block;font-size:clamp(18px,4.4vw,44px);font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.sgrid b i{color:var(--svdt-red);font-style:normal}
+.sgrid span{display:block;font-size:clamp(6px,1vw,11px);font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-soft);margin-top:8%;line-height:1.5}
+
+/* package slide */
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:3%;margin:auto 0}
+.pkc{background:var(--svdt-bg-card);border:1px solid var(--svdt-border);border-radius:8px;padding:6% 5%}
+.pkc.hi{border-color:var(--svdt-brand);background:var(--svdt-bg-card-soft)}
+.pkc h4{margin:0 0 4%;font-size:clamp(6.5px,1.05vw,11px);font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red)}
+.pkc .pr{font-size:clamp(13px,2.6vw,26px);font-weight:900;line-height:1;margin:0 0 6%;font-variant-numeric:tabular-nums}
+.pkc ul{margin:0;padding:0;list-style:none}
+.pkc li{font-size:clamp(6.5px,1.1vw,11.5px);color:var(--svdt-text-soft);line-height:1.5;padding:4% 0 4% 12%;border-bottom:1px solid var(--svdt-line);position:relative}
+.pkc li:last-child{border-bottom:0}
+.pkc li::before{content:'';position:absolute;left:0;top:38%;width:5%;aspect-ratio:1;border-radius:50%;background:var(--svdt-brand)}
+
+/* contact slide */
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:6%;margin:auto 0}
+.ct b{display:block;font-size:clamp(9px,1.7vw,17px);font-weight:900;text-transform:uppercase;line-height:1.2;margin-bottom:3%}
+.ct p{margin:0;font-size:clamp(7.5px,1.35vw,13.5px);color:var(--svdt-text-soft);line-height:1.8}
+.ct .lbl{font-size:clamp(6.5px,1vw,10.5px);font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--svdt-red);margin-bottom:2%;display:block}
+
+/* logo wall slide */
+.lw{display:grid;grid-template-columns:repeat(5,1fr);gap:2.5%;margin:auto 0}
+.lw i{aspect-ratio:16/7;background:var(--svdt-bg-card);border:1px solid var(--svdt-border);border-radius:5px;display:block}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);padding:0 12px 12px;border-bottom:1px solid var(--svdt-border)}
+td{padding:13px 12px;border-bottom:1px solid var(--svdt-line);color:var(--svdt-text-mid)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff}
+.note{margin-top:20px;padding:14px 18px;background:rgba(255,26,26,.06);border-left:3px solid var(--svdt-red);border-radius:0 6px 6px 0;font-size:13px;line-height:1.65;color:var(--svdt-text-mid)}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Deck · 1920 × 1080 · 16:9</p>
+  <h1>Partnerská prezentace <span class="en">/ Partner deck</span></h1>
+  <p class="lede">
+    Pět layoutů, ze kterých se poskládá jakákoliv nabídka pro partnera. Pravidlo je stejné jako u plakátu:
+    <strong style="color:#fff">jeden slide = jedno sdělení</strong>. Nikdy dvě myšlenky vedle sebe.
+    <br><em style="color:var(--svdt-text-muted)">Five layouts, one message per slide.</em>
+  </p>
+
+  <h2>01 — Titulní <span class="en">/ Title</span></h2>
+  <div class="s">
+    <div class="photo"></div><div class="ov"></div>
+    <div class="sp">
+      <svg class="slogo" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="88" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="38" font-weight="900">SVDT</text></svg>
+      <div class="spacer"></div>
+      <p class="kick">Nabídka partnerství · 2026</p>
+      <h3 class="st">Svatohorský<br>Downtown Příbram<em>.</em></h3>
+      <div class="rule"></div>
+      <p class="sd">10. ročník mistrovství ČR v městském sjezdu. 23. května 2026, centrum Příbrami.</p>
+      <div class="spacer"></div>
+      <span class="pno">svdtpribram.cz</span>
+    </div>
+  </div>
+  <p class="cap">Fotka vpravo, obsah vlevo, gradient je povinný</p>
+
+  <h2>02 — Čísla <span class="en">/ Numbers</span></h2>
+  <div class="s">
+    <div class="sp">
+      <p class="kick">Proč SVDT</p>
+      <h3 class="st" style="font-size:clamp(14px,2.8vw,28px)">Desetiletá tradice<br>a rostoucí dosah<em>.</em></h3>
+      <div class="sgrid">
+        <div><b>140</b><span>Jezdců na startu</span></div>
+        <div><b>8 500</b><span>Diváků na trati</span></div>
+        <div><b>320<i>k</i></b><span>Zhlédnutí videa</span></div>
+        <div><b>18</b><span>Mediálních výstupů</span></div>
+      </div>
+      <svg class="slogo-br" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="88" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="38" font-weight="900">SVDT</text></svg>
+      <span class="pno">02</span>
+    </div>
+  </div>
+  <p class="cap">Max. 4 čísla, každé s červenou linkou nahoře</p>
+
+  <h2>03 — Balíčky <span class="en">/ Packages</span></h2>
+  <div class="s">
+    <div class="sp">
+      <p class="kick">Nabídka</p>
+      <h3 class="st" style="font-size:clamp(14px,2.8vw,28px)">Tři úrovně partnerství<em>.</em></h3>
+      <div class="pk">
+        <div class="pkc">
+          <h4>Partner</h4>
+          <p class="pr">25 000 Kč</p>
+          <ul><li>Logo na webu a plakátu</li><li>2× post na sítích</li><li>Banner v cíli</li></ul>
+        </div>
+        <div class="pkc hi">
+          <h4>Hlavní partner</h4>
+          <p class="pr">80 000 Kč</p>
+          <ul><li>Vše z úrovně Partner</li><li>Logo na startovních číslech</li><li>Branding divácké zóny</li><li>Stánek v areálu</li></ul>
+        </div>
+        <div class="pkc">
+          <h4>Generální partner</h4>
+          <p class="pr">Individuálně</p>
+          <ul><li>Název v titulu závodu</li><li>Exkluzivita v oboru</li><li>Branding cílové brány</li></ul>
+        </div>
+      </div>
+      <span class="pno">03</span>
+    </div>
+  </div>
+  <p class="cap">Zvýrazněný balíček má červený okraj — nikdy víc než jeden</p>
+
+  <h2>04 — Reference <span class="en">/ Partner wall</span></h2>
+  <div class="s">
+    <div class="sp">
+      <p class="kick">Partneři ročníku 2025</p>
+      <h3 class="st" style="font-size:clamp(14px,2.8vw,28px)">Kdo už s námi jel<em>.</em></h3>
+      <div class="lw">
+        <i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <span class="pno">04</span>
+    </div>
+  </div>
+  <p class="cap">Loga v jednotné mřížce, bez rozlišení úrovní</p>
+
+  <h2>05 — Kontakt <span class="en">/ Contact</span></h2>
+  <div class="s">
+    <div class="sp">
+      <p class="kick">Pojďme se domluvit</p>
+      <h3 class="st" style="font-size:clamp(14px,2.8vw,28px)">Ozvěte se<em>.</em></h3>
+      <div class="ct">
+        <div>
+          <span class="lbl">Partnerství</span>
+          <b>Jméno Příjmení</b>
+          <p>partnerstvi@svdtpribram.cz<br>+420 000 000 000</p>
+        </div>
+        <div>
+          <span class="lbl">Pořadatel</span>
+          <b>COWÁRNA z.s.</b>
+          <p>Příbram<br>svdtpribram.cz<br>@svdtpribram</p>
+        </div>
+      </div>
+      <svg class="slogo-br" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="88" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="38" font-weight="900">SVDT</text></svg>
+      <span class="pno">05</span>
+    </div>
+  </div>
+  <p class="cap">Poslední slide vždy s konkrétním jménem, ne jen obecným e-mailem</p>
+
+  <h2>Specifikace <span class="en">/ Specification</span></h2>
+  <table>
+    <tr><th>Prvek</th><th>Hodnota na 1920 × 1080</th></tr>
+    <tr><td>Plocha slidu</td><td><code>--svdt-bg</code> #05060A — nikdy bílá</td></tr>
+    <tr><td>Okraje</td><td>134 px svisle (6 %), 134 px vodorovně (7 %)</td></tr>
+    <tr><td>Nadpis slidu</td><td>92 px / 900 / leading 0,95 / verzálky</td></tr>
+    <tr><td>Podnadpis</td><td>56 px / 900 / verzálky</td></tr>
+    <tr><td>Tělový text</td><td>30 px / 400 / leading 1,65 / max. 62 % šířky</td></tr>
+    <tr><td>Kicker</td><td>22 px / 900 / ls 0,2em / <code>--svdt-red</code></td></tr>
+    <tr><td>Značka</td><td>Titulní slide vlevo nahoře 125 px, ostatní vpravo dole 96 px při 75 % krytí</td></tr>
+    <tr><td>Číslo stránky</td><td>22 px / 900 / <code>--svdt-text-muted</code>, vlevo dole</td></tr>
+    <tr><td>Export</td><td>PDF 16:9, písma vložená; pro editaci PPTX s Exo</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Ceny v balíčcích jsou ilustrativní</strong> — před odesláním partnerovi nahraď skutečnými
+    hodnotami z aktuálního ceníku. Totéž platí pro čísla dosahu na slidu 02: doplň reálná data
+    z posledního ročníku, ať nabídka obstojí při zpětné kontrole.
+    <br><span style="color:var(--svdt-text-muted)">Prices and reach figures are placeholders — replace with real data before sending.</span>
+  </div>
+</div>

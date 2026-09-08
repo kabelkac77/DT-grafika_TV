@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="../styles.css">
+<meta charset="utf-8">
+<title>SVDT — Prostor a layout / Spacing &amp; layout</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--svdt-bg);color:var(--svdt-text);font-family:var(--svdt-font);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);line-height:1;margin:0 0 14px}
+h1{font-size:44px;font-weight:900;line-height:1;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--svdt-text-soft);font-size:15px;line-height:1.7;max-width:62ch;margin:0}
+h2{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:56px 0 22px;padding-bottom:10px;border-bottom:1px solid var(--svdt-line);line-height:1}
+.en{color:var(--svdt-text-muted);font-weight:700;letter-spacing:.06em}
+.sp{display:flex;align-items:center;gap:20px;padding:11px 0;border-bottom:1px solid var(--svdt-line)}
+.sp .bar{height:22px;background:linear-gradient(90deg,var(--svdt-brand),var(--svdt-red));border-radius:3px;flex:0 0 auto}
+.sp .tok{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff;flex:0 0 170px}
+.sp .px{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--svdt-text-muted);flex:0 0 56px}
+.sp .use{font-size:13px;color:var(--svdt-text-soft)}
+.radii{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.rd{text-align:center}
+.rd .box{height:88px;background:var(--svdt-bg-card);border:1px solid var(--svdt-border);display:grid;place-items:center;margin-bottom:10px}
+.rd .box i{width:36px;height:36px;background:var(--svdt-brand);display:block}
+.rd code{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:#fff;display:block}
+.rd span{font-size:11.5px;color:var(--svdt-text-muted);display:block;margin-top:3px;line-height:1.5}
+.container-demo{border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);padding:28px;background:var(--svdt-bg-card)}
+.cbar{height:38px;border-radius:5px;display:flex;align-items:center;padding:0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:#fff;margin-bottom:10px}
+.grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:20px}
+.grid12 div{height:56px;background:rgba(227,6,19,.16);border:1px solid rgba(227,6,19,.4);border-radius:4px;display:grid;place-items:center;font-family:ui-monospace,Consolas,monospace;font-size:10px;color:#ff8a8a}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);padding:0 12px 12px;border-bottom:1px solid var(--svdt-border)}
+td{padding:13px 12px;border-bottom:1px solid var(--svdt-line);color:var(--svdt-text-mid)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff}
+.rhythm{background:var(--svdt-bg-card);border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);overflow:hidden}
+.rsec{padding:36px 28px;position:relative}
+.rsec:nth-child(even){background:var(--svdt-bg-soft)}
+.rsec b{display:block;font-size:20px;font-weight:900;text-transform:uppercase;line-height:1.1;margin-bottom:8px}
+.rsec p{margin:0;font-size:13px;color:var(--svdt-text-soft);line-height:1.6}
+.rsec .tag{position:absolute;right:16px;top:16px;font-family:ui-monospace,Consolas,monospace;font-size:10.5px;color:var(--svdt-red);background:rgba(255,26,26,.1);padding:3px 8px;border-radius:4px}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Foundations · 04</p>
+  <h1>Prostor a layout <span class="en">/ Spacing &amp; layout</span></h1>
+  <p class="lede">
+    Škála stojí na 4px mřížce. Vertikální rytmus stránky drží jediná hodnota — <strong style="color:#fff">72 px</strong>
+    mezi sekcemi. Kontejner 1200 px pro obsah, 1400 px pro plné galerie a logo-zdi.
+    <br><em style="color:var(--svdt-text-muted)">A 4px grid. Sections breathe on a single 72px vertical rhythm.</em>
+  </p>
+
+  <h2>Škála prostoru <span class="en">/ Spacing scale</span></h2>
+  <div class="sp"><code class="tok">--svdt-space-1</code><span class="px">4px</span><i class="bar" style="width:4px"></i><span class="use">Mezera ikona–text</span></div>
+  <div class="sp"><code class="tok">--svdt-space-2</code><span class="px">8px</span><i class="bar" style="width:8px"></i><span class="use">Uvnitř štítků a badge</span></div>
+  <div class="sp"><code class="tok">--svdt-space-3</code><span class="px">12px</span><i class="bar" style="width:12px"></i><span class="use">Mezera mezi tlačítky</span></div>
+  <div class="sp"><code class="tok">--svdt-space-4</code><span class="px">16px</span><i class="bar" style="width:16px"></i><span class="use">Padding kompaktní karty</span></div>
+  <div class="sp"><code class="tok">--svdt-space-5</code><span class="px">24px</span><i class="bar" style="width:24px"></i><span class="use">Padding karty, gutter mřížky</span></div>
+  <div class="sp"><code class="tok">--svdt-space-6</code><span class="px">32px</span><i class="bar" style="width:32px"></i><span class="use">Nadpis → obsah</span></div>
+  <div class="sp"><code class="tok">--svdt-space-7</code><span class="px">48px</span><i class="bar" style="width:48px"></i><span class="use">Blok → blok uvnitř sekce</span></div>
+  <div class="sp"><code class="tok">--svdt-space-8</code><span class="px">72px</span><i class="bar" style="width:72px"></i><span class="use">Vertikální padding sekce</span></div>
+  <div class="sp" style="border-bottom:0"><code class="tok">--svdt-space-9</code><span class="px">96px</span><i class="bar" style="width:96px"></i><span class="use">Hero, plakátové bloky</span></div>
+
+  <h2>Rádiusy <span class="en">/ Radii</span></h2>
+  <div class="radii">
+    <div class="rd"><div class="box"><i style="border-radius:0"></i></div><code>--svdt-radius-sharp</code><span>0px · sekční tlačítka, tisk</span></div>
+    <div class="rd"><div class="box"><i style="border-radius:6px"></i></div><code>--svdt-radius-sm</code><span>6px · inputy, malé štítky</span></div>
+    <div class="rd"><div class="box"><i style="border-radius:10px"></i></div><code>--svdt-radius</code><span>10px · karty (výchozí)</span></div>
+    <div class="rd"><div class="box"><i style="border-radius:16px"></i></div><code>--svdt-radius-lg</code><span>16px · velké panely, media</span></div>
+    <div class="rd"><div class="box"><i style="border-radius:999px;width:56px"></i></div><code>--svdt-radius-pill</code><span>999px · CTA v hlavičce</span></div>
+  </div>
+
+  <h2>Kontejner a mřížka <span class="en">/ Container &amp; grid</span></h2>
+  <div class="container-demo">
+    <div class="cbar" style="background:rgba(227,6,19,.3);border:1px solid var(--svdt-brand);width:100%">--svdt-container-wide · 1400px — galerie, logo-zeď</div>
+    <div class="cbar" style="background:rgba(255,26,26,.16);border:1px solid rgba(255,26,26,.5);width:85.7%">--svdt-container · 1200px — veškerý obsah</div>
+    <div class="grid12">
+      <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      <div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+    </div>
+    <p style="margin:14px 0 0;font-size:12.5px;color:var(--svdt-text-muted);line-height:1.6">12 sloupců · gutter 24 px (<code style="color:#fff">--svdt-gutter</code>) · boční odsazení 32 px desktop / 20 px mobil</p>
+  </div>
+
+  <h2>Breakpointy <span class="en">/ Breakpoints</span></h2>
+  <table>
+    <tr><th>Název</th><th>Šířka</th><th>Sloupce</th><th>Sekce padding</th><th>H2</th></tr>
+    <tr><td>Mobil</td><td><code>&lt; 768px</code></td><td>4</td><td>48px</td><td>30px</td></tr>
+    <tr><td>Tablet</td><td><code>768–1023px</code></td><td>8</td><td>56px</td><td>36px</td></tr>
+    <tr><td>Desktop</td><td><code>1024–1399px</code></td><td>12</td><td>72px</td><td>42px</td></tr>
+    <tr><td>Wide</td><td><code>≥ 1400px</code></td><td>12</td><td>72px</td><td>42px</td></tr>
+  </table>
+
+  <h2>Vertikální rytmus <span class="en">/ Vertical rhythm</span></h2>
+  <div class="rhythm">
+    <div class="rsec"><span class="tag">72px</span><b>Městský sjezd</b><p>Sekce na <code style="color:#fff">--svdt-bg</code></p></div>
+    <div class="rsec"><span class="tag">72px</span><b>Hlavní divácká místa</b><p>Alternující sekce na <code style="color:#fff">--svdt-bg-soft</code></p></div>
+    <div class="rsec"><span class="tag">72px</span><b>Partneři</b><p>Zpět na <code style="color:#fff">--svdt-bg</code> — plochy se pravidelně střídají</p></div>
+  </div>
+</div>

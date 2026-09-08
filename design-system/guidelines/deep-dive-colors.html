@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="../styles.css">
+<meta charset="utf-8">
+<title>SVDT — Barvy / Colours</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--svdt-bg);color:var(--svdt-text);font-family:var(--svdt-font);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);line-height:1;margin:0 0 14px}
+h1{font-size:44px;font-weight:900;line-height:1;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--svdt-text-soft);font-size:15px;line-height:1.7;max-width:62ch;margin:0}
+h2{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:56px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--svdt-line);line-height:1}
+.en{color:var(--svdt-text-muted);font-weight:700;letter-spacing:.06em}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.sw{border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);overflow:hidden;background:var(--svdt-bg-card)}
+.sw .chip{height:104px;display:flex;align-items:flex-end;padding:12px}
+.sw .chip span{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.55);padding:4px 8px;border-radius:4px;color:#fff}
+.sw .meta{padding:14px 16px}
+.sw .tok{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff;font-weight:700;display:block;word-break:break-all}
+.sw .hex{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--svdt-text-soft);display:block;margin-top:2px}
+.sw .use{font-size:12px;color:var(--svdt-text-muted);line-height:1.55;margin-top:8px;display:block}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.role{border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);overflow:hidden}
+.role .head{padding:26px 24px;color:#fff}
+.role .head b{display:block;font-size:22px;font-weight:900;text-transform:uppercase;line-height:1.1}
+.role .head small{font-size:12px;font-weight:700;letter-spacing:.1em;opacity:.85}
+.role .body{padding:20px 24px;background:var(--svdt-bg-card)}
+.role ul{margin:0;padding-left:18px;color:var(--svdt-text-soft);font-size:13.5px;line-height:1.85}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);padding:0 12px 12px;border-bottom:1px solid var(--svdt-border)}
+td{padding:13px 12px;border-bottom:1px solid var(--svdt-line);color:var(--svdt-text-mid);vertical-align:middle}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff}
+.badge{display:inline-block;font-size:10px;font-weight:900;letter-spacing:.08em;padding:3px 9px;border-radius:999px}
+.aaa{background:rgba(46,224,138,.15);color:#2ee08a}
+.aa{background:rgba(120,190,255,.15);color:#7cc0ff}
+.warn{background:rgba(252,185,0,.15);color:#fcb900}
+.note{margin-top:18px;padding:14px 18px;background:rgba(255,26,26,.06);border-left:3px solid var(--svdt-red);border-radius:0 6px 6px 0;font-size:13px;line-height:1.65;color:var(--svdt-text-mid)}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Foundations · 02</p>
+  <h1>Barvy <span class="en">/ Colours</span></h1>
+  <p class="lede">
+    Paleta je záměrně chudá: téměř černá plocha, čtyři stupně bílé a dvě červené v oddělených rolích.
+    Žádná další barva do systému nepatří — kromě stavových barev ve formulářích.
+    <br><em style="color:var(--svdt-text-muted)">A deliberately narrow palette: near-black surfaces, four tints of white, two reds with distinct roles.</em>
+  </p>
+
+  <h2>Dvě červené, dvě role <span class="en">/ Two reds, two roles</span></h2>
+  <div class="split">
+    <div class="role">
+      <div class="head" style="background:#e30613">
+        <b>Brand red</b>
+        <small>#E30613 · --svdt-brand</small>
+      </div>
+      <div class="body">
+        <ul>
+          <li>Logo a značkové plochy</li>
+          <li>Primární CTA (Registrace, Výsledky)</li>
+          <li>Plné plochy pod bílým textem</li>
+          <li>Veškerý tisk (Pantone 485 C)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="head" style="background:#ff1a1a">
+        <b>Accent red</b>
+        <small>#FF1A1A · --svdt-red</small>
+      </div>
+      <div class="body">
+        <ul>
+          <li>Záře, hover stavy, aktivní linky</li>
+          <li>Číselné akcenty a odpočet</li>
+          <li>Progress, ukazatele, mikro-popisky</li>
+          <li><strong style="color:#ff8a8a">Ne</strong> jako podklad drobného textu</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2>Plochy <span class="en">/ Surfaces</span></h2>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#05060a;border-bottom:1px solid var(--svdt-border)"><span>Page</span></div><div class="meta"><code class="tok">--svdt-bg</code><code class="hex">#05060A</code><span class="use">Podklad celé stránky</span></div></div>
+    <div class="sw"><div class="chip" style="background:#070c12"><span>Alt</span></div><div class="meta"><code class="tok">--svdt-bg-soft</code><code class="hex">#070C12</code><span class="use">Alternující sekce</span></div></div>
+    <div class="sw"><div class="chip" style="background:#0b0f13"><span>Card</span></div><div class="meta"><code class="tok">--svdt-bg-card</code><code class="hex">#0B0F13</code><span class="use">Karty, panely</span></div></div>
+    <div class="sw"><div class="chip" style="background:#0e141d"><span>Card hover</span></div><div class="meta"><code class="tok">--svdt-bg-card-soft</code><code class="hex">#0E141D</code><span class="use">Hover, vnořený blok</span></div></div>
+    <div class="sw"><div class="chip" style="background:#131a23"><span>Elevated</span></div><div class="meta"><code class="tok">--svdt-bg-elevated</code><code class="hex">#131A23</code><span class="use">Modal, dropdown</span></div></div>
+    <div class="sw"><div class="chip" style="background:#1f2933"><span>Border</span></div><div class="meta"><code class="tok">--svdt-border</code><code class="hex">#1F2933</code><span class="use">Okraje karet</span></div></div>
+  </div>
+
+  <h2>Text <span class="en">/ Text</span></h2>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#ffffff"><span style="background:rgba(0,0,0,.7)">Primary</span></div><div class="meta"><code class="tok">--svdt-text</code><code class="hex">#FFFFFF</code><span class="use">Nadpisy, hlavní text</span></div></div>
+    <div class="sw"><div class="chip" style="background:#bfc2c9"><span style="background:rgba(0,0,0,.7)">Mid</span></div><div class="meta"><code class="tok">--svdt-text-mid</code><code class="hex">#BFC2C9</code><span class="use">Sekundární text</span></div></div>
+    <div class="sw"><div class="chip" style="background:#9ca3af"><span style="background:rgba(0,0,0,.7)">Soft</span></div><div class="meta"><code class="tok">--svdt-text-soft</code><code class="hex">#9CA3AF</code><span class="use">Popisky, meta</span></div></div>
+    <div class="sw"><div class="chip" style="background:#6b7280"><span>Muted</span></div><div class="meta"><code class="tok">--svdt-text-muted</code><code class="hex">#6B7280</code><span class="use">Disabled, poznámky</span></div></div>
+  </div>
+
+  <h2>Kontrast <span class="en">/ Contrast (WCAG 2.1)</span></h2>
+  <table>
+    <tr><th>Kombinace / Pair</th><th>Poměr</th><th>Hodnocení</th><th>Použití / Use</th></tr>
+    <tr><td><code>#FFFFFF</code> na <code>#05060A</code></td><td>19,8:1</td><td><span class="badge aaa">AAA</span></td><td>Kdekoliv</td></tr>
+    <tr><td><code>#9CA3AF</code> na <code>#05060A</code></td><td>7,4:1</td><td><span class="badge aaa">AAA</span></td><td>Tělový text, popisky</td></tr>
+    <tr><td><code>#6B7280</code> na <code>#05060A</code></td><td>4,2:1</td><td><span class="badge warn">AA velký</span></td><td>Jen ≥ 24 px / disabled</td></tr>
+    <tr><td><code>#FFFFFF</code> na <code>#E30613</code></td><td>4,6:1</td><td><span class="badge aa">AA</span></td><td>Tlačítka, plné plochy</td></tr>
+    <tr><td><code>#FFFFFF</code> na <code>#FF1A1A</code></td><td>3,3:1</td><td><span class="badge warn">AA velký</span></td><td>Jen ≥ 24 px nebo ≥ 19 px bold</td></tr>
+  </table>
+  <div class="note">
+    Proto jsou primární CTA <code style="color:#ff8a8a">#E30613</code> a ne <code style="color:var(--svdt-red)">#FF1A1A</code> —
+    tlačítkový text má 13–15 px a na světlejší červené by neprošel AA.
+    <br><span style="color:var(--svdt-text-muted)">This is why primary CTAs use the brand red: button text at 13–15 px fails AA on the accent red.</span>
+  </div>
+</div>

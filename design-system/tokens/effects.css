@@ -1,0 +1,6 @@
+:root{
+--svdt-radius-sharp:0px;--svdt-radius-sm:6px;--svdt-radius:10px;--svdt-radius-lg:16px;--svdt-radius-pill:999px;
+--svdt-shadow-card:0 10px 30px rgba(0,0,0,.45);--svdt-shadow-glow:0 0 24px var(--svdt-red-glow);
+--svdt-transition:.35s ease; /* @kind other */
+--svdt-transition-fast:.18s ease; /* @kind other */
+}

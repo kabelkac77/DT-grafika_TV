@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700;800;900&display=swap');
+:root{
+--svdt-font:Exo,'Exo 2','Segoe UI',Helvetica,Arial,sans-serif; /* @kind font */
+--svdt-fw-regular:400; /* @kind other */
+--svdt-fw-medium:500; /* @kind other */
+--svdt-fw-bold:700; /* @kind other */
+--svdt-fw-heavy:800; /* @kind other */
+--svdt-fw-black:900; /* @kind other */
+--svdt-fs-display:64px; /* @kind other */
+--svdt-lh-display:.95; /* @kind other */
+--svdt-fs-h1:54px; /* @kind other */
+--svdt-lh-h1:.98; /* @kind other */
+--svdt-fs-h2:42px; /* @kind other */
+--svdt-lh-h2:1.06; /* @kind other */
+--svdt-fs-h3:24px; /* @kind other */
+--svdt-lh-h3:1.2; /* @kind other */
+--svdt-fs-h4:18px; /* @kind other */
+--svdt-lh-h4:1.2; /* @kind other */
+--svdt-fs-stat:38px; /* @kind other */
+--svdt-lh-stat:1; /* @kind other */
+--svdt-fs-lead:17px; /* @kind other */
+--svdt-lh-lead:1.7; /* @kind other */
+--svdt-fs-body:15px; /* @kind other */
+--svdt-lh-body:2; /* @kind other */
+--svdt-fs-small:13px; /* @kind other */
+--svdt-lh-small:1.6; /* @kind other */
+--svdt-fs-label:12px; /* @kind other */
+--svdt-ls-label:.14em; /* @kind other */
+--svdt-fs-btn:13px; /* @kind other */
+--svdt-ls-btn:.04em; /* @kind other */
+}

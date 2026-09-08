@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="../styles.css">
+<meta charset="utf-8">
+<title>SVDT — Efekty a pohyb / Effects &amp; motion</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--svdt-bg);color:var(--svdt-text);font-family:var(--svdt-font);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);line-height:1;margin:0 0 14px}
+h1{font-size:44px;font-weight:900;line-height:1;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--svdt-text-soft);font-size:15px;line-height:1.7;max-width:62ch;margin:0}
+h2{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:56px 0 22px;padding-bottom:10px;border-bottom:1px solid var(--svdt-line);line-height:1}
+.en{color:var(--svdt-text-muted);font-weight:700;letter-spacing:.06em}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.demo{background:var(--svdt-bg-card);border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);padding:26px;text-align:center}
+.demo .box{height:80px;border-radius:8px;margin:0 auto 16px;width:120px;background:var(--svdt-bg-card-soft);border:1px solid var(--svdt-border)}
+.demo code{font-family:ui-monospace,Consolas,monospace;font-size:11px;color:#fff;display:block;word-break:break-all;line-height:1.6}
+.demo span{font-size:12px;color:var(--svdt-text-muted);display:block;margin-top:8px;line-height:1.5}
+.photo{position:relative;height:200px;border-radius:var(--svdt-radius);overflow:hidden;border:1px solid var(--svdt-border)}
+.photo .img{position:absolute;inset:0;background:
+  radial-gradient(circle at 30% 40%, #4a5568 0, transparent 45%),
+  radial-gradient(circle at 70% 65%, #2d3748 0, transparent 50%),
+  linear-gradient(135deg,#5a6472,#20262e)}
+.photo .ov{position:absolute;inset:0}
+.photo .lbl{position:absolute;left:0;right:0;bottom:0;padding:16px;font-size:11px;font-family:ui-monospace,Consolas,monospace;color:#fff}
+.motion{background:var(--svdt-bg-card);border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);padding:24px}
+.track{height:6px;background:var(--svdt-bg-card-soft);border-radius:999px;overflow:hidden;margin:16px 0 8px}
+.track i{display:block;height:100%;background:linear-gradient(90deg,var(--svdt-brand),var(--svdt-red));border-radius:999px;animation:run 2.4s ease-in-out infinite}
+@keyframes run{0%{width:0}55%{width:100%}100%{width:100%;opacity:.25}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);padding:0 12px 12px;border-bottom:1px solid var(--svdt-border)}
+td{padding:13px 12px;border-bottom:1px solid var(--svdt-line);color:var(--svdt-text-mid)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff}
+.note{margin-top:20px;padding:14px 18px;background:rgba(255,26,26,.06);border-left:3px solid var(--svdt-red);border-radius:0 6px 6px 0;font-size:13px;line-height:1.65;color:var(--svdt-text-mid)}
+.hoverme{transition:transform var(--svdt-transition),border-color var(--svdt-transition),box-shadow var(--svdt-transition)}
+.hoverme:hover{transform:translateY(-4px);border-color:var(--svdt-red);box-shadow:0 0 24px var(--svdt-red-glow)}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Foundations · 05</p>
+  <h1>Efekty a pohyb <span class="en">/ Effects &amp; motion</span></h1>
+  <p class="lede">
+    Systém pracuje se světlem, ne se stínem — na téměř černém podkladu je stín neviditelný, proto se
+    hloubka dělá <strong style="color:#fff">červenou září</strong> a posunem o 4 px. Přechody drží jednu hodnotu: 0,35 s ease.
+    <br><em style="color:var(--svdt-text-muted)">Depth comes from red glow, not shadow — shadows are invisible on near-black.</em>
+  </p>
+
+  <h2>Hloubka <span class="en">/ Elevation</span></h2>
+  <div class="g">
+    <div class="demo"><div class="box"></div><code>flat</code><span>Karty v mřížce, výchozí stav</span></div>
+    <div class="demo"><div class="box" style="box-shadow:var(--svdt-shadow-card)"></div><code>--svdt-shadow-card<br>0 10px 30px rgba(0,0,0,.45)</code><span>Karta nad fotografií</span></div>
+    <div class="demo"><div class="box" style="border-color:var(--svdt-red);box-shadow:0 0 24px var(--svdt-red-glow)"></div><code>--svdt-shadow-glow<br>0 0 24px rgba(255,26,26,.4)</code><span>Hover, aktivní stav</span></div>
+    <div class="demo hoverme" style="cursor:pointer"><div class="box" style="background:var(--svdt-brand);border-color:transparent"></div><code>hover me</code><span>Živá ukázka: posun −4 px + záře</span></div>
+  </div>
+
+  <h2>Překryvy fotografií <span class="en">/ Photo overlays</span></h2>
+  <div class="g">
+    <div>
+      <div class="photo"><div class="img"></div><div class="ov" style="background:rgba(5,6,10,.55)"></div><div class="lbl">rgba(5,6,10,.55) — text přes fotku</div></div>
+    </div>
+    <div>
+      <div class="photo"><div class="img"></div><div class="ov" style="background:linear-gradient(180deg,rgba(5,6,10,0) 35%,rgba(5,6,10,.95) 100%)"></div><div class="lbl">gradient zdola — karta s titulkem</div></div>
+    </div>
+    <div>
+      <div class="photo"><div class="img"></div><div class="ov" style="background:linear-gradient(90deg,rgba(227,6,19,.75),rgba(5,6,10,.2))"></div><div class="lbl">značkový překryv — hero, plakát</div></div>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Pravidlo:</strong> jakýkoliv text na fotografii vyžaduje překryv minimálně <code>rgba(5,6,10,.55)</code>.
+    Bez něj se nesmí publikovat žádný výstup — ani na sociálních sítích.
+    <br><span style="color:var(--svdt-text-muted)">Any text over a photo needs at least a 55 % dark overlay.</span>
+  </div>
+
+  <h2>Pohyb <span class="en">/ Motion</span></h2>
+  <div class="motion">
+    <p style="margin:0;font-size:13px;color:var(--svdt-text-soft)">Progress / odpočet — jediná animace, kterou systém povoluje ve smyčce:</p>
+    <div class="track"><i></i></div>
+    <p style="margin:0;font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:var(--svdt-text-muted)">--svdt-transition: .35s ease</p>
+  </div>
+  <table style="margin-top:22px">
+    <tr><th>Případ / Case</th><th>Doba</th><th>Křivka</th><th>Vlastnost</th></tr>
+    <tr><td>Hover tlačítka a karet</td><td><code>350ms</code></td><td><code>ease</code></td><td>background, transform, box-shadow</td></tr>
+    <tr><td>Fokus inputu</td><td><code>180ms</code></td><td><code>ease</code></td><td>border-color, box-shadow</td></tr>
+    <tr><td>Nábeh sekce při scrollu</td><td><code>500ms</code></td><td><code>cubic-bezier(.22,.61,.36,1)</code></td><td>opacity, translateY(16px)</td></tr>
+    <tr><td>Otevření modalu</td><td><code>250ms</code></td><td><code>ease-out</code></td><td>opacity, scale(.97→1)</td></tr>
+    <tr><td>Odpočet — přeskok číslice</td><td><code>350ms</code></td><td><code>ease</code></td><td>translateY</td></tr>
+  </table>
+  <div class="note">
+    Vždy respektuj <code>@media (prefers-reduced-motion: reduce)</code> — v tom případě vypni transformace
+    i smyčkové animace a ponech pouze změnu barvy.
+    <br><span style="color:var(--svdt-text-muted)">Honour reduced-motion: drop transforms and loops, keep colour changes only.</span>
+  </div>
+</div>

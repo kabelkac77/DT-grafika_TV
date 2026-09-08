@@ -1,0 +1,94 @@
+/* =========================================================
+   SVDT — Svatohorský Downtown Příbram
+   Design tokens / Designové tokeny — v1.0
+   Zdroj pravdy pro web, sociální sítě, tisk i prezentace.
+   Single source of truth for web, social, print and decks.
+   ---------------------------------------------------------
+   POZNÁMKA / NOTE
+   --svdt-red a --svdt-red-strong zachovávají hodnoty, které
+   už běží na svdtpribram.cz — tento soubor je drop-in.
+   --svdt-brand je NOVÝ token pro značkovou červenou #E30613,
+   která byla na webu zadrátovaná napevno.
+   ========================================================= */
+
+:root {
+  /* ---- Plochy / Surfaces ---------------------------------- */
+  --svdt-bg:            #05060a; /* stránka / page */
+  --svdt-bg-soft:       #070c12; /* alternující sekce / alt section */
+  --svdt-bg-card:       #0b0f13; /* karta / card */
+  --svdt-bg-card-soft:  #0e141d; /* karta hover, vnořený blok */
+  --svdt-bg-elevated:   #131a23; /* modal, dropdown, tooltip */
+
+  /* ---- Text ----------------------------------------------- */
+  --svdt-text:          #ffffff; /* nadpisy, hlavní text */
+  --svdt-text-mid:      #bfc2c9; /* sekundární text */
+  --svdt-text-soft:     #9ca3af; /* popisky, meta */
+  --svdt-text-muted:    #6b7280; /* disabled, jemné poznámky */
+
+  /* ---- Značková červená / Brand red ------------------------
+     Role: logo, primární CTA, klíčové plochy, tisk.
+     Kontrast s bílým textem 4.6:1 → WCAG AA.               */
+  --svdt-brand:         #e30613;
+  --svdt-brand-hover:   #b80510;
+  --svdt-brand-ink:     #ffffff;
+
+  /* ---- Akcentní červená / Accent red -----------------------
+     Role: záře, hover, čísla, progress, zvýraznění v grafice.
+     NEPOUŽÍVAT pro malý bílý text na plné ploše.           */
+  --svdt-red:           #ff1a1a;
+  --svdt-red-strong:    #ff1111;
+  --svdt-red-glow:      rgba(255, 26, 26, .40);
+
+  /* ---- Linky a okraje / Lines & borders -------------------- */
+  --svdt-border:        #1f2933;
+  --svdt-line:          rgba(255, 255, 255, .08);
+  --svdt-line-strong:   rgba(255, 255, 255, .22);
+
+  /* ---- Rádiusy / Radii ------------------------------------- */
+  --svdt-radius-sharp:  0px;    /* sekční tlačítka, plakát */
+  --svdt-radius-sm:     6px;
+  --svdt-radius:        10px;   /* karty — výchozí */
+  --svdt-radius-lg:     16px;
+  --svdt-radius-pill:   999px;  /* CTA v hlavičce, štítky */
+
+  /* ---- Prostor / Spacing (4px grid) ------------------------ */
+  --svdt-space-1:   4px;
+  --svdt-space-2:   8px;
+  --svdt-space-3:  12px;
+  --svdt-space-4:  16px;
+  --svdt-space-5:  24px;
+  --svdt-space-6:  32px;
+  --svdt-space-7:  48px;
+  --svdt-space-8:  72px;  /* vertikální rytmus sekcí */
+  --svdt-space-9:  96px;
+
+  /* ---- Layout --------------------------------------------- */
+  --svdt-container:       1200px;
+  --svdt-container-wide:  1400px;
+  --svdt-section-y:       72px;
+  --svdt-gutter:          24px;
+
+  /* ---- Typografie / Typography ----------------------------- */
+  --svdt-font: Exo, 'Exo 2', 'Segoe UI', Helvetica, Arial, sans-serif;
+  --svdt-fw-regular: 400;
+  --svdt-fw-medium:  500;
+  --svdt-fw-bold:    700;
+  --svdt-fw-heavy:   800;
+  --svdt-fw-black:   900;
+
+  /* ---- Efekty a pohyb / Effects & motion ------------------- */
+  --svdt-shadow-card: 0 10px 30px rgba(0, 0, 0, .45);
+  --svdt-shadow-glow: 0 0 24px var(--svdt-red-glow);
+  --svdt-transition:  .35s ease;
+  --svdt-transition-fast: .18s ease;
+}
+
+/* =========================================================
+   CMYK / Pantone pro tisk — orientační, ověřit nátiskem
+   Print equivalents — approximate, verify with a proof
+   ---------------------------------------------------------
+   #E30613  brand red   → CMYK  0 / 100 / 95 / 0   ~ Pantone 485 C
+   #FF1A1A  accent red  → CMYK  0 /  90 / 85 / 0   ~ Pantone Bright Red 032 C
+   #05060A  page black  → CMYK 75 /  68 / 67 / 90  (rich black)
+   #FFFFFF  white       → 0 / 0 / 0 / 0 (nepotištěno / unprinted)
+   ========================================================= */

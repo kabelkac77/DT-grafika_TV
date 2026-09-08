@@ -1,0 +1,129 @@
+<!-- @dsCard group="Print" -->
+<link rel="stylesheet" href="../styles.css">
+<meta charset="utf-8">
+<title>SVDT — Plakát A3 / Poster</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--svdt-bg);color:var(--svdt-text);font-family:var(--svdt-font);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);line-height:1;margin:0 0 14px}
+h1{font-size:44px;font-weight:900;line-height:1;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--svdt-text-soft);font-size:15px;line-height:1.7;max-width:62ch;margin:0}
+h2{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:52px 0 8px;padding-bottom:10px;border-bottom:1px solid var(--svdt-line);line-height:1}
+.sub{font-size:13px;color:var(--svdt-text-muted);margin:0 0 22px;line-height:1.6}
+.en{color:var(--svdt-text-muted);font-weight:700;letter-spacing:.06em}
+.row{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+.cap{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);margin:12px 0 0;text-align:center}
+
+/* A3 297×420 → 320×452 preview */
+.a3{width:320px;aspect-ratio:297/420;position:relative;overflow:hidden;background:var(--svdt-bg);border:1px solid var(--svdt-border);flex:0 0 auto}
+.photo{position:absolute;inset:0;background:radial-gradient(circle at 45% 30%,#525c6b 0,transparent 46%),linear-gradient(165deg,#5a6472 0%,#232a32 55%,#0b0f13 100%)}
+.ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.5) 0%,rgba(5,6,10,.35) 30%,rgba(5,6,10,.98) 72%)}
+.pin{position:absolute;inset:0;padding:26px 24px;display:flex;flex-direction:column}
+.plogo{width:52px;height:52px;align-self:center}
+.spacer{flex:1}
+.claim{font-size:52px;font-weight:900;line-height:.86;text-transform:uppercase;margin:0;letter-spacing:-.025em;text-align:center}
+.claim em{font-style:normal;color:var(--svdt-red)}
+.psub{font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin:12px 0 0;text-align:center;line-height:1.5}
+.pdate{background:var(--svdt-brand);color:#fff;font-size:17px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:11px 8px;text-align:center;margin:16px 0 0;line-height:1.2}
+.pdate small{display:block;font-size:9px;font-weight:700;letter-spacing:.18em;margin-top:3px;opacity:.9}
+.pstats{display:flex;justify-content:space-between;gap:6px;margin:14px 0 0;padding:12px 0;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18)}
+.pstats div{text-align:center;flex:1}
+.pstats b{display:block;font-size:20px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.pstats span{display:block;font-size:7px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);margin-top:4px}
+.pfoot{margin-top:14px;text-align:center}
+.pfoot .url{font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#fff}
+.plogos{display:flex;gap:5px;justify-content:center;margin-top:11px;flex-wrap:wrap}
+.plogos i{height:15px;width:38px;background:rgba(255,255,255,.14);border-radius:2px;display:block}
+.porg{font-size:7px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-muted);margin-top:9px}
+/* bleed guides */
+.bleed{position:absolute;inset:6px;border:1px dashed rgba(255,26,26,.5);pointer-events:none}
+.trim{position:absolute;inset:14px;border:1px dashed rgba(255,255,255,.22);pointer-events:none}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);padding:0 12px 12px;border-bottom:1px solid var(--svdt-border)}
+td{padding:13px 12px;border-bottom:1px solid var(--svdt-line);color:var(--svdt-text-mid)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff}
+.note{margin-top:20px;padding:14px 18px;background:rgba(255,26,26,.06);border-left:3px solid var(--svdt-red);border-radius:0 6px 6px 0;font-size:13px;line-height:1.65;color:var(--svdt-text-mid)}
+.spec{background:var(--svdt-bg-card);border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);padding:24px;flex:1;min-width:280px}
+.spec h4{margin:0 0 12px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red)}
+.spec dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:13px}
+.spec dt{color:var(--svdt-text-muted);white-space:nowrap}
+.spec dd{margin:0;color:#fff;font-weight:700}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Print · A3 / A2</p>
+  <h1>Plakát <span class="en">/ Poster</span></h1>
+  <p class="lede">
+    Plakát čte kolemjdoucí ze tří metrů za dvě vteřiny. Proto má jen tři úrovně informace:
+    <strong style="color:#fff">claim → datum → web</strong>. Všechno ostatní je doplněk. Značková červená
+    <code style="font-family:ui-monospace,Consolas,monospace;color:#ff8a8a">#E30613</code> je jediná barevná plocha.
+    <br><em style="color:var(--svdt-text-muted)">Three levels of information only: claim, date, URL. Read in two seconds from three metres.</em>
+  </p>
+
+  <h2>Layout <span class="en">/ Layout</span></h2>
+  <p class="sub">Červená čárkovaná = spad 3 mm · bílá čárkovaná = bezpečná zóna 12 mm</p>
+  <div class="row">
+    <div>
+      <div class="a3">
+        <div class="photo"></div><div class="ov"></div>
+        <div class="pin">
+          <svg class="plogo" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="84" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="32" font-weight="900">SVDT</text><text x="75" y="102" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="8" font-weight="700" letter-spacing="2.4">PŘÍBRAM</text></svg>
+          <div class="spacer"></div>
+          <h3 class="claim">Zažij<br>atmo<br>sféru<em>.</em></h3>
+          <p class="psub">Svatohorský Downtown Příbram<br>10. ročník · Mistrovství ČR v městském sjezdu</p>
+          <div class="pdate">Sobota 23. 5. 2026<small>Start hlavního závodu 15:00 · Vstup zdarma</small></div>
+          <div class="pstats">
+            <div><b>140</b><span>Jezdců</span></div>
+            <div><b>100</b><span>Dětí</span></div>
+            <div><b>25+</b><span>Překážek</span></div>
+            <div><b>720</b><span>Metrů trati</span></div>
+          </div>
+          <div class="pfoot">
+            <span class="url">svdtpribram.cz</span>
+            <div class="plogos"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <p class="porg">Pořádá COWÁRNA z.s. · Za podpory města Příbram</p>
+          </div>
+        </div>
+        <div class="bleed"></div><div class="trim"></div>
+      </div>
+      <p class="cap">Plakát A3 · 297 × 420 mm</p>
+    </div>
+
+    <div class="spec">
+      <h4>Tiskové zadání / Print spec</h4>
+      <dl>
+        <dt>Formát</dt><dd>A3 297 × 420 mm (A2 420 × 594 mm)</dd>
+        <dt>Spad</dt><dd>3 mm ze všech stran</dd>
+        <dt>Bezpečná zóna</dt><dd>12 mm od ořezu</dd>
+        <dt>Rozlišení</dt><dd>300 dpi v měřítku 1:1</dd>
+        <dt>Barevnost</dt><dd>CMYK, profil ISO Coated v2</dd>
+        <dt>Červená</dt><dd>C0 M100 Y95 K0 ≈ Pantone 485 C</dd>
+        <dt>Černá plocha</dt><dd>C75 M68 Y67 K90 (rich black)</dd>
+        <dt>Písmo</dt><dd>Exo 900 / 700 — vždy vektorizovat</dd>
+        <dt>Claim</dt><dd>min. 90 pt na A3</dd>
+        <dt>Datum</dt><dd>min. 28 pt, na červené ploše</dd>
+        <dt>Web</dt><dd>min. 20 pt, verzálky</dd>
+        <dt>Export</dt><dd>PDF/X-4, spad + ořezové značky</dd>
+      </dl>
+    </div>
+  </div>
+
+  <h2>Hierarchie <span class="en">/ Hierarchy</span></h2>
+  <table>
+    <tr><th>Úroveň</th><th>Prvek</th><th>Velikost A3</th><th>Pravidlo</th></tr>
+    <tr><td>1</td><td>Claim</td><td>90–110 pt / 900</td><td>Max. 3 řádky, leading 0,86, verzálky</td></tr>
+    <tr><td>2</td><td>Datum na červené</td><td>28–34 pt / 900</td><td>Jediná plná barevná plocha na plakátu</td></tr>
+    <tr><td>3</td><td>Web</td><td>20–24 pt / 900</td><td>Vždy poslední řádek nad logy partnerů</td></tr>
+    <tr><td>—</td><td>Podtitul akce</td><td>11–13 pt / 900</td><td>Letter-spacing 0,2em, pod claimem</td></tr>
+    <tr><td>—</td><td>Čísla</td><td>18–22 pt / 900</td><td>Volitelné, vynech pokud je plakát přeplněný</td></tr>
+    <tr><td>—</td><td>Loga partnerů</td><td>výška 8–12 mm</td><td>Pás dole, max. 2 řady</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Rich black, ne 100 % K:</strong> velká černá plocha vytištěná jen na K vypadá šedě.
+    Vždy použij <code>C75 M68 Y67 K90</code>. U textu pod 14 pt naopak jen <code>K100</code> — jinak se rozostří soutiskem.
+    <br><span style="color:var(--svdt-text-muted)">Rich black for large areas; K-only for text under 14 pt to avoid registration blur.</span>
+  </div>
+</div>

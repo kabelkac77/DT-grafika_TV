@@ -1,0 +1,107 @@
+<!-- @dsCard group="Social" -->
+<link rel="stylesheet" href="../styles.css">
+<meta charset="utf-8">
+<title>SVDT — FB cover a OG obrázek</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--svdt-bg);color:var(--svdt-text);font-family:var(--svdt-font);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-red);line-height:1;margin:0 0 14px}
+h1{font-size:44px;font-weight:900;line-height:1;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--svdt-text-soft);font-size:15px;line-height:1.7;max-width:62ch;margin:0}
+h2{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:52px 0 8px;padding-bottom:10px;border-bottom:1px solid var(--svdt-line);line-height:1}
+.sub{font-size:13px;color:var(--svdt-text-muted);margin:0 0 22px;line-height:1.6}
+.en{color:var(--svdt-text-muted);font-weight:700;letter-spacing:.06em}
+.cap{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);margin:12px 0 0}
+
+/* FB cover 820×312 → 820×312 at 1:1 scale of 0.84 = 690×262 */
+.cover{width:100%;max-width:820px;aspect-ratio:820/312;position:relative;overflow:hidden;border:1px solid var(--svdt-border);border-radius:var(--svdt-radius);background:var(--svdt-bg)}
+.photo{position:absolute;inset:0;background:radial-gradient(circle at 68% 45%,#4a5568 0,transparent 45%),linear-gradient(105deg,#151a20 0%,#3b444f 55%,#5a6472 100%)}
+.ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,10,.96) 0%,rgba(5,6,10,.8) 45%,rgba(5,6,10,.25) 100%)}
+.cin{position:absolute;inset:0;padding:7% 6%;display:flex;flex-direction:column;justify-content:center;max-width:66%}
+.cin .kick{font-size:clamp(8px,1.3vw,11px);font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--svdt-brand);padding:5px 11px;border-radius:var(--svdt-radius-pill);line-height:1;align-self:flex-start;margin-bottom:3%}
+.cin h3{font-size:clamp(20px,4.6vw,38px);font-weight:900;line-height:.95;text-transform:uppercase;margin:0;letter-spacing:-.015em}
+.cin h3 em{font-style:normal;color:var(--svdt-red)}
+.cin p{font-size:clamp(8px,1.5vw,13px);font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:3% 0 0}
+.clogo{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:22%;max-width:150px;aspect-ratio:1}
+/* mobile crop guides */
+.guide{position:absolute;top:0;bottom:0;border-left:1px dashed rgba(255,26,26,.55);border-right:1px dashed rgba(255,26,26,.55);left:8.4%;right:8.4%;pointer-events:none}
+.guide::after{content:'Bezpečná zóna pro mobil (640 px)';position:absolute;left:8px;bottom:8px;font-size:9px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#ff8a8a}
+.avatar{position:absolute;left:3%;bottom:-14%;width:15%;aspect-ratio:1;border-radius:50%;border:4px solid var(--svdt-bg);overflow:hidden;background:var(--svdt-brand);display:grid;place-items:center}
+
+/* OG 1200×630 */
+.og{width:100%;max-width:760px;aspect-ratio:1200/630;position:relative;overflow:hidden;border:1px solid var(--svdt-border);border-radius:var(--svdt-radius)}
+.ogin{position:absolute;inset:0;padding:6%;display:flex;flex-direction:column}
+.ogin h3{font-size:clamp(24px,6vw,54px);font-weight:900;line-height:.95;text-transform:uppercase;margin:0;letter-spacing:-.02em}
+.ogin h3 em{font-style:normal;color:var(--svdt-red)}
+.ogin p{font-size:clamp(9px,1.7vw,15px);font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-mid);margin:2% 0 0}
+.spacer{flex:1}
+.ogbar{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.oglogo{width:14%;max-width:90px;aspect-ratio:1}
+.rule{height:4px;background:var(--svdt-brand);width:12%;border-radius:2px;margin:3.5% 0 0}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--svdt-text-muted);padding:0 12px 12px;border-bottom:1px solid var(--svdt-border)}
+td{padding:13px 12px;border-bottom:1px solid var(--svdt-line);color:var(--svdt-text-mid)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#fff}
+.note{margin-top:20px;padding:14px 18px;background:rgba(255,26,26,.06);border-left:3px solid var(--svdt-red);border-radius:0 6px 6px 0;font-size:13px;line-height:1.65;color:var(--svdt-text-mid)}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Social · 820 × 312 · 1200 × 630</p>
+  <h1>FB cover a OG <span class="en">/ Cover &amp; share image</span></h1>
+  <p class="lede">
+    Obě plochy jsou široké a mělké, takže platí jedno: <strong style="color:#fff">obsah vlevo, fotka vpravo</strong>.
+    Facebook ořezává cover na mobilu na 640 px šířky — vyznačená zóna níž.
+    <br><em style="color:var(--svdt-text-muted)">Content left, photo right. Facebook crops covers to 640 px on mobile.</em>
+  </p>
+
+  <h2>Facebook cover <span class="en">/ 820 × 312</span></h2>
+  <p class="sub">Profilová fotka překrývá levý dolní roh — nechej tam volno</p>
+  <div class="cover">
+    <div class="photo"></div><div class="ov"></div>
+    <div class="cin">
+      <span class="kick">10. ročník · Mistrovství ČR v městském sjezdu</span>
+      <h3>Svatohorský<br>Downtown<em>.</em></h3>
+      <p>23. 5. 2026 · Příbram · Vstup zdarma</p>
+    </div>
+    <svg class="clogo" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="84" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="32" font-weight="900">SVDT</text><text x="75" y="102" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="8" font-weight="700" letter-spacing="2.4">PŘÍBRAM</text></svg>
+    <div class="guide"></div>
+  </div>
+  <p class="cap">Facebook cover · 820 × 312 px</p>
+
+  <h2>OG / sdílecí obrázek <span class="en">/ Open Graph</span></h2>
+  <p class="sub">Vkládá se do <code style="font-family:ui-monospace,Consolas,monospace;color:#fff">og:image</code> — zobrazí se při sdílení odkazu kdekoliv</p>
+  <div class="og">
+    <div class="photo" style="background:linear-gradient(125deg,#151a20 0%,#333b45 60%,#5a6472 100%)"></div>
+    <div class="ov" style="background:linear-gradient(115deg,rgba(5,6,10,.97) 30%,rgba(5,6,10,.55) 100%)"></div>
+    <div class="ogin">
+      <svg class="oglogo" viewBox="0 0 150 150"><circle cx="75" cy="75" r="72" fill="#e30613"/><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="5"/><text x="75" y="88" text-anchor="middle" fill="#fff" font-family="Exo,Arial" font-size="38" font-weight="900">SVDT</text></svg>
+      <div class="spacer"></div>
+      <h3>Svatohorský<br>Downtown Příbram<em>.</em></h3>
+      <div class="rule"></div>
+      <p>23. května 2026 · 140 jezdců · 25+ překážek · Vstup zdarma</p>
+      <div class="spacer"></div>
+      <div class="ogbar"><span style="font-size:clamp(8px,1.3vw,12px);font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--svdt-text-soft)">svdtpribram.cz</span></div>
+    </div>
+  </div>
+  <p class="cap">Open Graph · 1200 × 630 px</p>
+
+  <h2>Rozměry <span class="en">/ Sizes</span></h2>
+  <table>
+    <tr><th>Formát</th><th>Rozměr</th><th>Poznámka</th></tr>
+    <tr><td>Facebook cover</td><td><code>820 × 312</code></td><td>Mobil ořezává na 640 px šířky — bezpečná zóna uprostřed</td></tr>
+    <tr><td>Facebook event cover</td><td><code>1920 × 1005</code></td><td>Poměr 1,91:1, stejný layout jako OG</td></tr>
+    <tr><td>Open Graph / Twitter</td><td><code>1200 × 630</code></td><td><code>og:image</code>, <code>twitter:card = summary_large_image</code></td></tr>
+    <tr><td>Instagram post</td><td><code>1080 × 1080</code></td><td>Samostatná šablona</td></tr>
+    <tr><td>Instagram story</td><td><code>1080 × 1920</code></td><td>Samostatná šablona</td></tr>
+    <tr><td>YouTube náhled</td><td><code>1280 × 720</code></td><td>Layout OG, nadpis zvětšit o 20 %</td></tr>
+    <tr><td>Profilová fotka</td><td><code>512 × 512</code></td><td>Pouze značka na <code>--svdt-bg</code>, bez textu</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Text v OG obrázku:</strong> nedávej do něj to samé, co je v <code>og:title</code> — při sdílení
+    se text zobrazí dvakrát pod sebou. Do obrázku patří datum a claim, do titulku název akce.
+    <br><span style="color:var(--svdt-text-muted)">Don't duplicate og:title inside the image — it renders twice.</span>
+  </div>
+</div>
