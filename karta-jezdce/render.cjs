@@ -34,7 +34,7 @@ await page.locator('#scenario').selectOption('invalid');checks.push({missingRequ
 await page.locator('#scenario').selectOption('incomplete');checks.push({missingOptionalHidden:await page.locator('.team,.country').count()===0});
 await page.locator('#scenario').selectOption('normal');await page.evaluate(()=>window.svdt.setPortraitURL('missing-image.png'));await page.waitForTimeout(200);checks.push({badImageFallback:await page.locator('.no-portrait').count()===1});
 await page.goto(base);await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(400);await page.screenshot({path:path.join(__dirname,'nahledy','lokalni-nahled.png'),fullPage:true});
-await page.goto(pathToFileURL(path.join(__dirname,'srovnani.html')).href);await page.evaluate(()=>document.fonts.ready);await page.setViewportSize({width:1600,height:1200});await page.screenshot({path:path.join(__dirname,'nahledy','SVDT-srovnani-A-B.png'),fullPage:true});
+await page.goto(pathToFileURL(path.join(__dirname,'srovnani.html')).href);await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(i=>i.decode()))});await page.setViewportSize({width:1600,height:1200});await page.screenshot({path:path.join(__dirname,'nahledy','SVDT-srovnani-A-B.png'),fullPage:true});
 fs.writeFileSync(path.join(__dirname,'kontrola.json'),JSON.stringify({errors,checks},null,2));
 const failures=checks.filter(c=>c.overflow?.length||c.images?.length||c.font===false||c.status?.startsWith('NEPŘIPRAVENO')||Object.values(c).includes(false));
 console.log(JSON.stringify({errors,total:checks.length,failures}));
