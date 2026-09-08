@@ -1,0 +1,54 @@
+name: SVDT — generování náhledů
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "karta-jezdce/**"
+      - "package.json"
+      - ".github/workflows/generate-previews.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "karta-jezdce/**"
+      - "package.json"
+      - ".github/workflows/generate-previews.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    name: Vyrenderovat a zkontrolovat kartu jezdce
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Načíst repozitář
+        uses: actions/checkout@v4
+
+      - name: Připravit Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Nainstalovat závislosti
+        run: npm install --no-audit --no-fund
+
+      - name: Nainstalovat Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Vygenerovat a zkontrolovat náhledy
+        run: npm run render
+
+      - name: Uložit náhledy ke stažení
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: svdt-karta-jezdce-nahledy
+          path: |
+            karta-jezdce/nahledy/
+            karta-jezdce/kontrola.json
+          if-no-files-found: error
+          retention-days: 30

@@ -29,6 +29,12 @@ Složky pro další grafické části budou vytvořeny až při zahájení jejic
 
 Podrobnosti, použité podklady a kontrolní scénáře jsou popsány v [dokumentaci karty jezdce](karta-jezdce/README.md).
 
+## Generování náhledů z iPadu
+
+Náhledy není nutné generovat přímo na iPadu. V záložce **Actions** lze ručně spustit workflow **SVDT — generování náhledů**. GitHub na vzdáleném počítači nainstaluje potřebné nástroje, vytvoří náhledy, provede kontroly a zpřístupní výsledný ZIP jako artefakt běhu.
+
+Stejné ověření probíhá automaticky při změnách karty jezdce v Pull Requestu. Pro lokální spuštění na počítači slouží příkazy `npm install`, `npx playwright install chromium` a `npm run render`.
+
 ## Pravidla pro další grafické části
 
 - Každá grafická část G01–G07 dostane vlastní složku a vlastní `README.md`.
