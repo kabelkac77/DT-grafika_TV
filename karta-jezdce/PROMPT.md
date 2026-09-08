@@ -1,0 +1,7 @@
+# Použitý prompt — ilustrační postava
+
+Režim: vestavěný nástroj `image_gen.imagegen`, nikoliv CLI/API. Generována pouze obrazová postava; karta, typografie a kompozice jsou vlastní editovatelný HTML/CSS návrh.
+
+> Use case: product-mockup. Create a photographic portrait placeholder asset for an urban downhill mountain bike rider broadcast card. It must depict an anonymous athletic display mannequin wearing a matte black full-face DOWNHILL MOUNTAIN BIKE helmet with subtle red details, completely opaque black goggles: no face, skin, eyes or identifiable human visible. Black technical long sleeve cycling jersey with minimal unbranded red shoulder panels. Front-facing head and upper torso, relaxed arms, cropped at waist, symmetrical and centered; entire helmet and both shoulders fully in frame, generous transparent margin. Photographic premium sports studio lighting with soft white key and subtle red rim, visible textile material and helmet ventilation. No names, numbers, logos, symbols, letters, sponsors, background or floor. Genuine transparent alpha background. This is an explicitly illustrative stand-in for a missing portrait, never a portrait of a real athlete. Output single tall portrait asset.
+
+Použitý soubor: `assets/portrait.png`. Výstup obsahuje alfa kanál; průhlednost byla ověřena. Postava je záměrně anonymní a musí se před finálním odbavením nahradit dodaným portrétem, případně použít varianta bez portrétu.

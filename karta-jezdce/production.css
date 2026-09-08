@@ -1,0 +1,49 @@
+/* Study 03 — unified graphite body, low architectural relief, precise edge light. */
+.scene{background-image:url('assets/zavod-skocny-zaber.jpg');background-position:center bottom}
+.rider-card.A{width:1560px}
+.rider-card .shell,.B .shell{background:linear-gradient(110deg,#151e29 0%,#101720 36%,#0b1017 78%,#111923 100%)}
+.rider-card .shell:after{height:2px;background:linear-gradient(90deg,#e30613 0 19%,#38424e 19% 78%,#e30613 78% 100%)}
+.rider-card .architecture{width:390px;height:132px;top:-132px;right:34px}
+.architecture .red-edge{transform:translate(1.5px,1px);background:linear-gradient(100deg,#252f3a 0 72%,#e30613 95%)}
+.architecture .edge{transform:translateY(-1.5px);background:linear-gradient(105deg,#26313e 0%,#637180 25%,#87929d 40%,#4a5969 62%,#28323f 90%)}
+.architecture .face{background:linear-gradient(180deg,#28323f 0%,#1a2430 37%,#111923 100%)}
+.rider-card .brand-panel,.rider-card .bib,.B .brand-panel,.B.no-portrait .brand-panel{background:transparent}
+.rider-card .brand-panel img{width:130px;height:113px;opacity:.95}
+.rider-card .bib strong{color:var(--accent);font-size:88px;line-height:1.15}
+.rider-card .bib small{color:#bec7d2;font-size:15px;letter-spacing:.08em}
+.rider-card .bib:after{background:linear-gradient(transparent,#62718188,transparent);top:20%;height:60%}
+.A .shell{grid-template-columns:280px minmax(0,1fr) 160px 204px}
+.A .portrait-area{width:270px;height:334px;left:0;bottom:2px}
+.A .portrait-area:before{inset:49% 0 0;background:linear-gradient(130deg,#e30613 0%,#8c0712 67%,#381018 100%);clip-path:polygon(35% 0,100% 0,100% 100%,0 100%)}
+.A .portrait-area:after{background:linear-gradient(transparent,#151e29);height:50px}
+.A .identity{padding:25px 32px 24px}
+.A .identity:before{left:32px;right:0;background:linear-gradient(90deg,#a9b7c45c,#46536030)}
+.A .brand-panel{padding-right:0;clip-path:none}
+.A .shell:after{right:0}
+.A.no-portrait{width:1280px}
+.A.no-portrait .shell{grid-template-columns:minmax(0,1fr) 160px 204px}
+.A.no-portrait .architecture{right:34px}
+.A .first{font-size:30px;color:#d2d8df}
+.A .last{font-size:70px}
+.A.long .last{font-size:52px}
+.A .meta{font-size:24px;margin-top:17px}
+.A .meta>span+span{border-color:#8995a13b}
+.B{width:640px!important}
+.B .shell{grid-template-columns:1fr 160px;grid-template-rows:180px auto}
+.B .architecture,.B.no-portrait .architecture{width:320px;height:108px;top:-108px;right:22px}
+.B .brand-panel{padding:0 24px 0 0;justify-content:flex-end}
+.B .brand-panel img{width:118px;height:102px}
+.B .bib strong{font-size:88px}
+.B .portrait-area{left:6px;top:-70px;width:250px;height:253px}
+.B .portrait-area:after{height:42px;background:linear-gradient(transparent,#151e29)}
+.B .identity{padding:23px 28px 24px;border-top:1px solid #66738350}
+.B .first{font-size:27px;color:#d2d8df}
+.B .last{font-size:62px}
+.B .meta{margin-top:17px;font-size:23px;gap:14px}
+.B .team{font-size:23px}
+.B .category small{font-size:16px}
+.B.no-portrait .shell{grid-template-rows:132px auto}
+.B.no-portrait .brand-panel img{width:118px;height:102px}
+.B.long .last{font-size:44px}
+.B.long .team{font-size:23px}
+.B .meta>span+span{border-color:#8995a13b}

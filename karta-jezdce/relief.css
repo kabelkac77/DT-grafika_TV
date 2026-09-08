@@ -1,0 +1,30 @@
+/* Study 02: silhouette taken from original logo via native SVG alpha mask. */
+.rider-card .shell{border-top:0;border-bottom:0;background:linear-gradient(105deg,#131a23,#0b0f13 64%);isolation:isolate}
+.rider-card .shell:after{content:'';position:absolute;inset:auto 0 0;height:4px;background:var(--brand);z-index:5}
+.architecture{position:absolute;right:12px;top:-220px;width:600px;height:220px;overflow:hidden;pointer-events:none;z-index:-1}
+.architecture i{position:absolute;inset:0;mask:url('assets/svata-hora-relief.svg') center top/100% auto no-repeat;background:#0b0f13}
+.architecture .edge{transform:translateY(-6px);background:linear-gradient(100deg,#505b68 0%,#c0c6ca 35%,#626d78 60%,#222b35)}
+.architecture .red-edge{transform:translate(10px,6px);background:var(--brand)}
+.architecture .face{background:linear-gradient(130deg,#33404e 0%,#18212c 35%,#0b0f13 75%)}
+.rider-card .brand-panel,.B .brand-panel{background:var(--brand);overflow:visible}
+.rider-card .brand-panel:before,.B .brand-panel:before{display:none}
+.rider-card .brand-panel img{width:144px;height:125px;object-fit:contain;opacity:1}
+.rider-card .bib{background:var(--brand)}
+.rider-card .bib:after{content:'';position:absolute;right:0;top:28%;height:44%;width:1px;background:#fff5}
+.A .shell{grid-template-columns:300px minmax(0,1fr) 168px 230px}
+.A .brand-panel{padding-right:12px;clip-path:polygon(0 0,100% 0,100% calc(100% - 30px),calc(100% - 30px) 100%,0 100%)}
+.A .shell:after{right:30px}
+.A .portrait-area:before{background:linear-gradient(120deg,#e30613,#72060d);inset:43% 0 0;clip-path:polygon(28% 0,100% 0,100% 100%,0 100%)}
+.A .identity:before{content:'';position:absolute;left:28px;right:40px;top:0;height:1px;background:linear-gradient(90deg,#e0e6ec80,transparent)}
+.A.no-portrait .architecture{right:12px}
+.B .shell{grid-template-columns:1fr 180px;grid-template-rows:215px auto;background:linear-gradient(115deg,#18212c,#0b0f13 65%)}
+.B .architecture{right:0;top:-150px;width:430px;height:150px}
+.B .brand-panel{grid-column:1;justify-content:flex-end;padding:0 28px 0 0;background:linear-gradient(110deg,#131a23 0%,#131a23 47%,#e30613 47%,#e30613 100%)}
+.B .brand-panel img{width:134px;height:116px}
+.B .bib{grid-column:2}.B .bib:after{left:0;right:auto}
+.B .portrait-area{height:283px}
+.B .identity{border-top:1px solid #fff3;padding-top:26px}
+.B.no-portrait .shell{grid-template-rows:150px auto}
+.B.no-portrait .brand-panel{padding-left:36px;padding-right:0;justify-content:flex-start;background:var(--brand)}
+.B.no-portrait .brand-panel img{width:124px;height:108px}
+.B.no-portrait .architecture{width:430px;height:150px;top:-150px}

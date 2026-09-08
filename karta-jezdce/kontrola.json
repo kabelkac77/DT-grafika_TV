@@ -1,0 +1,200 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "variant": "A",
+      "scenario": "normal",
+      "portrait": 1,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "A",
+      "scenario": "normal",
+      "portrait": 0,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "A",
+      "scenario": "long",
+      "portrait": 1,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "A",
+      "scenario": "long",
+      "portrait": 0,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "A",
+      "scenario": "incomplete",
+      "portrait": 0,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "A",
+      "scenario": "normal",
+      "portrait": 1,
+      "bg": "light",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "A",
+      "scenario": "normal",
+      "portrait": 1,
+      "bg": "dark",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "A",
+      "scenario": "normal",
+      "portrait": 1,
+      "bg": "transparent",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "A",
+      "scenario": "normal",
+      "portrait": 0,
+      "bg": "transparent",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "B",
+      "scenario": "normal",
+      "portrait": 1,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "B",
+      "scenario": "normal",
+      "portrait": 0,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "B",
+      "scenario": "long",
+      "portrait": 1,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "B",
+      "scenario": "long",
+      "portrait": 0,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "B",
+      "scenario": "incomplete",
+      "portrait": 0,
+      "bg": "race",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "B",
+      "scenario": "normal",
+      "portrait": 1,
+      "bg": "light",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "B",
+      "scenario": "normal",
+      "portrait": 1,
+      "bg": "dark",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "B",
+      "scenario": "normal",
+      "portrait": 1,
+      "bg": "transparent",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "variant": "B",
+      "scenario": "normal",
+      "portrait": 0,
+      "bg": "transparent",
+      "font": true,
+      "status": "Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.",
+      "images": [],
+      "overflow": []
+    },
+    {
+      "hide": true
+    },
+    {
+      "show": true
+    },
+    {
+      "missingRequiredHidden": true
+    },
+    {
+      "missingOptionalHidden": true
+    },
+    {
+      "badImageFallback": true
+    }
+  ]
+}
