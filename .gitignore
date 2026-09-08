@@ -6,3 +6,8 @@ Desktop.ini
 # dočasné soubory grafických editorů
 *.tmp
 *~
+
+# Node.js a výstupy automatických testů
+node_modules/
+playwright-report/
+test-results/
