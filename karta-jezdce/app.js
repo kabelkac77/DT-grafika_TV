@@ -13,11 +13,11 @@ const valid=Boolean((d.first||d.last)&&d.number);
 $('status').className='status'+(!valid?' error':'');
 $('status').textContent=!valid?'NEPŘIPRAVENO K VYSÍLÁNÍ — doplňte jméno a startovní číslo. Karta se nezobrazuje.':!portraitValid?'Portrét nelze načíst. Použita varianta bez portrétu.':'Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.';
 if(!valid){$('overlay').innerHTML='';return}
-const meta=[];
-if(d.team)meta.push('<span class="team">'+escape(d.team)+'</span>');
-if(d.country)meta.push('<span class="country">'+(d.country.toUpperCase()==='CZE'&&$('flag').checked?'<i class="flag" aria-label="Česká vlajka"></i>':'')+escape(d.country.toUpperCase())+'</span>');
-if(d.category)meta.push('<span class="category"><small>KAT.</small>'+escape(d.category)+'</span>');
-$('overlay').innerHTML=`<article class="rider-card ${variant} ${!hasPortrait?'no-portrait':''} ${long?'long':''} ${!visible?'off':''}" aria-label="Karta jezdce"><div class="shell"><div class="architecture" aria-hidden="true"><i class="red-edge"></i><i class="edge"></i><i class="face"></i></div><div class="identity"><span class="first">${escape(d.first)}</span><span class="last">${escape(d.last)}</span>${meta.length?'<div class="meta">'+meta.join('')+'</div>':''}</div><div class="bib"><small>START. ČÍSLO</small><strong>${escape(d.number)}</strong></div><div class="brand-panel"><img src="assets/logo-ink.svg" alt="Svatohorský Downtown"></div></div>${hasPortrait?'<div class="portrait-area"><img src="'+escape(portraitURL)+'" alt="Ilustrační postava v helmě"></div>':''}</article>`;
+const country=d.country?'<span class="country">'+(d.country.toUpperCase()==='CZE'&&$('flag').checked?'<i class="flag" aria-label="Česká vlajka"></i>':'')+escape(d.country.toUpperCase())+'</span>':'';
+const team=d.team?'<span class="team">'+escape(d.team)+'</span>':'';
+const category=d.category?'<span class="category">'+escape(d.category)+'</span>':'';
+const meta=(variant==='A'?[country,team,category]:[country,category,team]).filter(Boolean);
+$('overlay').innerHTML=`<article class="rider-card ${variant} ${!hasPortrait?'no-portrait':''} ${long?'long':''} ${!visible?'off':''}" aria-label="Karta jezdce"><div class="architecture" aria-hidden="true"><i class="edge"></i><i class="face"></i></div><div class="shell"><div class="bib"><small>ČÍSLO</small><strong>${escape(d.number)}</strong></div><div class="identity"><div class="name"><span class="first">${escape(d.first)}</span> <span class="last">${escape(d.last)}</span></div>${meta.length?'<div class="meta">'+meta.join('')+'</div>':''}</div></div>${hasPortrait?'<div class="portrait-area"><img src="'+escape(portraitURL)+'" alt="Portrét jezdce"></div>':''}</article>`;
 const portrait=document.querySelector('.portrait-area img');if(portrait)portrait.onerror=()=>{portraitValid=false;render()};
 requestAnimationFrame(()=>{const card=document.querySelector('.rider-card');if(!card)return;const tooHigh=card.getBoundingClientRect().top<$('stage').getBoundingClientRect().top+54*($('stage').getBoundingClientRect().width/1920);const overflow=[...card.querySelectorAll('.last,.first,.team,.bib')].some(e=>e.scrollWidth>e.clientWidth+1);if(tooHigh||overflow){$('status').className='status error';$('status').textContent='NEPŘIPRAVENO K VYSÍLÁNÍ — text překračuje kapacitu návrhu. Upravte rozložení nebo redakčně schvalte kratší text.'}})
 }
@@ -30,5 +30,6 @@ if(params.get('portrait')==='0')$('portrait').checked=false;
 const resize=()=>{$('stage').style.transform=`scale(${$('viewport').clientWidth/1920})`};new ResizeObserver(resize).observe($('viewport'));
 sync();resize();window.svdt={render,sync,setPortraitURL(url){portraitURL=url;portraitValid=true;render()}};
 })();
+
 
 
