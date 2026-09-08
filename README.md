@@ -9,7 +9,6 @@ Každý druh výstupu má vlastní složku:
 | Složka | Co do ní patří |
 |---|---|
 | `karta-jezdce/` | Grafika karty jezdce (finální i podklady) |
-| `plakaty/` | Plakáty |
 | `loga/` | Loga a jejich varianty |
 | `bannery/` | Bannery (web, sociální sítě, tisk) |
 | `zdroje/` | Zdrojové soubory (PSD, AI, INDD…) |
