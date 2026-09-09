@@ -1,4 +1,5 @@
 const {chromium}=require('playwright');
+const checkBrand=require('../scripts/check-brand.cjs');
 const fs=require('node:fs');
 const path=require('node:path');
 const {pathToFileURL}=require('node:url');
@@ -12,7 +13,7 @@ const {pathToFileURL}=require('node:url');
   try {
     for(const [file,background,placeholders] of [['vysledky-overlay','transparent','0'],['vysledky-svetle','light','1'],['vysledky-tmave','dark','1']]) {
       await open({background,placeholders});
-      check(file,await page.evaluate(()=>document.querySelectorAll('#rows tr').length===10&&!document.getElementById('results-card').hidden&&!document.getElementById('status').classList.contains('error')&&document.fonts.check('900 31px Exo')));
+      check(file,await checkBrand(page)&&await page.evaluate(()=>document.querySelectorAll('#rows tr').length===10&&!document.getElementById('results-card').hidden&&!document.getElementById('status').classList.contains('error')&&document.fonts.check('900 31px Exo')));
       await page.screenshot({path:path.join(out,file+'.png'),omitBackground:background==='transparent'});
       if(file==='vysledky-svetle')await page.screenshot({path:path.join(out,'vysledky-detail.png'),clip:{x:92,y:72,width:1736,height:902}});
     }
@@ -58,3 +59,4 @@ const {pathToFileURL}=require('node:url');
   } finally {await browser.close();fs.writeFileSync(path.join(__dirname,'kontrola.json'),JSON.stringify({errors,checks},null,2));}
   const failures=checks.filter(c=>!c.pass);console.log(JSON.stringify({card:'vysledky',errors,total:checks.length,failures}));if(errors.length||failures.length)process.exitCode=1;
 })().catch(e=>{console.error(e);process.exitCode=1;});
+

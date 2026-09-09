@@ -201,3 +201,6 @@ Nejbližší navazující práce: připravit zadání vizuálního systému a gr
 - 8. 9. 2026: ověřen web, pravidla 2026 a poskytnutá výsledková stránka. Pravidla dalšího ročníku, výpočet výsledků, limit jezdců, živé datové propojení a technické řešení zůstávají otevřené.
 
 - 9. 9. 2026: G01 implementována podle studie 04 ve složce karta-vysledky. Potvrzeno 10 výsledků vlevo, menší loga vpravo ve stejné tabulce bez nadpisu Partneři, celý reliéf na pravém horním kraji. Při tvorbě živé HTML vrstvy vytvořit editor rozmístění log. Externí výsledkový server se napojí později. Detailní datová smlouva, současný stav a zbývající kroky jsou v karta-vysledky/ZADANI_KARTA_VYSLEDKU.md.
+
+
+- 9. 9. 2026: schváleno přenesení menšího nápisu SVATOHORSKÝ / DOWN / TOWN pod reliéf do všech variant jezdce, hosta a výsledkové tabulky. Nápis je centrovaný s celým reliéfem, bez kruhu, přidané linky a roku. Host mírně zmenšen na 620 px. Toto rozhodnutí nahrazuje dřívější požadavek bez samostatného nápisu. Požadavky na animace doplní zadavatel; stávající technické chování tím není schválením budoucích animací.

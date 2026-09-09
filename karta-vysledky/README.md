@@ -1,5 +1,8 @@
 # Karta výsledků — verze 01
 
+> Aktualizace 9. 9. 2026: platí společný styl s menším bílým nápisem SVATOHORSKÝ / DOWN / TOWN vycentrovaným pod celým reliéfem. Pouze písmo z původního loga, bez kruhu, přidané linky a roku. Tato aktualizace nahrazuje předchozí zákaz samostatného nápisu. Animace budou upřesněny zadavatelem později; tato změna žádné nové animace nezavádí.
+
+
 Funkční HTML/CSS grafika podle studie 04. Deset výsledků vlevo a menší prostor pro loga vpravo jsou součástí stejného panelu. Celý reliéf je na pravém horním kraji, bez nadpisu Partneři.
 
 ![Náhled vykreslený z kódu](nahledy/vysledky-detail.png)
@@ -30,3 +33,6 @@ Pro samotnou HTML vrstvu použijte index.html?capture=1. Parametry category a ru
 Font Exo, maska reliéfu a MTB stopa se sdílejí z karta-jezdce/, nejsou duplikované. Skutečná loga vložte do assets/ této složky a vyplňte logos: [{src: "assets/partner.png", alt: "Název partnera"}]. PNG/JPEG/WebP/SVG se vloží bez deformace. Výchozí rozložení podporuje pět míst; pořadí je první široké, dvě menší, dvě široká.
 
 **Živý server, volné rozmísťování log v budoucím HTML editoru a animace se budou řešit později.** Podrobnosti i potvrzená rozhodnutí jsou v zadání. Studie je vizuální reference; generované PNG vznikají z editovatelných zdrojů.
+
+
+Sdílený zdroj písma loga: `../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.

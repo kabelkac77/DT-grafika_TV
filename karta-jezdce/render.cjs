@@ -1,4 +1,5 @@
 const {chromium}=require('playwright');
+const checkBrand=require('../scripts/check-brand.cjs');
 const fs=require('fs');const path=require('path');const {pathToFileURL}=require('url');
 (async()=>{
 const browser=await chromium.launch({headless:true});
@@ -12,7 +13,7 @@ for(const v of ['A','B'])for(const [name,scenario,portrait,bg] of [
 await page.goto(base+`?capture=1&variant=${v}&scenario=${scenario}&portrait=${portrait}&background=${bg}`);
 await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(i=>i.complete?Promise.resolve():new Promise(r=>{i.onload=r;i.onerror=r})));});
 await page.waitForTimeout(400);
-checks.push({variant:v,scenario,portrait,bg,...await page.evaluate(()=>({font:document.fonts.check('900 72px Exo'),status:document.getElementById('status').textContent,images:[...document.images].filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src),overflow:[...document.querySelectorAll('.identity,.last,.team,.bib')].filter(e=>e.scrollWidth>e.clientWidth+1).map(e=>e.className)}))});
+checks.push({portraitPresent:!portrait||await page.locator('.portrait-area img').count()===1,brand:await checkBrand(page),variant:v,scenario,portrait,bg,...await page.evaluate(()=>({font:document.fonts.check('900 72px Exo'),status:document.getElementById('status').textContent,images:[...document.images].filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src),overflow:[...document.querySelectorAll('.identity,.last,.team,.bib')].filter(e=>e.scrollWidth>e.clientWidth+1).map(e=>e.className)}))});
 if(name.startsWith('detail')){
 const clip=await page.locator('.rider-card').evaluate(el=>{const a=el.getBoundingClientRect(),r=el.querySelector('.architecture').getBoundingClientRect(),p=el.querySelector('.portrait-area')?.getBoundingClientRect();const top=Math.min(a.top,r.top,p?.top??a.top)-8;return {x:a.x-8,y:top,width:a.width+16,height:a.bottom-top+8}});
 await page.screenshot({path:path.join(__dirname,'nahledy',`${v}-${name}.png`),clip,omitBackground:true});
@@ -41,5 +42,6 @@ console.log(JSON.stringify({errors,total:checks.length,failures}));
 await browser.close();
 if(errors.length||failures.length)process.exitCode=1;
 })();
+
 
 

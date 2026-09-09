@@ -22,7 +22,7 @@ Složky pro další grafické části budou vytvořeny až při zahájení jejic
 
 ## Aktuální stav
 
-- G02 — karta jezdce: aktuální verze **06.4**, vodorovná a rohová karta, obě s portrétem i bez něj. Celý reliéf, jemná MTB stopa a žádné samostatné bílé logo.
+- G02 — karta jezdce: aktuální verze **06.5**, vodorovná a rohová karta, obě s portrétem i bez něj. Celý reliéf, jemná MTB stopa a menší bílý nápis z loga pod reliéfem.
 - G05 — karta hosta: funkční jmenovka se jménem a funkcí, společné generování s kartou jezdce.
 - G01 — karta výsledků: funkční HTML/CSS generátor podle studie 04; [zdroje a návod](karta-vysledky/README.md), [zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Živá data a editor rozmístění log navazují později.
 - G03, G04, G06 a G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
@@ -66,3 +66,8 @@ Otevřete `index.html` pro výběr karty jezdce, hosta nebo výsledků. `npm run
 
 
 Výsledky samostatně: `npm run render:vysledky`. V Actions lze zadat `results_category`, `results_run_type` a kompletní `results_json`. [Návod k výsledkové kartě](karta-vysledky/README.md).
+
+
+## Společný styl — 9. 9. 2026
+
+Všechny čtyři varianty jezdce, host a výsledková tabulka používají menší nápis SVATOHORSKÝ / DOWN / TOWN centrovaný pod celým reliéfem. Bez kruhu, přidané linky a letopočtu. Písmo je převzaté z původního loga ve společném `design-system/brand/event-wordmark.svg`. Host je mírně menší (620 px). Aktuální zdrojové náhledy jsou ve složkách karet; animace zadavatel upřesní později.

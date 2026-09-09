@@ -29,6 +29,8 @@ on:
       - "karta-hosta/**"
       - "karta-vysledky/**"
       - "render.cjs"
+      - "design-system/brand/**"
+      - "scripts/**"
       - "package.json"
       - ".github/workflows/generate-previews.yml"
   push:
@@ -39,6 +41,8 @@ on:
       - "karta-hosta/**"
       - "karta-vysledky/**"
       - "render.cjs"
+      - "design-system/brand/**"
+      - "scripts/**"
       - "package.json"
       - ".github/workflows/generate-previews.yml"
 
@@ -89,4 +93,5 @@ jobs:
             karta-vysledky/kontrola.json
           if-no-files-found: error
           retention-days: 30
+
 

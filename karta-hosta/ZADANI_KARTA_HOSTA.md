@@ -1,5 +1,8 @@
 # Karta hosta — schválený návrh 01
 
+> Aktualizace 9. 9. 2026: platí společný styl s menším bílým nápisem SVATOHORSKÝ / DOWN / TOWN vycentrovaným pod celým reliéfem. Pouze písmo z původního loga, bez kruhu, přidané linky a roku. Tato aktualizace nahrazuje předchozí zákaz samostatného nápisu. Animace budou upřesněny zadavatelem později; tato změna žádné nové animace nezavádí.
+
+
 Stav: zadavatel schválil vzhled studie 01 dne 9. 9. 2026. Tento dokument je platným zadáním pro navazující implementaci; funkční HTML/CSS karta je nyní vytvořena v této složce. Generuje se společně s kartou jezdce přes npm run render a GitHub Actions.
 
 ## Účel
@@ -46,3 +49,8 @@ Požadavky na animaci doplní zadavatel později. Nástup, odchod, délka zobraz
 
 K doplnění zůstávají skutečná jména a funkce, animace a finální technické parametry režie. Karta hosta rozvíjí rozhovorovou jmenovku uvedenou ve společném zadání; na rozdíl od původní obecné položky G05 obsahuje podle nového výslovného zadání pouze jméno a funkci.
 
+
+
+Host: šířka 620 px, jméno 36 px, funkce 24 px, samostatný prostor vpravo pro nápis šířky 90 px pod reliéfem šířky 160 px. Obsah zůstává jméno a funkce.
+
+Sdílený zdroj písma loga: `../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.
