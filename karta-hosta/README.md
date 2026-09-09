@@ -19,3 +19,8 @@ Karta má pracovní šířku 660 px, levý okraj 96 px a spodní okraj 80 px. Dl
 
 [Schválená studie](nahledy/karta-hosta-studie-01.jpg) zůstává referenčním obrázkem; generované PNG vznikají z HTML/CSS. Ilustrační fotografie ze studie není součástí karty. [Zadání](ZADANI_KARTA_HOSTA.md).
 
+## Náhled vykreslený z kódu
+
+![Karta hosta — HTML/CSS](nahledy/host-detail.png)
+
+[Průhledný overlay 1920 × 1080](nahledy/host-overlay.png)
