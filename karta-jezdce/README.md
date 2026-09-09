@@ -53,3 +53,7 @@ Render kontroluje načtení písem a obrázků, přetečení, bezpečnou horní 
 
 Fotografie Svaté Hory z předchozích studií zůstává pouze v podkladech: Jirka Jiroušek, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Svat%C3%A1_Hora_u_P%C5%99%C3%ADbrami_-_leteck%C3%BD_pohled.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Aktuální náhled ji nepoužívá. Dřívější fotografické výřezy a úpravy v archivovaných studiích jsou pod touto licencí.
 
+
+## Uložená sada náhledů — 9. 9. 2026
+
+V repozitáři zůstává pouze 15 nepoškozených PNG poslední verze 06.4: čtyři detailní varianty, jejich společná kompozice, čtyři průhledné overlaye, světlé/tmavé kontroly a dva poloviční náhledy. Jedenáct neúplně přenesených souborů bylo odstraněno. Plné závodní záběry, dlouhá jména, neúplná data a náhled editoru se nadále generují a jsou k dispozici v ZIP artefaktu úspěšného běhu GitHub Actions; nejsou součástí uložené PNG sady. Zdrojový kód a generátor zůstávají beze změny.
