@@ -21,7 +21,7 @@
 .portrait-area img{position:absolute;width:135%;height:auto;max-width:none;left:-17.5%;top:0}
 .portrait-area:after{content:'';position:absolute;inset:70% 0 0;background:linear-gradient(transparent,#17212c9c)}
 /* A: short lower third; optional portrait column collapses completely. */
-.A{width:1120px}.A .shell{display:grid;grid-template-columns:180px 125px minmax(0,1fr);min-height:138px;align-items:center;padding:14px 28px 12px 0}
+.A{width:1120px}.A .shell{display:grid;grid-template-columns:180px 125px minmax(0,1fr);min-height:138px;align-items:center;padding:14px 250px 12px 0}
 .A .bib{grid-column:2;padding-right:20px;border-right:1px solid #a9b5c050}.A .identity{grid-column:3;padding-left:24px}.A .meta{width:fit-content;max-width:100%;margin-top:8px;font-size:22px}
 .A.no-portrait{width:940px}.A.no-portrait .shell{grid-template-columns:125px minmax(0,1fr);padding-left:24px}.A.no-portrait .bib{grid-column:1}.A.no-portrait .identity{grid-column:2}
 .A.long .first,.A.long .last{font-size:36px}.A.long .team{max-width:330px}
@@ -29,3 +29,6 @@
 .B{width:610px}.B .shell{display:grid;grid-template-columns:190px minmax(0,1fr);padding:18px 22px 14px 0;min-height:254px;align-content:center;row-gap:8px}.B .bib{grid-column:2}.B .bib strong{font-size:68px}.B .identity{grid-column:2}.B .first{font-size:32px}.B .last{font-size:34px}.B .name{line-height:1.18}.B .meta{font-size:22px;gap:10px;margin-top:10px;padding:8px 0 0;clip-path:none;background:transparent}.B .meta .team{flex:0 0 100%;border:0;padding:0;font-weight:400}.B .meta>span+span{padding-left:12px}.B .portrait-area{width:185px;height:248px}.B .architecture{width:280px;height:104px;top:-102px;right:18px}
 .B.no-portrait{width:470px}.B.no-portrait .shell{grid-template-columns:minmax(0,1fr);min-height:218px;padding:18px 26px}.B.no-portrait .bib,.B.no-portrait .identity{grid-column:1}.B.no-portrait .architecture{width:280px;right:16px}.B.long .first,.B.long .last{font-size:31px}
 @media(prefers-reduced-motion:reduce){.rider-card{transition:none;transform:none!important}}
+
+/* Three-digit bib keeps its own column in the long-data scenario. */
+.A.long .bib strong{font-size:68px}

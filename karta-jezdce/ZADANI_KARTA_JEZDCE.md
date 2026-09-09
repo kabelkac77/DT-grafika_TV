@@ -1,5 +1,8 @@
 # G02 — Karta jezdce před startem
 
+> Aktualizace 9. 9. 2026: platí společný styl s menším bílým nápisem SVATOHORSKÝ / DOWN / TOWN vycentrovaným pod celým reliéfem. Pouze písmo z původního loga, bez kruhu, přidané linky a roku. Tato aktualizace nahrazuje předchozí zákaz samostatného nápisu. Animace budou upřesněny zadavatelem později; tato změna žádné nové animace nezavádí.
+
+
 Samostatné zadání pro Codex. Nadřazený dokument: [ZADANI.md](ZADANI.md). Stav: zadání pro první vizuální návrhy a editovatelný prototyp, nikoliv hotová specifikace odbavení v režii.
 
 ## 1. Úkol
@@ -121,3 +124,6 @@ Výstupy ukládat přehledně do samostatné podsložky, například `grafika/ka
 - Pozice loga televize, přesné bezpečné okraje, délka zobrazení a jazyk přenosu.
 
 Tyto vstupy ponechat označené jako otevřené. Pro první návrh použít pracovní předpoklady z tohoto dokumentu a nezastavovat práci jen kvůli chybějícím produkčním údajům.
+
+
+Sdílený zdroj písma loga: `../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.

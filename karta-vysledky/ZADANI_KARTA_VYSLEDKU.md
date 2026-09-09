@@ -1,5 +1,8 @@
 # G01 — karta výsledků
 
+> Aktualizace 9. 9. 2026: platí společný styl s menším bílým nápisem SVATOHORSKÝ / DOWN / TOWN vycentrovaným pod celým reliéfem. Pouze písmo z původního loga, bez kruhu, přidané linky a roku. Tato aktualizace nahrazuje předchozí zákaz samostatného nápisu. Animace budou upřesněny zadavatelem později; tato změna žádné nové animace nezavádí.
+
+
 Stav: implementace 01 podle poslední schválené studie 04; zadavatel 9. 9. 2026 požádal o uložení zdrojů, generátoru a tohoto zadání do GitHubu.
 
 ## Potvrzený vzhled a obsah
@@ -44,3 +47,6 @@ S časomírou a režií určit: autoritativní pořadí, penalizace, DNS/DNF/DSQ
 ## Ověření
 
 Automatický renderer kontroluje deset řádků, čas a rozdíl, shodu časů, bezpečnost textu, dlouhá jména, neplatný import, prázdnou tabulku, import/export JSON, skrytí ovládání a celý reliéf. Kontroly a PNG jsou v artefaktu GitHub Actions. Ostré nasazení vyžaduje zkoušku čitelnosti nad pohybujícím se přenosem a potvrzení technických parametrů režií.
+
+
+Sdílený zdroj písma loga: `../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.

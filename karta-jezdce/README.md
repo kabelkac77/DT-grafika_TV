@@ -1,5 +1,8 @@
 # SVDT — karta jezdce, verze 06.4
 
+> Aktualizace 9. 9. 2026: platí společný styl s menším bílým nápisem SVATOHORSKÝ / DOWN / TOWN vycentrovaným pod celým reliéfem. Pouze písmo z původního loga, bez kruhu, přidané linky a roku. Tato aktualizace nahrazuje předchozí zákaz samostatného nápisu. Animace budou upřesněny zadavatelem později; tato změna žádné nové animace nezavádí.
+
+
 Aktuální zdrojová verze podle návrhu 06.4 schváleného zadavatelem v konverzaci. Nahrazuje studii 03. Jde o skutečné HTML/CSS s editovatelnými údaji, ne o vložený obrázek návrhu. Formát odbavení a kontrola v pohybujícím se obrazu zůstávají k ověření s režií.
 
 ## Čtyři varianty
@@ -59,3 +62,6 @@ Fotografie Svaté Hory z předchozích studií zůstává pouze v podkladech: Ji
 V repozitáři zůstává pouze 15 nepoškozených PNG poslední verze 06.4: čtyři detailní varianty, jejich společná kompozice, čtyři průhledné overlaye, světlé/tmavé kontroly a dva poloviční náhledy. Jedenáct neúplně přenesených souborů bylo odstraněno. Plné závodní záběry, dlouhá jména, neúplná data a náhled editoru se nadále generují a jsou k dispozici v ZIP artefaktu úspěšného běhu GitHub Actions; nejsou součástí uložené PNG sady. Zdrojový kód a generátor zůstávají beze změny.
 
 Společný rozcestník je v `../index.html`. `npm run render` nyní generuje jezdce i hosta; pouze jezdce lze generovat přes `npm run render:jezdec`. V ZIP jsou výstupy oddělené podle složek karet.
+
+
+Sdílený zdroj písma loga: `../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.
