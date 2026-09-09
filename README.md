@@ -9,6 +9,7 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | Cesta | Obsah |
 | --- | --- |
 | `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
+| `karta-vysledky/` | G01 — deset výsledků, loga, HTML/CSS generátor a zadání |
 | `karta-hosta/` | HTML/CSS editor a generování decentní jmenovky hosta (jméno a funkce) |
 | `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
 | `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
@@ -23,7 +24,8 @@ Složky pro další grafické části budou vytvořeny až při zahájení jejic
 
 - G02 — karta jezdce: aktuální verze **06.4**, vodorovná a rohová karta, obě s portrétem i bez něj. Celý reliéf, jemná MTB stopa a žádné samostatné bílé logo.
 - G05 — karta hosta: funkční jmenovka se jménem a funkcí, společné generování s kartou jezdce.
-- G01, G03, G04, G06 a G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
+- G01 — karta výsledků: funkční HTML/CSS generátor podle studie 04; [zdroje a návod](karta-vysledky/README.md), [zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Živá data a editor rozmístění log navazují později.
+- G03, G04, G06 a G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
 - G08 — ztráta nebo zisk na úsecích: volitelné rozšíření závislé na dostupnosti mezičasů.
 - Produkční formát, napojení časomíry a způsob odbavení musí být potvrzeny s režií.
 
@@ -60,5 +62,7 @@ Vygenerované náhledy se mají udržovat pouze v rozsahu potřebném pro kontro
 
 ## Společný generátor
 
-Otevřete `index.html` pro výběr karty jezdce nebo hosta. `npm run render` generuje obě karty, `npm run render:host` pouze hosta a `npm run render:jezdec` pouze jezdce. V Actions můžete při ručním spuštění zadat jméno a funkci hosta; PNG obou karet najdete v balíčku `svdt-grafika-nahledy`. Úpravy v prohlížeči se nepřenášejí automaticky do Actions — použijte vstupní pole workflow nebo změňte data.js.
+Otevřete `index.html` pro výběr karty jezdce, hosta nebo výsledků. `npm run render` generuje všechny tři karty, `npm run render:host` pouze hosta a `npm run render:jezdec` pouze jezdce. V Actions můžete při ručním spuštění zadat jméno a funkci hosta; PNG všech karet najdete v balíčku `svdt-grafika-nahledy`. Úpravy v prohlížeči se nepřenášejí automaticky do Actions — použijte vstupní pole workflow nebo změňte data.js.
 
+
+Výsledky samostatně: `npm run render:vysledky`. V Actions lze zadat `results_category`, `results_run_type` a kompletní `results_json`. [Návod k výsledkové kartě](karta-vysledky/README.md).

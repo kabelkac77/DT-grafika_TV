@@ -54,7 +54,7 @@ Potvrzené části:
 
 | ID | Část | Obsah / upřesnění |
 | --- | --- | --- |
-| G01 | Tabulka výsledků jezdců | Rozsah sloupců, průběžná a finální varianta, kategorie a stránkování se doplní. |
+| G01 | Tabulka výsledků jezdců | 10 výsledků: startovní číslo, jméno, stát, čas / ztráta. Měnitelná kategorie a jízda, loga vpravo ve společném panelu. [Dílčí zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Průběžná/finální varianta a stránkování se doplní. |
 | G02 | Představení / popis jezdce | Údaje o jezdci podle oddílu 5; podoba a okamžik zobrazení se doplní. |
 | G03 | Mapa trati | Finální trasu a požadované body je nutné dodat nebo potvrdit. |
 | G04 | Časomíra | Přesné stavy před startem, za jízdy a v cíli se doplní podle dostupných dat. |
@@ -199,3 +199,5 @@ Nejbližší navazující práce: připravit zadání vizuálního systému a gr
 
 - 8. 9. 2026: zapracovány odpovědi zadavatele k bodům 1–15. Potvrzeny TV a velkoplošné výstupy, části G01–G07, údaje o jezdcích, postupné dodávání log, zálohování, soubory a funkční řešení, schvalování zadavatelem a preferované dokončení na začátku ledna 2027. G08 zůstává volitelná.
 - 8. 9. 2026: ověřen web, pravidla 2026 a poskytnutá výsledková stránka. Pravidla dalšího ročníku, výpočet výsledků, limit jezdců, živé datové propojení a technické řešení zůstávají otevřené.
+
+- 9. 9. 2026: G01 implementována podle studie 04 ve složce karta-vysledky. Potvrzeno 10 výsledků vlevo, menší loga vpravo ve stejné tabulce bez nadpisu Partneři, celý reliéf na pravém horním kraji. Při tvorbě živé HTML vrstvy vytvořit editor rozmístění log. Externí výsledkový server se napojí později. Detailní datová smlouva, současný stav a zbývající kroky jsou v karta-vysledky/ZADANI_KARTA_VYSLEDKU.md.
