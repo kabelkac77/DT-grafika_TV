@@ -9,10 +9,15 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | Cesta | Obsah |
 | --- | --- |
 | `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
+| `karta-hosta/` | Schválený náhled a zadání decentní jmenovky hosta (jméno a funkce) |
 | `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
 | `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
 
 Složky pro další grafické části budou vytvořeny až při zahájení jejich realizace, aby prázdná struktura nepředstírala hotový rozsah.
+
+## Karta hosta
+
+[Schválený návrh a zadání karty hosta](karta-hosta/README.md) — studie 01. Jméno a funkce pro vstupy mezi jízdami; navazuje na kartu jezdce 06.4. Implementace a animace následují později.
 
 ## Aktuální stav
 
