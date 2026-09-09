@@ -1,6 +1,6 @@
 # Karta hosta — schválený návrh 01
 
-Stav: zadavatel schválil vzhled studie 01 dne 9. 9. 2026. Tento dokument je platným zadáním pro navazující implementaci; funkční HTML/CSS karta zatím není vytvořena.
+Stav: zadavatel schválil vzhled studie 01 dne 9. 9. 2026. Tento dokument je platným zadáním pro navazující implementaci; funkční HTML/CSS karta je nyní vytvořena v této složce. Generuje se společně s kartou jezdce přes npm run render a GitHub Actions.
 
 ## Účel
 
@@ -36,7 +36,7 @@ Pracovní rámec pro implementaci: plátno 1920 × 1080 a orientační bezpečn�
 
 ## Navazující implementace
 
-Vytvořit editovatelnou kartu se samostatnými daty jména a funkce, lokálním písmem Exo a podklady navazujícími na kartu jezdce. Zachovat celý text, dlouhá jména a funkce ověřit bez překryvů nebo neomezeného zmenšování písma. Chybějící funkce nemá zanechat prázdný druhý řádek; bez jména kartu nepovažovat za připravenou. Tato pravidla jsou implementačním výchozím bodem, nikoliv hotovým otestovaným chováním.
+Vytvořit editovatelnou kartu se samostatnými daty jména a funkce, lokálním písmem Exo a podklady navazujícími na kartu jezdce. Zachovat celý text, dlouhá jména a funkce ověřit bez překryvů nebo neomezeného zmenšování písma. Chybějící funkce nemá zanechat prázdný druhý řádek; bez jména kartu nepovažovat za připravenou. Tato pravidla jsou implementována; výsledek automatické kontroly je v kontrola.json v ZIP artefaktu běhu.
 
 Náhledy ovládání a prezentační popisky nesmějí být součástí vysílané grafiky. Při realizaci ověřit čitelnost a celý reliéf; nepřebírat ilustrační fotografii do overlaye.
 
@@ -45,3 +45,4 @@ Náhledy ovládání a prezentační popisky nesmějí být součástí vysílan
 Požadavky na animaci doplní zadavatel později. Nástup, odchod, délka zobrazení ani automatické spouštění zatím nejsou schváleny. Nepřebírat automaticky animaci karty jezdce.
 
 K doplnění zůstávají skutečná jména a funkce, animace a finální technické parametry režie. Karta hosta rozvíjí rozhovorovou jmenovku uvedenou ve společném zadání; na rozdíl od původní obecné položky G05 obsahuje podle nového výslovného zadání pouze jméno a funkci.
+

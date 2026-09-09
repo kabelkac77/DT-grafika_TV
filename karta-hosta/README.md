@@ -1,12 +1,21 @@
-# Karta hosta
+# Karta hosta — funkční verze 01
 
-**Schválený vizuální návrh: studie 01 (9. 9. 2026).**
+Karta je implementována v HTML/CSS. Otevřete `index.html` nebo společný rozcestník `../index.html`. Editor obsahuje jméno, funkci, pozadí a okamžité zobrazení/skrytí. Animace zatím není nastavena.
 
-Decentní jmenovka pro rozhovorové vstupy mezi jízdami: pouze jméno a funkce. Vychází z identity karty jezdce 06.4, včetně celého reliéfu Svaté Hory a jemné stopy pneumatiky.
+## Údaje a export
 
-![Schválený návrh karty hosta](nahledy/karta-hosta-studie-01.jpg)
+- Jméno a funkci upravíte přímo v editoru. Prázdná funkce se skryje, bez jména se skryje celá karta.
+- Tlačítko „Uložit údaje do odkazu“ vloží údaje do URL. Zkopírujte adresu pro další otevření stejného náhledu. Tento krok nezapisuje do GitHubu.
+- Trvalé výchozí údaje změňte v `data.js`.
+- Na iPadu: **Actions → SVDT — generování náhledů → Run workflow**. Do nepovinných polí `guest_name` a `guest_role` můžete napsat vlastní údaje. ZIP **svdt-grafika-nahledy** obsahuje obě karty a při vyplněném jménu také `host-vlastni.png`.
+- Lokálně: `npm install`, `npx playwright install chromium`, `npm run render` pro obě karty; `npm run render:host` jen pro hosta.
+- PNG s průhledným okolím je `host-overlay.png` (1920 × 1080); `host-detail.png` je těsný náhled. Další exporty ověřují světlé/tmavé pozadí, dlouhý text a chybějící funkci.
 
-- [Zadání pro implementaci](ZADANI_KARTA_HOSTA.md)
-- [Schválený náhled](nahledy/karta-hosta-studie-01.jpg)
+## Vzhled a zdroje
 
-V této složce je zatím schválený náhled a zadání, nikoliv funkční karta nebo hotová animace. Animaci doplní zadavatel později. Jméno a scéna jsou ilustrační.
+Písmo Exo a barevné proměnné se načítají ze stylu karty jezdce; stejná je maska celého reliéfu i SVG stopa pneumatiky. Tyto soubory se neduplikují. Vlastní kompozice je v `style.css`, bezpečné vkládání textu a editor v `app.js`.
+
+Karta má pracovní šířku 660 px, levý okraj 96 px a spodní okraj 80 px. Dlouhý text se zalamuje; pokud překročí bezpečný prostor, karta se potlačí a editor zobrazí upozornění. Finální odbavení a pohybující se záběr ověří režie.
+
+[Schválená studie](nahledy/karta-hosta-studie-01.jpg) zůstává referenčním obrázkem; generované PNG vznikají z HTML/CSS. Ilustrační fotografie ze studie není součástí karty. [Zadání](ZADANI_KARTA_HOSTA.md).
+

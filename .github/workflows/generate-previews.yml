@@ -2,9 +2,20 @@ name: SVDT — generování náhledů
 
 on:
   workflow_dispatch:
+    inputs:
+      guest_name:
+        description: 'Jméno hosta pro vlastní PNG (nepovinné)'
+        required: false
+        type: string
+      guest_role:
+        description: 'Funkce hosta (nepovinné)'
+        required: false
+        type: string
   pull_request:
     paths:
       - "karta-jezdce/**"
+      - "karta-hosta/**"
+      - "render.cjs"
       - "package.json"
       - ".github/workflows/generate-previews.yml"
   push:
@@ -12,6 +23,8 @@ on:
       - main
     paths:
       - "karta-jezdce/**"
+      - "karta-hosta/**"
+      - "render.cjs"
       - "package.json"
       - ".github/workflows/generate-previews.yml"
 
@@ -20,7 +33,7 @@ permissions:
 
 jobs:
   render:
-    name: Vyrenderovat a zkontrolovat kartu jezdce
+    name: Vyrenderovat a zkontrolovat obě karty
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -40,15 +53,21 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Vygenerovat a zkontrolovat náhledy
+        env:
+          GUEST_NAME: ${{ inputs.guest_name }}
+          GUEST_ROLE: ${{ inputs.guest_role }}
         run: npm run render
 
       - name: Uložit náhledy ke stažení
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: svdt-karta-jezdce-nahledy
+          name: svdt-grafika-nahledy
           path: |
             karta-jezdce/nahledy/
             karta-jezdce/kontrola.json
+            karta-hosta/nahledy/
+            karta-hosta/kontrola.json
           if-no-files-found: error
           retention-days: 30
+
