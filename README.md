@@ -2,7 +2,7 @@
 
 Repozitář obsahuje zadání, společný design systém a pracovní grafické výstupy pro televizní přenos a velkoplošné obrazovky závodu **Svatohorský Downtown Příbram (SVDT)**.
 
-Projekt je ve fázi návrhu. Aktuální grafiky jsou vizuální studie, nikoliv schválené vysílací šablony.
+Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojového kódu. Napojení dat a ostré odbavení zůstávají k ověření s režií.
 
 ## Aktuální struktura
 
@@ -16,7 +16,7 @@ Složky pro další grafické části budou vytvořeny až při zahájení jejic
 
 ## Aktuální stav
 
-- G02 — karta jezdce: existuje interaktivní vizuální studie ve variantách A a B.
+- G02 — karta jezdce: aktuální verze **06.4**, vodorovná a rohová karta, obě s portrétem i bez něj. Celý reliéf, jemná MTB stopa a žádné samostatné bílé logo.
 - G01 a G03–G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
 - G08 — ztráta nebo zisk na úsecích: volitelné rozšíření závislé na dostupnosti mezičasů.
 - Produkční formát, napojení časomíry a způsob odbavení musí být potvrzeny s režií.
@@ -26,6 +26,8 @@ Složky pro další grafické části budou vytvořeny až při zahájení jejic
 1. Stáhněte nebo naklonujte repozitář.
 2. Otevřete `karta-jezdce/index.html` v aktuálním Chrome nebo Edge.
 3. Náhled funguje lokálně bez serveru a bez připojení k internetu.
+
+Všechny čtyři varianty najdete v [přehledové kompozici](karta-jezdce/nahledy/SVDT-srovnani-A-B.png) nebo v `karta-jezdce/srovnani.html`.
 
 Podrobnosti, použité podklady a kontrolní scénáře jsou popsány v [dokumentaci karty jezdce](karta-jezdce/README.md).
 
