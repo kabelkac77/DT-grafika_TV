@@ -7,7 +7,8 @@
     "render": "node render.cjs",
     "test": "node render.cjs",
     "render:host": "node karta-hosta/render.cjs",
-    "render:jezdec": "node karta-jezdce/render.cjs"
+    "render:jezdec": "node karta-jezdce/render.cjs",
+    "render:vysledky": "node karta-vysledky/render.cjs"
   },
   "devDependencies": {
     "playwright": "1.55.0"
@@ -16,4 +17,3 @@
     "node": ">=22"
   }
 }
-

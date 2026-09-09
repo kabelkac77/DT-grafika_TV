@@ -11,10 +11,23 @@ on:
         description: 'Funkce hosta (nepovinné)'
         required: false
         type: string
+      results_category:
+        description: 'Kategorie výsledků (nepovinné)'
+        required: false
+        type: string
+      results_run_type:
+        description: 'Typ jízdy výsledků (nepovinné)'
+        required: false
+        type: string
+      results_json:
+        description: 'Celý datový objekt výsledků jako JSON (nepovinné)'
+        required: false
+        type: string
   pull_request:
     paths:
       - "karta-jezdce/**"
       - "karta-hosta/**"
+      - "karta-vysledky/**"
       - "render.cjs"
       - "package.json"
       - ".github/workflows/generate-previews.yml"
@@ -24,6 +37,7 @@ on:
     paths:
       - "karta-jezdce/**"
       - "karta-hosta/**"
+      - "karta-vysledky/**"
       - "render.cjs"
       - "package.json"
       - ".github/workflows/generate-previews.yml"
@@ -33,7 +47,7 @@ permissions:
 
 jobs:
   render:
-    name: Vyrenderovat a zkontrolovat obě karty
+    name: Vyrenderovat a zkontrolovat všechny karty
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -56,6 +70,9 @@ jobs:
         env:
           GUEST_NAME: ${{ inputs.guest_name }}
           GUEST_ROLE: ${{ inputs.guest_role }}
+          RESULTS_CATEGORY: ${{ inputs.results_category }}
+          RESULTS_RUN_TYPE: ${{ inputs.results_run_type }}
+          RESULTS_JSON: ${{ inputs.results_json }}
         run: npm run render
 
       - name: Uložit náhledy ke stažení
@@ -68,6 +85,8 @@ jobs:
             karta-jezdce/kontrola.json
             karta-hosta/nahledy/
             karta-hosta/kontrola.json
+            karta-vysledky/nahledy/
+            karta-vysledky/kontrola.json
           if-no-files-found: error
           retention-days: 30
 
