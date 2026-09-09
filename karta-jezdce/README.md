@@ -33,7 +33,7 @@ Pracovní plátno je 1920 × 1080, karta je 96 px od levého a 80 px od spodníh
 
 Lokálně: Node.js 22+, `npm install`, `npx playwright install chromium`, `npm run render`.
 
-Na iPadu v GitHubu: **Actions → SVDT — generování náhledů → Run workflow**. Balíček `svdt-karta-jezdce-nahledy` obsahuje náhledy a `kontrola.json`. Stejná kontrola se spouští při Pull Requestu a změně karty v `main`.
+Na iPadu v GitHubu: **Actions → SVDT — generování náhledů → Run workflow**. Balíček `svdt-grafika-nahledy` obsahuje náhledy a `kontrola.json`. Stejná kontrola se spouští při Pull Requestu a změně karty v `main`.
 
 `nahledy/SVDT-srovnani-A-B.png` nyní zobrazuje všechny čtyři varianty (název zachován kvůli existujícím odkazům). `A/B-detail*.png` jsou výřezy pro přehledovou kompozici; `A/B-overlay*.png` jsou průhledná pracovní plátna 1920 × 1080. Staré PNG je nutné po změně kódu regenerovat; zdrojem pravdy je HTML/CSS.
 
@@ -57,3 +57,5 @@ Fotografie Svaté Hory z předchozích studií zůstává pouze v podkladech: Ji
 ## Uložená sada náhledů — 9. 9. 2026
 
 V repozitáři zůstává pouze 15 nepoškozených PNG poslední verze 06.4: čtyři detailní varianty, jejich společná kompozice, čtyři průhledné overlaye, světlé/tmavé kontroly a dva poloviční náhledy. Jedenáct neúplně přenesených souborů bylo odstraněno. Plné závodní záběry, dlouhá jména, neúplná data a náhled editoru se nadále generují a jsou k dispozici v ZIP artefaktu úspěšného běhu GitHub Actions; nejsou součástí uložené PNG sady. Zdrojový kód a generátor zůstávají beze změny.
+
+Společný rozcestník je v `../index.html`. `npm run render` nyní generuje jezdce i hosta; pouze jezdce lze generovat přes `npm run render:jezdec`. V ZIP jsou výstupy oddělené podle složek karet.

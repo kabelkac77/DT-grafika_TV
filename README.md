@@ -9,7 +9,7 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | Cesta | Obsah |
 | --- | --- |
 | `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
-| `karta-hosta/` | Schválený náhled a zadání decentní jmenovky hosta (jméno a funkce) |
+| `karta-hosta/` | HTML/CSS editor a generování decentní jmenovky hosta (jméno a funkce) |
 | `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
 | `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
 
@@ -17,12 +17,13 @@ Složky pro další grafické části budou vytvořeny až při zahájení jejic
 
 ## Karta hosta
 
-[Schválený návrh a zadání karty hosta](karta-hosta/README.md) — studie 01. Jméno a funkce pro vstupy mezi jízdami; navazuje na kartu jezdce 06.4. Implementace a animace následují později.
+[Schválený návrh a zadání karty hosta](karta-hosta/README.md) — studie 01. Jméno a funkce pro vstupy mezi jízdami; navazuje na kartu jezdce 06.4. HTML/CSS editor a generování PNG jsou implementované; animace následuje později.
 
 ## Aktuální stav
 
 - G02 — karta jezdce: aktuální verze **06.4**, vodorovná a rohová karta, obě s portrétem i bez něj. Celý reliéf, jemná MTB stopa a žádné samostatné bílé logo.
-- G01 a G03–G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
+- G05 — karta hosta: funkční jmenovka se jménem a funkcí, společné generování s kartou jezdce.
+- G01, G03, G04, G06 a G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
 - G08 — ztráta nebo zisk na úsecích: volitelné rozšíření závislé na dostupnosti mezičasů.
 - Produkční formát, napojení časomíry a způsob odbavení musí být potvrzeny s režií.
 
@@ -56,3 +57,8 @@ Stejné ověření probíhá automaticky při změnách karty jezdce v Pull Requ
 GitHub blokuje běžné Git soubory nad 100 MB a u velkých souborů může zobrazovat varování. Velké editovatelné zdroje, například PSD, AI nebo TIFF, proto později uložíme přes Git LFS nebo do dohodnutého úložiště.
 
 Vygenerované náhledy se mají udržovat pouze v rozsahu potřebném pro kontrolu a schválení. Pravidla pro exporty a automatické kontroly doplníme v navazujícím technickém kroku.
+
+## Společný generátor
+
+Otevřete `index.html` pro výběr karty jezdce nebo hosta. `npm run render` generuje obě karty, `npm run render:host` pouze hosta a `npm run render:jezdec` pouze jezdce. V Actions můžete při ručním spuštění zadat jméno a funkci hosta; PNG obou karet najdete v balíčku `svdt-grafika-nahledy`. Úpravy v prohlížeči se nepřenášejí automaticky do Actions — použijte vstupní pole workflow nebo změňte data.js.
+

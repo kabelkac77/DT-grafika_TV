@@ -4,8 +4,10 @@
   "private": true,
   "description": "Grafické podklady pro televizní přenos Svatohorského Downtownu Příbram",
   "scripts": {
-    "render": "node karta-jezdce/render.cjs",
-    "test": "node karta-jezdce/render.cjs"
+    "render": "node render.cjs",
+    "test": "node render.cjs",
+    "render:host": "node karta-hosta/render.cjs",
+    "render:jezdec": "node karta-jezdce/render.cjs"
   },
   "devDependencies": {
     "playwright": "1.55.0"
@@ -14,3 +16,4 @@
     "node": ">=22"
   }
 }
+

@@ -1,0 +1,11 @@
+/* Guest 01: shared Exo, palette and complete skyline from rider 06.4. */
+.controls input{min-width:240px}.scene{background:linear-gradient(125deg,#a8b4bd,#62717f)}
+.guest-card{position:absolute;left:96px;bottom:80px;width:660px;color:#fff;isolation:isolate}
+.guest-card[hidden]{display:none}.guest-shell{position:relative;isolation:isolate;padding:20px 28px 18px;background:#1c2732;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);border-top:1px solid #91a1af70}
+.guest-shell:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#1c2732 15%,#1c2732e8 50%,transparent),url('../karta-jezdce/assets/mtb-tread.svg') right center/148px;opacity:.3}
+.guest-shell:after{content:'';position:absolute;bottom:0;left:0;width:110px;height:4px;background:var(--brand)}
+.guest-name{font-size:40px;font-weight:400;line-height:1.18;overflow-wrap:anywhere}.guest-role{font-size:26px;color:#d1d9e0;font-weight:400;line-height:1.25;margin-top:6px;overflow-wrap:anywhere}.guest-role[hidden]{display:none}
+.architecture{position:absolute;right:18px;top:-66px;width:180px;height:68px;z-index:-1;pointer-events:none}.architecture i{position:absolute;inset:0;mask-position:center top;mask-size:100% auto;mask-repeat:no-repeat}.architecture .edge{transform:translateY(-1px);background:#8292a0}.architecture .face{background:#1c2732}
+.status.error{color:#ff6b6b}body.capture .guest-card{transition:none}
+
+.guest-name strong{font-weight:900;text-transform:uppercase}
