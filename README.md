@@ -56,6 +56,11 @@ u kterých není jasné, kdo je má vyřešit.
 - Workflow **SVDT — dashboard stavu zadání** přegeneruje stránku při každé změně `ZADANI.md`
   a výsledek rovnou commitne, takže přehled je po úpravě zadání aktuální bez ručního kroku.
 
+Stránka je publikovaná přes GitHub Pages ze složky `docs/` na větvi `main`:
+<https://kabelkac77.github.io/DT-grafika_TV/>. Repozitář je veřejný, takže je veřejná
+i stránka; má proto `noindex`, aby se neobjevovala ve vyhledávačích. Aktuální podobu
+zobrazuje až po sloučení změn do `main`.
+
 ## Aktuální stav
 
 - G02 — karta jezdce: aktuální verze **06.5**, vodorovná a rohová karta, obě s portrétem i bez něj. Celý reliéf, jemná MTB stopa a menší bílý nápis z loga pod reliéfem.

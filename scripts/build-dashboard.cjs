@@ -197,6 +197,7 @@ function build() {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Přehled stavu obecného zadání broadcast systému SVDT — otevřené otázky, připravenost oddílů a odpovědné strany.">
 <meta name="color-scheme" content="dark light">
+<meta name="robots" content="noindex, nofollow">
 <title>${title}</title>
 <style>html{color-scheme:dark light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
