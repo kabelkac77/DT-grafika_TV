@@ -122,6 +122,27 @@ function readTable(body, afterText) {
   return rows.slice(1); // bez hlavičky
 }
 
+/** Zabalí obsah stránky do samostatného HTML souboru. */
+function wrapPage(body, description) {
+  const title = (body.match(/<title>([^<]*)<\/title>/) || [, 'Stav zadání SVDT'])[1];
+  return `<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="${description}">
+<meta name="color-scheme" content="dark light">
+<meta name="robots" content="noindex, nofollow">
+<title>${title}</title>
+<style>html{color-scheme:dark light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+${body.replace(/<title>[^<]*<\/title>\s*/, '')}
+</body>
+</html>
+`;
+}
+
 function build() {
   const md = fs.readFileSync(path.join(root, 'ZADANI.md'), 'utf8');
   const sections = splitSections(md);
@@ -217,7 +238,9 @@ function build() {
     throw new Error('ZADANI.md nedal očekávaná data: ' + JSON.stringify(counts));
   }
 
-  const template = fs.readFileSync(path.join(root, 'docs', 'dashboard.template.html'), 'utf8');
+  const tokens = fs.readFileSync(path.join(root, 'docs', 'tokens.css'), 'utf8').trim();
+  const template = fs.readFileSync(path.join(root, 'docs', 'dashboard.template.html'), 'utf8')
+    .replace('__TOKENS__', tokens);
   if (!template.includes('__DATA__')) throw new Error('V šabloně chybí značka __DATA__.');
   if (!template.includes('__BUILD__')) throw new Error('V šabloně chybí značka __BUILD__.');
 
@@ -233,37 +256,32 @@ function build() {
     .replace('__DATA__', JSON.stringify(data, null, 2))
     .replace('__BUILD__', build);
 
-  const title = (body.match(/<title>([^<]*)<\/title>/) || [, 'Stav zadání SVDT'])[1];
-  const page = `<!doctype html>
-<html lang="cs">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Přehled stavu obecného zadání broadcast systému SVDT — otevřené otázky, připravenost oddílů a odpovědné strany.">
-<meta name="color-scheme" content="dark light">
-<meta name="robots" content="noindex, nofollow">
-<title>${title}</title>
-<style>html{color-scheme:dark light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-</head>
-<body>
-${body.replace(/<title>[^<]*<\/title>\s*/, '')}
-</body>
-</html>
-`;
+  const page = wrapPage(body, 'Přehled stavu obecného zadání broadcast systému SVDT — '
+    + 'otevřené otázky, připravenost oddílů a odpovědné strany.');
+
+  const systemTpl = fs.readFileSync(path.join(root, 'docs', 'system.template.html'), 'utf8')
+    .replace('__TOKENS__', tokens);
+  if (!systemTpl.includes('__DATA__')) throw new Error('V šabloně systému chybí značka __DATA__.');
+  const systemBody = systemTpl
+    .replace('__DATA__', JSON.stringify(data, null, 2))
+    .replace('__BUILD__', build);
+  const systemPage = wrapPage(systemBody, 'Popis fungování broadcast systému SVDT pro jednání '
+    + 's režií a s časomírou — tok dat, stavy odbavení a otevřené otázky.');
 
   const version = JSON.stringify({ build, updated: data.updated }, null, 2) + '\n';
-  return { body, page, version, counts, updated: data.updated };
+  return { body, page, systemPage, version, counts, updated: data.updated };
 }
 
 const out = build();
 const bodyPath = path.join(root, 'docs', 'dashboard.body.html');
 const pagePath = path.join(root, 'docs', 'index.html');
 const versionPath = path.join(root, 'docs', 'version.json');
+const systemPath = path.join(root, 'docs', 'system.html');
 const read = p => (fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : null);
 
 if (process.argv.includes('--check')) {
   const stale = read(bodyPath) !== out.body || read(pagePath) !== out.page
-    || read(versionPath) !== out.version;
+    || read(versionPath) !== out.version || read(systemPath) !== out.systemPage;
   if (stale) {
     console.error('Dashboard není aktuální vůči ZADANI.md. Spusťte: npm run dashboard');
     process.exit(1);
@@ -273,6 +291,7 @@ if (process.argv.includes('--check')) {
   fs.writeFileSync(bodyPath, out.body);
   fs.writeFileSync(pagePath, out.page);
   fs.writeFileSync(versionPath, out.version);
+  fs.writeFileSync(systemPath, out.systemPage);
   console.log(`Dashboard vygenerován ze ZADANI.md (aktualizováno ${out.updated}):`);
   console.log(`  oddílů ${out.counts.sections}, sledovaných bodů ${out.counts.items}, ` +
     `grafických částí ${out.counts.parts}, milníků ${out.counts.milestones}, ` +

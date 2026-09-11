@@ -23,8 +23,12 @@ Složky pro další grafické části budou vytvořeny až při zahájení jejic
 
 ## Dashboard stavu zadání
 
-Přehled toho, co je v zadání potvrzené, co je rozpracované a na kom se čeká, najdete
-v `docs/`. Zobrazuje sledované body podle oddílů `ZADANI.md`, podíl zodpovězených bodů
+Dashboard má dvě stránky. **Stav zadání** (`docs/index.html`) ukazuje, co je potvrzené,
+co je rozpracované a na kom se čeká. **Jak systém funguje** (`docs/system.html`) je podklad
+pro jednání s režií a s časomírou — diagramy toku dat, stavů odbavení a příkladu automatiky,
+za nimi otevřené otázky pro každou stranu.
+
+Stránka stavu Zobrazuje sledované body podle oddílů `ZADANI.md`, podíl zodpovězených bodů
 v každém oddílu, frontu podle odpovědné strany, stav grafických částí G01–G08, milníky
 a dílčí zadání.
 
@@ -34,9 +38,11 @@ ručně. Stav se změní tak, že se upraví zadání.
 | Soubor | Role |
 | --- | --- |
 | `ZADANI.md` | Zdroj dat — sledované body, tabulky částí, osob, milníků a dílčích zadání |
-| `docs/dashboard.template.html` | Vzhled a chování stránky se značkou `__DATA__` |
-| `scripts/build-dashboard.cjs` | Přečte zadání a vloží data do šablony |
-| `docs/index.html`, `docs/dashboard.body.html` | Generované výstupy — needitovat ručně |
+| `docs/dashboard.template.html` | Šablona stránky stavu zadání se značkou `__DATA__` |
+| `docs/system.template.html` | Šablona stránky s diagramy fungování systému |
+| `docs/tokens.css` | Sdílené barvy a písma obou stránek |
+| `scripts/build-dashboard.cjs` | Přečte zadání a vloží data do obou šablon |
+| `docs/index.html`, `docs/system.html`, `docs/dashboard.body.html`, `docs/version.json` | Generované výstupy — needitovat ručně |
 
 ### Jak se zapisuje stav do zadání
 

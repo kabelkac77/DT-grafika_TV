@@ -1,0 +1,456 @@
+<title>Jak bude broadcast systém fungovat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo:wght@600;800;900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+__TOKENS__
+
+*{box-sizing:border-box}
+body{margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--f-body); font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px; margin:0 auto; padding-inline:20px; padding-block:0 72px}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display); text-wrap:balance; margin:0}
+.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+
+.masthead{border-bottom:1px solid var(--line); margin-bottom:34px}
+.masthead-in{padding-block:44px 26px; border-left:3px solid var(--brand); padding-left:22px}
+.eyebrow{font-family:var(--f-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); font-weight:600; margin:0 0 12px}
+h1{font-size:clamp(28px,4.6vw,42px); font-weight:900; text-transform:uppercase; letter-spacing:-.015em; line-height:1.02}
+.lede{color:var(--ink-dim); max-width:64ch; margin:14px 0 0}
+
+.nav{display:flex; gap:8px; margin-top:22px; flex-wrap:wrap}
+.nav a{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+  text-decoration:none; border:1px solid var(--line); border-radius:100px; padding:7px 15px; color:var(--ink-dim)}
+.nav a:hover{border-color:var(--muted)}
+.nav a[aria-current="page"]{background:var(--ink); color:var(--ground); border-color:var(--ink)}
+.nav a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+.notice{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--warn);
+  border-radius:2px; padding:18px 20px; margin-bottom:8px}
+.notice p{margin:0; font-size:14px; color:var(--ink-dim)}
+.notice strong{color:var(--ink); font-weight:600}
+
+section{margin-top:56px}
+.sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:18px; flex-wrap:wrap}
+h2{font-size:19px; font-weight:800; text-transform:uppercase; letter-spacing:.02em}
+.sec-note{font-size:13px; color:var(--muted); margin:0}
+.prose{max-width:68ch; color:var(--ink-dim); font-size:14.5px}
+.prose p{margin:0 0 12px}
+.prose strong{color:var(--ink); font-weight:600}
+
+/* ---------- figury s diagramy ---------- */
+figure{margin:0; background:var(--panel); border:1px solid var(--line); border-radius:3px;
+  padding:24px 22px 18px}
+.scroll{overflow-x:auto; overflow-y:hidden}
+figure svg{display:block; max-width:100%; height:auto; min-width:640px; margin:0 auto; color:var(--ink)}
+figcaption{margin-top:16px; padding-top:14px; border-top:1px solid var(--line-soft);
+  font-size:13.5px; color:var(--muted); max-width:78ch}
+
+.dg .box{fill:var(--raised); stroke:var(--line); stroke-width:1}
+.dg .group{fill:none; stroke:var(--line); stroke-width:1; stroke-dasharray:4 4}
+.dg .lead{fill:var(--panel); stroke:var(--brand); stroke-width:1.5}
+.dg .t{fill:var(--ink); font-family:var(--f-body); font-size:13px; font-weight:600}
+.dg .s{fill:var(--muted); font-family:var(--f-body); font-size:11.5px; font-weight:400}
+.dg .lbl{fill:var(--muted); font-family:var(--f-mono); font-size:10.5px}
+.dg .ttl{fill:var(--muted); font-family:var(--f-mono); font-size:10.5px; letter-spacing:.12em}
+.dg .flow{stroke:var(--muted); stroke-width:1.5; fill:none}
+.dg .flow.hot{stroke:var(--brand); stroke-width:2}
+.dg .flow.back{stroke:var(--muted); stroke-width:1.2; stroke-dasharray:5 4}
+.dg .qmark{fill:var(--brand)}
+.dg .qnum{fill:#fff; font-family:var(--f-mono); font-size:10px; font-weight:600}
+.dg .em{fill:var(--brand); font-family:var(--f-body); font-size:13px; font-weight:700}
+.dg .mk{fill:var(--muted)}
+.dg .mk.hot{fill:var(--brand)}
+
+/* ---------- otázky ---------- */
+.q-head{display:flex; align-items:center; gap:12px; margin:26px 0 12px}
+.q-head h3{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.07em}
+.q-head .bar{flex:1; height:1px; background:var(--line)}
+.q-head .n{font-family:var(--f-mono); font-size:12px; color:var(--muted)}
+.qlist{display:grid; gap:8px}
+.q{display:grid; grid-template-columns:26px 40px minmax(0,1fr); gap:12px; align-items:start;
+  background:var(--panel); border:1px solid var(--line); border-radius:2px; padding:12px 15px}
+.q .i{font-family:var(--f-mono); font-size:11.5px; color:var(--brand); font-weight:600; padding-top:2px}
+.q .sid{font-family:var(--f-mono); font-size:11.5px; color:var(--muted); padding-top:2px}
+.q .txt{font-size:14.5px}
+.q .note{display:block; color:var(--muted); font-size:13px; margin-top:3px}
+@media (max-width:620px){
+  .q{grid-template-columns:26px minmax(0,1fr)}
+  .q .sid{display:none}
+}
+
+footer{margin-top:64px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:12.5px}
+footer p{margin:0 0 7px}
+code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
+
+/* ---------- pruh o novější verzi ---------- */
+.fresh{position:fixed; left:0; right:0; bottom:0; z-index:50; display:none;
+  background:var(--brand); color:#fff; padding:13px 18px; box-shadow:0 -6px 20px rgba(0,0,0,.28)}
+.fresh.on{display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center}
+.fresh p{margin:0; font-size:14px; font-weight:500}
+.fresh button{font:inherit; font-family:var(--f-mono); font-size:12px; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase; background:#fff; color:var(--brand);
+  border:0; border-radius:2px; padding:8px 16px; cursor:pointer}
+.fresh .dismiss{background:transparent; color:#fff; border:1px solid rgba(255,255,255,.5)}
+.fresh button:focus-visible{outline:2px solid #fff; outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="masthead-in">
+    <p class="eyebrow">SVDT · Svatohorský Downtown Příbram</p>
+    <h1>Jak bude broadcast systém fungovat</h1>
+    <p class="lede">Podklad pro jednání s režií a s časomírou. Ukazuje, kudy tečou data,
+      co dělá obsluha a co musí systém umět, když se něco pokazí. U každého diagramu jsou
+      otázky, které z něj vyplývají.</p>
+    <nav class="nav">
+      <a href="./">Stav zadání</a>
+      <a href="system.html" aria-current="page">Jak systém funguje</a>
+      <a href="https://github.com/kabelkac77/DT-grafika_TV/blob/main/ZADANI.md">Zadání na GitHubu</a>
+    </nav>
+  </div>
+</header>
+
+<div class="notice">
+  <p><strong>Návrh k potvrzení, ne hotové rozhodnutí.</strong> Diagramy popisují záměr podle
+    zadání. Konkrétní technologie, způsob předání obrazu do režie i datové rozhraní časomíry
+    se teprve dohodnou — právě k tomu tenhle podklad slouží. Čísla v kroužcích označují místa,
+    kde nám chybí odpověď.</p>
+</div>
+
+<section>
+  <div class="sec-head">
+    <h2>1 · Kudy tečou data a povely</h2>
+    <p class="sec-note">Od časomíry k obrazu na obrazovce.</p>
+  </div>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 920 470" role="img"
+        aria-label="Data z časomíry, ruční opravy a statické podklady vstupují do řídicí vrstvy. Režie ji ovládá povely TAKE a OUT. Řídicí vrstva posílá připravená data do TV a LED výstupu a přijímá zpět potvrzení a chyby.">
+        <defs>
+          <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path class="mk" d="M0 0 L10 5 L0 10 z"></path>
+          </marker>
+          <marker id="h1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path class="mk hot" d="M0 0 L10 5 L0 10 z"></path>
+          </marker>
+        </defs>
+
+        <text class="ttl" x="20" y="28">ZDROJE</text>
+        <text class="ttl" x="330" y="28">ŘÍDICÍ VRSTVA</text>
+        <text class="ttl" x="700" y="28">VÝSTUPY</text>
+
+        <rect class="lead" x="20" y="48" width="200" height="66" rx="2"></rect>
+        <text class="t" x="36" y="74">Server časomíry</text>
+        <text class="s" x="36" y="94">starty, časy, pořadí</text>
+        <circle class="qmark" cx="206" cy="62" r="10"></circle>
+        <text class="qnum" x="206" y="66" text-anchor="middle">1</text>
+
+        <rect class="box" x="20" y="142" width="200" height="66" rx="2"></rect>
+        <text class="t" x="36" y="168">Ruční zadání a opravy</text>
+        <text class="s" x="36" y="188">oprávněná obsluha</text>
+
+        <rect class="box" x="20" y="236" width="200" height="66" rx="2"></rect>
+        <text class="t" x="36" y="262">Podklady</text>
+        <text class="s" x="36" y="282">jezdci, portréty, loga</text>
+
+        <rect class="group" x="320" y="40" width="260" height="250" rx="3"></rect>
+        <rect class="box" x="340" y="62" width="220" height="56" rx="2"></rect>
+        <text class="t" x="356" y="86">Společný datový model</text>
+        <text class="s" x="356" y="104">jedna verze údajů pro oba výstupy</text>
+
+        <rect class="box" x="340" y="134" width="220" height="56" rx="2"></rect>
+        <text class="t" x="356" y="158">Stav odbavení</text>
+        <text class="s" x="356" y="176">co je v Preview, co v Programu</text>
+
+        <rect class="box" x="340" y="206" width="220" height="62" rx="2"></rect>
+        <text class="t" x="356" y="230">Workflow a makra</text>
+        <text class="s" x="356" y="248">automatické sledy, vždy přerušitelné</text>
+
+        <rect class="lead" x="320" y="360" width="260" height="72" rx="2"></rect>
+        <text class="t" x="340" y="388">Ovládání režie</text>
+        <text class="s" x="340" y="408">výběr jezdce · náhled · TAKE · OUT</text>
+        <text class="s" x="340" y="424">nouzové skrytí všech grafik</text>
+
+        <rect class="box" x="680" y="62" width="220" height="76" rx="2"></rect>
+        <text class="t" x="696" y="88">TV výstup</text>
+        <text class="s" x="696" y="108">obraz do mixu režie</text>
+        <text class="s" x="696" y="126">bezpečné okraje, průhlednost</text>
+        <circle class="qmark" cx="886" cy="76" r="10"></circle>
+        <text class="qnum" x="886" y="80" text-anchor="middle">2</text>
+
+        <rect class="box" x="680" y="186" width="220" height="76" rx="2"></rect>
+        <text class="t" x="696" y="212">LED výstup</text>
+        <text class="s" x="696" y="232">velkoformátové panely</text>
+        <text class="s" x="696" y="250">vlastní rozložení, stejná data</text>
+        <circle class="qmark" cx="886" cy="200" r="10"></circle>
+        <text class="qnum" x="886" y="204" text-anchor="middle">3</text>
+
+        <path class="flow hot" d="M220 81 L330 81 L330 90" marker-end="url(#h1)"></path>
+        <text class="lbl" x="236" y="74">živá data ze závodu</text>
+
+        <path class="flow" d="M220 175 L286 175 L286 110 L330 110" marker-end="url(#a1)"></path>
+        <text class="lbl" x="236" y="168">opravy</text>
+
+        <path class="flow" d="M220 269 L286 269 L286 128 L330 128" marker-end="url(#a1)"></path>
+        <text class="lbl" x="236" y="262">statické podklady</text>
+
+        <path class="flow hot" d="M450 360 L450 300" marker-end="url(#h1)"></path>
+        <text class="lbl" x="462" y="330">povel TAKE / OUT</text>
+
+        <path class="flow back" d="M408 300 L408 360" marker-end="url(#a1)"></path>
+        <text class="lbl" x="398" y="330" text-anchor="end">náhled a stav</text>
+
+        <path class="flow hot" d="M580 104 L680 104" marker-end="url(#h1)"></path>
+        <text class="lbl" x="586" y="96">data a animace</text>
+
+        <path class="flow hot" d="M580 228 L680 228" marker-end="url(#h1)"></path>
+        <text class="lbl" x="586" y="206">tatáž data,</text>
+        <text class="lbl" x="586" y="220">jiná varianta</text>
+
+        <path class="flow back" d="M760 138 L760 330 L580 330" marker-end="url(#a1)"></path>
+        <path class="flow back" d="M760 262 L760 300" marker-end="url(#a1)"></path>
+        <text class="lbl" x="770" y="322">potvrzení a chyby</text>
+      </svg>
+    </div>
+    <figcaption>Grafika se nikdy neotevírá ručně jako samostatná stránka. Režie vybere jezdce
+      a grafiku, systém k ní doplní data a spustí TV i LED variantu jedním povelem. Zpětné
+      hlášení z výstupů je podstatné: když jeden výstup selže, obsluha to musí poznat a nesmí
+      vzniknout dojem, že je vše odvysílané.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>2 · Co vidí režie při odbavení</h2>
+    <p class="sec-note">Stavový model Preview → Take → Program → Out.</p>
+  </div>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 920 260" role="img"
+        aria-label="Grafika projde stavy Preview, Take, Program a Out. Z Preview i z Programu vede okamžité nouzové skrytí.">
+        <defs>
+          <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path class="mk" d="M0 0 L10 5 L0 10 z"></path>
+          </marker>
+          <marker id="h2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path class="mk hot" d="M0 0 L10 5 L0 10 z"></path>
+          </marker>
+        </defs>
+        <rect class="box" x="20" y="60" width="190" height="74" rx="2"></rect>
+        <text class="t" x="36" y="88">PREVIEW</text>
+        <text class="s" x="36" y="108">grafika s konkrétními daty,</text>
+        <text class="s" x="36" y="124">divák ji ještě nevidí</text>
+
+        <rect class="lead" x="262" y="60" width="150" height="74" rx="2"></rect>
+        <text class="em" x="278" y="88">TAKE</text>
+        <text class="s" x="278" y="108">potvrzený povel</text>
+        <text class="s" x="278" y="124">k odvysílání</text>
+
+        <rect class="box" x="464" y="60" width="190" height="74" rx="2"></rect>
+        <text class="t" x="480" y="88">PROGRAM</text>
+        <text class="s" x="480" y="108">právě ve vysílání,</text>
+        <text class="s" x="480" y="124">včetně cílového výstupu</text>
+
+        <rect class="box" x="706" y="60" width="190" height="74" rx="2"></rect>
+        <text class="t" x="722" y="88">OUT</text>
+        <text class="s" x="722" y="108">řízené skrytí</text>
+        <text class="s" x="722" y="124">se správnou animací</text>
+
+        <path class="flow hot" d="M210 97 L262 97" marker-end="url(#h2)"></path>
+        <path class="flow hot" d="M412 97 L464 97" marker-end="url(#h2)"></path>
+        <path class="flow" d="M654 97 L706 97" marker-end="url(#a2)"></path>
+        <text class="lbl" x="680" y="44" text-anchor="middle">po čase nebo ručně</text>
+
+        <rect class="lead" x="464" y="180" width="432" height="54" rx="2"></rect>
+        <text class="em" x="484" y="204">OKAMŽITÉ SKRYTÍ</text>
+        <text class="s" x="484" y="222">jedním úkonem pro vše, nebo zvlášť pro TV a LED; zastaví i automatiku</text>
+        <path class="flow hot" d="M559 134 L559 180" marker-end="url(#h2)"></path>
+        <path class="flow hot" d="M115 134 L115 207 L464 207" marker-end="url(#h2)"></path>
+      </svg>
+    </div>
+    <figcaption>Režie musí kdykoliv poznat, co je připravené a co je skutečně ve vysílání,
+      a to zvlášť pro TV a pro LED. Nouzové skrytí je samostatná funkce, ne obcházení
+      běžného postupu.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>3 · Automatika na příkladu</h2>
+    <p class="sec-note">Co se stane, když jezdec projede cílem.</p>
+  </div>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 920 250" role="img"
+        aria-label="Událost jezdec projel cílem spustí sled kroků: cílový čas, karta jezdce, aktuální pořadí, tabulka výsledků a LED výsledek. Režie může sled kdykoli zastavit nebo převzít.">
+        <defs>
+          <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path class="mk" d="M0 0 L10 5 L0 10 z"></path>
+          </marker>
+          <marker id="h3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path class="mk hot" d="M0 0 L10 5 L0 10 z"></path>
+          </marker>
+        </defs>
+        <rect class="lead" x="20" y="46" width="172" height="66" rx="2"></rect>
+        <text class="t" x="36" y="72">Jezdec projel cílem</text>
+        <text class="s" x="36" y="92">událost z časomíry</text>
+
+        <rect class="box" x="228" y="46" width="148" height="66" rx="2"></rect>
+        <text class="t" x="244" y="72">Cílový čas</text>
+        <text class="s" x="244" y="92">okamžitě</text>
+
+        <rect class="box" x="412" y="46" width="148" height="66" rx="2"></rect>
+        <text class="t" x="428" y="72">Karta jezdce</text>
+        <text class="s" x="428" y="92">jméno, tým, země</text>
+
+        <rect class="box" x="596" y="46" width="148" height="66" rx="2"></rect>
+        <text class="t" x="612" y="72">Pořadí</text>
+        <text class="s" x="612" y="92">zisk nebo ztráta</text>
+
+        <rect class="box" x="780" y="46" width="116" height="66" rx="2"></rect>
+        <text class="t" x="796" y="72">Výsledky</text>
+        <text class="s" x="796" y="92">TV i LED</text>
+
+        <path class="flow hot" d="M192 79 L228 79" marker-end="url(#h3)"></path>
+        <path class="flow hot" d="M376 79 L412 79" marker-end="url(#h3)"></path>
+        <path class="flow hot" d="M560 79 L596 79" marker-end="url(#h3)"></path>
+        <path class="flow hot" d="M744 79 L780 79" marker-end="url(#h3)"></path>
+
+        <rect class="group" x="20" y="160" width="876" height="64" rx="3"></rect>
+        <text class="t" x="40" y="188">Režie má vždy přednost</text>
+        <text class="s" x="40" y="208">sled lze pozastavit, přeskočit krok, převzít ruční řízení nebo všechno okamžitě skrýt</text>
+        <path class="flow back" d="M458 160 L458 116" marker-end="url(#a3)"></path>
+      </svg>
+    </div>
+    <figcaption>Sled kroků i jejich časování se budou schvalovat samostatně. Smyslem je, aby
+      obsluha nemusela při každém dojezdu ručně sestavovat stejnou sekvenci — ne aby přišla
+      o kontrolu.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>4 · Když se něco pokazí</h2>
+    <p class="sec-note">Požadavky ze zadání, které se týkají obou stran.</p>
+  </div>
+  <div class="prose">
+    <p><strong>Výpadek dat.</strong> Systém průběžně sleduje dostupnost serveru časomíry.
+      Při přerušení nesmí bez upozornění vydávat zastaralá data za aktuální — ukáže čas
+      poslední úspěšné aktualizace a umožní bezpečný ruční režim.</p>
+    <p><strong>Výpadek výstupu.</strong> Selhání jednoho výstupu musí být viditelné a nesmí
+      budit dojem, že je vše odvysíláno správně.</p>
+    <p><strong>Restart za provozu.</strong> Systém se vrátí do konzistentního stavu, ale
+      sám od sebe nic neodvysílá jen proto, že to bylo v Programu před výpadkem. Přesné
+      chování po restartu se schválí při technické zkoušce.</p>
+    <p><strong>Záloha.</strong> Zálohují se jezdci, přijaté výsledky a časy, ruční opravy,
+      konfigurace výstupů a nastavení workflow. Součástí návrhu je i náhradní ruční režim
+      a sada statických záložních podkladů.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>5 · Na co se potřebujeme zeptat</h2>
+    <p class="sec-note">Otevřené body ze zadání, které se vážou k diagramům výše.</p>
+  </div>
+  <div id="questions"></div>
+</section>
+
+<footer>
+  <p>Stránka se generuje ze souboru <code>ZADANI.md</code> příkazem <code>npm run dashboard</code>.
+    Seznam otázek je stejný jako na stránce stavu zadání — co se doplní tam, zmizí i tady.</p>
+  <p>Diagramy popisují záměr podle zadání, ne potvrzené technické řešení.</p>
+</footer>
+
+</div>
+
+<div class="fresh" id="fresh" role="status" aria-live="polite">
+  <p>Zadání se od načtení této stránky změnilo.</p>
+  <button type="button" id="freshReload">Načíst aktuální stav</button>
+  <button type="button" class="dismiss" id="freshDismiss">Teď ne</button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var DATA = __DATA__;
+  var BUILD = "__BUILD__";
+
+  var GROUPS = [
+    {key:"casomira", label:"Pro časomíru", anchor:"1", note:"Váže se na bod ① v prvním diagramu — bez odpovědí neumíme navrhnout datové napojení."},
+    {key:"rezie", label:"Pro režii", anchor:"2", note:"Váže se na bod ② a na ovládání — určuje, jak systém předá obraz a jak se bude odbavovat."},
+    {key:"led", label:"Pro dodavatele LED", anchor:"3", note:"Váže se na bod ③ — rozměry a mapování panelů určují druhou variantu každé grafiky."}
+  ];
+
+  var $ = function(id){ return document.getElementById(id); };
+  var el = function(tag, cls, txt){
+    var n = document.createElement(tag);
+    if(cls){ n.className = cls; }
+    if(txt !== undefined && txt !== null){ n.textContent = txt; }
+    return n;
+  };
+
+  var items = [];
+  DATA.sections.forEach(function(sec){
+    sec.items.forEach(function(i){
+      if(i.s !== "done"){ items.push({sec:sec.n, t:i.t, o:i.o, note:i.note}); }
+    });
+  });
+
+  var box = $("questions");
+  GROUPS.forEach(function(g){
+    var list = items.filter(function(i){ return i.o === g.key; });
+    if(!list.length){ return; }
+
+    var h = el("div", "q-head");
+    h.appendChild(el("h3", "", g.label));
+    h.appendChild(el("div", "bar"));
+    h.appendChild(el("div", "n", list.length + "×"));
+    box.appendChild(h);
+
+    box.appendChild(el("p", "sec-note", g.note));
+
+    var ul = el("div", "qlist");
+    list.forEach(function(i, idx){
+      var row = el("div", "q");
+      row.appendChild(el("div", "i", g.anchor + "." + (idx + 1)));
+      row.appendChild(el("div", "sid", i.sec));
+      var t = el("div", "txt");
+      t.appendChild(document.createTextNode(i.t));
+      if(i.note){ t.appendChild(el("span", "note", i.note)); }
+      row.appendChild(t);
+      ul.appendChild(row);
+    });
+    box.appendChild(ul);
+  });
+
+  // ---- kontrola novější verze ----
+  (function(){
+    var bar = $("fresh");
+    var dismissed = false;
+    $("freshReload").addEventListener("click", function(){ location.reload(); });
+    $("freshDismiss").addEventListener("click", function(){
+      dismissed = true;
+      bar.classList.remove("on");
+    });
+    function check(){
+      if(dismissed || bar.classList.contains("on")){ return; }
+      fetch("version.json?t=" + Date.now(), {cache:"no-store"})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(v){ if(v && v.build && v.build !== BUILD){ bar.classList.add("on"); } })
+        .catch(function(){ /* mimo Pages se kontrola přeskočí */ });
+    }
+    check();
+    document.addEventListener("visibilitychange", function(){
+      if(document.visibilityState === "visible"){ check(); }
+    });
+    setInterval(check, 300000);
+  })();
+})();
+</script>
