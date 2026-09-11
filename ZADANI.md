@@ -36,7 +36,7 @@ Z tohoto zápisu se generuje [dashboard stavu zadání](docs/index.html); jiný 
 - Místo: Příbram, trať ze Svaté Hory do Pražské ulice. Pořadatel: **COWÁRNA z.s.** Zdroj: [oficiální web](https://svdtpribram.cz/), ověřeno 8. 9. 2026.
 - Veřejné kontakty z webu: info@svdtpribram.cz, +420 721 332 266; ředitel závodu Vojtěch Hrach, partneři / marketing / PR Vlastimil Ševr.
 - Jazyk a jazykové varianty přenosu: **čeština, s přípravou anglické mutace** ✔ 11. 9. 2026
-- Odpovědná kontaktní osoba pro tento projekt: **K doplnění** (čeká: zadavatel)
+- Odpovědná kontaktní osoba pro tento projekt: **Hrášek a Lipánek** ✔ 11. 9. 2026
 - Kontaktní osoba za televizní produkci a režii: **K doplnění** (čeká: režie)
 
 ### Odpovědné osoby na straně zadavatele
@@ -100,7 +100,7 @@ Potvrzené části:
 
 Další části z původní osnovy (například startovní listina, program, stupně vítězů nebo informační sdělení) zatím nejsou objednaným rozsahem.
 
-- Priority G01–G07 a minimální rozsah pro první nasazení: **K doplnění** (čeká: zadavatel)
+- Priority G01–G07: **na pořadí nezáleží, části vznikají souběžně** ✔ 11. 9. 2026
 - Schválení hotových vizuálních studií G01, G02 a G05: **Rozpracováno** (čeká: zadavatel) — studie jsou implementované, čeká se na písemné schválení.
 
 Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podobu, okamžik spuštění, dobu zobrazení, způsob skrytí, varianty a prioritu při souběhu s jinou grafikou.
@@ -111,7 +111,8 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 - Kontrola správnosti jmen, týmů a dalších údajů: **Hrášek a Lipánek** ✔ 11. 9. 2026
 - Rozdělení na povinné a volitelné údaje pro jednotlivé grafiky: **K doplnění** (čeká: na nás) — vyplyne z dílčího zadání grafických částí.
 - Konkrétní portréty, vlajky a další obrazové podklady: **Rozpracováno** (čeká: zadavatel) — dodají Vlasta a Lachtan, termín zatím neurčen.
-- Seznam závodníků, jeho formát a termín dodání: **Rozpracováno** (čeká: zadavatel) — seznam zajistí Hrášek, formát a termín chybí.
+- Kdo dodá seznam závodníků a kontroluje jeho správnost: **Hrášek** ✔ 11. 9. 2026
+- Formát a termín dodání seznamu závodníků: **K doplnění** (čeká: zadavatel)
 - Pravidla pro dlouhá jména, diakritiku a chybějící údaje: **K doplnění** (čeká: na nás) — obsah validují Hrášek a Lipánek.
 - Texty pro informační grafiku a další obsah: **K doplnění** (čeká: zadavatel)
 
@@ -256,7 +257,7 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 - Cílový termín dokončení: **březen 2027** ✔ 11. 9. 2026 — nahrazuje dřívější údaj začátek ledna 2027.
 - Rozpočet a omezení placených nástrojů nebo služeb: **bez licenčních poplatků, jinak bez omezení** ✔ 11. 9. 2026
 - Přesný den dokončení a den ostrého nasazení: **K doplnění** (čeká: zadavatel) — datum závodu dosud není známo.
-- Pořadí priorit a volitelné části při nedostatku času: **K doplnění** (čeká: zadavatel)
+- Co vypustit při nedostatku času: **K doplnění** (čeká: zadavatel) — pořadí částí G01–G07 nerozhoduje, vznikají souběžně.
 
 ### Milníky
 
@@ -302,6 +303,8 @@ Rámec podle termínů potvrzených 11. 9. 2026. Dílčí termíny uvnitř jedno
 
 
 - 11. 9. 2026: zapracovány odpovědi zadavatele z doplňujícího kola. Potvrzeno: 11. ročník (XI), čeština s přípravou anglické mutace, první návrh do konce roku 2026, společná zkouška na přelomu ledna a února 2027, cílové dokončení březen 2027, řešení bez licenčních poplatků a bez rozpočtového omezení, postup přes demoverzi ovládání bez napojení na TV a časomíru, zálohování dat zajišťuje zadavatel, priorita intuitivního ovládání před rozsáhlou dokumentací, výstupy se ukládají do repozitáře na GitHubu. Odpovědné osoby: Hrášek a Lipánek za seznam závodníků, kontrolu údajů a provoz během akce, Vlasta a Lachtan za portréty, loga partnerů a práva k podkladům. **Cílový termín březen 2027 nahrazuje dřívější údaj začátek ledna 2027.**
+
+- 11. 9. 2026: doplněny další odpovědi zadavatele. Odpovědnou kontaktní osobou za projekt jsou Hrášek a Lipánek. Na pořadí grafických částí G01–G07 nezáleží, vznikají souběžně. Seznam závodníků dodá a jeho správnost kontroluje Hrášek; formát a termín dodání zůstávají otevřené.
 
 - 11. 9. 2026: sjednocen zápis otevřených bodů. Každý sledovaný bod nese značku stavu a stranu, která má odpověď dodat; zodpovězené body zůstávají v dokumentu jako fakt se značkou ✔ a datem. Z tohoto zápisu se generuje dashboard stavu zadání ve složce `docs/`.
 
