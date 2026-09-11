@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SVDT — stav zadání</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700;800;900&display=swap');
+
+:root{
+  --bg:#0d1319;
+  --card:#151d26;
+  --raised:#1c2732;
+  --line:#2a3542;
+  --muted:#8b98a6;
+  --white:#f4f6f8;
+  --brand:#E30613;
+  --accent:#FF1A1A;
+  --done:#3fb27f;
+  --partial:#e0a53d;
+  --open:#5b6572;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--white);
+  font-family:Exo,'Exo 2',Arial,sans-serif;
+  line-height:1.5;
+}
+a{color:var(--white)}
+.wrap{max-width:1180px;margin:0 auto;padding:56px 28px 80px}
+
+header{margin-bottom:56px}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:800;margin-bottom:14px}
+h1{font-size:40px;line-height:1.05;font-weight:900;margin:0 0 16px;text-transform:uppercase;letter-spacing:-.01em}
+.lede{color:var(--muted);font-size:16px;max-width:620px;margin:0}
+.updated{margin-top:20px;font-size:13px;color:var(--muted)}
+
+.scope-banner{
+  background:var(--raised);border-left:3px solid var(--brand);
+  padding:20px 24px;margin:32px 0 0;border-radius:2px;
+}
+.scope-banner p{margin:0;font-size:14px;color:var(--white)}
+.scope-banner p+p{margin-top:8px;color:var(--muted)}
+
+section{margin-top:56px}
+h2{font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;margin:0 0 20px}
+
+.grid-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:900px){.grid-cards{grid-template-columns:repeat(2,1fr)}}
+.stat-card{background:var(--card);border:1px solid var(--line);padding:20px;border-radius:4px}
+.stat-card .num{font-size:36px;font-weight:900;line-height:1}
+.stat-card .label{font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:.02em}
+.stat-card.done .num{color:var(--done)}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:11px;letter-spacing:.08em;color:var(--muted);
+   text-transform:uppercase;font-weight:700;padding:0 14px 10px;border-bottom:1px solid var(--line)}
+td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.02em;
+      padding:4px 10px;border-radius:100px;white-space:nowrap}
+.pill.done{background:#1a3a2c;color:var(--done)}
+.pill.partial{background:#3a2f18;color:var(--partial)}
+.pill.open{background:#20262e;color:var(--open)}
+.gid{font-weight:900;color:var(--muted);font-size:13px}
+.owner{color:var(--muted);font-size:13px}
+
+.answered-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.answered-list li{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  padding:14px 18px;font-size:14px;display:flex;gap:12px;align-items:baseline;
+}
+.answered-list li::before{content:"✓";color:var(--done);font-weight:900;flex:none}
+.answered-list .who{color:var(--muted);font-size:12px}
+
+.link-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media (max-width:700px){.link-cards{grid-template-columns:1fr}}
+.link-card{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  padding:22px;text-decoration:none;display:block;transition:border-color .15s;
+}
+.link-card:hover{border-color:var(--brand)}
+.link-card .tag{font-size:11px;letter-spacing:.08em;color:var(--accent);font-weight:800;text-transform:uppercase}
+.link-card h3{font-size:18px;margin:10px 0 6px;font-weight:800}
+.link-card p{margin:0;font-size:13px;color:var(--muted)}
+
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:700px){.people{grid-template-columns:1fr}}
+.person{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px}
+.person .name{font-weight:800;font-size:15px}
+.person .role{color:var(--muted);font-size:13px;margin-top:6px}
+
+footer{margin-top:72px;padding-top:24px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">SVDT · Svatohorský Downtown Příbram</div>
+    <h1>Stav zadání broadcast systému</h1>
+    <p class="lede">Přehled toho, co je v zadání potvrzené a co ještě čeká na
+      odpověď — rozděleno podle toho, kdo má odpověď dodat. Tento dashboard
+      sleduje pouze <strong>zadání</strong>; jednotlivé technické kroky (kód,
+      commity, CI) budou mít samostatný přehled později.</p>
+    <p class="updated">Aktualizováno k 11. 9. 2026 · zdroj: <code>ZADANI.md</code> na GitHubu</p>
+  </header>
+
+  <div class="scope-banner">
+    <p>Rozsah se rozšířil: z jednotlivých grafických karet na kompletní
+      <strong>centrální broadcast systém</strong> (Preview → Take → Program → Out)
+      pro TV i LED výstupy, s napojením na externí server časomíry.</p>
+    <p>Minimální rozsah při nedostatku času: základní broadcast systém bez
+      napojení na časomíru a bez 3D modelu trati (ten je odložená větev mimo
+      tuto zakázku).</p>
+  </div>
+
+  <section>
+    <h2>Grafické části</h2>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Část</th><th>Stav</th><th>Poznámka</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="gid">G01</td>
+          <td>Tabulka výsledků jezdců</td>
+          <td><span class="pill partial">Čeká na schválení</span></td>
+          <td>10 výsledků, měnitelná kategorie/jízda, loga v panelu vpravo</td>
+        </tr>
+        <tr>
+          <td class="gid">G02</td>
+          <td>Představení / popis jezdce</td>
+          <td><span class="pill partial">Čeká na schválení</span></td>
+          <td>Údaje o jezdci — jméno, číslo, tým, země, kategorie, portrét</td>
+        </tr>
+        <tr>
+          <td class="gid">G03</td>
+          <td>Mapa trati</td>
+          <td><span class="pill open">Otevřené</span></td>
+          <td>Čeká na finální trasu — na trase se pracuje</td>
+        </tr>
+        <tr>
+          <td class="gid">G04</td>
+          <td>Časomíra</td>
+          <td><span class="pill open">Otevřené</span></td>
+          <td>Stavy před startem / za jízdy / v cíli se doplní</td>
+        </tr>
+        <tr>
+          <td class="gid">G05</td>
+          <td>Jmenovka pro rozhovory (host)</td>
+          <td><span class="pill partial">Čeká na schválení</span></td>
+          <td>Jméno a funkce, decentní, bez čísla/portrétu</td>
+        </tr>
+        <tr>
+          <td class="gid">G06</td>
+          <td>Přechody mezi sestřihy</td>
+          <td><span class="pill open">Otevřené</span></td>
+          <td>Počet variant a délka — upřesní se s režií</td>
+        </tr>
+        <tr>
+          <td class="gid">G07</td>
+          <td>Partneři</td>
+          <td><span class="pill open">Otevřené</span></td>
+          <td>Loga a hierarchie — podklady dodá Vlasta + Lachtan</td>
+        </tr>
+        <tr>
+          <td class="gid">G08</td>
+          <td>Ztráta/zisk na sekcích <span style="color:var(--muted)">(volitelné)</span></td>
+          <td><span class="pill open">Podmíněné</span></td>
+          <td>Jen pokud se podaří vymyslet měřené úseky</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Otevřené body podle strany</h2>
+    <div class="grid-cards">
+      <div class="stat-card">
+        <div class="num">~13</div>
+        <div class="label">Čeká na zadavatele</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">~11</div>
+        <div class="label">Čeká na časomíru</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">~19</div>
+        <div class="label">Čeká na režii</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">~5</div>
+        <div class="label">Vyžaduje víc stran</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Nedávno zodpovězeno</h2>
+    <ul class="answered-list">
+      <li>11. ročník (XI) je potvrzené číslo příštího závodu <span class="who">— zadavatel</span></li>
+      <li>Jazyk přenosu CZ, s přípravou EN mutace <span class="who">— zadavatel</span></li>
+      <li>Broadcast systém bez licenčních poplatků, žádná omezení rozpočtu <span class="who">— zadavatel</span></li>
+      <li>Termín prvního návrhu do konce roku 2026, zkouška na přelomu ledna/února 2027, cíl březen 2027 <span class="who">— zadavatel</span></li>
+      <li>Postup: nejdřív demoverze ovládání bez napojení na TV/časomíru, pak ostrá verze <span class="who">— potvrzeno</span></li>
+      <li>Zajištění zálohování dat řeší zadavatel <span class="who">— zadavatel</span></li>
+      <li>Priorita je intuitivní ovládání, ne rozsáhlá dokumentace <span class="who">— zadavatel</span></li>
+      <li>Výstupy se ukládají na GitHub <span class="who">— repo kabelkac77/DT-grafika_TV</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Kdo za co odpovídá</h2>
+    <div class="people">
+      <div class="person">
+        <div class="name">Hrášek</div>
+        <div class="role">Seznam závodníků, kontrola údajů, provoz a řešení problémů (spolu s Lipánkem)</div>
+      </div>
+      <div class="person">
+        <div class="name">Lipánek</div>
+        <div class="role">Pravidla pro texty/dlouhá jména, validace obsahu, provoz (spolu s Hráškem)</div>
+      </div>
+      <div class="person">
+        <div class="name">Vlasta + Lachtan</div>
+        <div class="role">Portréty, loga partnerů, práva k podkladům, termíny dodání</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Podrobné otázky pro schůzky</h2>
+    <div class="link-cards">
+      <a class="link-card" href="https://app.notion.com/p/3d8e300ba5e481698db5ce0cfb919377">
+        <div class="tag">Notion</div>
+        <h3>🎬 Otázky pro režii</h3>
+        <p>Vstupy a výstupy broadcastu — formát předání, rozlišení, ovládání, nouzové stavy</p>
+      </a>
+      <a class="link-card" href="https://app.notion.com/p/3d8e300ba5e481148c83f701565515f5">
+        <div class="tag">Notion</div>
+        <h3>⏱️ Otázky pro časomíru</h3>
+        <p>Datové vstupy — dodavatel, formát dat, přesnost, opravy, výpadky</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    Zdrojová data: <a href="https://github.com/kabelkac77/DT-grafika_TV">kabelkac77/DT-grafika_TV</a>,
+    <code>ZADANI.md</code>. Tento přehled je ruční shrnutí stavu zadání, ne
+    automaticky generovaný výstup.
+  </footer>
+
+</div>
+</body>
+</html>
