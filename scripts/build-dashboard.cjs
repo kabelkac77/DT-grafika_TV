@@ -150,10 +150,13 @@ function build() {
     }
     if (sec.n === '14') {
       readTable(sec.body, '### Milníky').forEach(r => {
-        if (r.length >= 3) {
+        if (r.length >= 4) {
+          const iso = plain(r[2]);
           data.milestones.push({
-            what: plain(r[0]), when: plain(r[1]), state: plain(r[2]),
-            now: /nyní|probíhá/i.test(r[2])
+            what: plain(r[0]), when: plain(r[1]),
+            date: /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso : null,
+            state: plain(r[3]),
+            now: /nyní|probíhá/i.test(r[3])
           });
         }
       });
@@ -166,6 +169,31 @@ function build() {
       });
     }
   });
+
+  // Kumulativní počet zodpovězených bodů podle data odpovědi.
+  const toIso = cz => {
+    const m = /(\d+)\.\s*(\d+)\.\s*(\d{4})/.exec(cz || '');
+    return m ? `${m[3]}-${String(m[2]).padStart(2, '0')}-${String(m[1]).padStart(2, '0')}` : null;
+  };
+  const perDay = new Map();
+  data.sections.forEach(s => s.items.forEach(i => {
+    if (i.s !== 'done') return;
+    const iso = toIso(i.date);
+    if (iso) perDay.set(iso, (perDay.get(iso) || 0) + 1);
+  }));
+  let running = 0;
+  data.answered = [...perDay.keys()].sort().map(date => {
+    running += perDay.get(date);
+    return { date, count: running };
+  });
+  data.trackedTotal = data.sections.reduce((n, s) => n + s.items.length, 0);
+
+  // Časová osa: od prvního zodpovězeného bodu k poslednímu milníku s datem.
+  const milestoneDates = data.milestones.map(m => m.date).filter(Boolean).sort();
+  data.timeline = {
+    start: (data.answered[0] && data.answered[0].date) || milestoneDates[0] || null,
+    end: milestoneDates[milestoneDates.length - 1] || null
+  };
 
   // Datum aktualizace = nejnovější záznam rozhodnutí v ZADANI.md.
   const dates = [...md.matchAll(/^-\s*(\d+)\.\s*(\d+)\.\s*(\d{4}):/gm)]
@@ -181,6 +209,9 @@ function build() {
     milestones: data.milestones.length,
     briefs: data.briefs.length
   };
+  if (!data.timeline.start || !data.timeline.end) {
+    throw new Error('Chybí data milníků pro časovou osu — doplňte sloupec Datum v tabulce Milníky.');
+  }
   if (!counts.items || !counts.parts || !counts.briefs) {
     throw new Error('ZADANI.md nedal očekávaná data: ' + JSON.stringify(counts));
   }

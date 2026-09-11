@@ -261,13 +261,16 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 
 ### Milníky
 
-| Milník | Termín | Stav |
-| --- | --- | --- |
-| Doplnění zadání | probíhá | Nyní |
-| První návrh | do konce roku 2026 | Připravuje se |
-| Demoverze ovládání | navazuje na první návrh | Připravuje se |
-| Společná zkouška s režií a časomírou | přelom ledna a února 2027 | Připravuje se |
-| Předání ostré verze | březen 2027 | Připravuje se |
+Sloupec Datum je kotva pro časovou osu dashboardu, nikoliv potvrzený den. Milník bez
+data se v ose nezobrazuje, protože zatím nemá termín.
+
+| Milník | Termín | Datum | Stav |
+| --- | --- | --- | --- |
+| Doplnění zadání | probíhá | 2026-09-08 | Nyní |
+| První návrh | do konce roku 2026 | 2026-12-31 | Připravuje se |
+| Demoverze ovládání | navazuje na první návrh | | Připravuje se |
+| Společná zkouška s režií a časomírou | přelom ledna a února 2027 | 2027-02-01 | Připravuje se |
+| Předání ostré verze | březen 2027 | 2027-03-31 | Připravuje se |
 
 ## 15. Navazující dílčí zadání
 
