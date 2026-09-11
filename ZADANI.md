@@ -11,8 +11,12 @@ Pracovní dokument. Slouží jako společný základ, ze kterého později vznik
 
 ## Dosud potvrzené informace
 
-- Úkolem je připravit grafiku pro televizní přenos závodu DownTown Příbram a přenos na velkoplošné obrazovky.
+- Úkolem je připravit grafiku pro televizní přenos závodu DownTown Příbram a pro LED velkoformátové panely.
 - Součástí bude více grafických částí, nejen grafika z referenční fotografie.
+- Výsledkem bude vlastní broadcast systém pro centrální řízení grafiky profesionálním způsobem. HTML/CSS/JS zůstává renderovací technologií grafických komponent; broadcast systém je řídicí vrstva nad nimi.
+- Grafiku bude během přenosu ovládat režie. Ovládání musí být co nejjednodušší, bezpečné a rychlé.
+- TV a LED panely jsou samostatné výstupy s rozdílnými formáty; používají společná data a mohou být spuštěny jedním povelem.
+- Primárním datovým vstupem bude externí server poskytovatele časomíry.
 - Nejprve vznikne obecné zadání celého úkolu; následně z něj odvodíme dílčí zadání.
 - Informace se budou doplňovat postupně. Neznámé požadavky zůstávají otevřené.
 - Původní referenční fotografie a archiv `SVDT Design System.zip` byly vstupními podklady při přípravě zadání, ale nejsou uloženy v tomto repozitáři. Rozbalený design systém je součástí složky `design-system/`; použité obrazové podklady aktuální studie jsou popsány v `karta-jezdce/README.md`.
@@ -29,11 +33,18 @@ Pracovní dokument. Slouží jako společný základ, ze kterého později vznik
 
 ## 2. Cíl a rozsah celého úkolu
 
-- Výsledek: **grafické soubory a funkční řešení** pro odbavení požadované grafiky. Konkrétní způsob ovládání a napojení dat se doplní s režií a časomírou.
-- Použití: **TV přenos a přenos na velkoplošné obrazovky**. Zda budou oba výstupy stejné, nebo budou potřebovat samostatné varianty: **K doplnění s režií**.
-- Zda má řešení sloužit jedné akci, nebo být opakovaně použitelné: **K doplnění**.
-- Co do úkolu patří a co je mimo jeho rozsah: **K doplnění**.
-- Priority a minimální rozsah nutný pro první použití: **K doplnění**.
+- Výsledkem budou grafické soubory a funkční broadcast systém pro odbavení grafiky do TV přenosu a na LED velkoformátové panely.
+- Broadcast systém nenahrazuje HTML. HTML/CSS/JS je preferovaná renderovací technologie jednotlivých grafických komponent; systém nad nimi zajišťuje data, stavy, náhled, odvysílání, animace a koordinaci výstupů.
+- Grafiku bude odbavovat režie z centrálního ovládacího rozhraní.
+- Základní provozní tok musí odpovídat profesionálním režiím: **Preview → Take → Program → Out**. Režie musí vždy poznat, co je připravené, co je právě ve vysílání a na kterém výstupu.
+- TV a LED jsou rozdílné výstupní formáty. Jedna událost nebo povel může spustit odpovídající TV a LED variantu se stejnými zdrojovými daty, ale s vlastním rozložením, velikostí textu, bezpečnými okraji a animací.
+- Cílem je maximálně zjednodušit živou obsluhu: běžný úkon má být proveditelný výběrem objektu (například jezdce), volbou grafiky a povelem **TAKE**, bez ručního otevírání stránek nebo přepisování stejných dat na více místech.
+- Systém musí umožnit ruční řízení režie a být připraven na automatizované workflow založené na událostech závodu.
+- Primární datový vstup tvoří externí server poskytovatele časomíry. Konkrétní rozhraní, autentizaci, datový formát, frekvenci aktualizace a chování při výpadku je nutné potvrdit s poskytovatelem.
+- Současné HTML grafiky v repozitáři se mají pokud možno znovu použít. Před začleněním se ověří jejich kompatibilita se společným datovým modelem, odděleným obsahem a prezentací, řízenými IN/OUT animacemi a TV/LED variantami.
+- Řešení má být opakovaně použitelné pro další ročníky. Údaje konkrétního ročníku nesmí být napevno svázány s grafickými šablonami.
+- Preferuje se řešení bez průběžných licenčních poplatků. Případné placené závislosti musí být předem schváleny.
+- Priority a minimální rozsah pro první ostré použití budou rozděleny do MVP a následných rozšíření.
 
 ## 3. Formát a pravidla závodu
 
@@ -95,25 +106,56 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 
 ## 7. Ovládání během přenosu
 
-- **Režie bude zajištěna.** Konkrétní způsob obsluhy grafiky zatím zadavatel nezná; požadavky se doplní společně s režií.
-- Kdo bude grafiku obsluhovat a kolik lidí se zapojí: **K doplnění**.
-- Co se má spouštět automaticky a co ručně: **K doplnění**.
-- Způsob výběru závodníka, kategorie a grafické části: **K doplnění**.
-- Potřeba náhledu před odvysíláním: **K doplnění**.
-- Způsob oprav a nouzového skrytí veškeré grafiky: **K doplnění**.
-- Požadované ovládací zařízení nebo propojení s režií: **K doplnění**.
-- Chování při souběhu více grafických částí: **K doplnění**.
+- Grafiku během přenosu ovládá režie prostřednictvím centrálního ovládacího rozhraní.
+- Rozhraní musí být navrženo pro rychlou a bezpečnou živou obsluhu s co nejmenším počtem kroků.
+- Základní stavový model je **Preview → Take → Program → Out**:
+  - **Preview:** příprava a kontrola grafiky s konkrétními daty bez zobrazení divákům;
+  - **Take:** potvrzený povel k odvysílání;
+  - **Program:** jasná indikace toho, co je skutečně ve vysílání, včetně cílového výstupu;
+  - **Out:** řízené skrytí se správnou OUT animací.
+- Typický ruční postup: režisér vybere například **#27 Novák → Karta jezdce → TAKE**. Systém doplní společná data, zvolí správnou TV a LED variantu, spustí příslušné IN animace a podle nastavení provede ruční nebo automatický OUT.
+- Ovládání musí umožnit:
+  - výběr jezdce, kategorie, jízdy nebo jiné závodní entity;
+  - náhled výsledné grafiky před odvysíláním;
+  - společné i samostatné spuštění TV a LED varianty;
+  - nastavení nebo použití přednastavené doby zobrazení;
+  - ruční OUT, automatický OUT a okamžité nouzové skrytí;
+  - jasné rozlišení připraveného, vysílaného, ukončovaného a chybového stavu;
+  - zákaz nebo varování před nebezpečným souběhem grafik;
+  - ruční opravu dat oprávněnou obsluhou s viditelným označením zdroje nebo změny.
+- Často používané operace mají být dostupné jako přednastavené akce nebo makra, aby režie nemusela opakovaně nastavovat každý výstup zvlášť.
+- Systém musí podporovat automatizované workflow. Událost například **„jezdec projel cílem“** může postupně vyvolat: cílový čas → kartu jezdce → aktuální pořadí → aktualizaci výsledkové tabulky → LED výsledek. Konkrétní workflow a jejich časování budou samostatně schválena.
+- Automatizace nesmí odebrat režii kontrolu. Musí být možné workflow pozastavit, přeskočit krok, ručně převzít řízení a provést nouzový OUT.
+- Role uživatelů, počet pracovišť, klávesové zkratky, hardwarové ovladače a přesné chování při souběhu: **K doplnění s režií**.
 
 ## 8. Technické prostředí přenosu
 
-- **Technické prostředí řeší režie.** Následující body jsou seznamem vstupů k získání od režie, nikoliv požadavkem, aby je nyní určoval zadavatel.
-- Odbavovací systém režie a jeho verze: **K doplnění**.
-- Způsob předání grafiky do přenosu a požadovaný formát: **K doplnění**.
-- Rozlišení, poměr stran a snímková frekvence: **K doplnění**.
-- Požadavky na průhlednost a barevné zpracování: **K doplnění**.
-- Počítače, operační systém a další dostupné vybavení: **K doplnění**.
-- Dostupnost místní sítě a internetu; požadavek na provoz bez internetu: **K doplnění**.
-- Případné odlišné výstupy pro televizi, stream a místní obrazovku: **K doplnění**.
+### 8.1 Architektura broadcast systému
+
+- Systém bude mít centrální řídicí vrstvu, společný datový model a samostatné renderovací výstupy.
+- HTML/CSS/JS komponenty nesmí samy nést provozní logiku celé režie. Přijímají připravená data a pokyny ke stavu a animaci.
+- Řídicí vrstva eviduje minimálně: aktivní závod, jízdu, vybraného jezdce, poslední platná data, obsah Preview, obsah Programu, cílové výstupy, průběh IN/OUT a chyby.
+- Komunikace mezi ovládáním a výstupy musí být průběžně synchronizovaná. Po znovupřipojení musí každý klient získat aktuální stav.
+- Jediný povel může atomicky připravit nebo spustit více souvisejících výstupů. Selhání jednoho výstupu musí být viditelné obsluze a nesmí vytvářet falešný dojem, že je vše odvysíláno správně.
+- Grafické komponenty mají oddělovat data od vzhledu a používat verzované, zdokumentované rozhraní.
+- Technologie a konkrétní způsob předání obrazu do režie budou zvoleny po potvrzení technického prostředí, ale architektura nesmí být závislá na ručním otevírání samostatných HTML stránek.
+
+### 8.2 Výstupy
+
+- Povinné cíle jsou **TV přenos** a **LED velkoformátové panely**.
+- Každý typ grafiky může mít TV variantu, LED variantu nebo obě. Varianty sdílejí význam a zdrojová data, nikoliv nutně stejné rozložení.
+- Pro každý fyzický výstup se nakonfiguruje rozlišení, poměr stran, obnovovací nebo snímková frekvence, bezpečné okraje, barevné zpracování a požadavek na průhlednost.
+- Systém musí umožnit nezávislé Preview a kontrolu správné varianty pro každý cílový výstup.
+- Přesný počet, rozměry, orientace a mapování LED panelů: **K doplnění s dodavatelem LED a režií**.
+- Způsob předání TV grafiky do mixážního nebo odbavovacího systému: **K doplnění s režií**.
+- Požadavek na stream jako další samostatný výstup: **K doplnění**.
+
+### 8.3 Provozní prostředí
+
+- Odbavovací systém režie, jeho verze a podporované vstupy: **K doplnění**.
+- Počítače, operační systém, grafické výstupy a další dostupné vybavení: **K doplnění**.
+- Dostupnost a topologie místní sítě a internetu: **K doplnění**.
+- Systém musí být navržen tak, aby krátkodobý výpadek internetu neznemožnil ovládání již načtených grafik; přesná úroveň offline provozu závisí na rozhraní externí časomíry.
 - Technická omezení a požadavky produkce: **K doplnění**.
 
 ## 9. Vizuální směr a pravidla značky
@@ -141,21 +183,33 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 ## 11. Spolehlivost a náhradní postupy
 
 - Potvrzený požadavek: **zajistit zálohování dat**.
-- Návrh provedení k upřesnění: zálohovat seznam jezdců, přijaté výsledky, ruční opravy, nastavení a grafické podklady; zachovat historii a ověřit obnovu. Interval, umístění nezávislé kopie, délka uchování a odpovědná osoba: **K doplnění**.
-- Zálohování dat a pokračování živého přenosu při výpadku jsou samostatné věci; náhradní provozní režim dosud není určen.
-- Požadované chování při výpadku časomíry, sítě nebo ovládání: **K doplnění**.
-- Náhradní ruční režim a statické záložní podklady: **K doplnění**.
-- Postup při restartu a návratu do přenosu: **K doplnění**.
-- Jak se zabrání zobrazení nesprávného jezdce nebo zastaralých výsledků: **K doplnění**.
+- Zálohovat minimálně seznam jezdců, naposledy přijaté výsledky a časy, ruční opravy, konfiguraci výstupů, nastavení workflow a grafické podklady. Zachovat historii změn a ověřit obnovu.
+- Broadcast systém musí průběžně sledovat dostupnost externího serveru časomíry, řídicí vrstvy a jednotlivých TV/LED výstupů. Stav musí být srozumitelně viditelný režii.
+- Při přerušení datového spojení nesmí systém bez upozornění vydávat zastaralá data za aktuální. Má zobrazit čas poslední úspěšné aktualizace a umožnit bezpečný ruční režim.
+- Po restartu musí systém obnovit konzistentní provozní stav. Nesmí automaticky odvysílat grafiku pouze proto, že byla před výpadkem v Programu; přesný návratový režim se schválí při technické zkoušce.
+- Povinné nouzové funkce: okamžitý OUT všech grafik, samostatný OUT pro TV a LED, zastavení automatizace a přechod na ruční řízení.
+- Náhradní ruční režim a sada statických záložních podkladů budou součástí provozního návrhu.
+- Interval záloh, nezávislé umístění kopie, délka uchování a odpovědná osoba: **K doplnění**.
+- Požadovaná redundance řídicího počítače, sítě a renderovacích výstupů: **K doplnění s režií**.
 - Odpovědnost za provoz a řešení problémů během akce: **K doplnění**.
 
 ## 12. Výstupy a předání
 
-- Potvrzené výstupy: **soubory a funkční řešení**. Konkrétní formáty souborů a způsob spuštění se určí podle požadavků režie.
-- Požadavek na editovatelné zdroje a možnost dalších úprav: **K doplnění**.
-- Rozsah návodu, instalace a zaškolení obsluhy: **K doplnění**.
-- Ukázková data a demonstrace celého průběhu závodu: **K doplnění**.
-- Kdo výstupy přebírá a kde budou uloženy: **K doplnění**.
+- Potvrzené výstupy:
+  - zdrojové soubory grafických komponent;
+  - funkční centrální broadcast systém;
+  - ovládací rozhraní pro režii;
+  - samostatně nakonfigurovatelné TV a LED výstupy;
+  - napojení na externí server časomíry;
+  - společný datový model a popis rozhraní;
+  - konfigurovatelné IN/OUT animace, automatický OUT a schválená workflow;
+  - zálohování, obnova a náhradní ruční režim;
+  - ukázková data a scénář demonstrace celého průběhu závodu;
+  - instalační, provozní a stručný obslužný návod.
+- Současné grafiky v repozitáři budou vyhodnoceny a použity jako základ tam, kde splní vizuální a technické požadavky. Jejich začlenění nesmí vyžadovat ruční duplikaci dat mezi TV a LED.
+- Zdrojové řešení musí být editovatelné a připravené pro doplnění dalších grafik, výstupů a workflow.
+- Součástí předání bude seznam externích závislostí, licencí a postup spuštění bez závislosti na autorovi řešení.
+- Rozsah zaškolení obsluhy, místo instalace a osoba přebírající výstupy: **K doplnění**.
 
 ## 13. Ověření a schválení
 
@@ -181,8 +235,8 @@ Navržený postup realizace na žádost zadavatele. Názvy souborů níže ozna�
 | 1 | `01_VIZUALNI_SYSTEM.md` | Pravidla TV grafiky podle SVDT, čitelnost pro oba výstupy a ukázky výsledkové tabulky, jezdce a časomíry. Lze připravit nyní s označenými ukázkovými daty; rozměry zůstanou pracovní do potvrzení režií. |
 | 2 | `02_GRAFICKE_CASTI.md` | Přesné zadání G01–G07: obsah, rozložení, varianty, animace a chování při chybějících údajích. G08 oddělit jako volitelné rozšíření. Navazuje na schválený vizuální směr. |
 | 3 | `03_PODKLADY_A_OBSAH.md` | Seznam a organizace jezdců, portrétů, log a mapy; pravidla pojmenování a doplňování. Podklady lze shromažďovat současně s kroky 1 a 2. |
-| 4 | `04_DATA_A_CASOMIRA.md` | Dohodnutý zdroj dat, přiřazení jezdců a jízd, pravidla pořadí, mezičasy, opravy a ukázková data. Vyžaduje součinnost časomíry a potvrzení pravidel dalšího ročníku. |
-| 5 | `05_FUNKCNI_GRAFIKA_A_REZIE.md` | Funkční šablony, způsob ovládání, náhled, spuštění a skrytí, přechody a výstupy do režie. Vyžaduje technické parametry od režie a dohodu o datech. |
+| 4 | `04_DATA_A_CASOMIRA.md` | Integrace externího serveru poskytovatele časomíry, datový kontrakt, autentizace, aktualizace, přiřazení jezdců a jízd, pravidla pořadí, mezičasy, opravy, cache, výpadkové stavy a ukázková data. Vyžaduje součinnost časomíry a potvrzení pravidel dalšího ročníku. |
+| 5 | `05_BROADCAST_SYSTEM_A_REZIE.md` | Architektura centrálního broadcast systému, společný datový model, Preview → Take → Program → Out, jednoduché ovládání režie, řízené IN/OUT, TV a LED varianty, makra a automatizovaná workflow. Zahrne posouzení a začlenění současných HTML grafik. Vyžaduje technické parametry od režie, LED dodavatele a dohodu o datech. |
 | 6 | `06_ZALOHOVANI_A_OBNOVA.md` | Zálohování dat a nastavení, ověřená obnova a dohodnuté chování při výpadku. Navazuje na konkrétní funkční řešení. |
 | 7 | `07_ZKOUSKA_A_PREDANI.md` | Zkouška průběhu závodu a všech grafik v prostředí režie, kontrola TV i velkoplošného výstupu, opravy, finální soubory a schválení zadavatelem. Rozsah návodu se ještě dohodne. |
 
