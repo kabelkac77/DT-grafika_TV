@@ -14,6 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo:wght@600;800;900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
+/* Sdílené designové tokeny obou stránek dashboardu. Generátor je vkládá
+   do stránek na místo značky __TOKENS__, aby zůstaly samostatné. */
 :root{
   --ground:#0C0A0B; --panel:#151011; --raised:#1D1618; --line:#2C2326; --line-soft:#221B1D;
   --ink:#F6F1F2; --ink-dim:#C6B9BC; --muted:#948589;
@@ -64,6 +66,14 @@ h1{font-size:clamp(30px,5.2vw,46px); font-weight:900; text-transform:uppercase; 
 .stamp .live{display:inline-flex; align-items:center; gap:7px; color:var(--ink-dim)}
 .stamp .live::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--brand);
   box-shadow:0 0 0 3px color-mix(in srgb, var(--brand) 22%, transparent)}
+
+
+.nav{display:flex; gap:8px; margin-top:22px; flex-wrap:wrap}
+.nav a{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+  text-decoration:none; border:1px solid var(--line); border-radius:100px; padding:7px 15px; color:var(--ink-dim)}
+.nav a:hover{border-color:var(--muted)}
+.nav a[aria-current="page"]{background:var(--ink); color:var(--ground); border-color:var(--ink)}
+.nav a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 
 /* ---------- KPI ---------- */
 .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line);
@@ -291,6 +301,11 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
       <p class="lede">Co je v zadání broadcast systému potvrzené, co je rozpracované a na
         kom se čeká. Přehled sleduje <strong>obecné zadání</strong> — vrstvy jednotlivých
         grafických karet přibudou později.</p>
+      <nav class="nav">
+        <a href="./" aria-current="page">Stav zadání</a>
+        <a href="system.html">Jak systém funguje</a>
+        <a href="https://github.com/kabelkac77/DT-grafika_TV/blob/main/ZADANI.md">Zadání na GitHubu</a>
+      </nav>
     </div>
     <div class="stamp" id="stamp"></div>
   </div>
@@ -381,6 +396,10 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     <a class="lnk" href="https://github.com/kabelkac77/DT-grafika_TV/blob/main/ZADANI.md">
       <span class="tag">GitHub</span><span class="t">ZADANI.md</span>
       <span class="d">Společné zadání, potvrzené požadavky a otevřené otázky</span>
+    </a>
+    <a class="lnk" href="system.html">
+      <span class="tag">Dashboard</span><span class="t">Jak systém funguje</span>
+      <span class="d">Diagramy toku dat, stavů odbavení a otázek pro režii a časomíru</span>
     </a>
     <a class="lnk" href="https://github.com/kabelkac77/DT-grafika_TV">
       <span class="tag">GitHub</span><span class="t">Repozitář grafik</span>
@@ -1099,7 +1118,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     "end": "2027-03-31"
   }
 };
-  var BUILD = "78b8d15864";
+  var BUILD = "15e6238580";
 
   var OWNER_LABEL = {
     zadavatel: "Zadavatel a pořadatel",

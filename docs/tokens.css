@@ -1,0 +1,27 @@
+/* Sdílené designové tokeny obou stránek dashboardu. Generátor je vkládá
+   do stránek na místo značky __TOKENS__, aby zůstaly samostatné. */
+:root{
+  --ground:#0C0A0B; --panel:#151011; --raised:#1D1618; --line:#2C2326; --line-soft:#221B1D;
+  --ink:#F6F1F2; --ink-dim:#C6B9BC; --muted:#948589;
+  --brand:#E30613; --accent:#FF3A2E;
+  --ok:#3FD18B; --ok-bg:#12301F; --warn:#F0A93B; --warn-bg:#332310; --open:#8B9BA8; --open-bg:#1B2329;
+  --rail:#E30613;
+  --f-display:Exo,"Exo 2","Segoe UI",sans-serif;
+  --f-body:Barlow,"Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --maxw:1120px;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --ground:#F6F3F3; --panel:#FFFFFF; --raised:#F1ECEC; --line:#E2DADB; --line-soft:#EDE6E7;
+    --ink:#1A1315; --ink-dim:#453B3D; --muted:#75686B;
+    --brand:#C40410; --accent:#E30613;
+    --ok:#15794D; --ok-bg:#E1F3E9; --warn:#8A5B06; --warn-bg:#FAEEDA; --open:#5B6B77; --open-bg:#EAEFF2;
+  }
+}
+:root[data-theme="light"]{
+  --ground:#F6F3F3; --panel:#FFFFFF; --raised:#F1ECEC; --line:#E2DADB; --line-soft:#EDE6E7;
+  --ink:#1A1315; --ink-dim:#453B3D; --muted:#75686B;
+  --brand:#C40410; --accent:#E30613;
+  --ok:#15794D; --ok-bg:#E1F3E9; --warn:#8A5B06; --warn-bg:#FAEEDA; --open:#5B6B77; --open-bg:#EAEFF2;
+}
