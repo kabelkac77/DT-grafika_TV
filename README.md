@@ -45,6 +45,12 @@ ručně. Stav se změní tak, že se upraví zadání.
 - Částečná odpověď: `- Téma: **Rozpracováno** (čeká: režie) — co konkrétně chybí.`
 - Zodpovězený bod zůstává v dokumentu jako fakt: `- Téma: **odpověď** ✔ 11. 9. 2026`
 - Za poznámkou po pomlčce může být upřesnění; zobrazí se pod bodem.
+- Tabulka **Milníky** v oddílu 14 má sloupec `Datum` v podobě `2027-03-31`. Je to kotva pro
+  časovou osu dashboardu; milník bez data se v ose nezobrazí, jen v seznamu pod ní.
+
+Dashboard z těchto dat sám odvozuje blok **Nejbližší kroky** (na koho se čekají body,
+co jde psát hned, co stačí doklepnout), **trať do předání** s polohou dnešního dne
+a **křivku přibývání odpovědí** podle dat u značek ✔.
 
 Bod bez uvedené strany generování zastaví s chybou, aby v přehledu nevznikaly body,
 u kterých není jasné, kdo je má vyřešit.

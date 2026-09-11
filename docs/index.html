@@ -216,6 +216,55 @@ h2{font-size:19px; font-weight:800; text-transform:uppercase; letter-spacing:.02
 footer{margin-top:64px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:12.5px}
 footer p{margin:0 0 7px}
 code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
+
+/* ---------- nejbližší kroky ---------- */
+.flag-lead{margin:0 0 16px; font-size:15px; color:var(--ink-dim); max-width:70ch}
+.flag-lead strong{color:var(--ink); font-weight:600}
+.steps{display:grid; gap:10px}
+.step-card{display:grid; grid-template-columns:30px minmax(0,1fr); gap:16px;
+  background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--brand);
+  border-radius:2px; padding:16px 18px}
+.step-card .rank{font-family:var(--f-mono); font-size:13px; font-weight:600; color:var(--brand); padding-top:1px}
+.step-card h3{font-family:var(--f-display); font-size:15.5px; font-weight:800; margin:0 0 5px}
+.step-card .why{font-size:13.5px; color:var(--muted); margin:0}
+.step-card ul{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:5px}
+.step-card li{font-size:13.5px; color:var(--ink-dim); display:grid; grid-template-columns:32px minmax(0,1fr); gap:10px}
+.step-card li b{font-family:var(--f-mono); font-size:11.5px; color:var(--muted); font-weight:600; padding-top:2px}
+
+/* ---------- trať ---------- */
+.track-wrap{background:var(--panel); border:1px solid var(--line); border-radius:3px; padding:26px 24px 20px}
+.track{position:relative; height:74px; margin:0 14px}
+.track-line{position:absolute; left:0; right:0; top:46px; height:3px; border-radius:2px;
+  background:linear-gradient(90deg, var(--brand) 0%, var(--line) 60%, var(--line) 100%)}
+.track-tick{position:absolute; top:40px; width:2px; height:15px; background:var(--muted); transform:translateX(-1px)}
+.track-tick.finish{background:var(--ink); height:22px; top:33px}
+.track-label{position:absolute; top:60px; transform:translateX(-50%); white-space:nowrap;
+  font-family:var(--f-mono); font-size:10.5px; color:var(--muted); letter-spacing:.04em}
+.track-label.first{transform:none; left:0!important}
+.track-label.last{transform:translateX(-100%)}
+.rider{position:absolute; top:14px; transform:translateX(-50%); color:var(--brand); line-height:0}
+.rider-now{position:absolute; top:-2px; transform:translateX(-50%); white-space:nowrap;
+  font-family:var(--f-mono); font-size:10.5px; font-weight:600; color:var(--brand); letter-spacing:.05em}
+.track-legend{display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:18px; padding-top:16px; border-top:1px solid var(--line-soft)}
+.track-legend div{font-size:13px; color:var(--ink-dim)}
+.track-legend .d{font-family:var(--f-mono); font-size:11px; color:var(--muted); display:block}
+.track-legend .none{color:var(--muted)}
+
+/* ---------- graf ---------- */
+.chart-fig{margin:0; background:var(--panel); border:1px solid var(--line); border-radius:3px; padding:22px 24px 16px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto; overflow:visible}
+.chart-fig figcaption{margin-top:14px; padding-top:12px; border-top:1px solid var(--line-soft);
+  font-family:var(--f-mono); font-size:11.5px; color:var(--muted); letter-spacing:.02em}
+.tip{position:absolute; pointer-events:none; background:var(--raised); border:1px solid var(--line);
+  border-radius:2px; padding:7px 10px; font-family:var(--f-mono); font-size:11px; color:var(--ink);
+  transform:translate(-50%,-100%); white-space:nowrap; opacity:0; transition:opacity .12s}
+.tip.on{opacity:1}
+@media (max-width:620px){
+  .track{margin:0 8px; height:82px}
+  .track-label{font-size:9.5px}
+  .step-card{grid-template-columns:24px minmax(0,1fr); gap:12px; padding:14px 15px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -237,8 +286,34 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
 <div class="kpis" id="kpis"></div>
 
 <section>
-  <div class="sec-head"><h2>Co blokuje postup</h2></div>
-  <div class="flag" id="flag"></div>
+  <div class="sec-head">
+    <h2>Nejbližší kroky</h2>
+    <p class="sec-note">Odvozeno ze zadání — seřazeno podle toho, kolik bodů to odblokuje.</p>
+  </div>
+  <p class="flag-lead" id="flag"></p>
+  <div class="steps" id="steps"></div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Trať do předání</h2>
+    <p class="sec-note">Poloha na ose je dnešek, ne odvedená práce.</p>
+  </div>
+  <div class="track-wrap">
+    <div class="track" id="track"></div>
+    <div class="track-legend" id="trackLegend"></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Přibývání odpovědí</h2>
+    <p class="sec-note">Kolik sledovaných bodů už má odpověď.</p>
+  </div>
+  <figure class="chart-fig">
+    <div class="chart" id="burnup"></div>
+    <figcaption id="burnupCaption"></figcaption>
+  </figure>
 </section>
 
 <section>
@@ -272,11 +347,6 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     <p class="sec-note">Rozsah G01–G07 je potvrzený, G08 zůstává volitelná.</p>
   </div>
   <div class="parts" id="parts"></div>
-</section>
-
-<section>
-  <div class="sec-head"><h2>Postup projektu</h2></div>
-  <div class="pipe" id="pipe"></div>
 </section>
 
 <section>
@@ -932,30 +1002,35 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     {
       "what": "Doplnění zadání",
       "when": "probíhá",
+      "date": "2026-09-08",
       "state": "Nyní",
       "now": true
     },
     {
       "what": "První návrh",
       "when": "do konce roku 2026",
+      "date": "2026-12-31",
       "state": "Připravuje se",
       "now": false
     },
     {
       "what": "Demoverze ovládání",
       "when": "navazuje na první návrh",
+      "date": null,
       "state": "Připravuje se",
       "now": false
     },
     {
       "what": "Společná zkouška s režií a časomírou",
       "when": "přelom ledna a února 2027",
+      "date": "2027-02-01",
       "state": "Připravuje se",
       "now": false
     },
     {
       "what": "Předání ostré verze",
       "when": "březen 2027",
+      "date": "2027-03-31",
       "state": "Připravuje se",
       "now": false
     }
@@ -989,7 +1064,22 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
       "file": "07_ZKOUSKA_A_PREDANI.md",
       "state": "Po dohodě termínu zkoušky"
     }
-  ]
+  ],
+  "answered": [
+    {
+      "date": "2026-09-08",
+      "count": 1
+    },
+    {
+      "date": "2026-09-11",
+      "count": 16
+    }
+  ],
+  "trackedTotal": 63,
+  "timeline": {
+    "start": "2026-09-08",
+    "end": "2027-03-31"
+  }
 };
 
   var OWNER_LABEL = {
@@ -998,6 +1088,9 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     rezie:     "Režie a TV produkce",
     led:       "Dodavatel LED",
     my:        "Na naší straně"
+  };
+  var OWNER_WITH = {
+    zadavatel:"zadavatelem", casomira:"časomírou", rezie:"režií", led:"dodavatelem LED", my:"námi"
   };
   var OWNER_SHORT = {
     zadavatel:"Zadavatel", casomira:"Časomíra", rezie:"Režie", led:"LED", my:"Na nás"
@@ -1057,40 +1150,265 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     $("kpis").appendChild(c);
   });
 
-  // ---- co blokuje postup ----
+  // ---- nejbližší kroky ----
+  var byOwner = {};
+  live.forEach(function(i){ byOwner[i.o] = (byOwner[i.o] || 0) + 1; });
+  var ownersRanked = Object.keys(byOwner).sort(function(a, b){ return byOwner[b] - byOwner[a]; });
+
   (function(){
-    var f = $("flag");
     var bySec = SECTIONS.map(function(s){
       return {n:s.n, title:s.title, open:s.items.filter(function(i){ return i.s !== "done"; }).length};
-    }).filter(function(s){ return s.open > 0; })
-      .sort(function(a, b){ return b.open - a.open; });
+    }).filter(function(s){ return s.open > 0; }).sort(function(a, b){ return b.open - a.open; });
 
-    var byOwner = {};
-    live.forEach(function(i){ byOwner[i.o] = (byOwner[i.o] || 0) + 1; });
-    var owners = Object.keys(byOwner).sort(function(a, b){ return byOwner[b] - byOwner[a]; });
-
-    f.appendChild(el("h3", "", "Nejvíc chybí"));
-
+    var lead = $("flag");
     if(!bySec.length){
-      f.appendChild(el("p", "", "Všechny sledované body zadání jsou zodpovězené."));
+      lead.textContent = "Všechny sledované body zadání jsou zodpovězené.";
+    } else {
+      lead.innerHTML = "Otevřených a rozpracovaných bodů je <strong>" + live.length + "</strong>. "
+        + "Nejvíc jich drží <strong>" + OWNER_LABEL[ownersRanked[0]].toLowerCase() + "</strong> ("
+        + byOwner[ownersRanked[0]] + ") a nejhůř je na tom oddíl <strong>" + bySec[0].n + " "
+        + bySec[0].title + "</strong> (" + bySec[0].open + ").";
+    }
+
+    var steps = [];
+
+    // 1. strana s nejdelší frontou
+    ownersRanked.slice(0, 2).forEach(function(key){
+      var list = live.filter(function(i){ return i.o === key; });
+      steps.push({
+        weight: list.length * 10,
+        title: key === "my" ? "Dopsat, co je na nás" : "Sejít se s " + OWNER_WITH[key],
+        why: plural(list.length, "bod čeká", "body čekají", "bodů čeká") + " na tuto stranu"
+          + (key === "casomira" ? " — bez datového rozhraní stojí G04 i dílčí zadání 04." : "."),
+        items: list.slice(0, 3).map(function(i){ return {sec:i.sec, t:i.t}; })
+      });
+    });
+
+    // 2. hotové studie čekající na schválení
+    var toApprove = DATA.parts.filter(function(p){ return /schválení/i.test(p.state); });
+    if(toApprove.length){
+      steps.push({
+        weight: toApprove.length * 8,
+        title: "Nechat schválit hotové studie",
+        why: plural(toApprove.length, "část je hotová", "části jsou hotové", "částí je hotových")
+          + " a čeká jen na písemné schválení zadavatelem.",
+        items: toApprove.map(function(p){ return {sec:p.id, t:p.name}; })
+      });
+    }
+
+    // 3. dílčí zadání, která nic neblokuje
+    var ready = DATA.briefs.filter(function(b){ return /hned/i.test(b.state); });
+    if(ready.length){
+      steps.push({
+        weight: ready.length * 7,
+        title: "Napsat dílčí zadání, která nic neblokuje",
+        why: "Nečekají na žádnou odpověď, dají se psát souběžně se sháněním údajů.",
+        items: ready.map(function(b){ return {sec:"→", t:b.file}; })
+      });
+    }
+
+    // 4. oddíly, kde zbývá jediná odpověď
+    var almost = SECTIONS.filter(function(s){
+      return s.items.filter(function(i){ return i.s !== "done"; }).length === 1 && s.items.length > 1;
+    });
+    if(almost.length){
+      steps.push({
+        weight: almost.length * 6,
+        title: "Doklepnout rozdělané oddíly",
+        why: plural(almost.length, "oddílu chybí", "oddílům chybí", "oddílům chybí")
+          + " jediná odpověď k uzavření.",
+        items: almost.map(function(s){
+          var it = s.items.filter(function(i){ return i.s !== "done"; })[0];
+          return {sec:s.n, t:it.t};
+        })
+      });
+    }
+
+    steps.sort(function(a, b){ return b.weight - a.weight; });
+    steps.slice(0, 4).forEach(function(st, idx){
+      var c = el("div", "step-card");
+      c.appendChild(el("div", "rank mono", String(idx + 1)));
+      var body = el("div");
+      body.appendChild(el("h3", "", st.title));
+      body.appendChild(el("p", "why", st.why));
+      if(st.items.length){
+        var ul = el("ul");
+        st.items.forEach(function(i){
+          var li = el("li");
+          li.appendChild(el("b", "", i.sec));
+          li.appendChild(el("span", "", i.t));
+          ul.appendChild(li);
+        });
+        body.appendChild(ul);
+      }
+      c.appendChild(body);
+      $("steps").appendChild(c);
+    });
+  })();
+
+  // ---- trať do předání ----
+  (function(){
+    var t = DATA.timeline;
+    var day = 86400000;
+    var start = Date.parse(t.start), end = Date.parse(t.end);
+    var now = Date.now();
+    var span = end - start;
+    var pos = Math.max(0, Math.min(100, (now - start) / span * 100));
+    var left = Math.max(0, Math.ceil((end - now) / day));
+
+    var czDate = function(iso){
+      var d = iso.split("-");
+      return (+d[2]) + ". " + (+d[1]) + ". " + d[0];
+    };
+    var czShort = function(iso){
+      var d = iso.split("-");
+      return (+d[1]) + "/" + d[0].slice(2);
+    };
+
+    var track = $("track");
+    track.appendChild(el("div", "track-line"));
+
+    var dated = DATA.milestones.filter(function(m){ return m.date; });
+    dated.forEach(function(m, i){
+      var p = (Date.parse(m.date) - start) / span * 100;
+      var tick = el("div", "track-tick" + (i === dated.length - 1 ? " finish" : ""));
+      tick.style.left = p + "%";
+      track.appendChild(tick);
+
+      var lab = el("div", "track-label" + (i === 0 ? " first" : i === dated.length - 1 ? " last" : ""),
+        czShort(m.date));
+      lab.style.left = p + "%";
+      track.appendChild(lab);
+    });
+
+    var rider = el("div", "rider");
+    rider.style.left = pos + "%";
+    rider.innerHTML = '<svg width="34" height="24" viewBox="0 0 34 24" aria-hidden="true" fill="none"' +
+      ' stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="6.5" cy="17.5" r="5"></circle><circle cx="27.5" cy="17.5" r="5"></circle>' +
+      '<path d="M6.5 17.5 L14 17.5 L19 8.5 L27.5 17.5"></path>' +
+      '<path d="M14 17.5 L18 11"></path><path d="M19 8.5 L23.5 8.5"></path>' +
+      '<path d="M16.5 11.5 L20 11.5"></path>' +
+      '<path d="M20.5 7 L23.5 3.5 L26.5 5"></path><circle cx="24" cy="1.5" r="1.6"></circle></svg>';
+    rider.setAttribute("role", "img");
+    rider.setAttribute("aria-label", "Dnešek na časové ose");
+    track.appendChild(rider);
+
+    var now_ = el("div", "rider-now", "DNES");
+    now_.style.left = pos + "%";
+    track.appendChild(now_);
+
+    var leg = $("trackLegend");
+    DATA.milestones.forEach(function(m){
+      var d = el("div", m.date ? "" : "none");
+      d.appendChild(document.createTextNode(m.what));
+      d.appendChild(el("span", "d", m.date ? czDate(m.date) + " · " + m.when : m.when + " · bez data"));
+      leg.appendChild(d);
+    });
+    var rest = el("div");
+    rest.appendChild(document.createTextNode("Do předání zbývá"));
+    rest.appendChild(el("span", "d", plural(left, "den", "dny", "dní")));
+    leg.appendChild(rest);
+  })();
+
+  // ---- přibývání odpovědí ----
+  (function(){
+    var series = DATA.answered;
+    var total = DATA.trackedTotal;
+    var box = $("burnup");
+    if(!series.length){
+      box.appendChild(el("div", "empty", "Zatím není zaznamenaná žádná odpověď s datem."));
       return;
     }
 
-    var p1 = el("p");
-    p1.appendChild(el("strong", "", "Oddíl " + bySec[0].n + " " + bySec[0].title + "."));
-    p1.appendChild(document.createTextNode(" " + plural(bySec[0].open, "otevřený bod", "otevřené body", "otevřených bodů")
-      + (bySec[1] ? ". Hned za ním oddíl " + bySec[1].n + " " + bySec[1].title + " s "
-          + plural(bySec[1].open, "bodem", "body", "body") + "." : ".")));
-    f.appendChild(p1);
+    var W = 720, H = 220, padL = 34, padR = 26, padT = 16, padB = 30;
+    var t0 = Date.parse(series[0].date);
+    var t1 = Date.parse(series[series.length - 1].date);
+    var xspan = Math.max(t1 - t0, 86400000);
+    var x = function(iso){ return padL + (Date.parse(iso) - t0) / xspan * (W - padL - padR); };
+    var y = function(v){ return H - padB - v / total * (H - padT - padB); };
 
-    var p2 = el("p");
-    p2.appendChild(el("strong", "", "Nejdelší fronta: " + OWNER_LABEL[owners[0]] + "."));
-    p2.appendChild(document.createTextNode(" " + plural(byOwner[owners[0]], "bod", "body", "bodů")
-      + " z celkových " + live.length + " čeká na tuto stranu."
-      + (owners[1] ? " Následuje " + OWNER_LABEL[owners[1]].toLowerCase() + " s "
-          + plural(byOwner[owners[1]], "bodem", "body", "body") + "." : "")));
-    f.appendChild(p2);
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Kumulativní počet zodpovězených bodů zadání v čase, "
+      + series[series.length - 1].count + " z " + total + ".");
+    var ns = function(tag, attrs){
+      var n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      Object.keys(attrs).forEach(function(k){ n.setAttribute(k, attrs[k]); });
+      return n;
+    };
+
+    // vodicí linky a popisky osy y
+    [0, Math.round(total / 2), total].forEach(function(v){
+      svg.appendChild(ns("line", {x1:padL, y1:y(v), x2:W - padR, y2:y(v),
+        stroke:"var(--line-soft)", "stroke-width":1}));
+      svg.appendChild(ns("text", {x:padL - 8, y:y(v) + 4, "text-anchor":"end",
+        fill:"var(--muted)", "font-size":11, "font-family":"var(--f-mono)"})).textContent = String(v);
+    });
+    // cílová hladina
+    var target = ns("line", {x1:padL, y1:y(total), x2:W - padR, y2:y(total),
+      stroke:"var(--muted)", "stroke-width":1.5, "stroke-dasharray":"5 5"});
+    svg.appendChild(target);
+    var tl = ns("text", {x:W - padR, y:y(total) - 8, "text-anchor":"end",
+      fill:"var(--muted)", "font-size":11, "font-family":"var(--f-mono)"});
+    tl.textContent = "všech " + total + " bodů";
+    svg.appendChild(tl);
+
+    var pts = series.map(function(d){ return [x(d.date), y(d.count)]; });
+    var line = pts.map(function(p, i){ return (i ? "L" : "M") + p[0] + " " + p[1]; }).join(" ");
+    svg.appendChild(ns("path", {d:line + " L" + pts[pts.length - 1][0] + " " + y(0) + " L" + pts[0][0]
+      + " " + y(0) + " Z", fill:"var(--ok)", opacity:.14, stroke:"none"}));
+    svg.appendChild(ns("path", {d:line, fill:"none", stroke:"var(--ok)", "stroke-width":2,
+      "stroke-linejoin":"round", "stroke-linecap":"round"}));
+
+    var tip = el("div", "tip");
+    box.appendChild(tip);
+
+    series.forEach(function(d, i){
+      var last = i === series.length - 1;
+      var c = ns("circle", {cx:x(d.date), cy:y(d.count), r:last ? 6 : 4.5,
+        fill:"var(--ok)", stroke:"var(--panel)", "stroke-width":2});
+      svg.appendChild(c);
+
+      var hit = ns("circle", {cx:x(d.date), cy:y(d.count), r:16, fill:"transparent"});
+      hit.addEventListener("mouseenter", function(){
+        tip.textContent = czDateShort(d.date) + " · " + d.count + " z " + total;
+        tip.style.left = (x(d.date) / W * 100) + "%";
+        tip.style.top = (y(d.count) / H * 100) - 4 + "%";
+        tip.classList.add("on");
+      });
+      hit.addEventListener("mouseleave", function(){ tip.classList.remove("on"); });
+      svg.appendChild(hit);
+
+      // popisek osy x
+      var xl = ns("text", {x:x(d.date), y:H - padB + 18,
+        "text-anchor":i === 0 ? "start" : last ? "end" : "middle",
+        fill:"var(--muted)", "font-size":11, "font-family":"var(--f-mono)"});
+      xl.textContent = czDateShort(d.date);
+      svg.appendChild(xl);
+
+      if(last){
+        var vl = ns("text", {x:x(d.date) - 10, y:y(d.count) - 12, "text-anchor":"end",
+          fill:"var(--ink)", "font-size":13, "font-weight":700, "font-family":"var(--f-mono)"});
+        vl.textContent = d.count;
+        svg.appendChild(vl);
+      }
+    });
+
+    box.appendChild(svg);
+
+    var lastN = series[series.length - 1].count;
+    var prevN = series.length > 1 ? series[series.length - 2].count : 0;
+    var cap = $("burnupCaption");
+    cap.textContent = series.map(function(d){ return czDateShort(d.date) + ": " + d.count; }).join("  ·  ")
+      + "   |   naposledy přibylo " + (lastN - prevN) + ", zbývá " + (total - lastN);
   })();
+
+  function czDateShort(iso){
+    var d = iso.split("-");
+    return (+d[2]) + ". " + (+d[1]) + ".";
+  }
 
   // ---- připravenost oddílů ----
   var head = el("div", "rd-row head");
@@ -1246,15 +1564,6 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     w.appendChild(el("span", "tally " + (TALLY[p.state] || "wait"), p.state));
     r.appendChild(w);
     $("parts").appendChild(r);
-  });
-
-  // ---- postup projektu ----
-  DATA.milestones.forEach(function(s){
-    var d = el("div", "step" + (s.now ? " now" : ""));
-    d.appendChild(el("div", "when", s.when));
-    d.appendChild(el("div", "what", s.what));
-    d.appendChild(el("div", "desc", s.state));
-    $("pipe").appendChild(d);
   });
 
   // ---- dílčí zadání ----
