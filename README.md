@@ -13,12 +13,23 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | `karta-hosta/` | HTML/CSS editor a generování decentní jmenovky hosta (jméno a funkce) |
 | `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
 | `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
+| `docs/` | Dashboard stavu zadání — `dashboard.body.html` je zdroj, `index.html` se z něj generuje |
 
 Složky pro další grafické části budou vytvořeny až při zahájení jejich realizace, aby prázdná struktura nepředstírala hotový rozsah.
 
 ## Karta hosta
 
 [Schválený návrh a zadání karty hosta](karta-hosta/README.md) — studie 01. Jméno a funkce pro vstupy mezi jízdami; navazuje na kartu jezdce 06.4. HTML/CSS editor a generování PNG jsou implementované; animace následuje později.
+
+## Dashboard stavu zadání
+
+Přehled toho, co je v zadání potvrzené, co je rozpracované a na kom se čeká, najdete
+v `docs/`. Zobrazuje otevřené otázky podle oddílů `ZADANI.md`, připravenost jednotlivých
+oddílů, stav grafických částí G01–G08 a postup projektu.
+
+- Zdroj obsahu: `docs/dashboard.body.html` — data jsou v poli `SECTIONS` ve skriptu na konci souboru.
+- Po úpravě spusťte `npm run dashboard`; vygeneruje se samostatná stránka `docs/index.html`.
+- Dashboard je ruční shrnutí stavu zadání, ne automaticky generovaný výstup z `ZADANI.md`.
 
 ## Aktuální stav
 
