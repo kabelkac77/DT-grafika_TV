@@ -254,6 +254,19 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
   .track-label{font-size:9.5px}
   .step-card{grid-template-columns:24px minmax(0,1fr); gap:12px; padding:14px 15px}
 }
+
+/* ---------- pruh o novější verzi ---------- */
+.fresh{position:fixed; left:0; right:0; bottom:0; z-index:50; display:none;
+  background:var(--brand); color:#fff; padding:13px 18px;
+  box-shadow:0 -6px 20px rgba(0,0,0,.28)}
+.fresh.on{display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center}
+.fresh p{margin:0; font-size:14px; font-weight:500}
+.fresh button{font:inherit; font-family:var(--f-mono); font-size:12px; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase; background:#fff; color:var(--brand);
+  border:0; border-radius:2px; padding:8px 16px; cursor:pointer}
+.fresh button:hover{opacity:.9}
+.fresh button:focus-visible{outline:2px solid #fff; outline-offset:3px}
+.fresh .dismiss{background:transparent; color:#fff; border:1px solid rgba(255,255,255,.5)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -383,6 +396,11 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
 
 </div>
 
+<div class="fresh" id="fresh" role="status" aria-live="polite">
+  <p>Zadání se od načtení této stránky změnilo.</p>
+  <button type="button" id="freshReload">Načíst aktuální stav</button>
+  <button type="button" class="dismiss" id="freshDismiss">Teď ne</button>
+</div>
 
 <script>
 (function(){
@@ -1070,6 +1088,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     "end": "2027-03-31"
   }
 };
+  var BUILD = "78b8d15864";
 
   var OWNER_LABEL = {
     zadavatel: "Zadavatel a pořadatel",
@@ -1079,7 +1098,8 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     my:        "Na naší straně"
   };
   var OWNER_WITH = {
-    zadavatel:"zadavatelem", casomira:"časomírou", rezie:"režií", led:"dodavatelem LED", my:"námi"
+    zadavatel:"se zadavatelem", casomira:"s časomírou", rezie:"s režií",
+    led:"s dodavatelem LED", my:"s námi"
   };
   var OWNER_SHORT = {
     zadavatel:"Zadavatel", casomira:"Časomíra", rezie:"Režie", led:"LED", my:"Na nás"
@@ -1166,7 +1186,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
       var list = live.filter(function(i){ return i.o === key; });
       steps.push({
         weight: list.length * 10,
-        title: key === "my" ? "Dopsat, co je na nás" : "Sejít se s " + OWNER_WITH[key],
+        title: key === "my" ? "Dopsat, co je na nás" : "Sejít se " + OWNER_WITH[key],
         why: plural(list.length, "bod čeká", "body čekají", "bodů čeká") + " na tuto stranu"
           + (key === "casomira" ? " — bez datového rozhraní stojí G04 i dílčí zadání 04." : "."),
         items: list.slice(0, 3).map(function(i){ return {sec:i.sec, t:i.t}; })
@@ -1392,6 +1412,37 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     var cap = $("burnupCaption");
     cap.textContent = series.map(function(d){ return czDateShort(d.date) + ": " + d.count; }).join("  ·  ")
       + "   |   naposledy přibylo " + (lastN - prevN) + ", zbývá " + (total - lastN);
+  })();
+
+  // ---- kontrola novější verze ----
+  // Na GitHub Pages leží vedle stránky version.json s otiskem obsahu. Když se po
+  // nasazení liší od otisku v načtené stránce, nabídneme obnovení. Tam, kde soubor
+  // není dostupný (publikovaný snímek), kontrola tiše neudělá nic.
+  (function(){
+    var bar = $("fresh");
+    var dismissed = false;
+
+    $("freshReload").addEventListener("click", function(){ location.reload(); });
+    $("freshDismiss").addEventListener("click", function(){
+      dismissed = true;
+      bar.classList.remove("on");
+    });
+
+    function check(){
+      if(dismissed || bar.classList.contains("on")){ return; }
+      fetch("version.json?t=" + Date.now(), {cache:"no-store"})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(v){
+          if(v && v.build && v.build !== BUILD){ bar.classList.add("on"); }
+        })
+        .catch(function(){ /* stránka běží mimo Pages — kontrola se přeskočí */ });
+    }
+
+    check();
+    document.addEventListener("visibilitychange", function(){
+      if(document.visibilityState === "visible"){ check(); }
+    });
+    setInterval(check, 300000);
   })();
 
   function czDateShort(iso){

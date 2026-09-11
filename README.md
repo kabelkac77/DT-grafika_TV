@@ -57,10 +57,15 @@ u kterých není jasné, kdo je má vyřešit.
 
 ### Generování
 
-- `npm run dashboard` — přegeneruje `docs/index.html` i `docs/dashboard.body.html`.
+- `npm run dashboard` — přegeneruje `docs/index.html`, `docs/dashboard.body.html` a `docs/version.json`.
 - `npm run dashboard:check` — ohlásí, že výstupy neodpovídají `ZADANI.md` (používá se v Pull Requestu).
 - Workflow **SVDT — dashboard stavu zadání** přegeneruje stránku při každé změně `ZADANI.md`
   a výsledek rovnou commitne, takže přehled je po úpravě zadání aktuální bez ručního kroku.
+
+`docs/version.json` nese otisk obsahu. Otevřená stránka si ho po návratu do záložky
+a jednou za pět minut porovná se svým vlastním otiskem a při rozdílu nabídne obnovení,
+takže z mezipaměti prohlížeče neuvidíš starý stav. Otisk se počítá z obsahu, ne z času
+sestavení — beze změny zadání zůstává stejný a stránka se zbytečně necommituje.
 
 Stránka je publikovaná přes GitHub Pages ze složky `docs/` na větvi `main`:
 <https://kabelkac77.github.io/DT-grafika_TV/>. Repozitář je veřejný, takže je veřejná
