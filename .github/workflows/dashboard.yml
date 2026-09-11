@@ -1,0 +1,69 @@
+name: SVDT — dashboard stavu zadání
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ZADANI.md"
+      - "docs/dashboard.template.html"
+      - "scripts/build-dashboard.cjs"
+      - ".github/workflows/dashboard.yml"
+  pull_request:
+    paths:
+      - "ZADANI.md"
+      - "docs/dashboard.template.html"
+      - "scripts/build-dashboard.cjs"
+      - ".github/workflows/dashboard.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dashboard-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Vygenerovat dashboard ze ZADANI.md
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Načíst repozitář
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Připravit Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Vygenerovat dashboard
+        run: node scripts/build-dashboard.cjs
+
+      - name: Zapsat přegenerovaný dashboard
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet -- docs/; then
+            echo "Dashboard je aktuální, není co zapisovat."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/dashboard.body.html docs/index.html
+          git commit -m "Přegenerovat dashboard ze ZADANI.md"
+          git push origin HEAD:${{ github.head_ref || github.ref_name }}
+
+      - name: Zkontrolovat aktuálnost v Pull Requestu
+        if: github.event_name == 'pull_request'
+        run: node scripts/build-dashboard.cjs --check
+
+      - name: Uložit stránku ke stažení
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: svdt-dashboard-zadani
+          path: docs/index.html
+          if-no-files-found: error
+          retention-days: 30

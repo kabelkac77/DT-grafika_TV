@@ -13,12 +13,53 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | `karta-hosta/` | HTML/CSS editor a generování decentní jmenovky hosta (jméno a funkce) |
 | `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
 | `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
+| `docs/` | Dashboard stavu zadání generovaný ze `ZADANI.md` |
 
 Složky pro další grafické části budou vytvořeny až při zahájení jejich realizace, aby prázdná struktura nepředstírala hotový rozsah.
 
 ## Karta hosta
 
 [Schválený návrh a zadání karty hosta](karta-hosta/README.md) — studie 01. Jméno a funkce pro vstupy mezi jízdami; navazuje na kartu jezdce 06.4. HTML/CSS editor a generování PNG jsou implementované; animace následuje později.
+
+## Dashboard stavu zadání
+
+Přehled toho, co je v zadání potvrzené, co je rozpracované a na kom se čeká, najdete
+v `docs/`. Zobrazuje sledované body podle oddílů `ZADANI.md`, podíl zodpovězených bodů
+v každém oddílu, frontu podle odpovědné strany, stav grafických částí G01–G08, milníky
+a dílčí zadání.
+
+**Jediným zdrojem stavu je `ZADANI.md`.** Dashboard se z něj generuje, nic se nedopisuje
+ručně. Stav se změní tak, že se upraví zadání.
+
+| Soubor | Role |
+| --- | --- |
+| `ZADANI.md` | Zdroj dat — sledované body, tabulky částí, osob, milníků a dílčích zadání |
+| `docs/dashboard.template.html` | Vzhled a chování stránky se značkou `__DATA__` |
+| `scripts/build-dashboard.cjs` | Přečte zadání a vloží data do šablony |
+| `docs/index.html`, `docs/dashboard.body.html` | Generované výstupy — needitovat ručně |
+
+### Jak se zapisuje stav do zadání
+
+- Otevřená otázka: `- Téma: **K doplnění** (čeká: zadavatel)` — strana může být
+  `zadavatel`, `časomíra`, `režie`, `LED` nebo `na nás`. Stejně funguje `**K potvrzení**`.
+- Částečná odpověď: `- Téma: **Rozpracováno** (čeká: režie) — co konkrétně chybí.`
+- Zodpovězený bod zůstává v dokumentu jako fakt: `- Téma: **odpověď** ✔ 11. 9. 2026`
+- Za poznámkou po pomlčce může být upřesnění; zobrazí se pod bodem.
+
+Bod bez uvedené strany generování zastaví s chybou, aby v přehledu nevznikaly body,
+u kterých není jasné, kdo je má vyřešit.
+
+### Generování
+
+- `npm run dashboard` — přegeneruje `docs/index.html` i `docs/dashboard.body.html`.
+- `npm run dashboard:check` — ohlásí, že výstupy neodpovídají `ZADANI.md` (používá se v Pull Requestu).
+- Workflow **SVDT — dashboard stavu zadání** přegeneruje stránku při každé změně `ZADANI.md`
+  a výsledek rovnou commitne, takže přehled je po úpravě zadání aktuální bez ručního kroku.
+
+Stránka je publikovaná přes GitHub Pages ze složky `docs/` na větvi `main`:
+<https://kabelkac77.github.io/DT-grafika_TV/>. Repozitář je veřejný, takže je veřejná
+i stránka; má proto `noindex`, aby se neobjevovala ve vyhledávačích. Aktuální podobu
+zobrazuje až po sloučení změn do `main`.
 
 ## Aktuální stav
 

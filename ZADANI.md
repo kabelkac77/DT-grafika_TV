@@ -5,9 +5,15 @@ Pracovní dokument. Slouží jako společný základ, ze kterého později vznik
 ## Stav a způsob doplňování
 
 - Potvrzené informace jsou uvedeny jako fakta.
-- **K doplnění** znamená dosud nezodpovězenou otázku, nikoliv požadavek.
+- **K doplnění** a **K potvrzení** znamenají dosud nezodpovězenou otázku, nikoliv požadavek.
+- **Rozpracováno** označuje bod s částečnou odpovědí, kterému chybí upřesnění.
+- Zodpovězený bod je zapsán jako fakt a ukončený značkou ✔ s datem, kdy odpověď přišla.
 - **Návrh k rozhodnutí** označuje možnost, která ještě nebyla schválena.
 - Výčty příkladů níže nejsou potvrzeným rozsahem dodávky.
+
+Otevřené a rozpracované body nesou v závorce stranu, která má odpověď dodat —
+`(čeká: zadavatel)`, `(čeká: časomíra)`, `(čeká: režie)`, `(čeká: LED)` nebo `(čeká: na nás)`.
+Z tohoto zápisu se generuje [dashboard stavu zadání](docs/index.html); jiný zdroj stavu neexistuje.
 
 ## Dosud potvrzené informace
 
@@ -24,12 +30,24 @@ Pracovní dokument. Slouží jako společný základ, ze kterého později vznik
 ## 1. Základní informace o akci
 
 - Oficiální název: **Svatohorský Downtown Příbram (SVDT)**. Jde o městský sjezd horských kol na čas.
-- Datum dalšího ročníku: **zatím není známo** (potvrzeno zadavatelem). Číslo a označení dalšího ročníku: **K doplnění**.
+- Číslo a označení dalšího ročníku: **11. ročník (XI)** ✔ 11. 9. 2026
+- Datum dalšího ročníku: **K doplnění** (čeká: zadavatel) — zadavatel potvrdil, že termín zatím není stanovený.
 - Web nyní popisuje 10. ročník ze dne 23. 5. 2026; datum, harmonogram, status MČR ani partnery tohoto ročníku nepřebírat automaticky do nové grafiky.
 - Místo: Příbram, trať ze Svaté Hory do Pražské ulice. Pořadatel: **COWÁRNA z.s.** Zdroj: [oficiální web](https://svdtpribram.cz/), ověřeno 8. 9. 2026.
-- Veřejné kontakty z webu: info@svdtpribram.cz, +420 721 332 266; ředitel závodu Vojtěch Hrach, partneři / marketing / PR Vlastimil Ševr. Odpovědná kontaktní osoba pro tento projekt: **K doplnění**.
-- Kontaktní osoba za televizní produkci / režii: **K doplnění**.
-- Jazyk nebo jazykové varianty přenosu: **K doplnění**.
+- Veřejné kontakty z webu: info@svdtpribram.cz, +420 721 332 266; ředitel závodu Vojtěch Hrach, partneři / marketing / PR Vlastimil Ševr.
+- Jazyk a jazykové varianty přenosu: **čeština, s přípravou anglické mutace** ✔ 11. 9. 2026
+- Odpovědná kontaktní osoba pro tento projekt: **Hrášek a Lipánek** ✔ 11. 9. 2026
+- Kontaktní osoba za televizní produkci a režii: **K doplnění** (čeká: režie)
+
+### Odpovědné osoby na straně zadavatele
+
+Potvrzeno 11. 9. 2026. Jména jsou uvedena tak, jak je předal zadavatel.
+
+| Osoba | Odpovídá za |
+| --- | --- |
+| Hrášek | Seznam závodníků, kontrola údajů, provoz a řešení problémů během akce |
+| Lipánek | Texty a validace obsahu, provoz během akce společně s Hráškem |
+| Vlasta a Lachtan | Portréty, loga partnerů, práva k podkladům a termíny dodání |
 
 ## 2. Cíl a rozsah celého úkolu
 
@@ -51,58 +69,68 @@ Pracovní dokument. Slouží jako společný základ, ze kterého později vznik
 Níže je referenční stav ročníku 2026, nikoliv potvrzená pravidla dalšího ročníku. Zdroje ověřené 8. 9. 2026: [hlavní závod](https://svdtpribram.cz/hlavni-zavod/) a [pravidla 2026, PDF](https://svdtpribram.cz/wp-content/uploads/2026/04/Pravidla_Svatohorsky_Downtown_Pribram_2026.pdf).
 
 - Kategorie podle PDF: Ženy od 12 let, Open od 12 let, Junior 12–18 let, Elite 19–29 let a Masters 30+. Open je pro nelicencované; ostatní kategorie vyžadují licenci. Minimální účast: 3 ženy, ostatní kategorie 4 jezdci. Případné slučování určuje pořadatel.
-- Dvě měřené jízdy. Běžně rozhoduje lepší čas, pro MČR pouze čas druhé jízdy. **Způsob hodnocení a status příštího ročníku musí potvrdit pořadatel; výpočet nezafixovat podle domněnky.**
-- PDF spojuje pořadí první jízdy s odbavením při prezenci. Web uvádí pořadí kategorií ženy, open, junior, master, elite, interval 30 sekund a druhou jízdu podle časů od nejpomalejšího. Posledních 10 startujících z licencovaných kategorií startuje po dojezdu předchozího. Přesný výklad a pravidla dalšího ročníku: **K potvrzení**.
+- Dvě měřené jízdy. Běžně rozhoduje lepší čas, pro MČR pouze čas druhé jízdy.
+- Způsob hodnocení a status příštího ročníku: **K potvrzení** (čeká: zadavatel) — výpočet výsledku nezafixovat podle domněnky.
+- PDF spojuje pořadí první jízdy s odbavením při prezenci. Web uvádí pořadí kategorií ženy, open, junior, master, elite, interval 30 sekund a druhou jízdu podle časů od nejpomalejšího. Posledních 10 startujících z licencovaných kategorií startuje po dojezdu předchozího.
+- Výklad startovního pořadí a pravidla dalšího ročníku: **K potvrzení** (čeká: zadavatel)
 - Důsledek pro návrh: počítat s možností více jezdců současně na trati; přiřazení grafiky k jezdci na obraze se musí vyřešit s režií.
-- Web uvádí délku 1 200 m a převýšení 85 m. Finální trasa a mapa příštího ročníku: **K doplnění**.
-- Rozpor zdrojů: stránka hlavního závodu uvádí limit 120 jezdců, PDF 140. Kapacita pro další ročník: **K potvrzení**, do grafiky zatím nevkládat pevné číslo.
-- Počet měřených úseků / mezičasů: **K doplnění**.
-- Pravidla pro shodné časy, penalizace, nestartování, nedokončení a diskvalifikaci: **K doplnění**.
+- Web uvádí délku 1 200 m a převýšení 85 m.
+- Finální trasa a mapa trati: **Rozpracováno** (čeká: zadavatel) — na trase se pracuje, podklad pro G03 zatím není k dispozici.
+- Rozpor zdrojů: stránka hlavního závodu uvádí limit 120 jezdců, PDF 140.
+- Kapacita startovního pole pro další ročník: **K potvrzení** (čeká: zadavatel) — do grafiky zatím nevkládat pevné číslo.
+- Počet měřených úseků a mezičasů: **K doplnění** (čeká: časomíra) — rozhoduje o realizovatelnosti volitelné části G08.
+- Pravidla pro shodné časy, penalizace, nestartování, nedokončení a diskvalifikaci: **K doplnění** (čeká: zadavatel)
 
 ## 4. Seznam grafických částí
 
 Potvrzené části:
 
-| ID | Část | Obsah / upřesnění | Stav |
-| --- | --- | --- | --- |
-| G01 | Tabulka výsledků jezdců | 10 výsledků: startovní číslo, jméno, stát, čas / ztráta. Měnitelná kategorie a jízda, loga vpravo ve společném panelu. [Dílčí zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Průběžná/finální varianta a stránkování se doplní. | Čeká na schválení |
-| G02 | Představení / popis jezdce | Údaje o jezdci podle oddílu 5; podoba a okamžik zobrazení se doplní. | Čeká na schválení |
-| G03 | Mapa trati | Finální trasu a požadované body je nutné dodat nebo potvrdit. | — |
-| G04 | Časomíra | Přesné stavy před startem, za jízdy a v cíli se doplní podle dostupných dat. | — |
-| G05 | Jmenovka pro rozhovory | Jméno, startovní číslo a tým. | Čeká na schválení |
-| G06 | Přechody mezi sestřihy | Počet variant, délka a způsob použití se upřesní s režií. | — |
-| G07 | Partneři | Loga a způsob prezentace podle postupně dodávaných podkladů. | — |
+| ID | Část | Obsah / upřesnění | Realizace | Stav |
+| --- | --- | --- | --- | --- |
+| G01 | Tabulka výsledků jezdců | 10 výsledků: startovní číslo, jméno, stát, čas / ztráta. Měnitelná kategorie a jízda, loga vpravo ve společném panelu. [Dílčí zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Průběžná/finální varianta a stránkování se doplní. | Dílčí zadání i HTML generátor podle studie 04 | Čeká na schválení |
+| G02 | Představení / popis jezdce | Údaje o jezdci podle oddílu 5; podoba a okamžik zobrazení se doplní. | Verze 06.5 — vodorovná i rohová, s portrétem i bez | Čeká na schválení |
+| G03 | Mapa trati | Finální trasu a požadované body je nutné dodat nebo potvrdit. | Čeká na finální trasu od pořadatele | Blokováno |
+| G04 | Časomíra | Přesné stavy před startem, za jízdy a v cíli se doplní podle dostupných dat. | Čeká na datové rozhraní časomíry | Blokováno |
+| G05 | Jmenovka pro rozhovory | Jméno, startovní číslo a tým. | Studie 01 — jméno a funkce, generování PNG hotové | Čeká na schválení |
+| G06 | Přechody mezi sestřihy | Počet variant, délka a způsob použití se upřesní s režií. | Neřešeno, upřesní se s režií | Otevřené |
+| G07 | Partneři | Loga a způsob prezentace podle postupně dodávaných podkladů. | Čeká na podklady od zadavatele | Otevřené |
+| G08 | Ztráta / zisk na úsecích | Volitelné rozšíření, upřesnění níže. | Závisí na dostupnosti mezičasů | Volitelné |
 
 **Volitelná část G08:** ztráta / zisk na jednotlivých sekcích. Realizace závisí na dostupnosti mezičasů a potvrzení rozsahu zadavatelem. Určit, zda jde o rozdíl za daný úsek, nebo kumulovaný rozdíl od startu, a vůči komu se počítá.
 
-Další části z původní osnovy (například startovní listina, program, stupně vítězů nebo informační sdělení) zatím nejsou objednaným rozsahem. Priority G01–G07: **K doplnění**.
+Další části z původní osnovy (například startovní listina, program, stupně vítězů nebo informační sdělení) zatím nejsou objednaným rozsahem.
+
+- Priority G01–G07: **na pořadí nezáleží, části vznikají souběžně** ✔ 11. 9. 2026
+- Schválení hotových vizuálních studií G01, G02 a G05: **Rozpracováno** (čeká: zadavatel) — studie jsou implementované, čeká se na písemné schválení.
 
 Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podobu, okamžik spuštění, dobu zobrazení, způsob skrytí, varianty a prioritu při souběhu s jinou grafikou.
 
 ## 5. Údaje o závodnících a další obsah
 
-- Rozsah údajů potvrzený zadavatelem: **jméno, startovní číslo, země, tým, kategorie, portrét a vlajka**. Rozdělení na povinné a volitelné údaje pro jednotlivé grafiky: **K doplnění**.
-- Konkrétní portréty, vlajky a další obrazové podklady: **K doplnění**.
-- Kdo dodá seznam závodníků, v jakém formátu a kdy: **K doplnění**.
-- Kdo kontroluje správnost jmen, týmů a dalších údajů: **K doplnění**.
-- Pravidla pro dlouhá jména, diakritiku a chybějící údaje: **K doplnění**.
-- Texty pro informační grafiku a další obsah: **K doplnění**.
+- Rozsah údajů: **jméno, startovní číslo, země, tým, kategorie, portrét a vlajka** ✔ 8. 9. 2026
+- Kontrola správnosti jmen, týmů a dalších údajů: **Hrášek a Lipánek** ✔ 11. 9. 2026
+- Rozdělení na povinné a volitelné údaje pro jednotlivé grafiky: **K doplnění** (čeká: na nás) — vyplyne z dílčího zadání grafických částí.
+- Konkrétní portréty, vlajky a další obrazové podklady: **Rozpracováno** (čeká: zadavatel) — dodají Vlasta a Lachtan, termín zatím neurčen.
+- Kdo dodá seznam závodníků a kontroluje jeho správnost: **Hrášek** ✔ 11. 9. 2026
+- Formát a termín dodání seznamu závodníků: **K doplnění** (čeká: zadavatel)
+- Pravidla pro dlouhá jména, diakritiku a chybějící údaje: **K doplnění** (čeká: na nás) — obsah validují Hrášek a Lipánek.
+- Texty pro informační grafiku a další obsah: **K doplnění** (čeká: zadavatel)
 
 ## 6. Časomíra a závodní data
 
 - Zadavatel poskytl [výsledkovou stránku SLCR Live](https://vysledky.ok1kuo.cz/?s=22147) jako podklad k časomíře.
 - Ověření 8. 9. 2026: stránka zobrazuje rozhraní pro jezdce na trati a dojezd, pole pořadí, číslo, jméno, kategorie, klub / země, Run 1, Run 2, Time a Gap. Při kontrole nebyly zobrazeny konkrétní výsledkové řádky ani název zvoleného závodu.
 - Samotný odkaz nepotvrzuje dostupnost datového rozhraní, automatického odběru, živého času ani mezičasů. Způsob propojení a zdroj pro příští ročník je nutné dohodnout s časomírou; nevycházet pouze z vzhledu veřejné výsledkové stránky.
-- Dodavatel a systém časomíry, technický kontakt: **K doplnění**.
-- Jaká data jsou dostupná a jak se předávají: **K doplnění**.
-- Automatické napojení, import souboru nebo ruční zadávání: **K doplnění**.
-- Dostupnost startů, živého času, mezičasů, cílových časů a pořadí: **K doplnění**.
-- Přesnost a způsob zápisu času: **K doplnění**.
-- S kým se jezdec porovnává a zda se porovnání během jízdy mění: **K doplnění**.
-- Rozlišení času úseku a celkového času od startu: **K doplnění**.
-- Rozlišení předběžných a potvrzených výsledků: **K doplnění**.
-- Postup při opravě výsledku, opožděných datech nebo výpadku: **K doplnění**.
-- Dostupnost ukázkových dat pro přípravu a zkoušku: **K doplnění**.
+- Dodavatel a systém časomíry, technický kontakt: **K doplnění** (čeká: časomíra) — bez toho nelze začít žádné z dalších témat tohoto oddílu.
+- Jaká data jsou dostupná a jak se předávají: **K doplnění** (čeká: časomíra)
+- Automatické napojení, import souboru nebo ruční zadávání: **K doplnění** (čeká: časomíra)
+- Dostupnost startů, živého času, mezičasů, cílových časů a pořadí: **K doplnění** (čeká: časomíra)
+- Přesnost a způsob zápisu času: **K doplnění** (čeká: časomíra)
+- S kým se jezdec porovnává a zda se porovnání během jízdy mění: **K doplnění** (čeká: časomíra)
+- Rozlišení času úseku a celkového času od startu: **K doplnění** (čeká: časomíra)
+- Rozlišení předběžných a potvrzených výsledků: **K doplnění** (čeká: časomíra)
+- Postup při opravě výsledku, opožděných datech nebo výpadku: **K doplnění** (čeká: časomíra)
+- Dostupnost ukázkových dat pro přípravu a zkoušku: **K doplnění** (čeká: časomíra) — nutná k prototypu i k demoverzi bez ostrého napojení.
 
 ## 7. Ovládání během přenosu
 
@@ -126,7 +154,8 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 - Často používané operace mají být dostupné jako přednastavené akce nebo makra, aby režie nemusela opakovaně nastavovat každý výstup zvlášť.
 - Systém musí podporovat automatizované workflow. Událost například **„jezdec projel cílem“** může postupně vyvolat: cílový čas → kartu jezdce → aktuální pořadí → aktualizaci výsledkové tabulky → LED výsledek. Konkrétní workflow a jejich časování budou samostatně schválena.
 - Automatizace nesmí odebrat režii kontrolu. Musí být možné workflow pozastavit, přeskočit krok, ručně převzít řízení a provést nouzový OUT.
-- Role uživatelů, počet pracovišť, klávesové zkratky, hardwarové ovladače a přesné chování při souběhu: **K doplnění s režií**.
+- Postup realizace: **nejdřív demoverze ovládání bez napojení na TV a časomíru, potom ostrá verze** ✔ 11. 9. 2026
+- Role uživatelů, počet pracovišť, klávesové zkratky, hardwarové ovladače a chování při souběhu: **K doplnění** (čeká: režie)
 
 ## 8. Technické prostředí přenosu
 
@@ -146,17 +175,17 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 - Každý typ grafiky může mít TV variantu, LED variantu nebo obě. Varianty sdílejí význam a zdrojová data, nikoliv nutně stejné rozložení.
 - Pro každý fyzický výstup se nakonfiguruje rozlišení, poměr stran, obnovovací nebo snímková frekvence, bezpečné okraje, barevné zpracování a požadavek na průhlednost.
 - Systém musí umožnit nezávislé Preview a kontrolu správné varianty pro každý cílový výstup.
-- Přesný počet, rozměry, orientace a mapování LED panelů: **K doplnění s dodavatelem LED a režií**.
-- Způsob předání TV grafiky do mixážního nebo odbavovacího systému: **K doplnění s režií**.
-- Požadavek na stream jako další samostatný výstup: **K doplnění**.
+- Přesný počet, rozměry, orientace a mapování LED panelů: **K doplnění** (čeká: LED)
+- Způsob předání TV grafiky do mixážního nebo odbavovacího systému: **K doplnění** (čeká: režie) — určuje technologii výstupu celého systému.
+- Požadavek na stream jako další samostatný výstup: **K doplnění** (čeká: zadavatel)
 
 ### 8.3 Provozní prostředí
 
-- Odbavovací systém režie, jeho verze a podporované vstupy: **K doplnění**.
-- Počítače, operační systém, grafické výstupy a další dostupné vybavení: **K doplnění**.
-- Dostupnost a topologie místní sítě a internetu: **K doplnění**.
+- Odbavovací systém režie, jeho verze a podporované vstupy: **K doplnění** (čeká: režie)
+- Počítače, operační systém, grafické výstupy a další dostupné vybavení: **K doplnění** (čeká: režie)
+- Dostupnost a topologie místní sítě a internetu: **K doplnění** (čeká: režie)
 - Systém musí být navržen tak, aby krátkodobý výpadek internetu neznemožnil ovládání již načtených grafik; přesná úroveň offline provozu závisí na rozhraní externí časomíry.
-- Technická omezení a požadavky produkce: **K doplnění**.
+- Technická omezení a požadavky produkce: **K doplnění** (čeká: režie)
 
 ## 9. Vizuální směr a pravidla značky
 
@@ -165,20 +194,21 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 - Archiv obsahuje zejména pravidla a komponenty pro web a další materiály; konkrétní pravidla pro TV grafiku je potřeba určit.
 - Potvrzený směr: vycházet z dodaného design systému a přizpůsobit jej televiznímu přenosu a velkoplošným obrazovkám. Konkrétní návrhy schvaluje zadavatel.
 - Fotografie slouží jako reference rozložení závodních informací; výslednou grafiku převést do identity SVDT. Detailní rozložení bude předmětem dílčího zadání.
-- Umístění grafiky, bezpečné okraje a prostor pro logo televize: **K doplnění**.
-- Velikost textů a čitelnost nad světlými i tmavými záběry: **K doplnění**.
-- Barevné významy náskoku, ztráty, lídra a dalších stavů: **K doplnění**.
-- Průhlednost podkladů, animace a délka jejich trvání: **K doplnění**.
+- Umístění grafiky, bezpečné okraje a prostor pro logo televize: **K doplnění** (čeká: režie)
+- Velikost textů a čitelnost nad světlými i tmavými záběry: **Rozpracováno** (čeká: na nás) — ověřitelné až na výstupu režie.
+- Barevné významy náskoku, ztráty, lídra a dalších stavů: **K doplnění** (čeká: zadavatel)
+- Průhlednost podkladů, animace a délka jejich trvání: **K doplnění** (čeká: zadavatel) — požadavky na animace doplní zadavatel.
 - Návrh k rozhodnutí: doplnit do pravidel značky použití zelené pro náskok; archiv ji nyní vyhrazuje formulářovým stavům.
 
 ## 10. Loga, fotografie, písma a partneři
 
 - Zjištění z archivu: skutečné logo akce, fotografie ani loga partnerů nejsou přiloženy; písmo je odkazované z internetu, nikoliv přibalené jako soubor.
 - Oficiální loga a další podklady bude **zadavatel dodávat postupně**.
-- Partneři budou upřesněni později; zadavatel následně dodá jejich loga. Hierarchie a pravidla zobrazování: **K doplnění**. Partnery z webu ročníku 2026 automaticky nepřebírat.
-- Kdo dodá portréty a ostatní obrazové podklady: **K doplnění**.
-- Zajištění potřebných práv k použití podkladů a písem: **K doplnění**.
-- Termín dodání finálních podkladů: **K doplnění**.
+- Partneři budou upřesněni později; zadavatel následně dodá jejich loga. Partnery z webu ročníku 2026 automaticky nepřebírat.
+- Kdo dodá portréty a ostatní obrazové podklady: **Vlasta a Lachtan** ✔ 11. 9. 2026
+- Hierarchie a pravidla zobrazování partnerů: **K doplnění** (čeká: zadavatel)
+- Zajištění potřebných práv k použití podkladů a písem: **K doplnění** (čeká: zadavatel)
+- Termín dodání finálních podkladů: **K doplnění** (čeká: zadavatel) — bez termínu nelze naplánovat finální naplnění šablon.
 
 ## 11. Spolehlivost a náhradní postupy
 
@@ -189,9 +219,9 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 - Po restartu musí systém obnovit konzistentní provozní stav. Nesmí automaticky odvysílat grafiku pouze proto, že byla před výpadkem v Programu; přesný návratový režim se schválí při technické zkoušce.
 - Povinné nouzové funkce: okamžitý OUT všech grafik, samostatný OUT pro TV a LED, zastavení automatizace a přechod na ruční řízení.
 - Náhradní ruční režim a sada statických záložních podkladů budou součástí provozního návrhu.
-- Interval záloh, nezávislé umístění kopie, délka uchování a odpovědná osoba: **K doplnění**.
-- Požadovaná redundance řídicího počítače, sítě a renderovacích výstupů: **K doplnění s režií**.
-- Odpovědnost za provoz a řešení problémů během akce: **K doplnění**.
+- Odpovědnost za provoz a řešení problémů během akce: **Hrášek a Lipánek** ✔ 11. 9. 2026
+- Interval záloh, nezávislé umístění kopie, délka uchování a odpovědná osoba: **Rozpracováno** (čeká: zadavatel) — zálohování dat zajišťuje zadavatel, parametry chybí.
+- Požadovaná redundance řídicího počítače, sítě a renderovacích výstupů: **K doplnění** (čeká: režie)
 
 ## 12. Výstupy a předání
 
@@ -209,45 +239,60 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 - Současné grafiky v repozitáři budou vyhodnoceny a použity jako základ tam, kde splní vizuální a technické požadavky. Jejich začlenění nesmí vyžadovat ruční duplikaci dat mezi TV a LED.
 - Zdrojové řešení musí být editovatelné a připravené pro doplnění dalších grafik, výstupů a workflow.
 - Součástí předání bude seznam externích závislostí, licencí a postup spuštění bez závislosti na autorovi řešení.
-- Rozsah zaškolení obsluhy, místo instalace a osoba přebírající výstupy: **K doplnění**.
+- Rozsah návodu: **priorita je intuitivní ovládání, ne rozsáhlá dokumentace** ✔ 11. 9. 2026
+- Uložení zdrojů a výstupů: **repozitář kabelkac77/DT-grafika_TV na GitHubu** ✔ 11. 9. 2026
+- Rozsah zaškolení obsluhy, místo instalace a osoba přebírající výstupy: **K doplnění** (čeká: zadavatel)
 
 ## 13. Ověření a schválení
 
 - Finální schválení: **zadavatel**. Návrh ověření: režie ověří kompatibilitu a časomíra správnost přebíraných dat; schválení zadavatele tím není nahrazeno.
-- Kritéria, podle kterých bude úkol považován za dokončený: **K doplnění**.
-- Termín a prostředí zkoušky s režií a časomírou: **K doplnění**.
-- Situace pro ověření — běžná jízda, dlouhé jméno, chybějící portrét, více jezdců na trati, oprava výsledku, výpadek dat: **K doplnění podle potvrzeného rozsahu**.
+- Kritéria, podle kterých bude úkol považován za dokončený: **K doplnění** (čeká: na nás) — bez akceptačních kritérií nelze projekt uzavřít.
+- Termín a prostředí zkoušky s režií a časomírou: **Rozpracováno** (čeká: režie) — rámcově přelom ledna a února 2027, místo a prostředí chybí.
+- Situace pro ověření — běžná jízda, dlouhé jméno, chybějící portrét, více jezdců na trati, oprava výsledku, výpadek dat: **K doplnění** (čeká: na nás)
 
 ## 14. Termíny, priority a omezení
 
-- Termín prvního návrhu: **K doplnění**.
-- Termín funkční ukázky a společné zkoušky: **K doplnění**.
-- Preferovaný cílový termín dokončení: **začátek ledna 2027**. Přesný den: **K doplnění**. Datum závodu ani den ostrého nasazení dosud nejsou známy.
-- Rozpočet a případná omezení placených nástrojů nebo služeb: **K doplnění**.
-- Pořadí priorit a volitelné části při nedostatku času: **K doplnění**.
+- Termín prvního návrhu: **do konce roku 2026** ✔ 11. 9. 2026
+- Termín funkční ukázky a společné zkoušky: **přelom ledna a února 2027** ✔ 11. 9. 2026
+- Cílový termín dokončení: **březen 2027** ✔ 11. 9. 2026 — nahrazuje dřívější údaj začátek ledna 2027.
+- Rozpočet a omezení placených nástrojů nebo služeb: **bez licenčních poplatků, jinak bez omezení** ✔ 11. 9. 2026
+- Přesný den dokončení a den ostrého nasazení: **K doplnění** (čeká: zadavatel) — datum závodu dosud není známo.
+- Co vypustit při nedostatku času: **K doplnění** (čeká: zadavatel) — pořadí částí G01–G07 nerozhoduje, vznikají souběžně.
+
+### Milníky
+
+| Milník | Termín | Stav |
+| --- | --- | --- |
+| Doplnění zadání | probíhá | Nyní |
+| První návrh | do konce roku 2026 | Připravuje se |
+| Demoverze ovládání | navazuje na první návrh | Připravuje se |
+| Společná zkouška s režií a časomírou | přelom ledna a února 2027 | Připravuje se |
+| Předání ostré verze | březen 2027 | Připravuje se |
 
 ## 15. Navazující dílčí zadání
 
 Navržený postup realizace na žádost zadavatele. Názvy souborů níže označují budoucí dílčí zadání; zatím nebyla vytvořena. Tento dokument zůstává společným základem.
 
-| Krok | Dílčí zadání | Výsledek a závislosti |
-| --- | --- | --- |
-| 1 | `01_VIZUALNI_SYSTEM.md` | Pravidla TV grafiky podle SVDT, čitelnost pro oba výstupy a ukázky výsledkové tabulky, jezdce a časomíry. Lze připravit nyní s označenými ukázkovými daty; rozměry zůstanou pracovní do potvrzení režií. |
-| 2 | `02_GRAFICKE_CASTI.md` | Přesné zadání G01–G07: obsah, rozložení, varianty, animace a chování při chybějících údajích. G08 oddělit jako volitelné rozšíření. Navazuje na schválený vizuální směr. |
-| 3 | `03_PODKLADY_A_OBSAH.md` | Seznam a organizace jezdců, portrétů, log a mapy; pravidla pojmenování a doplňování. Podklady lze shromažďovat současně s kroky 1 a 2. |
-| 4 | `04_DATA_A_CASOMIRA.md` | Integrace externího serveru poskytovatele časomíry, datový kontrakt, autentizace, aktualizace, přiřazení jezdců a jízd, pravidla pořadí, mezičasy, opravy, cache, výpadkové stavy a ukázková data. Vyžaduje součinnost časomíry a potvrzení pravidel dalšího ročníku. |
-| 5 | `05_BROADCAST_SYSTEM_A_REZIE.md` | Architektura centrálního broadcast systému, společný datový model, Preview → Take → Program → Out, jednoduché ovládání režie, řízené IN/OUT, TV a LED varianty, makra a automatizovaná workflow. Zahrne posouzení a začlenění současných HTML grafik. Vyžaduje technické parametry od režie, LED dodavatele a dohodu o datech. |
-| 6 | `06_ZALOHOVANI_A_OBNOVA.md` | Zálohování dat a nastavení, ověřená obnova a dohodnuté chování při výpadku. Navazuje na konkrétní funkční řešení. |
-| 7 | `07_ZKOUSKA_A_PREDANI.md` | Zkouška průběhu závodu a všech grafik v prostředí režie, kontrola TV i velkoplošného výstupu, opravy, finální soubory a schválení zadavatelem. Rozsah návodu se ještě dohodne. |
+| Krok | Dílčí zadání | Výsledek a závislosti | Stav |
+| --- | --- | --- | --- |
+| 1 | `01_VIZUALNI_SYSTEM.md` | Pravidla TV grafiky podle SVDT, čitelnost pro oba výstupy a ukázky výsledkové tabulky, jezdce a časomíry. Lze připravit nyní s označenými ukázkovými daty; rozměry zůstanou pracovní do potvrzení režií. | Lze psát hned |
+| 2 | `02_GRAFICKE_CASTI.md` | Přesné zadání G01–G07: obsah, rozložení, varianty, animace a chování při chybějících údajích. G08 oddělit jako volitelné rozšíření. Navazuje na schválený vizuální směr. | Po schválení vizuálního směru |
+| 3 | `03_PODKLADY_A_OBSAH.md` | Seznam a organizace jezdců, portrétů, log a mapy; pravidla pojmenování a doplňování. Podklady lze shromažďovat současně s kroky 1 a 2. | Lze psát hned |
+| 4 | `04_DATA_A_CASOMIRA.md` | Integrace externího serveru poskytovatele časomíry, datový kontrakt, autentizace, aktualizace, přiřazení jezdců a jízd, pravidla pořadí, mezičasy, opravy, cache, výpadkové stavy a ukázková data. Vyžaduje součinnost časomíry a potvrzení pravidel dalšího ročníku. | Blokováno časomírou |
+| 5 | `05_BROADCAST_SYSTEM_A_REZIE.md` | Architektura centrálního broadcast systému, společný datový model, Preview → Take → Program → Out, jednoduché ovládání režie, řízené IN/OUT, TV a LED varianty, makra a automatizovaná workflow. Zahrne posouzení a začlenění současných HTML grafik. Vyžaduje technické parametry od režie, LED dodavatele a dohodu o datech. | Blokováno režií a LED |
+| 6 | `06_ZALOHOVANI_A_OBNOVA.md` | Zálohování dat a nastavení, ověřená obnova a dohodnuté chování při výpadku. Navazuje na konkrétní funkční řešení. | Po funkčním řešení |
+| 7 | `07_ZKOUSKA_A_PREDANI.md` | Zkouška průběhu závodu a všech grafik v prostředí režie, kontrola TV i velkoplošného výstupu, opravy, finální soubory a schválení zadavatelem. Rozsah návodu se ještě dohodne. | Po dohodě termínu zkoušky |
 
 Nejbližší navazující práce: připravit zadání vizuálního systému a grafických částí. Získání technických informací od režie a časomíry může probíhat souběžně; jejich kontaktování není tímto dokumentem automaticky zadáno.
 
-### Orientační harmonogram — návrh, nikoliv potvrzené dílčí termíny
+### Orientační harmonogram
+
+Rámec podle termínů potvrzených 11. 9. 2026. Dílčí termíny uvnitř jednotlivých etap zatím potvrzené nejsou.
 
 - Září–říjen 2026: doplnění zadání, vizuální směr a získání technických vstupů.
-- Říjen–listopad 2026: návrhy jednotlivých částí a funkční prototyp s ukázkovými daty.
-- Listopad–prosinec 2026: napojení časomíry a režie, zálohování a společná zkouška.
-- Začátek ledna 2027: cílové dokončení a předání. Později dodané logo partnera, datum nebo startovní listina se doplní do připravených šablon; termín finálního naplnění obsahem se dohodne samostatně.
+- Listopad–prosinec 2026: návrhy jednotlivých částí a demoverze ovládání s ukázkovými daty; první návrh do konce roku 2026.
+- Leden–únor 2027: napojení časomíry a režie, zálohování a společná zkouška na přelomu ledna a února.
+- Březen 2027: cílové dokončení a předání. Později dodané logo partnera, datum nebo startovní listina se doplní do připravených šablon; termín finálního naplnění obsahem se dohodne samostatně.
 
 ## Záznam rozhodnutí
 
@@ -256,5 +301,11 @@ Nejbližší navazující práce: připravit zadání vizuálního systému a gr
 
 - 9. 9. 2026: G01 implementována podle studie 04 ve složce karta-vysledky. Potvrzeno 10 výsledků vlevo, menší loga vpravo ve stejné tabulce bez nadpisu Partneři, celý reliéf na pravém horním kraji. Při tvorbě živé HTML vrstvy vytvořit editor rozmístění log. Externí výsledkový server se napojí později. Detailní datová smlouva, současný stav a zbývající kroky jsou v karta-vysledky/ZADANI_KARTA_VYSLEDKU.md.
 
+
+- 11. 9. 2026: zapracovány odpovědi zadavatele z doplňujícího kola. Potvrzeno: 11. ročník (XI), čeština s přípravou anglické mutace, první návrh do konce roku 2026, společná zkouška na přelomu ledna a února 2027, cílové dokončení březen 2027, řešení bez licenčních poplatků a bez rozpočtového omezení, postup přes demoverzi ovládání bez napojení na TV a časomíru, zálohování dat zajišťuje zadavatel, priorita intuitivního ovládání před rozsáhlou dokumentací, výstupy se ukládají do repozitáře na GitHubu. Odpovědné osoby: Hrášek a Lipánek za seznam závodníků, kontrolu údajů a provoz během akce, Vlasta a Lachtan za portréty, loga partnerů a práva k podkladům. **Cílový termín březen 2027 nahrazuje dřívější údaj začátek ledna 2027.**
+
+- 11. 9. 2026: doplněny další odpovědi zadavatele. Odpovědnou kontaktní osobou za projekt jsou Hrášek a Lipánek. Na pořadí grafických částí G01–G07 nezáleží, vznikají souběžně. Seznam závodníků dodá a jeho správnost kontroluje Hrášek; formát a termín dodání zůstávají otevřené.
+
+- 11. 9. 2026: sjednocen zápis otevřených bodů. Každý sledovaný bod nese značku stavu a stranu, která má odpověď dodat; zodpovězené body zůstávají v dokumentu jako fakt se značkou ✔ a datem. Z tohoto zápisu se generuje dashboard stavu zadání ve složce `docs/`.
 
 - 9. 9. 2026: schváleno přenesení menšího nápisu SVATOHORSKÝ / DOWN / TOWN pod reliéf do všech variant jezdce, hosta a výsledkové tabulky. Nápis je centrovaný s celým reliéfem, bez kruhu, přidané linky a roku. Host mírně zmenšen na 620 px. Toto rozhodnutí nahrazuje dřívější požadavek bez samostatného nápisu. Požadavky na animace doplní zadavatel; stávající technické chování tím není schválením budoucích animací.
