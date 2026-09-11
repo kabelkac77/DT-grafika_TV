@@ -63,15 +63,15 @@ Níže je referenční stav ročníku 2026, nikoliv potvrzená pravidla dalšíh
 
 Potvrzené části:
 
-| ID | Část | Obsah / upřesnění |
-| --- | --- | --- |
-| G01 | Tabulka výsledků jezdců | 10 výsledků: startovní číslo, jméno, stát, čas / ztráta. Měnitelná kategorie a jízda, loga vpravo ve společném panelu. [Dílčí zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Průběžná/finální varianta a stránkování se doplní. |
-| G02 | Představení / popis jezdce | Údaje o jezdci podle oddílu 5; podoba a okamžik zobrazení se doplní. |
-| G03 | Mapa trati | Finální trasu a požadované body je nutné dodat nebo potvrdit. |
-| G04 | Časomíra | Přesné stavy před startem, za jízdy a v cíli se doplní podle dostupných dat. |
-| G05 | Jmenovka pro rozhovory | Jméno, startovní číslo a tým. |
-| G06 | Přechody mezi sestřihy | Počet variant, délka a způsob použití se upřesní s režií. |
-| G07 | Partneři | Loga a způsob prezentace podle postupně dodávaných podkladů. |
+| ID | Část | Obsah / upřesnění | Stav |
+| --- | --- | --- | --- |
+| G01 | Tabulka výsledků jezdců | 10 výsledků: startovní číslo, jméno, stát, čas / ztráta. Měnitelná kategorie a jízda, loga vpravo ve společném panelu. [Dílčí zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Průběžná/finální varianta a stránkování se doplní. | Čeká na schválení |
+| G02 | Představení / popis jezdce | Údaje o jezdci podle oddílu 5; podoba a okamžik zobrazení se doplní. | Čeká na schválení |
+| G03 | Mapa trati | Finální trasu a požadované body je nutné dodat nebo potvrdit. | — |
+| G04 | Časomíra | Přesné stavy před startem, za jízdy a v cíli se doplní podle dostupných dat. | — |
+| G05 | Jmenovka pro rozhovory | Jméno, startovní číslo a tým. | Čeká na schválení |
+| G06 | Přechody mezi sestřihy | Počet variant, délka a způsob použití se upřesní s režií. | — |
+| G07 | Partneři | Loga a způsob prezentace podle postupně dodávaných podkladů. | — |
 
 **Volitelná část G08:** ztráta / zisk na jednotlivých sekcích. Realizace závisí na dostupnosti mezičasů a potvrzení rozsahu zadavatelem. Určit, zda jde o rozdíl za daný úsek, nebo kumulovaný rozdíl od startu, a vůči komu se počítá.
 
