@@ -17,6 +17,7 @@
  * Volba --check nic nezapisuje, jen ohlásí, že výstupy nejsou aktuální (návratový kód 1).
  */
 const fs = require('fs');
+const crypto = require('crypto');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
@@ -218,7 +219,19 @@ function build() {
 
   const template = fs.readFileSync(path.join(root, 'docs', 'dashboard.template.html'), 'utf8');
   if (!template.includes('__DATA__')) throw new Error('V šabloně chybí značka __DATA__.');
-  const body = template.replace('__DATA__', JSON.stringify(data, null, 2));
+  if (!template.includes('__BUILD__')) throw new Error('V šabloně chybí značka __BUILD__.');
+
+  // Otisk obsahu, ne čas sestavení — stejné zadání dá stejný otisk, takže se
+  // stránka necommituje znovu, dokud se opravdu něco nezmění.
+  const build = crypto.createHash('sha1')
+    .update(JSON.stringify(data))
+    .update(template)
+    .digest('hex')
+    .slice(0, 10);
+
+  const body = template
+    .replace('__DATA__', JSON.stringify(data, null, 2))
+    .replace('__BUILD__', build);
 
   const title = (body.match(/<title>([^<]*)<\/title>/) || [, 'Stav zadání SVDT'])[1];
   const page = `<!doctype html>
@@ -238,16 +251,19 @@ ${body.replace(/<title>[^<]*<\/title>\s*/, '')}
 </html>
 `;
 
-  return { body, page, counts, updated: data.updated };
+  const version = JSON.stringify({ build, updated: data.updated }, null, 2) + '\n';
+  return { body, page, version, counts, updated: data.updated };
 }
 
 const out = build();
 const bodyPath = path.join(root, 'docs', 'dashboard.body.html');
 const pagePath = path.join(root, 'docs', 'index.html');
+const versionPath = path.join(root, 'docs', 'version.json');
 const read = p => (fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : null);
 
 if (process.argv.includes('--check')) {
-  const stale = read(bodyPath) !== out.body || read(pagePath) !== out.page;
+  const stale = read(bodyPath) !== out.body || read(pagePath) !== out.page
+    || read(versionPath) !== out.version;
   if (stale) {
     console.error('Dashboard není aktuální vůči ZADANI.md. Spusťte: npm run dashboard');
     process.exit(1);
@@ -256,6 +272,7 @@ if (process.argv.includes('--check')) {
 } else {
   fs.writeFileSync(bodyPath, out.body);
   fs.writeFileSync(pagePath, out.page);
+  fs.writeFileSync(versionPath, out.version);
   console.log(`Dashboard vygenerován ze ZADANI.md (aktualizováno ${out.updated}):`);
   console.log(`  oddílů ${out.counts.sections}, sledovaných bodů ${out.counts.items}, ` +
     `grafických částí ${out.counts.parts}, milníků ${out.counts.milestones}, ` +
