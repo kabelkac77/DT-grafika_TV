@@ -94,6 +94,7 @@ h2{font-size:19px; font-weight:800; text-transform:uppercase; letter-spacing:.02
 .meter i{display:block; height:100%; background:var(--ok)}
 .meter.low i{background:var(--brand)}
 .meter.mid i{background:var(--warn)}
+.meter.none{opacity:.35}
 .rd-count{font-family:var(--f-mono); font-size:12.5px; color:var(--ink-dim); text-align:right}
 .rd-count b{color:var(--ink); font-weight:600}
 .rd-count.zero{color:var(--ok)}
@@ -218,11 +219,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
         kom se čeká. Přehled sleduje <strong>obecné zadání</strong> — vrstvy jednotlivých
         grafických karet přibudou později.</p>
     </div>
-    <div class="stamp">
-      <span class="live">Aktualizováno 11. 9. 2026</span><br>
-      zdroj: <b>ZADANI.md</b><br>
-      repo: <b>kabelkac77/DT-grafika_TV</b>
-    </div>
+    <div class="stamp" id="stamp"></div>
   </div>
 </header>
 
@@ -230,20 +227,13 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
 
 <section>
   <div class="sec-head"><h2>Co blokuje postup</h2></div>
-  <div class="flag">
-    <h3>Dvě věci k vyřešení hned</h3>
-    <p><strong>Odpovědi z doplňujícího kola nejsou v ZADANI.md.</strong> Ročník, jazyk,
-      termíny, rozpočet i odpovědné osoby už zadavatel potvrdil, ale dokument je stále
-      vede jako otevřené. Dokud se nezanesou, zadání ukazuje horší stav, než jaký je.</p>
-    <p><strong>Rozpor v termínu dokončení.</strong> ZADANI.md uvádí začátek ledna 2027,
-      doplňující kolo cíl březen 2027. Platný termín je potřeba potvrdit a zapsat na jedno místo.</p>
-  </div>
+  <div class="flag" id="flag"></div>
 </section>
 
 <section>
   <div class="sec-head">
     <h2>Připravenost oddílů zadání</h2>
-    <p class="sec-note">Odhad na základě potvrzených faktů vůči otevřeným otázkám v každém oddílu.</p>
+    <p class="sec-note">Podíl zodpovězených bodů ze všech sledovaných bodů oddílu.</p>
   </div>
   <div class="rundown" id="rundown"></div>
 </section>
@@ -255,6 +245,14 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
   </div>
   <div class="filters" id="filters"></div>
   <div id="items"></div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Poslední zodpovězené body</h2>
+    <p class="sec-note">Zapsané v zadání jako fakt, s datem, kdy odpověď přišla.</p>
+  </div>
+  <div class="items" id="answered"></div>
 </section>
 
 <section>
@@ -306,157 +304,687 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
 </section>
 
 <footer>
-  <p>Přehled je ruční shrnutí stavu zadání, ne automaticky generovaný výstup. Vychází z 53 bodů
-    označených v <code>ZADANI.md</code> jako <em>K doplnění</em> / <em>K potvrzení</em>; některé jsou
-    zde rozděleny na samostatné položky a doplněny o odpovědi z doplňujícího kola, proto je
-    položek více.</p>
-  <p>Procenta připravenosti jsou odhad, ne měřená hodnota. Ukázková data ve zdrojových grafikách
-    jsou fiktivní a nesmí se zaměnit za skutečné výsledky.</p>
+  <p>Stránka se generuje ze souboru <code>ZADANI.md</code> příkazem <code>npm run dashboard</code>.
+    Jiný zdroj stavu neexistuje — co není v zadání, není ani tady.</p>
+  <p>Sledovaný bod je řádek zadání se značkou <em>K doplnění</em>, <em>K potvrzení</em> nebo
+    <em>Rozpracováno</em>, případně zodpovězený řádek se značkou ✔ a datem. Ukázková data ve
+    zdrojových grafikách jsou fiktivní a nesmí se zaměnit za skutečné výsledky.</p>
 </footer>
 
 </div>
+
 
 <script>
 (function(){
   "use strict";
 
-  var OWNERS = {
-    zadavatel: {label:"Zadavatel / pořadatel", short:"Zadavatel"},
-    casomira:  {label:"Časomíra", short:"Časomíra"},
-    rezie:     {label:"Režie a TV produkce", short:"Režie"},
-    led:       {label:"Dodavatel LED", short:"LED"},
-    my:        {label:"Na naší straně", short:"Na nás"}
+  /* Data se vkládají při generování ze souboru ZADANI.md — viz scripts/build-dashboard.cjs. */
+  var DATA = {
+  "repo": "kabelkac77/DT-grafika_TV",
+  "updated": "11. 9. 2026",
+  "sections": [
+    {
+      "n": "01",
+      "title": "Základní informace o akci",
+      "items": [
+        {
+          "t": "Číslo a označení dalšího ročníku",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "11. ročník (XI)",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Datum dalšího ročníku",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Zadavatel potvrdil, že termín zatím není stanovený.",
+          "date": null
+        },
+        {
+          "t": "Jazyk a jazykové varianty přenosu",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Čeština, s přípravou anglické mutace",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Odpovědná kontaktní osoba pro tento projekt",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Kontaktní osoba za televizní produkci a režii",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "02",
+      "title": "Cíl a rozsah celého úkolu",
+      "items": []
+    },
+    {
+      "n": "03",
+      "title": "Formát a pravidla závodu",
+      "items": [
+        {
+          "t": "Způsob hodnocení a status příštího ročníku",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Výpočet výsledku nezafixovat podle domněnky.",
+          "date": null
+        },
+        {
+          "t": "Výklad startovního pořadí a pravidla dalšího ročníku",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Finální trasa a mapa trati",
+          "s": "part",
+          "o": "zadavatel",
+          "note": "Na trase se pracuje, podklad pro G03 zatím není k dispozici.",
+          "date": null
+        },
+        {
+          "t": "Kapacita startovního pole pro další ročník",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Do grafiky zatím nevkládat pevné číslo.",
+          "date": null
+        },
+        {
+          "t": "Počet měřených úseků a mezičasů",
+          "s": "open",
+          "o": "casomira",
+          "note": "Rozhoduje o realizovatelnosti volitelné části G08.",
+          "date": null
+        },
+        {
+          "t": "Pravidla pro shodné časy, penalizace, nestartování, nedokončení a diskvalifikaci",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "04",
+      "title": "Seznam grafických částí",
+      "items": [
+        {
+          "t": "Priority G01–G07 a minimální rozsah pro první nasazení",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Schválení hotových vizuálních studií G01, G02 a G05",
+          "s": "part",
+          "o": "zadavatel",
+          "note": "Studie jsou implementované, čeká se na písemné schválení.",
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "05",
+      "title": "Údaje o závodnících a další obsah",
+      "items": [
+        {
+          "t": "Rozsah údajů",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Jméno, startovní číslo, země, tým, kategorie, portrét a vlajka",
+          "date": "8. 9. 2026"
+        },
+        {
+          "t": "Kontrola správnosti jmen, týmů a dalších údajů",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Hrášek a Lipánek",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Rozdělení na povinné a volitelné údaje pro jednotlivé grafiky",
+          "s": "open",
+          "o": "my",
+          "note": "Vyplyne z dílčího zadání grafických částí.",
+          "date": null
+        },
+        {
+          "t": "Konkrétní portréty, vlajky a další obrazové podklady",
+          "s": "part",
+          "o": "zadavatel",
+          "note": "Dodají Vlasta a Lachtan, termín zatím neurčen.",
+          "date": null
+        },
+        {
+          "t": "Seznam závodníků, jeho formát a termín dodání",
+          "s": "part",
+          "o": "zadavatel",
+          "note": "Seznam zajistí Hrášek, formát a termín chybí.",
+          "date": null
+        },
+        {
+          "t": "Pravidla pro dlouhá jména, diakritiku a chybějící údaje",
+          "s": "open",
+          "o": "my",
+          "note": "Obsah validují Hrášek a Lipánek.",
+          "date": null
+        },
+        {
+          "t": "Texty pro informační grafiku a další obsah",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "06",
+      "title": "Časomíra a závodní data",
+      "items": [
+        {
+          "t": "Dodavatel a systém časomíry, technický kontakt",
+          "s": "open",
+          "o": "casomira",
+          "note": "Bez toho nelze začít žádné z dalších témat tohoto oddílu.",
+          "date": null
+        },
+        {
+          "t": "Jaká data jsou dostupná a jak se předávají",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Automatické napojení, import souboru nebo ruční zadávání",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Dostupnost startů, živého času, mezičasů, cílových časů a pořadí",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Přesnost a způsob zápisu času",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "S kým se jezdec porovnává a zda se porovnání během jízdy mění",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Rozlišení času úseku a celkového času od startu",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Rozlišení předběžných a potvrzených výsledků",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Postup při opravě výsledku, opožděných datech nebo výpadku",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Dostupnost ukázkových dat pro přípravu a zkoušku",
+          "s": "open",
+          "o": "casomira",
+          "note": "Nutná k prototypu i k demoverzi bez ostrého napojení.",
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "07",
+      "title": "Ovládání během přenosu",
+      "items": [
+        {
+          "t": "Postup realizace",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Nejdřív demoverze ovládání bez napojení na TV a časomíru, potom ostrá verze",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Role uživatelů, počet pracovišť, klávesové zkratky, hardwarové ovladače a chování při souběhu",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "08",
+      "title": "Technické prostředí přenosu",
+      "items": [
+        {
+          "t": "Přesný počet, rozměry, orientace a mapování LED panelů",
+          "s": "open",
+          "o": "led",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Způsob předání TV grafiky do mixážního nebo odbavovacího systému",
+          "s": "open",
+          "o": "rezie",
+          "note": "Určuje technologii výstupu celého systému.",
+          "date": null
+        },
+        {
+          "t": "Požadavek na stream jako další samostatný výstup",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Odbavovací systém režie, jeho verze a podporované vstupy",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Počítače, operační systém, grafické výstupy a další dostupné vybavení",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Dostupnost a topologie místní sítě a internetu",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Technická omezení a požadavky produkce",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "09",
+      "title": "Vizuální směr a pravidla značky",
+      "items": [
+        {
+          "t": "Umístění grafiky, bezpečné okraje a prostor pro logo televize",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Velikost textů a čitelnost nad světlými i tmavými záběry",
+          "s": "part",
+          "o": "my",
+          "note": "Ověřitelné až na výstupu režie.",
+          "date": null
+        },
+        {
+          "t": "Barevné významy náskoku, ztráty, lídra a dalších stavů",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Průhlednost podkladů, animace a délka jejich trvání",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Požadavky na animace doplní zadavatel.",
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "10",
+      "title": "Loga, fotografie, písma a partneři",
+      "items": [
+        {
+          "t": "Kdo dodá portréty a ostatní obrazové podklady",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Vlasta a Lachtan",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Hierarchie a pravidla zobrazování partnerů",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Zajištění potřebných práv k použití podkladů a písem",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        },
+        {
+          "t": "Termín dodání finálních podkladů",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Bez termínu nelze naplánovat finální naplnění šablon.",
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "11",
+      "title": "Spolehlivost a náhradní postupy",
+      "items": [
+        {
+          "t": "Odpovědnost za provoz a řešení problémů během akce",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Hrášek a Lipánek",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Interval záloh, nezávislé umístění kopie, délka uchování a odpovědná osoba",
+          "s": "part",
+          "o": "zadavatel",
+          "note": "Zálohování dat zajišťuje zadavatel, parametry chybí.",
+          "date": null
+        },
+        {
+          "t": "Požadovaná redundance řídicího počítače, sítě a renderovacích výstupů",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "12",
+      "title": "Výstupy a předání",
+      "items": [
+        {
+          "t": "Rozsah návodu",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Priorita je intuitivní ovládání, ne rozsáhlá dokumentace",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Uložení zdrojů a výstupů",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Repozitář kabelkac77/DT-grafika_TV na GitHubu",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Rozsah zaškolení obsluhy, místo instalace a osoba přebírající výstupy",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "13",
+      "title": "Ověření a schválení",
+      "items": [
+        {
+          "t": "Kritéria, podle kterých bude úkol považován za dokončený",
+          "s": "open",
+          "o": "my",
+          "note": "Bez akceptačních kritérií nelze projekt uzavřít.",
+          "date": null
+        },
+        {
+          "t": "Termín a prostředí zkoušky s režií a časomírou",
+          "s": "part",
+          "o": "rezie",
+          "note": "Rámcově přelom ledna a února 2027, místo a prostředí chybí.",
+          "date": null
+        },
+        {
+          "t": "Situace pro ověření — běžná jízda, dlouhé jméno, chybějící portrét, více jezdců na trati, oprava výsledku, výpadek dat",
+          "s": "open",
+          "o": "my",
+          "note": null,
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "14",
+      "title": "Termíny, priority a omezení",
+      "items": [
+        {
+          "t": "Termín prvního návrhu",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Do konce roku 2026",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Termín funkční ukázky a společné zkoušky",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Přelom ledna a února 2027",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Cílový termín dokončení",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Březen 2027 — nahrazuje dřívější údaj začátek ledna 2027.",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Rozpočet a omezení placených nástrojů nebo služeb",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Bez licenčních poplatků, jinak bez omezení",
+          "date": "11. 9. 2026"
+        },
+        {
+          "t": "Přesný den dokončení a den ostrého nasazení",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Datum závodu dosud není známo.",
+          "date": null
+        },
+        {
+          "t": "Pořadí priorit a volitelné části při nedostatku času",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null
+        }
+      ]
+    },
+    {
+      "n": "15",
+      "title": "Navazující dílčí zadání",
+      "items": []
+    }
+  ],
+  "parts": [
+    {
+      "id": "G01",
+      "name": "Tabulka výsledků jezdců",
+      "build": "Dílčí zadání i HTML generátor podle studie 04",
+      "state": "Čeká na schválení"
+    },
+    {
+      "id": "G02",
+      "name": "Představení / popis jezdce",
+      "build": "Verze 06.5 — vodorovná i rohová, s portrétem i bez",
+      "state": "Čeká na schválení"
+    },
+    {
+      "id": "G03",
+      "name": "Mapa trati",
+      "build": "Čeká na finální trasu od pořadatele",
+      "state": "Blokováno"
+    },
+    {
+      "id": "G04",
+      "name": "Časomíra",
+      "build": "Čeká na datové rozhraní časomíry",
+      "state": "Blokováno"
+    },
+    {
+      "id": "G05",
+      "name": "Jmenovka pro rozhovory",
+      "build": "Studie 01 — jméno a funkce, generování PNG hotové",
+      "state": "Čeká na schválení"
+    },
+    {
+      "id": "G06",
+      "name": "Přechody mezi sestřihy",
+      "build": "Neřešeno, upřesní se s režií",
+      "state": "Otevřené"
+    },
+    {
+      "id": "G07",
+      "name": "Partneři",
+      "build": "Čeká na podklady od zadavatele",
+      "state": "Otevřené"
+    },
+    {
+      "id": "G08",
+      "name": "Ztráta / zisk na úsecích",
+      "build": "Závisí na dostupnosti mezičasů",
+      "state": "Volitelné"
+    }
+  ],
+  "people": [
+    {
+      "name": "Hrášek",
+      "role": "Seznam závodníků, kontrola údajů, provoz a řešení problémů během akce"
+    },
+    {
+      "name": "Lipánek",
+      "role": "Texty a validace obsahu, provoz během akce společně s Hráškem"
+    },
+    {
+      "name": "Vlasta a Lachtan",
+      "role": "Portréty, loga partnerů, práva k podkladům a termíny dodání"
+    }
+  ],
+  "milestones": [
+    {
+      "what": "Doplnění zadání",
+      "when": "probíhá",
+      "state": "Nyní",
+      "now": true
+    },
+    {
+      "what": "První návrh",
+      "when": "do konce roku 2026",
+      "state": "Připravuje se",
+      "now": false
+    },
+    {
+      "what": "Demoverze ovládání",
+      "when": "navazuje na první návrh",
+      "state": "Připravuje se",
+      "now": false
+    },
+    {
+      "what": "Společná zkouška s režií a časomírou",
+      "when": "přelom ledna a února 2027",
+      "state": "Připravuje se",
+      "now": false
+    },
+    {
+      "what": "Předání ostré verze",
+      "when": "březen 2027",
+      "state": "Připravuje se",
+      "now": false
+    }
+  ],
+  "briefs": [
+    {
+      "file": "01_VIZUALNI_SYSTEM.md",
+      "state": "Lze psát hned"
+    },
+    {
+      "file": "02_GRAFICKE_CASTI.md",
+      "state": "Po schválení vizuálního směru"
+    },
+    {
+      "file": "03_PODKLADY_A_OBSAH.md",
+      "state": "Lze psát hned"
+    },
+    {
+      "file": "04_DATA_A_CASOMIRA.md",
+      "state": "Blokováno časomírou"
+    },
+    {
+      "file": "05_BROADCAST_SYSTEM_A_REZIE.md",
+      "state": "Blokováno režií a LED"
+    },
+    {
+      "file": "06_ZALOHOVANI_A_OBNOVA.md",
+      "state": "Po funkčním řešení"
+    },
+    {
+      "file": "07_ZKOUSKA_A_PREDANI.md",
+      "state": "Po dohodě termínu zkoušky"
+    }
+  ]
+};
+
+  var OWNER_LABEL = {
+    zadavatel: "Zadavatel a pořadatel",
+    casomira:  "Časomíra",
+    rezie:     "Režie a TV produkce",
+    led:       "Dodavatel LED",
+    my:        "Na naší straně"
   };
-  var STATUS = {
-    open: {label:"Otevřené"},
-    part: {label:"Rozpracované"},
-    sync: {label:"Zodpovězeno · zanést"}
+  var OWNER_SHORT = {
+    zadavatel:"Zadavatel", casomira:"Časomíra", rezie:"Režie", led:"LED", my:"Na nás"
   };
-
-  // Oddíly odpovídají číslování v ZADANI.md. ready = odhad připravenosti v %.
-  var SECTIONS = [
-    {n:"01", title:"Základní informace o akci", ready:55, items:[
-      {t:"Datum dalšího ročníku", o:"zadavatel", s:"open", note:"Zadavatel potvrdil, že termín zatím není stanovený."},
-      {t:"Číslo a označení ročníku", o:"zadavatel", s:"sync", note:"11. ročník (XI) — potvrzeno v doplňujícím kole."},
-      {t:"Odpovědná kontaktní osoba za projekt", o:"zadavatel", s:"open"},
-      {t:"Kontaktní osoba za televizní produkci a režii", o:"rezie", s:"open"},
-      {t:"Jazyk a jazykové varianty přenosu", o:"zadavatel", s:"sync", note:"Čeština, s přípravou anglické mutace."}
-    ]},
-    {n:"02", title:"Cíl a rozsah úkolu", ready:100, items:[]},
-    {n:"03", title:"Formát a pravidla závodu", ready:20, items:[
-      {t:"Způsob hodnocení — lepší čas, nebo druhá jízda pro MČR", o:"zadavatel", s:"open", note:"Výpočet výsledku nelze zafixovat podle domněnky."},
-      {t:"Výklad startovního pořadí a pravidla dalšího ročníku", o:"zadavatel", s:"open"},
-      {t:"Finální trasa a mapa trati", o:"zadavatel", s:"part", note:"Na trase se pracuje; podklad pro G03 zatím není."},
-      {t:"Kapacita startovního pole — zdroje uvádějí 120 i 140", o:"zadavatel", s:"open"},
-      {t:"Počet měřených úseků a mezičasů", o:"casomira", s:"open", note:"Rozhoduje o realizovatelnosti volitelné části G08."},
-      {t:"Shodné časy, penalizace, DNS, DNF a diskvalifikace", o:"zadavatel", s:"open"}
-    ]},
-    {n:"04", title:"Seznam grafických částí", ready:70, items:[
-      {t:"Priority G01–G07 a minimální rozsah pro první nasazení", o:"zadavatel", s:"open"},
-      {t:"Schválení hotových vizuálních studií G01, G02 a G05", o:"zadavatel", s:"part", note:"Studie jsou implementované, čekají na písemné schválení."}
-    ]},
-    {n:"05", title:"Údaje o závodnících a obsah", ready:45, items:[
-      {t:"Povinné a volitelné údaje pro jednotlivé grafiky", o:"my", s:"open", note:"Vyplyne z dílčího zadání grafických částí."},
-      {t:"Portréty, vlajky a další obrazové podklady", o:"zadavatel", s:"part", note:"Dodají Vlasta a Lachtan, termín neurčen."},
-      {t:"Seznam závodníků — formát a termín dodání", o:"zadavatel", s:"part", note:"Seznam zajistí Hrášek, formát a termín chybí."},
-      {t:"Kontrola správnosti jmen, týmů a údajů", o:"zadavatel", s:"sync", note:"Hrášek a Lipánek."},
-      {t:"Pravidla pro dlouhá jména, diakritiku a chybějící údaje", o:"my", s:"open"},
-      {t:"Texty pro informační grafiku", o:"zadavatel", s:"open"}
-    ]},
-    {n:"06", title:"Časomíra a závodní data", ready:5, items:[
-      {t:"Dodavatel a systém časomíry, technický kontakt", o:"casomira", s:"open", note:"Bez toho nelze začít žádné z dalších devíti témat."},
-      {t:"Jaká data jsou dostupná a jak se předávají", o:"casomira", s:"open"},
-      {t:"Automatické napojení, import souboru, nebo ruční zadávání", o:"casomira", s:"open"},
-      {t:"Dostupnost startů, živého času, mezičasů a pořadí", o:"casomira", s:"open"},
-      {t:"Přesnost a způsob zápisu času", o:"casomira", s:"open"},
-      {t:"S kým se jezdec porovnává a zda se porovnání mění za jízdy", o:"casomira", s:"open"},
-      {t:"Rozlišení času úseku a celkového času od startu", o:"casomira", s:"open"},
-      {t:"Rozlišení předběžných a potvrzených výsledků", o:"casomira", s:"open"},
-      {t:"Postup při opravě výsledku, opoždění dat a výpadku", o:"casomira", s:"open"},
-      {t:"Ukázková data pro přípravu a zkoušku", o:"casomira", s:"open", note:"Nutné k prototypu i k demu bez ostrého napojení."}
-    ]},
-    {n:"07", title:"Ovládání během přenosu", ready:85, items:[
-      {t:"Role, počet pracovišť, klávesové zkratky a chování při souběhu", o:"rezie", s:"open"},
-      {t:"Postup přes demoverzi ovládání bez napojení na TV a časomíru", o:"zadavatel", s:"sync", note:"Potvrzeno v doplňujícím kole."}
-    ]},
-    {n:"08", title:"Technické prostředí přenosu", ready:25, items:[
-      {t:"Počet, rozměry, orientace a mapování LED panelů", o:"led", s:"open"},
-      {t:"Způsob předání TV grafiky do mixu nebo odbavení", o:"rezie", s:"open", note:"Určuje technologii výstupu celého systému."},
-      {t:"Stream jako další samostatný výstup", o:"zadavatel", s:"open"},
-      {t:"Odbavovací systém režie, verze a podporované vstupy", o:"rezie", s:"open"},
-      {t:"Počítače, operační systém a grafické výstupy", o:"rezie", s:"open"},
-      {t:"Dostupnost a topologie sítě a internetu na místě", o:"rezie", s:"open"},
-      {t:"Technická omezení a požadavky produkce", o:"rezie", s:"open"}
-    ]},
-    {n:"09", title:"Vizuální směr a pravidla značky", ready:55, items:[
-      {t:"Umístění grafiky, bezpečné okraje a prostor pro logo televize", o:"rezie", s:"open"},
-      {t:"Velikost textů a čitelnost nad světlými i tmavými záběry", o:"my", s:"part", note:"Ověřitelné až na výstupu režie."},
-      {t:"Barevné významy náskoku, ztráty a lídra", o:"zadavatel", s:"open", note:"Návrh doplnit zelenou pro náskok čeká na rozhodnutí."},
-      {t:"Průhlednost podkladů, animace a jejich délka", o:"zadavatel", s:"open", note:"Požadavky na animace doplní zadavatel."}
-    ]},
-    {n:"10", title:"Loga, fotografie, písma a partneři", ready:20, items:[
-      {t:"Hierarchie a pravidla zobrazování partnerů", o:"zadavatel", s:"open"},
-      {t:"Kdo dodá portréty a obrazové podklady", o:"zadavatel", s:"sync", note:"Vlasta a Lachtan."},
-      {t:"Práva k použití podkladů a písem", o:"zadavatel", s:"open"},
-      {t:"Termín dodání finálních podkladů", o:"zadavatel", s:"open", note:"Bez termínu nelze naplánovat finální naplnění šablon."}
-    ]},
-    {n:"11", title:"Spolehlivost a náhradní postupy", ready:55, items:[
-      {t:"Interval záloh, umístění kopie, uchování a odpovědná osoba", o:"zadavatel", s:"part", note:"Zálohování zajišťuje zadavatel, parametry chybí."},
-      {t:"Redundance řídicího počítače, sítě a renderovacích výstupů", o:"rezie", s:"open"},
-      {t:"Odpovědnost za provoz a řešení problémů během akce", o:"zadavatel", s:"sync", note:"Hrášek a Lipánek."}
-    ]},
-    {n:"12", title:"Výstupy a předání", ready:80, items:[
-      {t:"Rozsah zaškolení, místo instalace a přebírající osoba", o:"zadavatel", s:"open"},
-      {t:"Priorita intuitivního ovládání před rozsáhlou dokumentací", o:"zadavatel", s:"sync"}
-    ]},
-    {n:"13", title:"Ověření a schválení", ready:30, items:[
-      {t:"Kritéria, podle kterých je úkol hotový", o:"my", s:"open", note:"Bez akceptačních kritérií nelze projekt uzavřít."},
-      {t:"Termín a prostředí zkoušky s režií a časomírou", o:"rezie", s:"part", note:"Rámcově přelom ledna a února 2027, místo chybí."},
-      {t:"Testovací situace — dlouhé jméno, chybějící portrét, výpadek dat", o:"my", s:"open"}
-    ]},
-    {n:"14", title:"Termíny, priority a omezení", ready:60, items:[
-      {t:"Termín prvního návrhu", o:"zadavatel", s:"sync", note:"Do konce roku 2026."},
-      {t:"Termín funkční ukázky a společné zkoušky", o:"zadavatel", s:"sync", note:"Přelom ledna a února 2027."},
-      {t:"Cílový termín dokončení", o:"zadavatel", s:"part", note:"ZADANI.md uvádí začátek ledna 2027, doplňující kolo březen 2027 — rozpor."},
-      {t:"Rozpočet a omezení placených nástrojů", o:"zadavatel", s:"sync", note:"Bez licenčních poplatků, jinak bez omezení."},
-      {t:"Pořadí priorit a volitelné části při nedostatku času", o:"zadavatel", s:"open"}
-    ]}
-  ];
-
-  var PARTS = [
-    {id:"G01", name:"Tabulka výsledků jezdců", state:"Dílčí zadání i HTML generátor podle studie 04", tally:"ready", tallyLabel:"Ke schválení"},
-    {id:"G02", name:"Představení jezdce", state:"Verze 06.5 — vodorovná i rohová, s portrétem i bez", tally:"ready", tallyLabel:"Ke schválení"},
-    {id:"G03", name:"Mapa trati", state:"Čeká na finální trasu od pořadatele", tally:"wait", tallyLabel:"Blokováno"},
-    {id:"G04", name:"Časomíra", state:"Stavy před startem, za jízdy a v cíli podle dat časomíry", tally:"wait", tallyLabel:"Blokováno"},
-    {id:"G05", name:"Jmenovka pro rozhovory", state:"Studie 01 — jméno a funkce, generování PNG hotové", tally:"ready", tallyLabel:"Ke schválení"},
-    {id:"G06", name:"Přechody mezi sestřihy", state:"Počet variant a délka se upřesní s režií", tally:"wait", tallyLabel:"Otevřené"},
-    {id:"G07", name:"Partneři", state:"Loga a hierarchie — podklady dodá zadavatel postupně", tally:"wait", tallyLabel:"Otevřené"},
-    {id:"G08", name:"Ztráta a zisk na úsecích", state:"Závisí na dostupnosti mezičasů", tally:"opt", tallyLabel:"Volitelné"}
-  ];
-
-  var PIPE = [
-    {when:"probíhá", what:"Doplnění zadání", desc:"Otevřené otázky u zadavatele, časomíry a režie.", now:true},
-    {when:"do konce 2026", what:"První návrh", desc:"Vizuální systém a dílčí zadání grafických částí."},
-    {when:"navazuje", what:"Demo ovládání", desc:"Prototyp režijního rozhraní s ukázkovými daty, bez ostrého napojení."},
-    {when:"přelom 1–2 / 2027", what:"Zkouška", desc:"Společná zkouška s režií a časomírou v cílovém prostředí."},
-    {when:"cíl 3 / 2027", what:"Předání", desc:"Ostrá verze, zálohování a obslužný návod. Termín k potvrzení."}
-  ];
-
-  var BRIEFS = [
-    {f:"01_VIZUALNI_SYSTEM.md", st:"Lze psát hned", blocked:false},
-    {f:"02_GRAFICKE_CASTI.md", st:"Po schválení vizuálního směru", blocked:false},
-    {f:"03_PODKLADY_A_OBSAH.md", st:"Lze psát hned, souběžně", blocked:false},
-    {f:"04_DATA_A_CASOMIRA.md", st:"Blokováno časomírou", blocked:true},
-    {f:"05_BROADCAST_SYSTEM_A_REZIE.md", st:"Blokováno režií a LED", blocked:true},
-    {f:"06_ZALOHOVANI_A_OBNOVA.md", st:"Po funkčním řešení", blocked:false},
-    {f:"07_ZKOUSKA_A_PREDANI.md", st:"Po dohodě termínu zkoušky", blocked:false}
-  ];
-
-  var PEOPLE = [
-    {nm:"Hrášek", rl:"Seznam závodníků, kontrola údajů, provoz a řešení problémů během akce"},
-    {nm:"Lipánek", rl:"Texty a validace obsahu, provoz během akce společně s Hráškem"},
-    {nm:"Vlasta a Lachtan", rl:"Portréty, loga partnerů, práva k podkladům a termíny dodání"}
-  ];
+  var STATUS_LABEL = { open:"Otevřené", part:"Rozpracované", done:"Zodpovězeno" };
 
   var $ = function(id){ return document.getElementById(id); };
   var el = function(tag, cls, txt){
@@ -465,7 +993,6 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     if(txt !== undefined && txt !== null){ n.textContent = txt; }
     return n;
   };
-
   var wide = function(){
     return window.matchMedia && window.matchMedia("(min-width: 760px)").matches;
   };
@@ -473,26 +1000,37 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     return n + " " + (n === 1 ? one : (n >= 2 && n <= 4 ? few : many));
   };
 
+  var SECTIONS = DATA.sections;
   var allItems = [];
   SECTIONS.forEach(function(sec){
     sec.items.forEach(function(it){
-      allItems.push({sec:sec.n, secTitle:sec.title, t:it.t, o:it.o, s:it.s, note:it.note});
+      allItems.push({sec:sec.n, secTitle:sec.title, t:it.t, o:it.o, s:it.s, note:it.note, date:it.date});
     });
   });
-  var count = function(fn){ return allItems.filter(fn).length; };
-  var openCount = count(function(i){ return i.s === "open"; });
-  var partCount = count(function(i){ return i.s === "part"; });
-  var syncCount = count(function(i){ return i.s === "sync"; });
-  var closedSections = SECTIONS.filter(function(s){
-    return s.items.filter(function(i){ return i.s !== "sync"; }).length === 0;
-  }).length;
+  var live = allItems.filter(function(i){ return i.s !== "done"; });
+  var byStatus = function(st){ return allItems.filter(function(i){ return i.s === st; }).length; };
+  var openCount = byStatus("open");
+  var partCount = byStatus("part");
+  var doneCount = byStatus("done");
+  var briefsDone = DATA.briefs.filter(function(b){ return /hotov/i.test(b.state); }).length;
 
-  // KPI
+  // ---- razítko ----
+  var stamp = $("stamp");
+  var liveLine = el("span", "live", "Aktualizováno " + DATA.updated);
+  stamp.appendChild(liveLine);
+  stamp.appendChild(document.createElement("br"));
+  stamp.appendChild(document.createTextNode("zdroj: "));
+  stamp.appendChild(el("b", "", "ZADANI.md"));
+  stamp.appendChild(document.createElement("br"));
+  stamp.appendChild(document.createTextNode("repo: "));
+  stamp.appendChild(el("b", "", DATA.repo));
+
+  // ---- KPI ----
   [
     {n:openCount, k:"Otevřených otázek", sub:"bez odpovědi", cls:"hot"},
     {n:partCount, k:"Rozpracovaných bodů", sub:"částečná odpověď", cls:"warn"},
-    {n:syncCount, k:"Zodpovězeno, chybí v ZADANI.md", sub:"k zanesení", cls:"ok"},
-    {n:closedSections + " / " + SECTIONS.length, k:"Uzavřených oddílů zadání", sub:"bez otevřených bodů", cls:""}
+    {n:doneCount, k:"Zodpovězených bodů", sub:"zapsaných v zadání", cls:"ok"},
+    {n:briefsDone + " / " + DATA.briefs.length, k:"Hotových dílčích zadání", sub:"navazuje na obecné zadání", cls:""}
   ].forEach(function(k){
     var c = el("div", "kpi " + k.cls);
     c.appendChild(el("div", "n mono", String(k.n)));
@@ -501,46 +1039,88 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     $("kpis").appendChild(c);
   });
 
-  // Připravenost oddílů
+  // ---- co blokuje postup ----
+  (function(){
+    var f = $("flag");
+    var bySec = SECTIONS.map(function(s){
+      return {n:s.n, title:s.title, open:s.items.filter(function(i){ return i.s !== "done"; }).length};
+    }).filter(function(s){ return s.open > 0; })
+      .sort(function(a, b){ return b.open - a.open; });
+
+    var byOwner = {};
+    live.forEach(function(i){ byOwner[i.o] = (byOwner[i.o] || 0) + 1; });
+    var owners = Object.keys(byOwner).sort(function(a, b){ return byOwner[b] - byOwner[a]; });
+
+    f.appendChild(el("h3", "", "Nejvíc chybí"));
+
+    if(!bySec.length){
+      f.appendChild(el("p", "", "Všechny sledované body zadání jsou zodpovězené."));
+      return;
+    }
+
+    var p1 = el("p");
+    p1.appendChild(el("strong", "", "Oddíl " + bySec[0].n + " " + bySec[0].title + "."));
+    p1.appendChild(document.createTextNode(" " + plural(bySec[0].open, "otevřený bod", "otevřené body", "otevřených bodů")
+      + (bySec[1] ? ". Hned za ním oddíl " + bySec[1].n + " " + bySec[1].title + " s "
+          + plural(bySec[1].open, "bodem", "body", "body") + "." : ".")));
+    f.appendChild(p1);
+
+    var p2 = el("p");
+    p2.appendChild(el("strong", "", "Nejdelší fronta: " + OWNER_LABEL[owners[0]] + "."));
+    p2.appendChild(document.createTextNode(" " + plural(byOwner[owners[0]], "bod", "body", "bodů")
+      + " z celkových " + live.length + " čeká na tuto stranu."
+      + (owners[1] ? " Následuje " + OWNER_LABEL[owners[1]].toLowerCase() + " s "
+          + plural(byOwner[owners[1]], "bodem", "body", "body") + "." : "")));
+    f.appendChild(p2);
+  })();
+
+  // ---- připravenost oddílů ----
   var head = el("div", "rd-row head");
-  ["Oddíl", "Téma", "", "Otevřené"].forEach(function(h, i){
-    var s = el("span", i === 2 ? "meter-h" : "", i === 2 ? "Připravenost" : h);
-    head.appendChild(s);
+  ["Oddíl", "Téma", "Zodpovězeno", "Otevřené"].forEach(function(h, i){
+    head.appendChild(el("span", i === 2 ? "meter-h" : "", h));
   });
   $("rundown").appendChild(head);
 
   SECTIONS.forEach(function(sec){
-    var live = sec.items.filter(function(i){ return i.s !== "sync"; }).length;
+    var openN = sec.items.filter(function(i){ return i.s !== "done"; }).length;
+    var doneN = sec.items.length - openN;
+    var ratio = sec.items.length ? Math.round(doneN / sec.items.length * 100) : null;
+
     var row = el("div", "rd-row");
     row.appendChild(el("div", "rd-num", sec.n));
 
     var t = el("div", "rd-title");
     t.appendChild(document.createTextNode(sec.title));
-    var tail = el("span", "tail", live === 0
-      ? "Uzavřeno — bez otevřených bodů"
-      : plural(live, "bod k dořešení", "body k dořešení", "bodů k dořešení"));
-    t.appendChild(tail);
+    t.appendChild(el("span", "tail", sec.items.length === 0
+      ? "Bez sledovaných otázek"
+      : (openN === 0
+          ? "Uzavřeno — všech " + sec.items.length + " bodů zodpovězeno"
+          : plural(openN, "bod k dořešení", "body k dořešení", "bodů k dořešení")
+            + " z " + sec.items.length)));
     row.appendChild(t);
 
-    var m = el("div", "meter " + (sec.ready < 35 ? "low" : sec.ready < 75 ? "mid" : ""));
+    var m = el("div", "meter " + (ratio === null ? "none" : ratio < 35 ? "low" : ratio < 75 ? "mid" : ""));
     var fill = el("i");
-    fill.style.width = sec.ready + "%";
+    fill.style.width = (ratio === null ? 0 : ratio) + "%";
     m.appendChild(fill);
     m.setAttribute("role", "img");
-    m.setAttribute("aria-label", "Připravenost " + sec.ready + " procent");
+    m.setAttribute("aria-label", ratio === null
+      ? "Bez sledovaných otázek"
+      : "Zodpovězeno " + ratio + " procent bodů");
     row.appendChild(m);
 
-    var c = el("div", "rd-count mono" + (live === 0 ? " zero" : ""));
-    c.innerHTML = live === 0 ? "—" : "<b>" + live + "</b>";
+    var c = el("div", "rd-count mono" + (openN === 0 ? " zero" : ""));
+    c.textContent = openN === 0 ? "—" : String(openN);
+    if(openN > 0){ c.innerHTML = "<b>" + openN + "</b>"; }
     row.appendChild(c);
 
     $("rundown").appendChild(row);
   });
 
-  // Filtry a položky
+  // ---- kdo má míč ----
   var activeOwner = "all";
-  var ownerKeys = Object.keys(OWNERS).filter(function(k){
-    return allItems.some(function(i){ return i.o === k; });
+  var ownerKeys = Object.keys(OWNER_LABEL).filter(function(k){
+    return live.some(function(i){ return i.o === k; });
   });
 
   function renderItems(){
@@ -550,19 +1130,17 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     var shown = 0;
 
     keys.forEach(function(key){
-      var list = allItems.filter(function(i){ return i.o === key; });
+      var list = live.filter(function(i){ return i.o === key; });
       if(!list.length){ return; }
-      var order = {open:0, part:1, sync:2};
-      list.sort(function(a, b){
-        return order[a.s] - order[b.s] || a.sec.localeCompare(b.sec);
-      });
+      var order = {open:0, part:1};
+      list.sort(function(a, b){ return order[a.s] - order[b.s] || a.sec.localeCompare(b.sec); });
       shown += list.length;
 
       var g = el("div", "owner-group");
       var h = el("button", "owner-head");
       h.type = "button";
-      h.appendChild(el("span", "caret", "\u203A"));
-      h.appendChild(el("h3", "", OWNERS[key].label));
+      h.appendChild(el("span", "caret", "›"));
+      h.appendChild(el("h3", "", OWNER_LABEL[key]));
       h.appendChild(el("div", "bar"));
       h.appendChild(el("div", "n", plural(list.length, "bod", "body", "bodů")));
       g.appendChild(h);
@@ -576,16 +1154,8 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
         h.setAttribute("aria-expanded", String(next));
         wrap.hidden = !next;
       });
-      list.forEach(function(i){
-        var row = el("div", "item");
-        row.appendChild(el("div", "sid", i.sec));
-        var txt = el("div", "txt");
-        txt.appendChild(document.createTextNode(i.t));
-        if(i.note){ txt.appendChild(el("span", "note", i.note)); }
-        row.appendChild(txt);
-        row.appendChild(el("div", "pill " + i.s, STATUS[i.s].label));
-        wrap.appendChild(row);
-      });
+
+      list.forEach(function(i){ wrap.appendChild(itemRow(i)); });
       g.appendChild(wrap);
       box.appendChild(g);
     });
@@ -593,10 +1163,21 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     if(!shown){ box.appendChild(el("div", "empty", "Žádné body pro tento filtr.")); }
   }
 
-  function renderFilters(){
+  function itemRow(i){
+    var row = el("div", "item");
+    row.appendChild(el("div", "sid", i.sec));
+    var txt = el("div", "txt");
+    txt.appendChild(document.createTextNode(i.t));
+    if(i.note){ txt.appendChild(el("span", "note", i.note)); }
+    row.appendChild(txt);
+    row.appendChild(el("div", "pill " + i.s, i.s === "done" && i.date ? i.date : STATUS_LABEL[i.s]));
+    return row;
+  }
+
+  (function renderFilters(){
     var f = $("filters");
-    var defs = [{k:"all", label:"Vše", n:allItems.length}].concat(ownerKeys.map(function(k){
-      return {k:k, label:OWNERS[k].short, n:allItems.filter(function(i){ return i.o === k; }).length};
+    var defs = [{k:"all", label:"Vše", n:live.length}].concat(ownerKeys.map(function(k){
+      return {k:k, label:OWNER_SHORT[k], n:live.filter(function(i){ return i.o === k; }).length};
     }));
     defs.forEach(function(d){
       var b = el("button", "chip");
@@ -614,48 +1195,65 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
       });
       f.appendChild(b);
     });
-  }
-  renderFilters();
+  })();
   renderItems();
 
-  // Grafické části
+  // ---- poslední zodpovězené body ----
+  (function(){
+    var done = allItems.filter(function(i){ return i.s === "done"; }).slice();
+    var key = function(d){
+      var m = /(\d+)\.\s*(\d+)\.\s*(\d{4})/.exec(d || "");
+      return m ? (+m[3]) * 10000 + (+m[2]) * 100 + (+m[1]) : 0;
+    };
+    done.sort(function(a, b){ return key(b.date) - key(a.date) || a.sec.localeCompare(b.sec); });
+    var box = $("answered");
+    if(!done.length){ box.appendChild(el("div", "empty", "Zatím žádný zodpovězený bod.")); return; }
+    done.slice(0, 10).forEach(function(i){ box.appendChild(itemRow(i)); });
+  })();
+
+  // ---- grafické části ----
+  var TALLY = {
+    "Čeká na schválení":"ready", "Blokováno":"wait", "Otevřené":"wait",
+    "Volitelné":"opt", "Hotovo":"build", "Schváleno":"build"
+  };
   var ph = el("div", "part head");
   ["ID", "Část", "Stav realizace", "Signál"].forEach(function(h){ ph.appendChild(el("span", "", h)); });
   $("parts").appendChild(ph);
-  PARTS.forEach(function(p){
+  DATA.parts.forEach(function(p){
     var r = el("div", "part");
     r.appendChild(el("div", "gid", p.id));
     r.appendChild(el("div", "gname", p.name));
-    r.appendChild(el("div", "gstate", p.state));
+    r.appendChild(el("div", "gstate", p.build));
     var w = el("div", "tallywrap");
-    w.appendChild(el("span", "tally " + p.tally, p.tallyLabel));
+    w.appendChild(el("span", "tally " + (TALLY[p.state] || "wait"), p.state));
     r.appendChild(w);
     $("parts").appendChild(r);
   });
 
-  // Postup projektu
-  PIPE.forEach(function(s){
+  // ---- postup projektu ----
+  DATA.milestones.forEach(function(s){
     var d = el("div", "step" + (s.now ? " now" : ""));
     d.appendChild(el("div", "when", s.when));
     d.appendChild(el("div", "what", s.what));
-    d.appendChild(el("div", "desc", s.desc));
+    d.appendChild(el("div", "desc", s.state));
     $("pipe").appendChild(d);
   });
 
-  // Dílčí zadání
-  BRIEFS.forEach(function(b, i){
-    var r = el("div", "brief" + (b.blocked ? " blocked" : ""));
+  // ---- dílčí zadání ----
+  DATA.briefs.forEach(function(b, i){
+    var blocked = /blokov/i.test(b.state);
+    var r = el("div", "brief" + (blocked ? " blocked" : ""));
     r.appendChild(el("div", "num mono", String(i + 1)));
-    r.appendChild(el("div", "nm", b.f));
-    r.appendChild(el("div", "st", b.st));
+    r.appendChild(el("div", "nm", b.file));
+    r.appendChild(el("div", "st", b.state));
     $("briefs").appendChild(r);
   });
 
-  // Lidé
-  PEOPLE.forEach(function(p){
+  // ---- odpovědnosti ----
+  DATA.people.forEach(function(p){
     var c = el("div", "person");
-    c.appendChild(el("div", "nm", p.nm));
-    c.appendChild(el("div", "rl", p.rl));
+    c.appendChild(el("div", "nm", p.name));
+    c.appendChild(el("div", "rl", p.role));
     $("people").appendChild(c);
   });
 })();
