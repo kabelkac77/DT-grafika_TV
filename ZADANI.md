@@ -90,7 +90,7 @@ Potvrzené části:
 | G01 | Tabulka výsledků jezdců | 10 výsledků: startovní číslo, jméno, stát, čas / ztráta. Měnitelná kategorie a jízda, loga vpravo ve společném panelu. [Dílčí zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Průběžná/finální varianta a stránkování se doplní. | Dílčí zadání i HTML generátor podle studie 04 | Čeká na schválení |
 | G02 | Představení / popis jezdce | Údaje o jezdci podle oddílu 5; podoba a okamžik zobrazení se doplní. | Verze 06.5 — vodorovná i rohová, s portrétem i bez | Čeká na schválení |
 | G03 | Mapa trati | Finální trasu a požadované body je nutné dodat nebo potvrdit. | Čeká na finální trasu od pořadatele | Blokováno |
-| G04 | Časomíra | Kompaktní čas vpravo dole, rovný levý okraj, bez reliéfu. [Generátor a návod](časomíra/README.md). Přesné stavy a formát živého času se doplní podle dostupných dat. | HTML/CSS editor a PNG generátor hotové; živé napojení čeká na rozhraní časomíry | Rozpracováno |
+| G04 | Časomíra | Kompaktní čas vpravo dole, rovný levý okraj, bez reliéfu. [Generátor a návod](časomíra/README.md). Přesné stavy a formát živého času se doplní podle dostupných dat. | HTML/CSS editor a PNG generátor hotové; živé napojení čeká na rozhraní časomíry | Čeká na schválení |
 | G05 | Jmenovka pro rozhovory | Jméno, startovní číslo a tým. | Studie 01 — jméno a funkce, generování PNG hotové | Čeká na schválení |
 | G06 | Přechody mezi sestřihy | Počet variant, délka a způsob použití se upřesní s režií. | Neřešeno, upřesní se s režií | Otevřené |
 | G07 | Partneři | Loga a způsob prezentace podle postupně dodávaných podkladů. | Čeká na podklady od zadavatele | Otevřené |
