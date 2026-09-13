@@ -439,7 +439,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
   /* Data se vkládají při generování ze souboru ZADANI.md — viz scripts/build-dashboard.cjs. */
   var DATA = {
   "repo": "kabelkac77/DT-grafika_TV",
-  "updated": "11. 9. 2026",
+  "updated": "13. 9. 2026",
   "sections": [
     {
       "n": "01",
@@ -613,6 +613,20 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "open",
           "o": "zadavatel",
           "note": null,
+          "date": null
+        },
+        {
+          "t": "G04 — vizuální generátor",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Implementován editor, ukázkový čas, průhledný PNG export a společné Actions",
+          "date": "13. 9. 2026"
+        },
+        {
+          "t": "G04 — rozměry a vizuální shoda s původním návrhem",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Pracovní rozměr 344 × 112 px; původní obrázek nebyl dostupný pro přesné porovnání.",
           "date": null
         }
       ]
@@ -993,8 +1007,8 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     {
       "id": "G04",
       "name": "Časomíra",
-      "build": "Čeká na datové rozhraní časomíry",
-      "state": "Blokováno"
+      "build": "HTML/CSS editor a PNG generátor hotové; živé napojení čeká na rozhraní časomíry",
+      "state": "Rozpracováno"
     },
     {
       "id": "G05",
@@ -1110,15 +1124,19 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     {
       "date": "2026-09-11",
       "count": 16
+    },
+    {
+      "date": "2026-09-13",
+      "count": 17
     }
   ],
-  "trackedTotal": 63,
+  "trackedTotal": 65,
   "timeline": {
     "start": "2026-09-08",
     "end": "2027-03-31"
   }
 };
-  var BUILD = "15e6238580";
+  var BUILD = "230085b77a";
 
   var OWNER_LABEL = {
     zadavatel: "Zadavatel a pořadatel",

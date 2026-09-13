@@ -90,7 +90,7 @@ Potvrzené části:
 | G01 | Tabulka výsledků jezdců | 10 výsledků: startovní číslo, jméno, stát, čas / ztráta. Měnitelná kategorie a jízda, loga vpravo ve společném panelu. [Dílčí zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Průběžná/finální varianta a stránkování se doplní. | Dílčí zadání i HTML generátor podle studie 04 | Čeká na schválení |
 | G02 | Představení / popis jezdce | Údaje o jezdci podle oddílu 5; podoba a okamžik zobrazení se doplní. | Verze 06.5 — vodorovná i rohová, s portrétem i bez | Čeká na schválení |
 | G03 | Mapa trati | Finální trasu a požadované body je nutné dodat nebo potvrdit. | Čeká na finální trasu od pořadatele | Blokováno |
-| G04 | Časomíra | Přesné stavy před startem, za jízdy a v cíli se doplní podle dostupných dat. | Čeká na datové rozhraní časomíry | Blokováno |
+| G04 | Časomíra | Kompaktní čas vpravo dole, rovný levý okraj, bez reliéfu. [Generátor a návod](časomíra/README.md). Přesné stavy a formát živého času se doplní podle dostupných dat. | HTML/CSS editor a PNG generátor hotové; živé napojení čeká na rozhraní časomíry | Rozpracováno |
 | G05 | Jmenovka pro rozhovory | Jméno, startovní číslo a tým. | Studie 01 — jméno a funkce, generování PNG hotové | Čeká na schválení |
 | G06 | Přechody mezi sestřihy | Počet variant, délka a způsob použití se upřesní s režií. | Neřešeno, upřesní se s režií | Otevřené |
 | G07 | Partneři | Loga a způsob prezentace podle postupně dodávaných podkladů. | Čeká na podklady od zadavatele | Otevřené |
@@ -115,6 +115,9 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 - Formát a termín dodání seznamu závodníků: **K doplnění** (čeká: zadavatel)
 - Pravidla pro dlouhá jména, diakritiku a chybějící údaje: **K doplnění** (čeká: na nás) — obsah validují Hrášek a Lipánek.
 - Texty pro informační grafiku a další obsah: **K doplnění** (čeká: zadavatel)
+
+- G04 — vizuální generátor: **implementován editor, ukázkový čas, průhledný PNG export a společné Actions** ✔ 13. 9. 2026
+- G04 — rozměry a vizuální shoda s původním návrhem: **K potvrzení** (čeká: zadavatel) — pracovní rozměr 344 × 112 px; původní obrázek nebyl dostupný pro přesné porovnání.
 
 ## 6. Časomíra a závodní data
 
@@ -312,3 +315,5 @@ Rámec podle termínů potvrzených 11. 9. 2026. Dílčí termíny uvnitř jedno
 - 11. 9. 2026: sjednocen zápis otevřených bodů. Každý sledovaný bod nese značku stavu a stranu, která má odpověď dodat; zodpovězené body zůstávají v dokumentu jako fakt se značkou ✔ a datem. Z tohoto zápisu se generuje dashboard stavu zadání ve složce `docs/`.
 
 - 9. 9. 2026: schváleno přenesení menšího nápisu SVATOHORSKÝ / DOWN / TOWN pod reliéf do všech variant jezdce, hosta a výsledkové tabulky. Nápis je centrovaný s celým reliéfem, bez kruhu, přidané linky a roku. Host mírně zmenšen na 620 px. Toto rozhodnutí nahrazuje dřívější požadavek bez samostatného nápisu. Požadavky na animace doplní zadavatel; stávající technické chování tím není schválením budoucích animací.
+
+- 13. 9. 2026: vytvořena složka `časomíra/` pro G04: HTML/CSS editor, ukázková data, validace času, skrytí karty, nastavení v URL a PNG renderer. Umístění vpravo dole, rovný levý okraj, bez reliéfu. Přidáno do společného menu, `npm run render` a Actions včetně vstupu `timer_time`. Doplněny README a stav G04 v Dashboardu. Živá data, produkční formát a animace nejsou tímto označeny za hotové.

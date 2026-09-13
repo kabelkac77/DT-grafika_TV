@@ -10,6 +10,7 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | --- | --- |
 | `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
 | `karta-vysledky/` | G01 — deset výsledků, loga, HTML/CSS generátor a zadání |
+| `časomíra/` | G04 — editor ukázkového času vpravo dole a generátor PNG |
 | `karta-hosta/` | HTML/CSS editor a generování decentní jmenovky hosta (jméno a funkce) |
 | `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
 | `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
@@ -83,7 +84,8 @@ zobrazuje až po sloučení změn do `main`.
 - G02 — karta jezdce: aktuální verze **06.5**, vodorovná a rohová karta, obě s portrétem i bez něj. Celý reliéf, jemná MTB stopa a menší bílý nápis z loga pod reliéfem.
 - G05 — karta hosta: funkční jmenovka se jménem a funkcí, společné generování s kartou jezdce.
 - G01 — karta výsledků: funkční HTML/CSS generátor podle studie 04; [zdroje a návod](karta-vysledky/README.md), [zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Živá data a editor rozmístění log navazují později.
-- G03, G04, G06 a G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
+- G04 — časomíra: HTML/CSS editor a PNG generátor, rovný levý okraj, bez reliéfu; [návod](časomíra/README.md). Živé napojení a animace zbývají.
+- G03, G06 a G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
 - G08 — ztráta nebo zisk na úsecích: volitelné rozšíření závislé na dostupnosti mezičasů.
 - Produkční formát, napojení časomíry a způsob odbavení musí být potvrzeny s režií.
 
@@ -120,7 +122,7 @@ Vygenerované náhledy se mají udržovat pouze v rozsahu potřebném pro kontro
 
 ## Společný generátor
 
-Otevřete `index.html` pro výběr karty jezdce, hosta nebo výsledků. `npm run render` generuje všechny tři karty, `npm run render:host` pouze hosta a `npm run render:jezdec` pouze jezdce. V Actions můžete při ručním spuštění zadat jméno a funkci hosta; PNG všech karet najdete v balíčku `svdt-grafika-nahledy`. Úpravy v prohlížeči se nepřenášejí automaticky do Actions — použijte vstupní pole workflow nebo změňte data.js.
+Otevřete `index.html` pro výběr karty jezdce, hosta, výsledků nebo časomíry. `npm run render` generuje všechny čtyři grafiky, `npm run render:host` pouze hosta a `npm run render:jezdec` pouze jezdce. V Actions můžete při ručním spuštění zadat jméno a funkci hosta; PNG všech karet najdete v balíčku `svdt-grafika-nahledy`. Úpravy v prohlížeči se nepřenášejí automaticky do Actions — použijte vstupní pole workflow nebo změňte data.js.
 
 
 Výsledky samostatně: `npm run render:vysledky`. V Actions lze zadat `results_category`, `results_run_type` a kompletní `results_json`. [Návod k výsledkové kartě](karta-vysledky/README.md).
@@ -129,3 +131,7 @@ Výsledky samostatně: `npm run render:vysledky`. V Actions lze zadat `results_c
 ## Společný styl — 9. 9. 2026
 
 Všechny čtyři varianty jezdce, host a výsledková tabulka používají menší nápis SVATOHORSKÝ / DOWN / TOWN centrovaný pod celým reliéfem. Bez kruhu, přidané linky a letopočtu. Písmo je převzaté z původního loga ve společném `design-system/brand/event-wordmark.svg`. Host je mírně menší (620 px). Aktuální zdrojové náhledy jsou ve složkách karet; animace zadavatel upřesní později.
+
+## Časomíra — 13. 9. 2026
+
+Nová složka [časomíra/](časomíra/README.md) obsahuje editor a generátor G04. Samostatně: `npm run render:casomira`. Actions podporují vstup `timer_time` (např. `1:23.456`). Čas je zatím pouze ukázkový; živý datový zdroj se napojí po dohodě s poskytovatelem.
