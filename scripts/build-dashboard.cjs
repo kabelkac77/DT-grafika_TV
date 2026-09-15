@@ -57,6 +57,12 @@ function plain(text) {
     .trim();
 }
 
+/** Převede české datum 12. 9. 2026 na 2026-09-12; jinak vrátí null. */
+function toIso(cz) {
+  const m = /(\d+)\.\s*(\d+)\.\s*(\d{4})/.exec(cz || '');
+  return m ? `${m[3]}-${String(m[2]).padStart(2, '0')}-${String(m[1]).padStart(2, '0')}` : null;
+}
+
 /** Rozloží odrážku zadání na sledovaný bod, nebo vrátí null. */
 function parseItem(line) {
   const raw = line.replace(/^[-*]\s+/, '').trim();
@@ -71,8 +77,10 @@ function parseItem(line) {
   const label = plain(raw.slice(0, colon));
   let rest = raw.slice(colon + 2);
 
-  const ownerMatch = /\((?:čeká|ceka):\s*([^)]+)\)/i.exec(rest);
+  // (čeká: časomíra) nebo (čeká: časomíra, dotaz 12. 9. 2026)
+  const ownerMatch = /\((?:čeká|ceka):\s*([^,)]+?)(?:\s*,\s*dotaz\s*([^)]+?))?\s*\)/i.exec(rest);
   const owner = ownerMatch ? OWNERS[ownerMatch[1].trim().toLowerCase()] : null;
+  const asked = ownerMatch && ownerMatch[2] ? toIso(ownerMatch[2]) : null;
   if (ownerMatch) rest = rest.replace(ownerMatch[0], ' ');
 
   let status;
@@ -99,7 +107,7 @@ function parseItem(line) {
       'Doplňte značku (čeká: zadavatel | časomíra | režie | LED | na nás).');
   }
 
-  return { t: label, s: status, o: owner || 'zadavatel', note: note || null, date };
+  return { t: label, s: status, o: owner || 'zadavatel', note: note || null, date, asked };
 }
 
 /** Přečte markdown tabulku, která následuje po zadaném nadpisu nebo textu. */
@@ -147,7 +155,8 @@ function build() {
   const md = fs.readFileSync(path.join(root, 'ZADANI.md'), 'utf8');
   const sections = splitSections(md);
 
-  const data = { repo: REPO, updated: null, sections: [], parts: [], people: [], milestones: [], briefs: [] };
+  const data = { repo: REPO, updated: null, sections: [], parts: [], people: [],
+    milestones: [], briefs: [], cardBriefs: [] };
 
   sections.forEach(sec => {
     const items = [];
@@ -189,14 +198,15 @@ function build() {
           data.briefs.push({ file: plain(r[1]), state: plain(r[3]) });
         }
       });
+      readTable(sec.body, '### Dílčí zadání jednotlivých karet').forEach(r => {
+        if (r.length >= 3 && /^G\d+$/.test(r[0])) {
+          data.cardBriefs.push({ part: r[0], file: plain(r[1]), state: plain(r[2]) });
+        }
+      });
     }
   });
 
   // Kumulativní počet zodpovězených bodů podle data odpovědi.
-  const toIso = cz => {
-    const m = /(\d+)\.\s*(\d+)\.\s*(\d{4})/.exec(cz || '');
-    return m ? `${m[3]}-${String(m[2]).padStart(2, '0')}-${String(m[1]).padStart(2, '0')}` : null;
-  };
   const perDay = new Map();
   data.sections.forEach(s => s.items.forEach(i => {
     if (i.s !== 'done') return;
@@ -229,7 +239,8 @@ function build() {
     parts: data.parts.length,
     people: data.people.length,
     milestones: data.milestones.length,
-    briefs: data.briefs.length
+    briefs: data.briefs.length,
+    cardBriefs: data.cardBriefs.length
   };
   if (!data.timeline.start || !data.timeline.end) {
     throw new Error('Chybí data milníků pro časovou osu — doplňte sloupec Datum v tabulce Milníky.');
@@ -295,5 +306,6 @@ if (process.argv.includes('--check')) {
   console.log(`Dashboard vygenerován ze ZADANI.md (aktualizováno ${out.updated}):`);
   console.log(`  oddílů ${out.counts.sections}, sledovaných bodů ${out.counts.items}, ` +
     `grafických částí ${out.counts.parts}, milníků ${out.counts.milestones}, ` +
-    `dílčích zadání ${out.counts.briefs}, odpovědných osob ${out.counts.people}`);
+    `dílčích zadání ${out.counts.briefs} + ${out.counts.cardBriefs} po kartách, ` +
+    `odpovědných osob ${out.counts.people}`);
 }

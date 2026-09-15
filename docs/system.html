@@ -107,6 +107,16 @@ figcaption{margin-top:16px; padding-top:14px; border-top:1px solid var(--line-so
 .q-head .bar{flex:1; height:1px; background:var(--line)}
 .q-head .n{font-family:var(--f-mono); font-size:12px; color:var(--muted)}
 .qlist{display:grid; gap:8px}
+.group-tools{display:flex; gap:8px; margin:12px 0}
+.copy{font:inherit; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.06em;
+  text-transform:uppercase; background:none; color:var(--muted); border:1px solid var(--line);
+  border-radius:100px; padding:5px 12px; cursor:pointer; white-space:nowrap}
+.copy:hover{border-color:var(--muted); color:var(--ink)}
+.copy:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.copy.done{color:var(--ok); border-color:var(--ok)}
+.copy-fallback{width:100%; margin-top:10px; background:var(--raised); color:var(--ink);
+  border:1px solid var(--line); border-radius:2px; padding:10px 12px;
+  font-family:var(--f-mono); font-size:12px; line-height:1.5; resize:vertical}
 .q{display:grid; grid-template-columns:26px 40px minmax(0,1fr); gap:12px; align-items:start;
   background:var(--panel); border:1px solid var(--line); border-radius:2px; padding:12px 15px}
 .q .i{font-family:var(--f-mono); font-size:11.5px; color:var(--brand); font-weight:600; padding-top:2px}
@@ -429,35 +439,40 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "done",
           "o": "zadavatel",
           "note": "11. ročník (XI)",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Datum dalšího ročníku",
           "s": "open",
           "o": "zadavatel",
           "note": "Zadavatel potvrdil, že termín zatím není stanovený.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Jazyk a jazykové varianty přenosu",
           "s": "done",
           "o": "zadavatel",
           "note": "Čeština, s přípravou anglické mutace",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Odpovědná kontaktní osoba pro tento projekt",
           "s": "done",
           "o": "zadavatel",
           "note": "Hrášek a Lipánek",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Kontaktní osoba za televizní produkci a režii",
           "s": "open",
           "o": "rezie",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -475,42 +490,48 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "open",
           "o": "zadavatel",
           "note": "Výpočet výsledku nezafixovat podle domněnky.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Výklad startovního pořadí a pravidla dalšího ročníku",
           "s": "open",
           "o": "zadavatel",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Finální trasa a mapa trati",
           "s": "part",
           "o": "zadavatel",
           "note": "Na trase se pracuje, podklad pro G03 zatím není k dispozici.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Kapacita startovního pole pro další ročník",
           "s": "open",
           "o": "zadavatel",
           "note": "Do grafiky zatím nevkládat pevné číslo.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Počet měřených úseků a mezičasů",
           "s": "open",
           "o": "casomira",
           "note": "Rozhoduje o realizovatelnosti volitelné části G08.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Pravidla pro shodné časy, penalizace, nestartování, nedokončení a diskvalifikaci",
           "s": "open",
           "o": "zadavatel",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -523,14 +544,16 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "done",
           "o": "zadavatel",
           "note": "Na pořadí nezáleží, části vznikají souběžně",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Schválení hotových vizuálních studií G01, G02 a G05",
           "s": "part",
           "o": "zadavatel",
           "note": "Studie jsou implementované, čeká se na písemné schválení.",
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -543,70 +566,80 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "done",
           "o": "zadavatel",
           "note": "Jméno, startovní číslo, země, tým, kategorie, portrét a vlajka",
-          "date": "8. 9. 2026"
+          "date": "8. 9. 2026",
+          "asked": null
         },
         {
           "t": "Kontrola správnosti jmen, týmů a dalších údajů",
           "s": "done",
           "o": "zadavatel",
           "note": "Hrášek a Lipánek",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Rozdělení na povinné a volitelné údaje pro jednotlivé grafiky",
           "s": "open",
           "o": "my",
           "note": "Vyplyne z dílčího zadání grafických částí.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Konkrétní portréty, vlajky a další obrazové podklady",
           "s": "part",
           "o": "zadavatel",
           "note": "Dodají Vlasta a Lachtan, termín zatím neurčen.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Kdo dodá seznam závodníků a kontroluje jeho správnost",
           "s": "done",
           "o": "zadavatel",
           "note": "Hrášek",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Formát a termín dodání seznamu závodníků",
           "s": "open",
           "o": "zadavatel",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Pravidla pro dlouhá jména, diakritiku a chybějící údaje",
           "s": "open",
           "o": "my",
           "note": "Obsah validují Hrášek a Lipánek.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Texty pro informační grafiku a další obsah",
           "s": "open",
           "o": "zadavatel",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "G04 — vizuální generátor",
           "s": "done",
           "o": "zadavatel",
           "note": "Implementován editor, ukázkový čas, průhledný PNG export a společné Actions",
-          "date": "13. 9. 2026"
+          "date": "13. 9. 2026",
+          "asked": null
         },
         {
           "t": "G04 — rozměry a vizuální shoda s původním návrhem",
           "s": "open",
           "o": "zadavatel",
           "note": "Pracovní rozměr 344 × 112 px; původní obrázek nebyl dostupný pro přesné porovnání.",
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -619,70 +652,80 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "open",
           "o": "casomira",
           "note": "Bez toho nelze začít žádné z dalších témat tohoto oddílu.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Jaká data jsou dostupná a jak se předávají",
           "s": "open",
           "o": "casomira",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Automatické napojení, import souboru nebo ruční zadávání",
           "s": "open",
           "o": "casomira",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Dostupnost startů, živého času, mezičasů, cílových časů a pořadí",
           "s": "open",
           "o": "casomira",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Přesnost a způsob zápisu času",
           "s": "open",
           "o": "casomira",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "S kým se jezdec porovnává a zda se porovnání během jízdy mění",
           "s": "open",
           "o": "casomira",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Rozlišení času úseku a celkového času od startu",
           "s": "open",
           "o": "casomira",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Rozlišení předběžných a potvrzených výsledků",
           "s": "open",
           "o": "casomira",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Postup při opravě výsledku, opožděných datech nebo výpadku",
           "s": "open",
           "o": "casomira",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Dostupnost ukázkových dat pro přípravu a zkoušku",
           "s": "open",
           "o": "casomira",
           "note": "Nutná k prototypu i k demoverzi bez ostrého napojení.",
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -695,14 +738,16 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "done",
           "o": "zadavatel",
           "note": "Nejdřív demoverze ovládání bez napojení na TV a časomíru, potom ostrá verze",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Role uživatelů, počet pracovišť, klávesové zkratky, hardwarové ovladače a chování při souběhu",
           "s": "open",
           "o": "rezie",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -715,49 +760,56 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "open",
           "o": "led",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Způsob předání TV grafiky do mixážního nebo odbavovacího systému",
           "s": "open",
           "o": "rezie",
           "note": "Určuje technologii výstupu celého systému.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Požadavek na stream jako další samostatný výstup",
           "s": "open",
           "o": "zadavatel",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Odbavovací systém režie, jeho verze a podporované vstupy",
           "s": "open",
           "o": "rezie",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Počítače, operační systém, grafické výstupy a další dostupné vybavení",
           "s": "open",
           "o": "rezie",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Dostupnost a topologie místní sítě a internetu",
           "s": "open",
           "o": "rezie",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Technická omezení a požadavky produkce",
           "s": "open",
           "o": "rezie",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -770,28 +822,32 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "open",
           "o": "rezie",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Velikost textů a čitelnost nad světlými i tmavými záběry",
           "s": "part",
           "o": "my",
           "note": "Ověřitelné až na výstupu režie.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Barevné významy náskoku, ztráty, lídra a dalších stavů",
           "s": "open",
           "o": "zadavatel",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Průhlednost podkladů, animace a délka jejich trvání",
           "s": "open",
           "o": "zadavatel",
           "note": "Požadavky na animace doplní zadavatel.",
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -804,28 +860,32 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "done",
           "o": "zadavatel",
           "note": "Vlasta a Lachtan",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Hierarchie a pravidla zobrazování partnerů",
           "s": "open",
           "o": "zadavatel",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Zajištění potřebných práv k použití podkladů a písem",
           "s": "open",
           "o": "zadavatel",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Termín dodání finálních podkladů",
           "s": "open",
           "o": "zadavatel",
           "note": "Bez termínu nelze naplánovat finální naplnění šablon.",
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -838,21 +898,24 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "done",
           "o": "zadavatel",
           "note": "Hrášek a Lipánek",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Interval záloh, nezávislé umístění kopie, délka uchování a odpovědná osoba",
           "s": "part",
           "o": "zadavatel",
           "note": "Zálohování dat zajišťuje zadavatel, parametry chybí.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Požadovaná redundance řídicího počítače, sítě a renderovacích výstupů",
           "s": "open",
           "o": "rezie",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -865,21 +928,24 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "done",
           "o": "zadavatel",
           "note": "Priorita je intuitivní ovládání, ne rozsáhlá dokumentace",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Uložení zdrojů a výstupů",
           "s": "done",
           "o": "zadavatel",
           "note": "Repozitář kabelkac77/DT-grafika_TV na GitHubu",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Rozsah zaškolení obsluhy, místo instalace a osoba přebírající výstupy",
           "s": "open",
           "o": "zadavatel",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -892,21 +958,24 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "open",
           "o": "my",
           "note": "Bez akceptačních kritérií nelze projekt uzavřít.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Termín a prostředí zkoušky s režií a časomírou",
           "s": "part",
           "o": "rezie",
           "note": "Rámcově přelom ledna a února 2027, místo a prostředí chybí.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Situace pro ověření — běžná jízda, dlouhé jméno, chybějící portrét, více jezdců na trati, oprava výsledku, výpadek dat",
           "s": "open",
           "o": "my",
           "note": null,
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -919,42 +988,48 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
           "s": "done",
           "o": "zadavatel",
           "note": "Do konce roku 2026",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Termín funkční ukázky a společné zkoušky",
           "s": "done",
           "o": "zadavatel",
           "note": "Přelom ledna a února 2027",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Cílový termín dokončení",
           "s": "done",
           "o": "zadavatel",
           "note": "Březen 2027 — nahrazuje dřívější údaj začátek ledna 2027.",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Rozpočet a omezení placených nástrojů nebo služeb",
           "s": "done",
           "o": "zadavatel",
           "note": "Bez licenčních poplatků, jinak bez omezení",
-          "date": "11. 9. 2026"
+          "date": "11. 9. 2026",
+          "asked": null
         },
         {
           "t": "Přesný den dokončení a den ostrého nasazení",
           "s": "open",
           "o": "zadavatel",
           "note": "Datum závodu dosud není známo.",
-          "date": null
+          "date": null,
+          "asked": null
         },
         {
           "t": "Co vypustit při nedostatku času",
           "s": "open",
           "o": "zadavatel",
           "note": "Pořadí částí G01–G07 nerozhoduje, vznikají souběžně.",
-          "date": null
+          "date": null,
+          "asked": null
         }
       ]
     },
@@ -1072,7 +1147,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     },
     {
       "file": "02_GRAFICKE_CASTI.md",
-      "state": "Po schválení vizuálního směru"
+      "state": "Nahrazeno zadáními karet"
     },
     {
       "file": "03_PODKLADY_A_OBSAH.md",
@@ -1095,6 +1170,43 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
       "state": "Po dohodě termínu zkoušky"
     }
   ],
+  "cardBriefs": [
+    {
+      "part": "G01",
+      "file": "karta-vysledky/ZADANI_KARTA_VYSLEDKU.md",
+      "state": "Hotovo"
+    },
+    {
+      "part": "G02",
+      "file": "karta-jezdce/ZADANI_KARTA_JEZDCE.md",
+      "state": "Hotovo"
+    },
+    {
+      "part": "G04",
+      "file": "časomíra/README.md",
+      "state": "Hotovo"
+    },
+    {
+      "part": "G05",
+      "file": "karta-hosta/ZADANI_KARTA_HOSTA.md",
+      "state": "Hotovo"
+    },
+    {
+      "part": "G03",
+      "file": "zatím nevzniklo",
+      "state": "Blokováno trasou"
+    },
+    {
+      "part": "G06",
+      "file": "zatím nevzniklo",
+      "state": "Otevřené, upřesní režie"
+    },
+    {
+      "part": "G07",
+      "file": "zatím nevzniklo",
+      "state": "Čeká na podklady"
+    }
+  ],
   "answered": [
     {
       "date": "2026-09-08",
@@ -1115,7 +1227,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     "end": "2027-03-31"
   }
 };
-  var BUILD = "bd6a745c86";
+  var BUILD = "5da572fb1d";
 
   var GROUPS = [
     {key:"casomira", label:"Pro časomíru", anchor:"1", note:"Váže se na bod ① v prvním diagramu — bez odpovědí neumíme navrhnout datové napojení."},
@@ -1138,6 +1250,43 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     });
   });
 
+  function copyButton(label, list){
+    var b = el("button", "copy", "Zkopírovat otázky");
+    b.type = "button";
+    b.addEventListener("click", function(){
+      var lines = ["Otázky " + label.toLowerCase() + " (SVDT, stav k " + DATA.updated + ")", ""];
+      list.forEach(function(i, idx){
+        lines.push((idx + 1) + ". " + i.t + (i.note ? " — " + i.note : ""));
+      });
+      var text = lines.join("\n");
+      var done = function(){
+        b.textContent = "Zkopírováno";
+        b.classList.add("done");
+        setTimeout(function(){
+          b.textContent = "Zkopírovat otázky";
+          b.classList.remove("done");
+        }, 2000);
+      };
+      var fallback = function(){
+        var ta = el("textarea", "copy-fallback");
+        ta.value = text;
+        ta.readOnly = true;
+        ta.rows = Math.min(list.length + 3, 14);
+        b.parentNode.appendChild(ta);
+        ta.focus();
+        ta.select();
+        b.textContent = "Označeno k ručnímu zkopírování";
+        b.disabled = true;
+      };
+      try {
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+      } catch(e){ fallback(); }
+    });
+    return b;
+  }
+
   var box = $("questions");
   GROUPS.forEach(function(g){
     var list = items.filter(function(i){ return i.o === g.key; });
@@ -1150,6 +1299,10 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     box.appendChild(h);
 
     box.appendChild(el("p", "sec-note", g.note));
+
+    var tools = el("div", "group-tools");
+    tools.appendChild(copyButton(g.label, list));
+    box.appendChild(tools);
 
     var ul = el("div", "qlist");
     list.forEach(function(i, idx){

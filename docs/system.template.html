@@ -70,6 +70,16 @@ figcaption{margin-top:16px; padding-top:14px; border-top:1px solid var(--line-so
 .q-head .bar{flex:1; height:1px; background:var(--line)}
 .q-head .n{font-family:var(--f-mono); font-size:12px; color:var(--muted)}
 .qlist{display:grid; gap:8px}
+.group-tools{display:flex; gap:8px; margin:12px 0}
+.copy{font:inherit; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.06em;
+  text-transform:uppercase; background:none; color:var(--muted); border:1px solid var(--line);
+  border-radius:100px; padding:5px 12px; cursor:pointer; white-space:nowrap}
+.copy:hover{border-color:var(--muted); color:var(--ink)}
+.copy:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.copy.done{color:var(--ok); border-color:var(--ok)}
+.copy-fallback{width:100%; margin-top:10px; background:var(--raised); color:var(--ink);
+  border:1px solid var(--line); border-radius:2px; padding:10px 12px;
+  font-family:var(--f-mono); font-size:12px; line-height:1.5; resize:vertical}
 .q{display:grid; grid-template-columns:26px 40px minmax(0,1fr); gap:12px; align-items:start;
   background:var(--panel); border:1px solid var(--line); border-radius:2px; padding:12px 15px}
 .q .i{font-family:var(--f-mono); font-size:11.5px; color:var(--brand); font-weight:600; padding-top:2px}
@@ -403,6 +413,43 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     });
   });
 
+  function copyButton(label, list){
+    var b = el("button", "copy", "Zkopírovat otázky");
+    b.type = "button";
+    b.addEventListener("click", function(){
+      var lines = ["Otázky " + label.toLowerCase() + " (SVDT, stav k " + DATA.updated + ")", ""];
+      list.forEach(function(i, idx){
+        lines.push((idx + 1) + ". " + i.t + (i.note ? " — " + i.note : ""));
+      });
+      var text = lines.join("\n");
+      var done = function(){
+        b.textContent = "Zkopírováno";
+        b.classList.add("done");
+        setTimeout(function(){
+          b.textContent = "Zkopírovat otázky";
+          b.classList.remove("done");
+        }, 2000);
+      };
+      var fallback = function(){
+        var ta = el("textarea", "copy-fallback");
+        ta.value = text;
+        ta.readOnly = true;
+        ta.rows = Math.min(list.length + 3, 14);
+        b.parentNode.appendChild(ta);
+        ta.focus();
+        ta.select();
+        b.textContent = "Označeno k ručnímu zkopírování";
+        b.disabled = true;
+      };
+      try {
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+      } catch(e){ fallback(); }
+    });
+    return b;
+  }
+
   var box = $("questions");
   GROUPS.forEach(function(g){
     var list = items.filter(function(i){ return i.o === g.key; });
@@ -415,6 +462,10 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     box.appendChild(h);
 
     box.appendChild(el("p", "sec-note", g.note));
+
+    var tools = el("div", "group-tools");
+    tools.appendChild(copyButton(g.label, list));
+    box.appendChild(tools);
 
     var ul = el("div", "qlist");
     list.forEach(function(i, idx){

@@ -121,11 +121,30 @@ h2{font-size:19px; font-weight:800; text-transform:uppercase; letter-spacing:.02
   .item{grid-template-columns:44px minmax(0,1fr)}
   .item .pill{grid-column:2; justify-self:start}
 }
-.pill{font-family:var(--f-mono); font-size:10.5px; font-weight:600; letter-spacing:.06em;
-  text-transform:uppercase; padding:4px 9px; border-radius:2px; white-space:nowrap}
+.pill{display:inline-block; font-family:var(--f-mono); font-size:10.5px; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase; padding:4px 9px; border-radius:2px; white-space:nowrap}
+.item .side{display:flex; flex-direction:column; align-items:flex-end; gap:5px}
 .pill.open{background:var(--open-bg); color:var(--open)}
 .pill.part{background:var(--warn-bg); color:var(--warn)}
 .pill.sync{background:var(--ok-bg); color:var(--ok)}
+.pill.done{background:var(--ok-bg); color:var(--ok)}
+.age{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.04em; color:var(--muted);
+  white-space:nowrap}
+.age.old{color:var(--warn)}
+.age.none{color:var(--muted); opacity:.75}
+.copy{font:inherit; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.06em;
+  text-transform:uppercase; background:none; color:var(--muted); border:1px solid var(--line);
+  border-radius:100px; padding:5px 12px; cursor:pointer; white-space:nowrap}
+.copy:hover{border-color:var(--muted); color:var(--ink)}
+.copy:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.copy.done{color:var(--ok); border-color:var(--ok)}
+.brief.card .nm{color:var(--ink)}
+.group-tools{display:flex; gap:8px; margin:0 0 11px}
+.copy-fallback{width:100%; margin-top:10px; background:var(--raised); color:var(--ink);
+  border:1px solid var(--line); border-radius:2px; padding:10px 12px;
+  font-family:var(--f-mono); font-size:12px; line-height:1.5; resize:vertical}
+.brief-sub{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); margin:22px 0 10px}
 .empty{color:var(--muted); font-size:14px; padding:14px 2px}
 
 /* ---------- grafické části ---------- */
@@ -429,6 +448,11 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
   var wide = function(){
     return window.matchMedia && window.matchMedia("(min-width: 760px)").matches;
   };
+  var DAY = 86400000;
+  var daysSince = function(iso){
+    if(!iso){ return null; }
+    return Math.max(0, Math.floor((Date.now() - Date.parse(iso)) / DAY));
+  };
   var plural = function(n, one, few, many){
     return n + " " + (n === 1 ? one : (n >= 2 && n <= 4 ? few : many));
   };
@@ -437,7 +461,8 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
   var allItems = [];
   SECTIONS.forEach(function(sec){
     sec.items.forEach(function(it){
-      allItems.push({sec:sec.n, secTitle:sec.title, t:it.t, o:it.o, s:it.s, note:it.note, date:it.date});
+      allItems.push({sec:sec.n, secTitle:sec.title, t:it.t, o:it.o, s:it.s, note:it.note,
+        date:it.date, asked:it.asked});
     });
   });
   var live = allItems.filter(function(i){ return i.s !== "done"; });
@@ -445,7 +470,8 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
   var openCount = byStatus("open");
   var partCount = byStatus("part");
   var doneCount = byStatus("done");
-  var briefsDone = DATA.briefs.filter(function(b){ return /hotov/i.test(b.state); }).length;
+  var allBriefs = DATA.briefs.concat(DATA.cardBriefs);
+  var briefsDone = allBriefs.filter(function(b){ return /hotov/i.test(b.state); }).length;
 
   // ---- razítko ----
   var stamp = $("stamp");
@@ -463,7 +489,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     {n:openCount, k:"Otevřených otázek", sub:"bez odpovědi", cls:"hot"},
     {n:partCount, k:"Rozpracovaných bodů", sub:"částečná odpověď", cls:"warn"},
     {n:doneCount, k:"Zodpovězených bodů", sub:"zapsaných v zadání", cls:"ok"},
-    {n:briefsDone + " / " + DATA.briefs.length, k:"Hotových dílčích zadání", sub:"navazuje na obecné zadání", cls:""}
+    {n:briefsDone + " / " + allBriefs.length, k:"Hotových dílčích zadání", sub:"plán i zadání karet", cls:""}
   ].forEach(function(k){
     var c = el("div", "kpi " + k.cls);
     c.appendChild(el("div", "n mono", String(k.n)));
@@ -486,10 +512,14 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     if(!bySec.length){
       lead.textContent = "Všechny sledované body zadání jsou zodpovězené.";
     } else {
+      var asked = live.filter(function(i){ return i.asked; }).length;
       lead.innerHTML = "Otevřených a rozpracovaných bodů je <strong>" + live.length + "</strong>. "
         + "Nejvíc jich drží <strong>" + OWNER_LABEL[ownersRanked[0]].toLowerCase() + "</strong> ("
         + byOwner[ownersRanked[0]] + ") a nejhůř je na tom oddíl <strong>" + bySec[0].n + " "
-        + bySec[0].title + "</strong> (" + bySec[0].open + ").";
+        + bySec[0].title + "</strong> (" + bySec[0].open + "). "
+        + (asked
+            ? "Odeslaných dotazů bez odpovědi: <strong>" + asked + "</strong>."
+            : "U žádného bodu zatím není zapsané datum dotazu, takže se nedá poznat, na co se už čeká.");
     }
 
     var steps = [];
@@ -506,7 +536,32 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
       });
     });
 
-    // 2. hotové studie čekající na schválení
+    // 2. dotazy, které visí bez odpovědi
+    var stale = live.filter(function(i){ var d = daysSince(i.asked); return d !== null && d >= 14; })
+      .sort(function(a, b){ return daysSince(b.asked) - daysSince(a.asked); });
+    if(stale.length){
+      steps.push({
+        weight: 1000 + stale.length * 10,
+        title: "Urgovat dotazy bez odpovědi",
+        why: plural(stale.length, "dotaz visí", "dotazy visí", "dotazů visí")
+          + " déle než dva týdny; nejstarší " + plural(daysSince(stale[0].asked), "den", "dny", "dní") + ".",
+        items: stale.slice(0, 3).map(function(i){ return {sec:i.sec, t:i.t}; })
+      });
+    }
+
+    // 3. body, na které se ještě nikdo nezeptal
+    var unasked = live.filter(function(i){ return !i.asked && i.o !== "my"; });
+    if(unasked.length){
+      steps.push({
+        weight: 500 + unasked.length,
+        title: "Odeslat dotazy, které ještě neodešly",
+        why: plural(unasked.length, "bod nemá", "body nemají", "bodů nemá")
+          + " zapsané datum dotazu. Odešli je a datum si u nich poznamenej do zadání.",
+        items: []
+      });
+    }
+
+    // 4. hotové studie čekající na schválení
     var toApprove = DATA.parts.filter(function(p){ return /schválení/i.test(p.state); });
     if(toApprove.length){
       steps.push({
@@ -518,7 +573,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
       });
     }
 
-    // 3. dílčí zadání, která nic neblokuje
+    // 5. dílčí zadání, která nic neblokuje
     var ready = DATA.briefs.filter(function(b){ return /hned/i.test(b.state); });
     if(ready.length){
       steps.push({
@@ -529,7 +584,7 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
       });
     }
 
-    // 4. oddíly, kde zbývá jediná odpověď
+    // 6. oddíly, kde zbývá jediná odpověď
     var almost = SECTIONS.filter(function(s){
       return s.items.filter(function(i){ return i.s !== "done"; }).length === 1 && s.items.length > 1;
     });
@@ -821,8 +876,11 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     keys.forEach(function(key){
       var list = live.filter(function(i){ return i.o === key; });
       if(!list.length){ return; }
-      var order = {open:0, part:1};
-      list.sort(function(a, b){ return order[a.s] - order[b.s] || a.sec.localeCompare(b.sec); });
+      list.sort(function(a, b){
+        var da = daysSince(a.asked), db = daysSince(b.asked);
+        if(da !== db){ return (db === null ? -1 : db) - (da === null ? -1 : da); }
+        return a.sec.localeCompare(b.sec);
+      });
       shown += list.length;
 
       var g = el("div", "owner-group");
@@ -833,6 +891,10 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
       h.appendChild(el("div", "bar"));
       h.appendChild(el("div", "n", plural(list.length, "bod", "body", "bodů")));
       g.appendChild(h);
+
+      var tools = el("div", "group-tools");
+      tools.appendChild(copyButton(OWNER_LABEL[key], list));
+      g.appendChild(tools);
 
       var wrap = el("div", "items");
       var expanded = wide() || keys.length === 1;
@@ -852,6 +914,56 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     if(!shown){ box.appendChild(el("div", "empty", "Žádné body pro tento filtr.")); }
   }
 
+  function questionText(label, list){
+    var lines = ["Otázky — " + label + " (SVDT, stav k " + DATA.updated + ")", ""];
+    list.forEach(function(i, idx){
+      lines.push((idx + 1) + ". " + i.t + (i.note ? " — " + i.note : ""));
+    });
+    lines.push("");
+    lines.push("Zdroj: ZADANI.md, oddíly " +
+      list.map(function(i){ return i.sec; }).filter(function(v, idx, a){ return a.indexOf(v) === idx; })
+        .sort().join(", ") + ".");
+    return lines.join("\n");
+  }
+
+  function copyButton(label, list){
+    var b = el("button", "copy", "Zkopírovat otázky");
+    b.type = "button";
+    b.addEventListener("click", function(){
+      var text = questionText(label, list);
+      var done = function(){
+        b.textContent = "Zkopírováno";
+        b.classList.add("done");
+        setTimeout(function(){
+          b.textContent = "Zkopírovat otázky";
+          b.classList.remove("done");
+        }, 2000);
+      };
+      var fallback = function(){
+        // Když schránka není dostupná, text se vypíše k ručnímu označení.
+        var ta = el("textarea", "copy-fallback");
+        ta.value = text;
+        ta.readOnly = true;
+        ta.rows = Math.min(list.length + 4, 14);
+        b.parentNode.appendChild(ta);
+        ta.focus();
+        ta.select();
+        b.textContent = "Označeno k ručnímu zkopírování";
+        b.disabled = true;
+      };
+      try {
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else {
+          fallback();
+        }
+      } catch(e){
+        fallback();
+      }
+    });
+    return b;
+  }
+
   function itemRow(i){
     var row = el("div", "item");
     row.appendChild(el("div", "sid", i.sec));
@@ -859,7 +971,15 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
     txt.appendChild(document.createTextNode(i.t));
     if(i.note){ txt.appendChild(el("span", "note", i.note)); }
     row.appendChild(txt);
-    row.appendChild(el("div", "pill " + i.s, i.s === "done" && i.date ? i.date : STATUS_LABEL[i.s]));
+
+    var side = el("div", "side");
+    side.appendChild(el("div", "pill " + i.s, i.s === "done" && i.date ? i.date : STATUS_LABEL[i.s]));
+    var d = i.s === "done" ? null : daysSince(i.asked);
+    if(d !== null){
+      side.appendChild(el("span", "age" + (d >= 14 ? " old" : ""),
+        d === 0 ? "dotaz dnes" : "čeká " + plural(d, "den", "dny", "dní")));
+    }
+    row.appendChild(side);
     return row;
   }
 
@@ -921,13 +1041,25 @@ code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
 
   // ---- dílčí zadání ----
   DATA.briefs.forEach(function(b, i){
-    var blocked = /blokov/i.test(b.state);
+    var blocked = /blokov|nahrazeno/i.test(b.state);
     var r = el("div", "brief" + (blocked ? " blocked" : ""));
     r.appendChild(el("div", "num mono", String(i + 1)));
     r.appendChild(el("div", "nm", b.file));
     r.appendChild(el("div", "st", b.state));
     $("briefs").appendChild(r);
   });
+
+  if(DATA.cardBriefs.length){
+    $("briefs").appendChild(el("p", "brief-sub", "Zadání jednotlivých karet"));
+    DATA.cardBriefs.forEach(function(b){
+      var hotovo = /hotov/i.test(b.state);
+      var r = el("div", "brief" + (hotovo ? " card" : " blocked"));
+      r.appendChild(el("div", "num mono", b.part));
+      r.appendChild(el("div", "nm", b.file));
+      r.appendChild(el("div", "st", b.state));
+      $("briefs").appendChild(r);
+    });
+  }
 
   // ---- odpovědnosti ----
   DATA.people.forEach(function(p){
