@@ -13,6 +13,8 @@ Pracovní dokument. Slouží jako společný základ, ze kterého později vznik
 
 Otevřené a rozpracované body nesou v závorce stranu, která má odpověď dodat —
 `(čeká: zadavatel)`, `(čeká: časomíra)`, `(čeká: režie)`, `(čeká: LED)` nebo `(čeká: na nás)`.
+Jakmile dotaz odejde, připíše se za stranu datum: `(čeká: časomíra, dotaz 12. 9. 2026)`.
+Dashboard z něj počítá, jak dlouho se na odpověď čeká, a podle toho řadí nejbližší kroky.
 Z tohoto zápisu se generuje [dashboard stavu zadání](docs/index.html); jiný zdroj stavu neexistuje.
 
 ## Dosud potvrzené informace
@@ -277,19 +279,37 @@ data se v ose nezobrazuje, protože zatím nemá termín.
 
 ## 15. Navazující dílčí zadání
 
-Navržený postup realizace na žádost zadavatele. Názvy souborů níže označují budoucí dílčí zadání; zatím nebyla vytvořena. Tento dokument zůstává společným základem.
+Navržený postup realizace na žádost zadavatele. Tento dokument zůstává společným základem.
+
+Skutečný postup se od plánu odchýlil: místo jednoho dokumentu pro všechny grafické části
+vznikají samostatná dílčí zadání jednotlivých karet, vždy současně s jejich realizací.
+Obě roviny jsou proto vedené zvlášť — plánované kroky níže a hotová zadání karet pod nimi.
 
 | Krok | Dílčí zadání | Výsledek a závislosti | Stav |
 | --- | --- | --- | --- |
 | 1 | `01_VIZUALNI_SYSTEM.md` | Pravidla TV grafiky podle SVDT, čitelnost pro oba výstupy a ukázky výsledkové tabulky, jezdce a časomíry. Lze připravit nyní s označenými ukázkovými daty; rozměry zůstanou pracovní do potvrzení režií. | Lze psát hned |
-| 2 | `02_GRAFICKE_CASTI.md` | Přesné zadání G01–G07: obsah, rozložení, varianty, animace a chování při chybějících údajích. G08 oddělit jako volitelné rozšíření. Navazuje na schválený vizuální směr. | Po schválení vizuálního směru |
+| 2 | `02_GRAFICKE_CASTI.md` | Přesné zadání G01–G07: obsah, rozložení, varianty, animace a chování při chybějících údajích. G08 oddělit jako volitelné rozšíření. | Nahrazeno zadáními karet |
 | 3 | `03_PODKLADY_A_OBSAH.md` | Seznam a organizace jezdců, portrétů, log a mapy; pravidla pojmenování a doplňování. Podklady lze shromažďovat současně s kroky 1 a 2. | Lze psát hned |
 | 4 | `04_DATA_A_CASOMIRA.md` | Integrace externího serveru poskytovatele časomíry, datový kontrakt, autentizace, aktualizace, přiřazení jezdců a jízd, pravidla pořadí, mezičasy, opravy, cache, výpadkové stavy a ukázková data. Vyžaduje součinnost časomíry a potvrzení pravidel dalšího ročníku. | Blokováno časomírou |
 | 5 | `05_BROADCAST_SYSTEM_A_REZIE.md` | Architektura centrálního broadcast systému, společný datový model, Preview → Take → Program → Out, jednoduché ovládání režie, řízené IN/OUT, TV a LED varianty, makra a automatizovaná workflow. Zahrne posouzení a začlenění současných HTML grafik. Vyžaduje technické parametry od režie, LED dodavatele a dohodu o datech. | Blokováno režií a LED |
 | 6 | `06_ZALOHOVANI_A_OBNOVA.md` | Zálohování dat a nastavení, ověřená obnova a dohodnuté chování při výpadku. Navazuje na konkrétní funkční řešení. | Po funkčním řešení |
 | 7 | `07_ZKOUSKA_A_PREDANI.md` | Zkouška průběhu závodu a všech grafik v prostředí režie, kontrola TV i velkoplošného výstupu, opravy, finální soubory a schválení zadavatelem. Rozsah návodu se ještě dohodne. | Po dohodě termínu zkoušky |
 
-Nejbližší navazující práce: připravit zadání vizuálního systému a grafických částí. Získání technických informací od režie a časomíry může probíhat souběžně; jejich kontaktování není tímto dokumentem automaticky zadáno.
+### Dílčí zadání jednotlivých karet
+
+Vznikají po částech, každé s vlastní realizací. Nahrazují plánovaný krok 2.
+
+| Část | Dokument | Stav |
+| --- | --- | --- |
+| G01 | `karta-vysledky/ZADANI_KARTA_VYSLEDKU.md` | Hotovo |
+| G02 | `karta-jezdce/ZADANI_KARTA_JEZDCE.md` | Hotovo |
+| G04 | `časomíra/README.md` | Hotovo |
+| G05 | `karta-hosta/ZADANI_KARTA_HOSTA.md` | Hotovo |
+| G03 | zatím nevzniklo | Blokováno trasou |
+| G06 | zatím nevzniklo | Otevřené, upřesní režie |
+| G07 | zatím nevzniklo | Čeká na podklady |
+
+Nejbližší navazující práce: připravit zadání vizuálního systému. Získání technických informací od režie a časomíry může probíhat souběžně; jejich kontaktování není tímto dokumentem automaticky zadáno.
 
 ### Orientační harmonogram
 
