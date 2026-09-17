@@ -14,7 +14,7 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | `karta-hosta/` | HTML/CSS editor a generování decentní jmenovky hosta (jméno a funkce) |
 | `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
 | `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
-| `docs/` | Dashboard stavu zadání generovaný ze `ZADANI.md` |
+| `docs/` | Dashboard — tři stránky generované ze `ZADANI.md` a `ODKAZY.md` |
 
 Složky pro další grafické části budou vytvořeny až při zahájení jejich realizace, aby prázdná struktura nepředstírala hotový rozsah.
 
@@ -44,8 +44,8 @@ ručně. Stav se změní tak, že se upraví zadání.
 | `docs/dashboard.template.html` | Šablona stránky stavu zadání se značkou `__DATA__` |
 | `docs/system.template.html` | Šablona stránky s diagramy fungování systému |
 | `docs/links.template.html` | Šablona stránky s odkazy |
-| `docs/tokens.css` | Sdílené barvy a písma obou stránek |
-| `scripts/build-dashboard.cjs` | Přečte zadání a vloží data do obou šablon |
+| `docs/tokens.css` | Sdílené barvy a písma všech stránek |
+| `scripts/build-dashboard.cjs` | Přečte zadání i odkazy a vloží data do šablon |
 | `docs/index.html`, `docs/system.html`, `docs/odkazy.html`, `docs/dashboard.body.html`, `docs/version.json` | Generované výstupy — needitovat ručně |
 
 ### Jak se zapisuje stav do zadání
@@ -72,10 +72,14 @@ u kterých není jasné, kdo je má vyřešit.
 
 ### Generování
 
-- `npm run dashboard` — přegeneruje `docs/index.html`, `docs/dashboard.body.html` a `docs/version.json`.
+- `npm run dashboard` — přegeneruje `docs/index.html`, `docs/system.html`, `docs/odkazy.html`,
+  `docs/dashboard.body.html` a `docs/version.json`.
 - `npm run dashboard:check` — ohlásí, že výstupy neodpovídají `ZADANI.md` (používá se v Pull Requestu).
-- Workflow **SVDT — dashboard stavu zadání** přegeneruje stránku při každé změně `ZADANI.md`
-  a výsledek rovnou commitne, takže přehled je po úpravě zadání aktuální bez ručního kroku.
+- Workflow **SVDT — dashboard stavu zadání** přegeneruje stránky při každé změně `ZADANI.md`,
+  `ODKAZY.md`, šablon, tokenů nebo generátoru a výsledek rovnou commitne, takže přehled je po
+  úpravě zadání aktuální bez ručního kroku. Commituje celou složku `docs/` a po commitu ověří,
+  že v ní nezůstaly nezapsané změny — jinak by se mohlo stát, že se přegeneruje jen část stránek
+  a zbytek bude hlásit novější verzi.
 
 `docs/version.json` nese otisk obsahu. Otevřená stránka si ho po návratu do záložky
 a jednou za pět minut porovná se svým vlastním otiskem a při rozdílu nabídne obnovení,

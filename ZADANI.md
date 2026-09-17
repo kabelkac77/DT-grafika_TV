@@ -337,4 +337,6 @@ Rámec podle termínů potvrzených 11. 9. 2026. Dílčí termíny uvnitř jedno
 
 - 9. 9. 2026: schváleno přenesení menšího nápisu SVATOHORSKÝ / DOWN / TOWN pod reliéf do všech variant jezdce, hosta a výsledkové tabulky. Nápis je centrovaný s celým reliéfem, bez kruhu, přidané linky a roku. Host mírně zmenšen na 620 px. Toto rozhodnutí nahrazuje dřívější požadavek bez samostatného nápisu. Požadavky na animace doplní zadavatel; stávající technické chování tím není schválením budoucích animací.
 
+- 17. 9. 2026: doplněn zápis stáří dotazů. Za stranu, která má odpověď dodat, lze připsat datum odeslání dotazu ve tvaru `(čeká: časomíra, dotaz 12. 9. 2026)`; dashboard z něj počítá, jak dlouho se čeká, a podle toho řadí nejbližší kroky. Oddíl 15 nově vede vedle plánovaných kroků i tabulku dílčích zadání jednotlivých karet, protože zadání vznikají po kartách současně s realizací; plánovaný krok `02_GRAFICKE_CASTI.md` je jimi nahrazen.
+
 - 13. 9. 2026: vytvořena složka `časomíra/` pro G04: HTML/CSS editor, ukázková data, validace času, skrytí karty, nastavení v URL a PNG renderer. Umístění vpravo dole, rovný levý okraj, bez reliéfu. Přidáno do společného menu, `npm run render` a Actions včetně vstupu `timer_time`. Doplněny README a stav G04 v Dashboardu. Živá data, produkční formát a animace nejsou tímto označeny za hotové.

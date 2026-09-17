@@ -5,13 +5,17 @@ on:
   push:
     paths:
       - "ZADANI.md"
-      - "docs/dashboard.template.html"
+      - "ODKAZY.md"
+      - "docs/*.template.html"
+      - "docs/tokens.css"
       - "scripts/build-dashboard.cjs"
       - ".github/workflows/dashboard.yml"
   pull_request:
     paths:
       - "ZADANI.md"
-      - "docs/dashboard.template.html"
+      - "ODKAZY.md"
+      - "docs/*.template.html"
+      - "docs/tokens.css"
       - "scripts/build-dashboard.cjs"
       - ".github/workflows/dashboard.yml"
 
