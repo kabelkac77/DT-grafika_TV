@@ -10,6 +10,7 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | --- | --- |
 | `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
 | `karta-vysledky/` | G01 — deset výsledků, loga, HTML/CSS generátor a zadání |
+| `split-time/` | G08 — dva mezičasy vůči lídrovi, cílový čas a pořadí, editor a PNG |
 | `časomíra/` | G04 — editor ukázkového času vpravo dole a generátor PNG |
 | `karta-hosta/` | HTML/CSS editor a generování decentní jmenovky hosta (jméno a funkce) |
 | `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
@@ -98,7 +99,7 @@ zobrazuje až po sloučení změn do `main`.
 - G01 — karta výsledků: funkční HTML/CSS generátor podle studie 04; [zdroje a návod](karta-vysledky/README.md), [zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Živá data a editor rozmístění log navazují později.
 - G04 — časomíra: HTML/CSS editor a PNG generátor, rovný levý okraj, bez reliéfu; [návod](časomíra/README.md). Živé napojení a animace zbývají.
 - G03, G06 a G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
-- G08 — ztráta nebo zisk na úsecích: volitelné rozšíření závislé na dostupnosti mezičasů.
+- G08 — split time: editor a PNG generátor podle návrhu 04; dva mezičasy vůči lídrovi, cílový čas a pořadí. Živá integrace závisí na dostupnosti dat.
 - Produkční formát, napojení časomíry a způsob odbavení musí být potvrzeny s režií.
 
 ## Jak otevřít kartu jezdce
@@ -147,3 +148,7 @@ Všechny čtyři varianty jezdce, host a výsledková tabulka používají menš
 ## Časomíra — 13. 9. 2026
 
 Nová složka [časomíra/](časomíra/README.md) obsahuje editor a generátor G04. Samostatně: `npm run render:casomira`. Actions podporují vstup `timer_time` (např. `1:23.456`). Čas je zatím pouze ukázkový; živý datový zdroj se napojí po dohodě s poskytovatelem.
+
+## G08 — split time
+
+[Generátor a návod](split-time/README.md): karta jezdce, lídr, dva mezičasy se stopkami a čísly 1/2, cíl a pořadí. Start se nezobrazuje. `npm run render:split-time`, také ve společném generování a Actions (vstup `split_json`). Živé napojení následuje po dohodě s časomírou.

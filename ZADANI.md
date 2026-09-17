@@ -97,9 +97,9 @@ Potvrzené části:
 | G05 | Jmenovka pro rozhovory | Jméno, startovní číslo a tým. | Studie 01 — jméno a funkce, generování PNG hotové | Čeká na schválení |
 | G06 | Přechody mezi sestřihy | Počet variant, délka a způsob použití se upřesní s režií. | Neřešeno, upřesní se s režií | Otevřené |
 | G07 | Partneři | Loga a způsob prezentace podle postupně dodávaných podkladů. | Čeká na podklady od zadavatele | Otevřené |
-| G08 | Ztráta / zisk na úsecích | Volitelné rozšíření, upřesnění níže. | Závisí na dostupnosti mezičasů | Volitelné |
+| G08 | Split time | Jezdec a lídr, 2 mezičasy se symbolem stopek a čísly 1/2, cíl a pořadí. Bez startu. [Návod](split-time/README.md). | HTML/CSS editor a PNG generátor dle návrhu 04; živá data čekají na časomíru | Rozpracováno |
 
-**Volitelná část G08:** ztráta / zisk na jednotlivých sekcích. Realizace závisí na dostupnosti mezičasů a potvrzení rozsahu zadavatelem. Určit, zda jde o rozdíl za daný úsek, nebo kumulovaný rozdíl od startu, a vůči komu se počítá.
+**G08 — potvrzený vizuální rozsah:** dva mezičasy od startu vůči lídrovi a cíl s pořadím. Start se nezobrazuje. Symbol stopek a čísla 1/2 nahrazují nápisy SPLIT. Generátor je implementovaný; živá integrace závisí na dostupnosti dat časomíry.
 
 Další části z původní osnovy (například startovní listina, program, stupně vítězů nebo informační sdělení) zatím nejsou objednaným rozsahem.
 
@@ -340,3 +340,5 @@ Rámec podle termínů potvrzených 11. 9. 2026. Dílčí termíny uvnitř jedno
 - 17. 9. 2026: doplněn zápis stáří dotazů. Za stranu, která má odpověď dodat, lze připsat datum odeslání dotazu ve tvaru `(čeká: časomíra, dotaz 12. 9. 2026)`; dashboard z něj počítá, jak dlouho se čeká, a podle toho řadí nejbližší kroky. Oddíl 15 nově vede vedle plánovaných kroků i tabulku dílčích zadání jednotlivých karet, protože zadání vznikají po kartách současně s realizací; plánovaný krok `02_GRAFICKE_CASTI.md` je jimi nahrazen.
 
 - 13. 9. 2026: vytvořena složka `časomíra/` pro G04: HTML/CSS editor, ukázková data, validace času, skrytí karty, nastavení v URL a PNG renderer. Umístění vpravo dole, rovný levý okraj, bez reliéfu. Přidáno do společného menu, `npm run render` a Actions včetně vstupu `timer_time`. Doplněny README a stav G04 v Dashboardu. Živá data, produkční formát a animace nejsou tímto označeny za hotové.
+
+- 17. 9. 2026: G08 implementováno ve `split-time/` podle návrhu 04. Dva kumulované mezičasy vůči lídrovi, bez zobrazení startu, stopky a čísla 1/2, zelený náskok a červená ztráta, pořadí vedle cílového rozdílu. Editor dat a exporty zapojeny do společného menu a Actions. Živá integrace a animace zbývají.

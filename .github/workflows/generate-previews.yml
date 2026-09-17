@@ -3,6 +3,10 @@ name: SVDT — generování náhledů
 on:
   workflow_dispatch:
     inputs:
+      split_json:
+        description: 'Údaje G08 jako JSON podle split-time/data.js (nepovinné)'
+        required: false
+        type: string
       timer_time:
         description: 'Ukázkový čas, např. 1:23.456 (nepovinné)'
         required: false
@@ -33,6 +37,7 @@ on:
       - "karta-hosta/**"
       - "karta-vysledky/**"
       - "časomíra/**"
+      - "split-time/**"
       - "render.cjs"
       - "design-system/brand/**"
       - "scripts/**"
@@ -46,6 +51,7 @@ on:
       - "karta-hosta/**"
       - "karta-vysledky/**"
       - "časomíra/**"
+      - "split-time/**"
       - "render.cjs"
       - "design-system/brand/**"
       - "scripts/**"
@@ -78,6 +84,7 @@ jobs:
 
       - name: Vygenerovat a zkontrolovat náhledy
         env:
+          SPLIT_JSON: ${{ inputs.split_json }}
           TIMER_TIME: ${{ inputs.timer_time }}
           GUEST_NAME: ${{ inputs.guest_name }}
           GUEST_ROLE: ${{ inputs.guest_role }}
@@ -100,6 +107,8 @@ jobs:
             karta-vysledky/kontrola.json
             časomíra/nahledy/
             časomíra/kontrola.json
+            split-time/nahledy/
+            split-time/kontrola.json
           if-no-files-found: error
           retention-days: 30
 

@@ -11,7 +11,8 @@
     "render:vysledky": "node karta-vysledky/render.cjs",
     "dashboard": "node scripts/build-dashboard.cjs",
     "dashboard:check": "node scripts/build-dashboard.cjs --check",
-    "render:casomira": "node časomíra/render.cjs"
+    "render:casomira": "node časomíra/render.cjs",
+    "render:split-time": "node split-time/render.cjs"
   },
   "devDependencies": {
     "playwright": "1.55.0"
