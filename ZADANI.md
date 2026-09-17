@@ -79,9 +79,10 @@ Níže je referenční stav ročníku 2026, nikoliv potvrzená pravidla dalšíh
 - Web uvádí délku 1 200 m a převýšení 85 m.
 - Finální trasa a mapa trati: **Rozpracováno** (čeká: zadavatel) — na trase se pracuje, podklad pro G03 zatím není k dispozici.
 - Rozpor zdrojů: stránka hlavního závodu uvádí limit 120 jezdců, PDF 140.
-- Kapacita startovního pole pro další ročník: **K potvrzení** (čeká: zadavatel) — do grafiky zatím nevkládat pevné číslo.
+- Kapacita startovního pole: **140 jezdců** ✔ 17. 9. 2026
 - Počet měřených úseků a mezičasů: **K doplnění** (čeká: časomíra) — rozhoduje o realizovatelnosti volitelné části G08.
-- Pravidla pro shodné časy, penalizace, nestartování, nedokončení a diskvalifikaci: **K doplnění** (čeká: zadavatel)
+- Shodné časy: rozhoduje **součet časů obou jízd** ✔ 17. 9. 2026
+- Zobrazení DNF / DNS / DQ: **zkratka místo času, vizuální styl podle Red Bull Cerro Abajo** (potlačená barva, bez pořadí) ✔ 17. 9. 2026
 
 ## 4. Seznam grafických částí
 
