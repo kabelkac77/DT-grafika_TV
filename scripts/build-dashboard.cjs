@@ -57,6 +57,29 @@ function plain(text) {
     .trim();
 }
 
+/**
+ * Přečte ODKAZY.md: odrážky `- [Název](url) — popis`, volitelně pod nadpisem `## Skupina`.
+ * Odkazy nad prvním nadpisem spadnou do skupiny Nezařazené.
+ */
+function readLinks(root) {
+  const file = path.join(root, 'ODKAZY.md');
+  if (!fs.existsSync(file)) return [];
+  const out = [];
+  let group = 'Nezařazené';
+  let inFence = false;
+  fs.readFileSync(file, 'utf8').split('\n').forEach(line => {
+    if (/^\s*```/.test(line)) { inFence = !inFence; return; }
+    if (inFence) return;
+    const head = /^##\s+(.+?)\s*$/.exec(line);
+    if (head) { group = head[1]; return; }
+    const item = /^[-*]\s+\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)\s*(?:[—–-]\s*(.*))?$/.exec(line.trim());
+    if (item) {
+      out.push({ group, name: item[1].trim(), url: item[2], note: (item[3] || '').trim() || null });
+    }
+  });
+  return out;
+}
+
 /** Převede české datum 12. 9. 2026 na 2026-09-12; jinak vrátí null. */
 function toIso(cz) {
   const m = /(\d+)\.\s*(\d+)\.\s*(\d{4})/.exec(cz || '');
@@ -156,7 +179,7 @@ function build() {
   const sections = splitSections(md);
 
   const data = { repo: REPO, updated: null, sections: [], parts: [], people: [],
-    milestones: [], briefs: [], cardBriefs: [] };
+    milestones: [], briefs: [], cardBriefs: [], links: readLinks(root) };
 
   sections.forEach(sec => {
     const items = [];
@@ -240,7 +263,8 @@ function build() {
     people: data.people.length,
     milestones: data.milestones.length,
     briefs: data.briefs.length,
-    cardBriefs: data.cardBriefs.length
+    cardBriefs: data.cardBriefs.length,
+    links: data.links.length
   };
   if (!data.timeline.start || !data.timeline.end) {
     throw new Error('Chybí data milníků pro časovou osu — doplňte sloupec Datum v tabulce Milníky.');
@@ -270,6 +294,14 @@ function build() {
   const page = wrapPage(body, 'Přehled stavu obecného zadání broadcast systému SVDT — '
     + 'otevřené otázky, připravenost oddílů a odpovědné strany.');
 
+  const linksTpl = fs.readFileSync(path.join(root, 'docs', 'links.template.html'), 'utf8')
+    .replace('__TOKENS__', tokens);
+  const linksBody = linksTpl
+    .replace('__DATA__', JSON.stringify(data, null, 2))
+    .replace('__BUILD__', build);
+  const linksPage = wrapPage(linksBody, 'Sběrné místo odkazů k projektu SVDT — zadání, '
+    + 'podklady, schůzky a zdroje.');
+
   const systemTpl = fs.readFileSync(path.join(root, 'docs', 'system.template.html'), 'utf8')
     .replace('__TOKENS__', tokens);
   if (!systemTpl.includes('__DATA__')) throw new Error('V šabloně systému chybí značka __DATA__.');
@@ -280,7 +312,7 @@ function build() {
     + 's režií a s časomírou — tok dat, stavy odbavení a otevřené otázky.');
 
   const version = JSON.stringify({ build, updated: data.updated }, null, 2) + '\n';
-  return { body, page, systemPage, version, counts, updated: data.updated };
+  return { body, page, systemPage, linksPage, version, counts, updated: data.updated };
 }
 
 const out = build();
@@ -288,11 +320,13 @@ const bodyPath = path.join(root, 'docs', 'dashboard.body.html');
 const pagePath = path.join(root, 'docs', 'index.html');
 const versionPath = path.join(root, 'docs', 'version.json');
 const systemPath = path.join(root, 'docs', 'system.html');
+const linksPath = path.join(root, 'docs', 'odkazy.html');
 const read = p => (fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : null);
 
 if (process.argv.includes('--check')) {
   const stale = read(bodyPath) !== out.body || read(pagePath) !== out.page
-    || read(versionPath) !== out.version || read(systemPath) !== out.systemPage;
+    || read(versionPath) !== out.version || read(systemPath) !== out.systemPage
+    || read(linksPath) !== out.linksPage;
   if (stale) {
     console.error('Dashboard není aktuální vůči ZADANI.md. Spusťte: npm run dashboard');
     process.exit(1);
@@ -303,9 +337,10 @@ if (process.argv.includes('--check')) {
   fs.writeFileSync(pagePath, out.page);
   fs.writeFileSync(versionPath, out.version);
   fs.writeFileSync(systemPath, out.systemPage);
+  fs.writeFileSync(linksPath, out.linksPage);
   console.log(`Dashboard vygenerován ze ZADANI.md (aktualizováno ${out.updated}):`);
   console.log(`  oddílů ${out.counts.sections}, sledovaných bodů ${out.counts.items}, ` +
     `grafických částí ${out.counts.parts}, milníků ${out.counts.milestones}, ` +
     `dílčích zadání ${out.counts.briefs} + ${out.counts.cardBriefs} po kartách, ` +
-    `odpovědných osob ${out.counts.people}`);
+    `odpovědných osob ${out.counts.people}, odkazů ${out.counts.links}`);
 }
