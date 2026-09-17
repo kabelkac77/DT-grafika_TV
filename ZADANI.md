@@ -33,7 +33,7 @@ Z tohoto zápisu se generuje [dashboard stavu zadání](docs/index.html); jiný 
 
 - Oficiální název: **Svatohorský Downtown Příbram (SVDT)**. Jde o městský sjezd horských kol na čas.
 - Číslo a označení dalšího ročníku: **11. ročník (XI)** ✔ 11. 9. 2026
-- Datum dalšího ročníku: **K doplnění** (čeká: zadavatel) — zadavatel potvrdil, že termín zatím není stanovený.
+- Datum dalšího ročníku: **22. 5. 2027** ✔ 17. 9. 2026
 - Web nyní popisuje 10. ročník ze dne 23. 5. 2026; datum, harmonogram, status MČR ani partnery tohoto ročníku nepřebírat automaticky do nové grafiky.
 - Místo: Příbram, trať ze Svaté Hory do Pražské ulice. Pořadatel: **COWÁRNA z.s.** Zdroj: [oficiální web](https://svdtpribram.cz/), ověřeno 8. 9. 2026.
 - Veřejné kontakty z webu: info@svdtpribram.cz, +420 721 332 266; ředitel závodu Vojtěch Hrach, partneři / marketing / PR Vlastimil Ševr.
@@ -72,9 +72,9 @@ Níže je referenční stav ročníku 2026, nikoliv potvrzená pravidla dalšíh
 
 - Kategorie podle PDF: Ženy od 12 let, Open od 12 let, Junior 12–18 let, Elite 19–29 let a Masters 30+. Open je pro nelicencované; ostatní kategorie vyžadují licenci. Minimální účast: 3 ženy, ostatní kategorie 4 jezdci. Případné slučování určuje pořadatel.
 - Dvě měřené jízdy. Běžně rozhoduje lepší čas, pro MČR pouze čas druhé jízdy.
-- Způsob hodnocení a status příštího ročníku: **K potvrzení** (čeká: zadavatel) — výpočet výsledku nezafixovat podle domněnky.
+- Způsob hodnocení: **lepší čas z obou jízd; pokud bude MČR, rozhoduje pouze čas druhé jízdy** — status MČR se potvrdí 15. 1. 2027 ✔ 17. 9. 2026
 - PDF spojuje pořadí první jízdy s odbavením při prezenci. Web uvádí pořadí kategorií ženy, open, junior, master, elite, interval 30 sekund a druhou jízdu podle časů od nejpomalejšího. Posledních 10 startujících z licencovaných kategorií startuje po dojezdu předchozího.
-- Výklad startovního pořadí a pravidla dalšího ročníku: **K potvrzení** (čeká: zadavatel)
+- Startovní pořadí ve druhé jízdě: **reverse order v rámci kategorií** — prozatím platí, může se změnit kvůli live-streamu ✔ 17. 9. 2026
 - Důsledek pro návrh: počítat s možností více jezdců současně na trati; přiřazení grafiky k jezdci na obraze se musí vyřešit s režií.
 - Web uvádí délku 1 200 m a převýšení 85 m.
 - Finální trasa a mapa trati: **Rozpracováno** (čeká: zadavatel) — na trase se pracuje, podklad pro G03 zatím není k dispozici.
