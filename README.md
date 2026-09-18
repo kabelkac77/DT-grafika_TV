@@ -9,6 +9,7 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | Cesta | Obsah |
 | --- | --- |
 | `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
+| `broadcast/` | Režijní pult — ukázka ovládání nad hotovými grafikami, bez napojení na provoz |
 | `karta-vysledky/` | G01 — deset výsledků, loga, HTML/CSS generátor a zadání |
 | `split-time/` | G08 — dva mezičasy vůči lídrovi, cílový čas a pořadí, editor a PNG |
 | `časomíra/` | G04 — editor ukázkového času vpravo dole a generátor PNG |
@@ -18,6 +19,22 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | `docs/` | Dashboard — tři stránky generované ze `ZADANI.md` a `ODKAZY.md` |
 
 Složky pro další grafické části budou vytvořeny až při zahájení jejich realizace, aby prázdná struktura nepředstírala hotový rozsah.
+
+## Režijní pult
+
+[Ukázka ovládání](broadcast/README.md) — nákres toho, jak by režie grafiku odbavovala.
+Stavy Preview → Take → Program → Out, vrstvy programu, cíle TV a LED, kontrola kolizí
+zón na obraze, auto out, nouzové skrytí, fronta z makra a protokol povelů. V monitorech
+běží skutečné komponenty G01, G02, G04, G05 a G08 z tohoto repozitáře; data do nich
+posílá pult a karta sama hlásí zpět, jestli je připravená k vysílání.
+
+```bash
+npm run pult   # http://localhost:4173/broadcast/
+```
+
+Ukázka **není napojená na časomíru ani na režii**. Startovní listina a časy jsou
+vymyšlené, LED je pracovní ořez TV varianty a formát výstupu není zvolen. Slouží
+k tomu, abychom se nad konkrétní obrazovkou shodli na způsobu ovládání.
 
 ## Karta hosta
 
