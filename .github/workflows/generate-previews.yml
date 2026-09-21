@@ -33,29 +33,29 @@ on:
         type: string
   pull_request:
     paths:
-      - "karta-jezdce/**"
-      - "karta-hosta/**"
-      - "karta-vysledky/**"
-      - "časomíra/**"
-      - "split-time/**"
-      - "render.cjs"
-      - "design-system/brand/**"
-      - "scripts/**"
-      - "package.json"
+      - "DT-grafika-TV/karta-jezdce/**"
+      - "DT-grafika-TV/karta-hosta/**"
+      - "DT-grafika-TV/karta-vysledky/**"
+      - "DT-grafika-TV/časomíra/**"
+      - "DT-grafika-TV/split-time/**"
+      - "DT-grafika-TV/render.cjs"
+      - "DT-grafika-TV/design-system/brand/**"
+      - "DT-grafika-TV/scripts/**"
+      - "DT-grafika-TV/package.json"
       - ".github/workflows/generate-previews.yml"
   push:
     branches:
       - main
     paths:
-      - "karta-jezdce/**"
-      - "karta-hosta/**"
-      - "karta-vysledky/**"
-      - "časomíra/**"
-      - "split-time/**"
-      - "render.cjs"
-      - "design-system/brand/**"
-      - "scripts/**"
-      - "package.json"
+      - "DT-grafika-TV/karta-jezdce/**"
+      - "DT-grafika-TV/karta-hosta/**"
+      - "DT-grafika-TV/karta-vysledky/**"
+      - "DT-grafika-TV/časomíra/**"
+      - "DT-grafika-TV/split-time/**"
+      - "DT-grafika-TV/render.cjs"
+      - "DT-grafika-TV/design-system/brand/**"
+      - "DT-grafika-TV/scripts/**"
+      - "DT-grafika-TV/package.json"
       - ".github/workflows/generate-previews.yml"
 
 permissions:
@@ -77,12 +77,15 @@ jobs:
           node-version: 22
 
       - name: Nainstalovat závislosti
+        working-directory: DT-grafika-TV
         run: npm install --no-audit --no-fund
 
       - name: Nainstalovat Chromium
+        working-directory: DT-grafika-TV
         run: npx playwright install --with-deps chromium
 
       - name: Vygenerovat a zkontrolovat náhledy
+        working-directory: DT-grafika-TV
         env:
           SPLIT_JSON: ${{ inputs.split_json }}
           TIMER_TIME: ${{ inputs.timer_time }}
@@ -99,17 +102,15 @@ jobs:
         with:
           name: svdt-grafika-nahledy
           path: |
-            karta-jezdce/nahledy/
-            karta-jezdce/kontrola.json
-            karta-hosta/nahledy/
-            karta-hosta/kontrola.json
-            karta-vysledky/nahledy/
-            karta-vysledky/kontrola.json
-            časomíra/nahledy/
-            časomíra/kontrola.json
-            split-time/nahledy/
-            split-time/kontrola.json
+            DT-grafika-TV/karta-jezdce/nahledy/
+            DT-grafika-TV/karta-jezdce/kontrola.json
+            DT-grafika-TV/karta-hosta/nahledy/
+            DT-grafika-TV/karta-hosta/kontrola.json
+            DT-grafika-TV/karta-vysledky/nahledy/
+            DT-grafika-TV/karta-vysledky/kontrola.json
+            DT-grafika-TV/časomíra/nahledy/
+            DT-grafika-TV/časomíra/kontrola.json
+            DT-grafika-TV/split-time/nahledy/
+            DT-grafika-TV/split-time/kontrola.json
           if-no-files-found: error
           retention-days: 30
-
-
