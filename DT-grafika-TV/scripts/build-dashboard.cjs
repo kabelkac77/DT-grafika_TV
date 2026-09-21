@@ -21,7 +21,7 @@ const crypto = require('crypto');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
-const REPO = 'kabelkac77/DT-grafika_TV';
+const REPO = 'kabelkac77/SVDT2027';
 
 const OWNERS = {
   'zadavatel': 'zadavatel',

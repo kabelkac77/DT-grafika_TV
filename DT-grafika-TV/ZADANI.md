@@ -246,7 +246,7 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 - Zdrojové řešení musí být editovatelné a připravené pro doplnění dalších grafik, výstupů a workflow.
 - Součástí předání bude seznam externích závislostí, licencí a postup spuštění bez závislosti na autorovi řešení.
 - Rozsah návodu: **priorita je intuitivní ovládání, ne rozsáhlá dokumentace** ✔ 11. 9. 2026
-- Uložení zdrojů a výstupů: **repozitář kabelkac77/DT-grafika_TV na GitHubu** ✔ 11. 9. 2026
+- Uložení zdrojů a výstupů: **repozitář kabelkac77/SVDT2027 (dříve DT-grafika_TV) na GitHubu** ✔ 11. 9. 2026
 - Rozsah zaškolení obsluhy, místo instalace a osoba přebírající výstupy: **K doplnění** (čeká: zadavatel)
 
 ## 13. Ověření a schválení

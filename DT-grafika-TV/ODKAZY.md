@@ -12,8 +12,8 @@ Z tohoto souboru se generuje záložka **Odkazy** v dashboardu. Zápis je jednod
 Řádek uvozený `## ` zakládá skupinu; odkazy pod ní do ní spadnou. Odkazy nad první skupinou
 se zobrazí jako **Nezařazené**. Popis za pomlčkou je nepovinný.
 
-- [ZADANI.md](https://github.com/kabelkac77/DT-grafika_TV/blob/main/ZADANI.md) — společné zadání, potvrzené požadavky a otevřené otázky
-- [Repozitář grafik](https://github.com/kabelkac77/DT-grafika_TV) — karta jezdce, hosta, výsledků a časomíry, design systém, generátor PNG
+- [ZADANI.md](https://github.com/kabelkac77/SVDT2027/blob/main/DT-grafika-TV/ZADANI.md) — společné zadání, potvrzené požadavky a otevřené otázky
+- [Repozitář grafik](https://github.com/kabelkac77/SVDT2027) — karta jezdce, hosta, výsledků a časomíry, design systém, generátor PNG
 - [Otázky pro režii](https://app.notion.com/p/3d8e300ba5e481698db5ce0cfb919377) — předání obrazu, rozlišení, ovládání, nouzové stavy
 - [Otázky pro časomíru](https://app.notion.com/p/3d8e300ba5e481148c83f701565515f5) — dodavatel, formát dat, přesnost, opravy, výpadky
 - [Oficiální web závodu](https://svdtpribram.cz/) — pořadatel, kategorie, harmonogram ročníku 2026

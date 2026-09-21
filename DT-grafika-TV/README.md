@@ -87,8 +87,9 @@ a jednou za pět minut porovná se svým vlastním otiskem a při rozdílu nabí
 takže z mezipaměti prohlížeče neuvidíš starý stav. Otisk se počítá z obsahu, ne z času
 sestavení — beze změny zadání zůstává stejný a stránka se zbytečně necommituje.
 
-Stránka je publikovaná přes GitHub Pages ze složky `docs/` na větvi `main`:
-<https://kabelkac77.github.io/DT-grafika_TV/>. Repozitář je veřejný, takže je veřejná
+Stránka je publikovaná přes GitHub Pages ze složky `docs/` (nasazuje ji workflow
+z `DT-grafika-TV/docs/`):
+<https://kabelkac77.github.io/SVDT2027/>. Repozitář je veřejný, takže je veřejná
 i stránka; má proto `noindex`, aby se neobjevovala ve vyhledávačích. Aktuální podobu
 zobrazuje až po sloučení změn do `main`.
 
