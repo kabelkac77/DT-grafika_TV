@@ -27,7 +27,7 @@ Z tohoto zápisu se generuje [dashboard stavu zadání](docs/index.html); jiný 
 - Primárním datovým vstupem bude externí server poskytovatele časomíry.
 - Nejprve vznikne obecné zadání celého úkolu; následně z něj odvodíme dílčí zadání.
 - Informace se budou doplňovat postupně. Neznámé požadavky zůstávají otevřené.
-- Původní referenční fotografie a archiv `SVDT Design System.zip` byly vstupními podklady při přípravě zadání, ale nejsou uloženy v tomto repozitáři. Rozbalený design systém je součástí složky `design-system/`; použité obrazové podklady aktuální studie jsou popsány v `karta-jezdce/README.md`.
+- Původní referenční fotografie a archiv `SVDT Design System.zip` byly vstupními podklady při přípravě zadání, ale nejsou uloženy v tomto repozitáři. Rozbalený design systém je součástí složky `../design-system/` (sdíleno napříč repozitářem, v kořeni nad `DT-grafika-TV/`); použité obrazové podklady aktuální studie jsou popsány v `karta-jezdce/README.md`.
 
 ## 1. Základní informace o akci
 
@@ -195,7 +195,7 @@ Pro každou zvolenou část později určujeme: účel, zobrazovaná data, podob
 
 ## 9. Vizuální směr a pravidla značky
 
-- Podklad: dodaný archiv `SVDT Design System.zip`; jeho rozbalená pracovní podoba je uložena v `design-system/`, samotný archiv není součástí repozitáře.
+- Podklad: dodaný archiv `SVDT Design System.zip`; jeho rozbalená pracovní podoba je uložena v `../design-system/`, samotný archiv není součástí repozitáře.
 - Zjištění z archivu: téměř černé plochy, bílý text, značková červená `#E30613`, akcentní červená `#FF1A1A`, písmo Exo a číslice se stejnou šířkou.
 - Archiv obsahuje zejména pravidla a komponenty pro web a další materiály; konkrétní pravidla pro TV grafiku je potřeba určit.
 - Potvrzený směr: vycházet z dodaného design systému a přizpůsobit jej televiznímu přenosu a velkoplošným obrazovkám. Konkrétní návrhy schvaluje zadavatel.

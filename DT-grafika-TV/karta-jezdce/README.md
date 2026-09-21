@@ -48,7 +48,7 @@ Render kontroluje načtení písem a obrázků, přetečení, bezpečnou horní 
 
 ## Použité podklady
 
-- Zadání `ZADANI_KARTA_JEZDCE.md`, nadřazené `../ZADANI.md`, rozbalený `../design-system/` a původní referenční fotografie poskytnutá mimo tento repozitář. Samotný archiv design systému ani původní referenční složka nejsou v repozitáři uloženy. Cizí grafika z reference nebyla převzata.
+- Zadání `ZADANI_KARTA_JEZDCE.md`, nadřazené `../ZADANI.md`, rozbalený `../../design-system/` a původní referenční fotografie poskytnutá mimo tento repozitář. Samotný archiv design systému ani původní referenční složka nejsou v repozitáři uloženy. Cizí grafika z reference nebyla převzata.
 - **Závodní fotografie:** [oficiální fotogalerie SVDT](https://svdtpribram.cz/fotogalerie/), [přímý zdroj DSC_2695-45.jpg](https://svdtpribram.cz/wp-content/uploads/2026/03/DSC_2695-45.jpg). Lokálně `assets/zavod-skocny-zaber.jpg`. Záběr skoku v příbramské ulici. Použita jako podklad návrhu na výslovný pokyn zadavatele, s kompozičním výřezem do 16 : 9; bez retuše a bez dodatečného zatmavení. Autor není v načteném výpisu galerie uveden, není zde domýšlen.
 - **Logo:** [originální PNG SVDT](https://svdtpribram.cz/wp-content/uploads/2026/03/SVDT-logo-cervene_bile_uvnitr.png), beze změny uložené jako `assets/logo-svdt.png`. Historická návrhová bílá adaptace `assets/logo-ink.svg` s potlačeným kruhovým podkladem se od verze 06.4 v kartě nezobrazuje. Reliéf využívá skutečný horní motiv loga, nikoliv nově vymyšlenou značku. Proporce samotného motivu zůstávají zachované; základna je zakomponovaná do těla karty.
 - **Exo:** skutečné lokální fonty 400/500/700/800/900, [Google Fonts](https://fonts.google.com/specimen/Exo). Licence v `assets/Exo-OFL.txt`. Bez náhradního písma.
@@ -64,4 +64,4 @@ V repozitáři zůstává pouze 15 nepoškozených PNG poslední verze 06.4: čt
 Společný rozcestník je v `../index.html`. `npm run render` nyní generuje jezdce i hosta; pouze jezdce lze generovat přes `npm run render:jezdec`. V ZIP jsou výstupy oddělené podle složek karet.
 
 
-Sdílený zdroj písma loga: `../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.
+Sdílený zdroj písma loga: `../../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.

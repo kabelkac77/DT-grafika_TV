@@ -13,7 +13,7 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | `split-time/` | G08 — dva mezičasy vůči lídrovi, cílový čas a pořadí, editor a PNG |
 | `časomíra/` | G04 — editor ukázkového času vpravo dole a generátor PNG |
 | `karta-hosta/` | HTML/CSS editor a generování decentní jmenovky hosta (jméno a funkce) |
-| `design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy |
+| `../design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy — sdíleno napříč celým repozitářem, proto v kořeni nad `DT-grafika-TV/` |
 | `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
 | `docs/` | Dashboard — tři stránky generované ze `ZADANI.md` a `ODKAZY.md` |
 
@@ -121,7 +121,7 @@ Stejné ověření probíhá automaticky při změnách karty jezdce v Pull Requ
 ## Pravidla pro další grafické části
 
 - Každá grafická část G01–G07 dostane vlastní složku a vlastní `README.md`.
-- Společné barvy, typografie a vizuální principy vycházejí z `design-system/`.
+- Společné barvy, typografie a vizuální principy vycházejí z `../design-system/` (sdíleno napříč repozitářem).
 - Zdrojové soubory, editovatelné podklady a exporty musí být jasně rozlišené.
 - Externí nebo neveřejné podklady se v dokumentaci označí jako podklady mimo repozitář.
 - Ukázková data musí být označena jako fiktivní a nesmí se zaměnit za skutečné výsledky.
@@ -143,7 +143,7 @@ Výsledky samostatně: `npm run render:vysledky`. V Actions lze zadat `results_c
 
 ## Společný styl — 9. 9. 2026
 
-Všechny čtyři varianty jezdce, host a výsledková tabulka používají menší nápis SVATOHORSKÝ / DOWN / TOWN centrovaný pod celým reliéfem. Bez kruhu, přidané linky a letopočtu. Písmo je převzaté z původního loga ve společném `design-system/brand/event-wordmark.svg`. Host je mírně menší (620 px). Aktuální zdrojové náhledy jsou ve složkách karet; animace zadavatel upřesní později.
+Všechny čtyři varianty jezdce, host a výsledková tabulka používají menší nápis SVATOHORSKÝ / DOWN / TOWN centrovaný pod celým reliéfem. Bez kruhu, přidané linky a letopočtu. Písmo je převzaté z původního loga ve společném `../design-system/brand/event-wordmark.svg`. Host je mírně menší (620 px). Aktuální zdrojové náhledy jsou ve složkách karet; animace zadavatel upřesní později.
 
 ## Časomíra — 13. 9. 2026
 

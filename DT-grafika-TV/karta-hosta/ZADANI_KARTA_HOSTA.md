@@ -53,4 +53,4 @@ K doplnění zůstávají skutečná jména a funkce, animace a finální techni
 
 Host: šířka 620 px, jméno 36 px, funkce 24 px, samostatný prostor vpravo pro nápis šířky 90 px pod reliéfem šířky 160 px. Obsah zůstává jméno a funkce.
 
-Sdílený zdroj písma loga: `../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.
+Sdílený zdroj písma loga: `../../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.

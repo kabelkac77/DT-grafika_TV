@@ -126,4 +126,4 @@ Výstupy ukládat přehledně do samostatné podsložky, například `grafika/ka
 Tyto vstupy ponechat označené jako otevřené. Pro první návrh použít pracovní předpoklady z tohoto dokumentu a nezastavovat práci jen kvůli chybějícím produkčním údajům.
 
 
-Sdílený zdroj písma loga: `../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.
+Sdílený zdroj písma loga: `../../design-system/brand/event-wordmark.svg`; pozice a velikosti: `../../design-system/brand/event-wordmark.css`. Jde o výřez původního loga se zachovanými tvary písmen a texturou, nikoli náhradní font. Osa nápisu je shodná s osou celého reliéfu. Automatické kontroly ověřují načtení, vystředění, umístění uvnitř karty a nepřekrývání údajů ani partnerů. Aktuální náhledy vznikají z kódu; starší studie jsou pouze historické reference.
