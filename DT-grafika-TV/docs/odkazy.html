@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sběrné místo odkazů k projektu SVDT — zadání, podklady, schůzky a zdroje.">
+<meta name="color-scheme" content="dark light">
+<meta name="robots" content="noindex, nofollow">
+<title>Odkazy k projektu SVDT</title>
+<style>html{color-scheme:dark light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo:wght@600;800;900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Sdílené designové tokeny obou stránek dashboardu. Generátor je vkládá
+   do stránek na místo značky __TOKENS__, aby zůstaly samostatné. */
+:root{
+  --ground:#0C0A0B; --panel:#151011; --raised:#1D1618; --line:#2C2326; --line-soft:#221B1D;
+  --ink:#F6F1F2; --ink-dim:#C6B9BC; --muted:#948589;
+  --brand:#E30613; --accent:#FF3A2E;
+  --ok:#3FD18B; --ok-bg:#12301F; --warn:#F0A93B; --warn-bg:#332310; --open:#8B9BA8; --open-bg:#1B2329;
+  --rail:#E30613;
+  --f-display:Exo,"Exo 2","Segoe UI",sans-serif;
+  --f-body:Barlow,"Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --maxw:1120px;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --ground:#F6F3F3; --panel:#FFFFFF; --raised:#F1ECEC; --line:#E2DADB; --line-soft:#EDE6E7;
+    --ink:#1A1315; --ink-dim:#453B3D; --muted:#75686B;
+    --brand:#C40410; --accent:#E30613;
+    --ok:#15794D; --ok-bg:#E1F3E9; --warn:#8A5B06; --warn-bg:#FAEEDA; --open:#5B6B77; --open-bg:#EAEFF2;
+  }
+}
+:root[data-theme="light"]{
+  --ground:#F6F3F3; --panel:#FFFFFF; --raised:#F1ECEC; --line:#E2DADB; --line-soft:#EDE6E7;
+  --ink:#1A1315; --ink-dim:#453B3D; --muted:#75686B;
+  --brand:#C40410; --accent:#E30613;
+  --ok:#15794D; --ok-bg:#E1F3E9; --warn:#8A5B06; --warn-bg:#FAEEDA; --open:#5B6B77; --open-bg:#EAEFF2;
+}
+
+*{box-sizing:border-box}
+body{margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--f-body); font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px; margin:0 auto; padding-inline:20px; padding-block:0 72px}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display); text-wrap:balance; margin:0}
+
+.masthead{border-bottom:1px solid var(--line); margin-bottom:34px}
+.masthead-in{padding-block:44px 26px; border-left:3px solid var(--rail); padding-left:22px}
+.eyebrow{font-family:var(--f-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); font-weight:600; margin:0 0 12px}
+h1{font-size:clamp(28px,4.6vw,42px); font-weight:900; text-transform:uppercase; letter-spacing:-.015em; line-height:1.02}
+.lede{color:var(--ink-dim); max-width:62ch; margin:14px 0 0}
+
+.nav{display:flex; gap:8px; margin-top:22px; flex-wrap:wrap}
+.nav a{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+  text-decoration:none; border:1px solid var(--line); border-radius:100px; padding:7px 15px; color:var(--ink-dim)}
+.nav a:hover{border-color:var(--muted)}
+.nav a[aria-current="page"]{background:var(--ink); color:var(--ground); border-color:var(--ink)}
+.nav a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+section{margin-top:44px}
+section:first-of-type{margin-top:0}
+.group-head{display:flex; align-items:center; gap:12px; margin-bottom:14px}
+.group-head h2{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.07em}
+.group-head .bar{flex:1; height:1px; background:var(--line)}
+.group-head .n{font-family:var(--f-mono); font-size:12px; color:var(--muted)}
+
+.links{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+@media (max-width:900px){.links{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.links{grid-template-columns:1fr}}
+.lnk{border:1px solid var(--line); background:var(--panel); border-radius:2px; padding:18px 20px;
+  text-decoration:none; display:grid; gap:6px; align-content:start; transition:border-color .15s}
+.lnk:hover{border-color:var(--brand)}
+.lnk:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.lnk .tag{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); overflow-wrap:anywhere}
+.lnk .t{font-family:var(--f-display); font-weight:800; font-size:15.5px; overflow-wrap:anywhere}
+.lnk .d{font-size:13px; color:var(--muted)}
+
+.howto{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--brand);
+  border-radius:2px; padding:18px 20px; margin-top:48px}
+.howto h3{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px}
+.howto p{margin:0 0 10px; font-size:14px; color:var(--ink-dim)}
+.howto p:last-child{margin-bottom:0}
+.howto code{display:inline-block; font-family:var(--f-mono); font-size:12.5px; background:var(--raised);
+  border:1px solid var(--line); border-radius:2px; padding:2px 7px; color:var(--ink); overflow-wrap:anywhere}
+.empty{color:var(--muted); font-size:14px; padding:14px 2px}
+
+footer{margin-top:64px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:12.5px}
+footer p{margin:0 0 7px}
+code{font-family:var(--f-mono); font-size:.92em; color:var(--ink-dim)}
+
+.fresh{position:fixed; left:0; right:0; bottom:0; z-index:50; display:none;
+  background:var(--brand); color:#fff; padding:13px 18px; box-shadow:0 -6px 20px rgba(0,0,0,.28)}
+.fresh.on{display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center}
+.fresh p{margin:0; font-size:14px; font-weight:500}
+.fresh button{font:inherit; font-family:var(--f-mono); font-size:12px; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase; background:#fff; color:var(--brand);
+  border:0; border-radius:2px; padding:8px 16px; cursor:pointer}
+.fresh .dismiss{background:transparent; color:#fff; border:1px solid rgba(255,255,255,.5)}
+.fresh button:focus-visible{outline:2px solid #fff; outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="masthead-in">
+    <p class="eyebrow">SVDT · Svatohorský Downtown Příbram</p>
+    <h1>Odkazy</h1>
+    <p class="lede">Všechno, co se k projektu hodí mít po ruce — zadání, podklady, schůzky
+      a zdroje. Zatím bez třídění; skupiny přidáme, až jich bude víc.</p>
+    <nav class="nav">
+      <a href="./">Stav zadání</a>
+      <a href="system.html">Jak systém funguje</a>
+      <a href="odkazy.html" aria-current="page">Odkazy</a>
+    </nav>
+  </div>
+</header>
+
+<div id="groups"></div>
+
+<div class="howto">
+  <h3>Jak přidat odkaz</h3>
+  <p>Otevři <code>ODKAZY.md</code> v repozitáři, přidej řádek a ulož. Stránka se přegeneruje sama.</p>
+  <p><code>- [Název odkazu](https://adresa) — krátký popis</code></p>
+  <p>Řádek <code>## Název skupiny</code> založí novou skupinu; odkazy pod ním do ní spadnou.</p>
+</div>
+
+<footer>
+  <p>Stránka se generuje ze souboru <code>ODKAZY.md</code> příkazem <code>npm run dashboard</code>.</p>
+  <p>Odkazy vedou i mimo repozitář; obsah za nimi nekontrolujeme.</p>
+</footer>
+
+</div>
+
+<div class="fresh" id="fresh" role="status" aria-live="polite">
+  <p>Zadání se od načtení této stránky změnilo.</p>
+  <button type="button" id="freshReload">Načíst aktuální stav</button>
+  <button type="button" class="dismiss" id="freshDismiss">Teď ne</button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var DATA = {
+  "repo": "kabelkac77/SVDT2027",
+  "updated": "17. 9. 2026",
+  "sections": [
+    {
+      "n": "01",
+      "title": "Základní informace o akci",
+      "items": [
+        {
+          "t": "Číslo a označení dalšího ročníku",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "11. ročník (XI)",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Datum dalšího ročníku",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "22. 5. 2027",
+          "date": "17. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Jazyk a jazykové varianty přenosu",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Čeština, s přípravou anglické mutace",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Odpovědná kontaktní osoba pro tento projekt",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Hrášek a Lipánek",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Kontaktní osoba za televizní produkci a režii",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "02",
+      "title": "Cíl a rozsah celého úkolu",
+      "items": []
+    },
+    {
+      "n": "03",
+      "title": "Formát a pravidla závodu",
+      "items": [
+        {
+          "t": "Způsob hodnocení",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Lepší čas z obou jízd; pokud bude MČR, rozhoduje pouze čas druhé jízdy — status MČR se potvrdí 15. 1. 2027",
+          "date": "17. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Startovní pořadí ve druhé jízdě",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Reverse order v rámci kategorií — prozatím platí, může se změnit kvůli live-streamu",
+          "date": "17. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Finální trasa a mapa trati",
+          "s": "part",
+          "o": "zadavatel",
+          "note": "Na trase se pracuje, podklad pro G03 zatím není k dispozici.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Kapacita startovního pole",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "140 jezdců",
+          "date": "17. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Počet měřených úseků a mezičasů",
+          "s": "open",
+          "o": "casomira",
+          "note": "Rozhoduje o realizovatelnosti volitelné části G08.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Shodné časy",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Rozhoduje součet časů obou jízd",
+          "date": "17. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Zobrazení DNF / DNS / DQ",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Zkratka místo času, vizuální styl podle Red Bull Cerro Abajo (potlačená barva, bez pořadí)",
+          "date": "17. 9. 2026",
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "04",
+      "title": "Seznam grafických částí",
+      "items": [
+        {
+          "t": "Priority G01–G07",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Na pořadí nezáleží, části vznikají souběžně",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Schválení hotových vizuálních studií G01, G02 a G05",
+          "s": "part",
+          "o": "zadavatel",
+          "note": "Studie jsou implementované, čeká se na písemné schválení.",
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "05",
+      "title": "Údaje o závodnících a další obsah",
+      "items": [
+        {
+          "t": "Rozsah údajů",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Jméno, startovní číslo, země, tým, kategorie, portrét a vlajka",
+          "date": "8. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Kontrola správnosti jmen, týmů a dalších údajů",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Hrášek a Lipánek",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Rozdělení na povinné a volitelné údaje pro jednotlivé grafiky",
+          "s": "open",
+          "o": "my",
+          "note": "Vyplyne z dílčího zadání grafických částí.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Konkrétní portréty, vlajky a další obrazové podklady",
+          "s": "part",
+          "o": "zadavatel",
+          "note": "Dodají Vlasta a Lachtan, termín zatím neurčen.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Kdo dodá seznam závodníků a kontroluje jeho správnost",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Hrášek",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Formát a termín dodání seznamu závodníků",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Pravidla pro dlouhá jména, diakritiku a chybějící údaje",
+          "s": "open",
+          "o": "my",
+          "note": "Obsah validují Hrášek a Lipánek.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Texty pro informační grafiku a další obsah",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "G04 — vizuální generátor",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Implementován editor, ukázkový čas, průhledný PNG export a společné Actions",
+          "date": "13. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "G04 — rozměry a vizuální shoda s původním návrhem",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Pracovní rozměr 344 × 112 px; původní obrázek nebyl dostupný pro přesné porovnání.",
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "06",
+      "title": "Časomíra a závodní data",
+      "items": [
+        {
+          "t": "Dodavatel a systém časomíry, technický kontakt",
+          "s": "open",
+          "o": "casomira",
+          "note": "Bez toho nelze začít žádné z dalších témat tohoto oddílu.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Jaká data jsou dostupná a jak se předávají",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Automatické napojení, import souboru nebo ruční zadávání",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Dostupnost startů, živého času, mezičasů, cílových časů a pořadí",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Přesnost a způsob zápisu času",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "S kým se jezdec porovnává a zda se porovnání během jízdy mění",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Rozlišení času úseku a celkového času od startu",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Rozlišení předběžných a potvrzených výsledků",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Postup při opravě výsledku, opožděných datech nebo výpadku",
+          "s": "open",
+          "o": "casomira",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Dostupnost ukázkových dat pro přípravu a zkoušku",
+          "s": "open",
+          "o": "casomira",
+          "note": "Nutná k prototypu i k demoverzi bez ostrého napojení.",
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "07",
+      "title": "Ovládání během přenosu",
+      "items": [
+        {
+          "t": "Postup realizace",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Nejdřív demoverze ovládání bez napojení na TV a časomíru, potom ostrá verze",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Role uživatelů, počet pracovišť, klávesové zkratky, hardwarové ovladače a chování při souběhu",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "08",
+      "title": "Technické prostředí přenosu",
+      "items": [
+        {
+          "t": "Přesný počet, rozměry, orientace a mapování LED panelů",
+          "s": "open",
+          "o": "led",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Způsob předání TV grafiky do mixážního nebo odbavovacího systému",
+          "s": "open",
+          "o": "rezie",
+          "note": "Určuje technologii výstupu celého systému.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Požadavek na stream jako další samostatný výstup",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Odbavovací systém režie, jeho verze a podporované vstupy",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Počítače, operační systém, grafické výstupy a další dostupné vybavení",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Dostupnost a topologie místní sítě a internetu",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Technická omezení a požadavky produkce",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "09",
+      "title": "Vizuální směr a pravidla značky",
+      "items": [
+        {
+          "t": "Umístění grafiky, bezpečné okraje a prostor pro logo televize",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Velikost textů a čitelnost nad světlými i tmavými záběry",
+          "s": "part",
+          "o": "my",
+          "note": "Ověřitelné až na výstupu režie.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Barevné významy náskoku, ztráty, lídra a dalších stavů",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Průhlednost podkladů, animace a délka jejich trvání",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Požadavky na animace doplní zadavatel.",
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "10",
+      "title": "Loga, fotografie, písma a partneři",
+      "items": [
+        {
+          "t": "Kdo dodá portréty a ostatní obrazové podklady",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Vlasta a Lachtan",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Hierarchie a pravidla zobrazování partnerů",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Zajištění potřebných práv k použití podkladů a písem",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Termín dodání finálních podkladů",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Bez termínu nelze naplánovat finální naplnění šablon.",
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "11",
+      "title": "Spolehlivost a náhradní postupy",
+      "items": [
+        {
+          "t": "Odpovědnost za provoz a řešení problémů během akce",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Hrášek a Lipánek",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Interval záloh, nezávislé umístění kopie, délka uchování a odpovědná osoba",
+          "s": "part",
+          "o": "zadavatel",
+          "note": "Zálohování dat zajišťuje zadavatel, parametry chybí.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Požadovaná redundance řídicího počítače, sítě a renderovacích výstupů",
+          "s": "open",
+          "o": "rezie",
+          "note": null,
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "12",
+      "title": "Výstupy a předání",
+      "items": [
+        {
+          "t": "Rozsah návodu",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Priorita je intuitivní ovládání, ne rozsáhlá dokumentace",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Uložení zdrojů a výstupů",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Repozitář kabelkac77/SVDT2027 (dříve DT-grafika_TV) na GitHubu",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Rozsah zaškolení obsluhy, místo instalace a osoba přebírající výstupy",
+          "s": "open",
+          "o": "zadavatel",
+          "note": null,
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "13",
+      "title": "Ověření a schválení",
+      "items": [
+        {
+          "t": "Kritéria, podle kterých bude úkol považován za dokončený",
+          "s": "open",
+          "o": "my",
+          "note": "Bez akceptačních kritérií nelze projekt uzavřít.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Termín a prostředí zkoušky s režií a časomírou",
+          "s": "part",
+          "o": "rezie",
+          "note": "Rámcově přelom ledna a února 2027, místo a prostředí chybí.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Situace pro ověření — běžná jízda, dlouhé jméno, chybějící portrét, více jezdců na trati, oprava výsledku, výpadek dat",
+          "s": "open",
+          "o": "my",
+          "note": null,
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "14",
+      "title": "Termíny, priority a omezení",
+      "items": [
+        {
+          "t": "Termín prvního návrhu",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Do konce roku 2026",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Termín funkční ukázky a společné zkoušky",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Přelom ledna a února 2027",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Cílový termín dokončení",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Březen 2027 — nahrazuje dřívější údaj začátek ledna 2027.",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Rozpočet a omezení placených nástrojů nebo služeb",
+          "s": "done",
+          "o": "zadavatel",
+          "note": "Bez licenčních poplatků, jinak bez omezení",
+          "date": "11. 9. 2026",
+          "asked": null
+        },
+        {
+          "t": "Přesný den dokončení a den ostrého nasazení",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Datum závodu dosud není známo.",
+          "date": null,
+          "asked": null
+        },
+        {
+          "t": "Co vypustit při nedostatku času",
+          "s": "open",
+          "o": "zadavatel",
+          "note": "Pořadí částí G01–G07 nerozhoduje, vznikají souběžně.",
+          "date": null,
+          "asked": null
+        }
+      ]
+    },
+    {
+      "n": "15",
+      "title": "Navazující dílčí zadání",
+      "items": []
+    }
+  ],
+  "parts": [
+    {
+      "id": "G01",
+      "name": "Tabulka výsledků jezdců",
+      "build": "Dílčí zadání i HTML generátor podle studie 04",
+      "state": "Čeká na schválení"
+    },
+    {
+      "id": "G02",
+      "name": "Představení / popis jezdce",
+      "build": "Verze 06.5 — vodorovná i rohová, s portrétem i bez",
+      "state": "Čeká na schválení"
+    },
+    {
+      "id": "G03",
+      "name": "Mapa trati",
+      "build": "Čeká na finální trasu od pořadatele",
+      "state": "Blokováno"
+    },
+    {
+      "id": "G04",
+      "name": "Časomíra",
+      "build": "HTML/CSS editor a PNG generátor hotové; živé napojení čeká na rozhraní časomíry",
+      "state": "Čeká na schválení"
+    },
+    {
+      "id": "G05",
+      "name": "Jmenovka pro rozhovory",
+      "build": "Studie 01 — jméno a funkce, generování PNG hotové",
+      "state": "Čeká na schválení"
+    },
+    {
+      "id": "G06",
+      "name": "Přechody mezi sestřihy",
+      "build": "Neřešeno, upřesní se s režií",
+      "state": "Otevřené"
+    },
+    {
+      "id": "G07",
+      "name": "Partneři",
+      "build": "Čeká na podklady od zadavatele",
+      "state": "Otevřené"
+    },
+    {
+      "id": "G08",
+      "name": "Split time",
+      "build": "HTML/CSS editor a PNG generátor dle návrhu 04; živá data čekají na časomíru",
+      "state": "Rozpracováno"
+    }
+  ],
+  "people": [
+    {
+      "name": "Hrášek",
+      "role": "Seznam závodníků, kontrola údajů, provoz a řešení problémů během akce"
+    },
+    {
+      "name": "Lipánek",
+      "role": "Texty a validace obsahu, provoz během akce společně s Hráškem"
+    },
+    {
+      "name": "Vlasta a Lachtan",
+      "role": "Portréty, loga partnerů, práva k podkladům a termíny dodání"
+    }
+  ],
+  "milestones": [
+    {
+      "what": "Doplnění zadání",
+      "when": "probíhá",
+      "date": "2026-09-08",
+      "state": "Nyní",
+      "now": true
+    },
+    {
+      "what": "První návrh",
+      "when": "do konce roku 2026",
+      "date": "2026-12-31",
+      "state": "Připravuje se",
+      "now": false
+    },
+    {
+      "what": "Demoverze ovládání",
+      "when": "navazuje na první návrh",
+      "date": null,
+      "state": "Připravuje se",
+      "now": false
+    },
+    {
+      "what": "Společná zkouška s režií a časomírou",
+      "when": "přelom ledna a února 2027",
+      "date": "2027-02-01",
+      "state": "Připravuje se",
+      "now": false
+    },
+    {
+      "what": "Předání ostré verze",
+      "when": "březen 2027",
+      "date": "2027-03-31",
+      "state": "Připravuje se",
+      "now": false
+    }
+  ],
+  "briefs": [
+    {
+      "file": "01_VIZUALNI_SYSTEM.md",
+      "state": "Lze psát hned"
+    },
+    {
+      "file": "02_GRAFICKE_CASTI.md",
+      "state": "Nahrazeno zadáními karet"
+    },
+    {
+      "file": "03_PODKLADY_A_OBSAH.md",
+      "state": "Lze psát hned"
+    },
+    {
+      "file": "04_DATA_A_CASOMIRA.md",
+      "state": "Blokováno časomírou"
+    },
+    {
+      "file": "05_BROADCAST_SYSTEM_A_REZIE.md",
+      "state": "Blokováno režií a LED"
+    },
+    {
+      "file": "06_ZALOHOVANI_A_OBNOVA.md",
+      "state": "Po funkčním řešení"
+    },
+    {
+      "file": "07_ZKOUSKA_A_PREDANI.md",
+      "state": "Po dohodě termínu zkoušky"
+    }
+  ],
+  "cardBriefs": [
+    {
+      "part": "G01",
+      "file": "karta-vysledky/ZADANI_KARTA_VYSLEDKU.md",
+      "state": "Hotovo"
+    },
+    {
+      "part": "G02",
+      "file": "karta-jezdce/ZADANI_KARTA_JEZDCE.md",
+      "state": "Hotovo"
+    },
+    {
+      "part": "G04",
+      "file": "časomíra/README.md",
+      "state": "Hotovo"
+    },
+    {
+      "part": "G05",
+      "file": "karta-hosta/ZADANI_KARTA_HOSTA.md",
+      "state": "Hotovo"
+    },
+    {
+      "part": "G03",
+      "file": "zatím nevzniklo",
+      "state": "Blokováno trasou"
+    },
+    {
+      "part": "G06",
+      "file": "zatím nevzniklo",
+      "state": "Otevřené, upřesní režie"
+    },
+    {
+      "part": "G07",
+      "file": "zatím nevzniklo",
+      "state": "Čeká na podklady"
+    }
+  ],
+  "links": [
+    {
+      "group": "Nezařazené",
+      "name": "ZADANI.md",
+      "url": "https://github.com/kabelkac77/SVDT2027/blob/main/DT-grafika-TV/ZADANI.md",
+      "note": "společné zadání, potvrzené požadavky a otevřené otázky"
+    },
+    {
+      "group": "Nezařazené",
+      "name": "Repozitář grafik",
+      "url": "https://github.com/kabelkac77/SVDT2027",
+      "note": "karta jezdce, hosta, výsledků a časomíry, design systém, generátor PNG"
+    },
+    {
+      "group": "Nezařazené",
+      "name": "Otázky pro režii",
+      "url": "https://app.notion.com/p/3d8e300ba5e481698db5ce0cfb919377",
+      "note": "předání obrazu, rozlišení, ovládání, nouzové stavy"
+    },
+    {
+      "group": "Nezařazené",
+      "name": "Otázky pro časomíru",
+      "url": "https://app.notion.com/p/3d8e300ba5e481148c83f701565515f5",
+      "note": "dodavatel, formát dat, přesnost, opravy, výpadky"
+    },
+    {
+      "group": "Nezařazené",
+      "name": "Oficiální web závodu",
+      "url": "https://svdtpribram.cz/",
+      "note": "pořadatel, kategorie, harmonogram ročníku 2026"
+    },
+    {
+      "group": "Nezařazené",
+      "name": "Pravidla 2026 (PDF)",
+      "url": "https://svdtpribram.cz/wp-content/uploads/2026/04/Pravidla_Svatohorsky_Downtown_Pribram_2026.pdf",
+      "note": "kategorie, měřené jízdy, limity účasti"
+    },
+    {
+      "group": "Nezařazené",
+      "name": "Výsledková stránka SLCR Live",
+      "url": "https://vysledky.ok1kuo.cz/?s=22147",
+      "note": "podklad k časomíře od zadavatele"
+    }
+  ],
+  "answered": [
+    {
+      "date": "2026-09-08",
+      "count": 1
+    },
+    {
+      "date": "2026-09-11",
+      "count": 16
+    },
+    {
+      "date": "2026-09-13",
+      "count": 17
+    },
+    {
+      "date": "2026-09-17",
+      "count": 23
+    }
+  ],
+  "trackedTotal": 66,
+  "timeline": {
+    "start": "2026-09-08",
+    "end": "2027-03-31"
+  }
+};
+  var BUILD = "32dd4ab3ae";
+
+  var $ = function(id){ return document.getElementById(id); };
+  var el = function(tag, cls, txt){
+    var n = document.createElement(tag);
+    if(cls){ n.className = cls; }
+    if(txt !== undefined && txt !== null){ n.textContent = txt; }
+    return n;
+  };
+  var plural = function(n, one, few, many){
+    return n + " " + (n === 1 ? one : (n >= 2 && n <= 4 ? few : many));
+  };
+
+  /** Doména jako štítek karty — GitHub, Notion, svdtpribram.cz. */
+  function source(url){
+    var host = url.replace(/^https?:\/\//, "").split("/")[0].replace(/^www\./, "");
+    if(/github\.com$/.test(host)){ return "GitHub"; }
+    if(/notion\.(com|so)$/.test(host)){ return "Notion"; }
+    if(/claude\.ai$/.test(host)){ return "Claude"; }
+    return host;
+  }
+
+  var box = $("groups");
+  var links = DATA.links || [];
+
+  if(!links.length){
+    box.appendChild(el("div", "empty", "Zatím tu není žádný odkaz."));
+  } else {
+    var order = [];
+    var byGroup = {};
+    links.forEach(function(l){
+      if(!byGroup[l.group]){ byGroup[l.group] = []; order.push(l.group); }
+      byGroup[l.group].push(l);
+    });
+
+    order.forEach(function(name){
+      var list = byGroup[name];
+      var sec = el("section");
+
+      var h = el("div", "group-head");
+      h.appendChild(el("h2", "", name));
+      h.appendChild(el("div", "bar"));
+      h.appendChild(el("div", "n", plural(list.length, "odkaz", "odkazy", "odkazů")));
+      sec.appendChild(h);
+
+      var grid = el("div", "links");
+      list.forEach(function(l){
+        var a = el("a", "lnk");
+        a.href = l.url;
+        a.rel = "noopener noreferrer";
+        if(!/^https?:\/\/(kabelkac77\.github\.io|[^/]*\/)?$/.test(l.url)){ a.target = "_blank"; }
+        a.appendChild(el("span", "tag", source(l.url)));
+        a.appendChild(el("span", "t", l.name));
+        if(l.note){ a.appendChild(el("span", "d", l.note)); }
+        grid.appendChild(a);
+      });
+      sec.appendChild(grid);
+      box.appendChild(sec);
+    });
+  }
+
+  // ---- kontrola novější verze ----
+  (function(){
+    var bar = $("fresh");
+    var dismissed = false;
+    $("freshReload").addEventListener("click", function(){ location.reload(); });
+    $("freshDismiss").addEventListener("click", function(){
+      dismissed = true;
+      bar.classList.remove("on");
+    });
+    function check(){
+      if(dismissed || bar.classList.contains("on")){ return; }
+      fetch("version.json?t=" + Date.now(), {cache:"no-store"})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(v){ if(v && v.build && v.build !== BUILD){ bar.classList.add("on"); } })
+        .catch(function(){ /* mimo Pages se kontrola přeskočí */ });
+    }
+    check();
+    document.addEventListener("visibilitychange", function(){
+      if(document.visibilityState === "visible"){ check(); }
+    });
+    setInterval(check, 300000);
+  })();
+})();
+</script>
+
+</body>
+</html>

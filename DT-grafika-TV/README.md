@@ -1,0 +1,172 @@
+# SVDT — grafika pro televizní přenos
+
+Repozitář obsahuje zadání, společný design systém a pracovní grafické výstupy pro televizní přenos a velkoplošné obrazovky závodu **Svatohorský Downtown Příbram (SVDT)**.
+
+Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojového kódu. Napojení dat a ostré odbavení zůstávají k ověření s režií.
+
+## Aktuální struktura
+
+| Cesta | Obsah |
+| --- | --- |
+| `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
+| `1_Broadcast/` | Režijní pult — ukázka ovládání nad hotovými grafikami, bez napojení na provoz |
+| `karta-vysledky/` | G01 — deset výsledků, loga, HTML/CSS generátor a zadání |
+| `split-time/` | G08 — dva mezičasy vůči lídrovi, cílový čas a pořadí, editor a PNG |
+| `časomíra/` | G04 — editor ukázkového času vpravo dole a generátor PNG |
+| `karta-hosta/` | HTML/CSS editor a generování decentní jmenovky hosta (jméno a funkce) |
+| `../design-system/` | Pravidla značky, designové tokeny, komponenty a ukázkové výstupy — sdíleno napříč celým repozitářem, proto v kořeni nad `DT-grafika-TV/` |
+| `karta-jezdce/` | Vizuální studie G02 — představení jezdce, zdrojové soubory, podklady a náhledy |
+| `docs/` | Dashboard — tři stránky generované ze `ZADANI.md` a `ODKAZY.md` |
+
+Složky pro další grafické části budou vytvořeny až při zahájení jejich realizace, aby prázdná struktura nepředstírala hotový rozsah.
+
+## Režijní pult
+
+[Ukázka ovládání](1_Broadcast/README.md) — nákres toho, jak by režie grafiku odbavovala.
+Stavy Preview → Take → Program → Out, vrstvy programu, cíle TV a LED, kontrola kolizí
+zón na obraze, auto out, nouzové skrytí, fronta z makra a protokol povelů. V monitorech
+běží skutečné komponenty G01, G02, G04, G05 a G08 z tohoto repozitáře; data do nich
+posílá pult a karta sama hlásí zpět, jestli je připravená k vysílání.
+
+```bash
+npm run pult   # http://localhost:4173/DT-grafika-TV/1_Broadcast/
+```
+
+Ukázka **není napojená na časomíru ani na režii**. Startovní listina a časy jsou
+vymyšlené, LED je pracovní ořez TV varianty a formát výstupu není zvolen. Slouží
+k tomu, abychom se nad konkrétní obrazovkou shodli na způsobu ovládání.
+
+## Karta hosta
+
+[Schválený návrh a zadání karty hosta](karta-hosta/README.md) — studie 01. Jméno a funkce pro vstupy mezi jízdami; navazuje na kartu jezdce 06.4. HTML/CSS editor a generování PNG jsou implementované; nástup a odchod jsou převzaté z Claude Design (`karta-jezdce/motion.css`) a čekají na potvrzení režií.
+
+## Dashboard stavu zadání
+
+Dashboard má tři stránky. **Stav zadání** (`docs/index.html`) ukazuje, co je potvrzené,
+co je rozpracované a na kom se čeká. **Jak systém funguje** (`docs/system.html`) je podklad
+pro jednání s režií a s časomírou — diagramy toku dat, stavů odbavení a příkladu automatiky,
+za nimi otevřené otázky pro každou stranu. **Odkazy** (`docs/odkazy.html`) je sběrné místo
+odkazů k projektu; přidávají se řádkem do `ODKAZY.md`.
+
+Stránka stavu Zobrazuje sledované body podle oddílů `ZADANI.md`, podíl zodpovězených bodů
+v každém oddílu, frontu podle odpovědné strany, stav grafických částí G01–G08, milníky
+a dílčí zadání.
+
+**Jediným zdrojem stavu je `ZADANI.md`.** Dashboard se z něj generuje, nic se nedopisuje
+ručně. Stav se změní tak, že se upraví zadání.
+
+| Soubor | Role |
+| --- | --- |
+| `ZADANI.md` | Zdroj dat — sledované body, tabulky částí, osob, milníků a dílčích zadání |
+| `ODKAZY.md` | Zdroj odkazů pro záložku Odkazy — `- [Název](url) — popis`, skupiny přes `## ` |
+| `docs/dashboard.template.html` | Šablona stránky stavu zadání se značkou `__DATA__` |
+| `docs/system.template.html` | Šablona stránky s diagramy fungování systému |
+| `docs/links.template.html` | Šablona stránky s odkazy |
+| `docs/tokens.css` | Sdílené barvy a písma všech stránek |
+| `scripts/build-dashboard.cjs` | Přečte zadání i odkazy a vloží data do šablon |
+| `docs/index.html`, `docs/system.html`, `docs/odkazy.html`, `docs/dashboard.body.html`, `docs/version.json` | Generované výstupy — needitovat ručně |
+
+### Jak se zapisuje stav do zadání
+
+- Otevřená otázka: `- Téma: **K doplnění** (čeká: zadavatel)` — strana může být
+  `zadavatel`, `časomíra`, `režie`, `LED` nebo `na nás`. Stejně funguje `**K potvrzení**`.
+- Částečná odpověď: `- Téma: **Rozpracováno** (čeká: režie) — co konkrétně chybí.`
+- Zodpovězený bod zůstává v dokumentu jako fakt: `- Téma: **odpověď** ✔ 11. 9. 2026`
+- Za poznámkou po pomlčce může být upřesnění; zobrazí se pod bodem.
+- Jakmile dotaz odejde, připiš datum: `(čeká: časomíra, dotaz 12. 9. 2026)`. Dashboard z něj
+  počítá, jak dlouho se čeká, řadí podle toho seznam a po dvou týdnech nabídne urgenci.
+- Tabulka **Milníky** v oddílu 14 má sloupec `Datum` v podobě `2027-03-31`. Je to kotva pro
+  časovou osu dashboardu; milník bez data se v ose nezobrazí, jen v seznamu pod ní.
+
+Tabulka **Dílčí zadání jednotlivých karet** v oddílu 15 vede zadání, která vznikají po kartách;
+dashboard je počítá společně s plánovanými kroky.
+
+Dashboard z těchto dat sám odvozuje blok **Nejbližší kroky** (na koho se čekají body,
+co jde psát hned, co stačí doklepnout), **trať do předání** s polohou dnešního dne
+a **křivku přibývání odpovědí** podle dat u značek ✔.
+
+Bod bez uvedené strany generování zastaví s chybou, aby v přehledu nevznikaly body,
+u kterých není jasné, kdo je má vyřešit.
+
+### Generování
+
+- `npm run dashboard` — přegeneruje `docs/index.html`, `docs/system.html`, `docs/odkazy.html`,
+  `docs/dashboard.body.html` a `docs/version.json`.
+- `npm run dashboard:check` — ohlásí, že výstupy neodpovídají `ZADANI.md` (používá se v Pull Requestu).
+- Workflow **SVDT — dashboard stavu zadání** přegeneruje stránky při každé změně `ZADANI.md`,
+  `ODKAZY.md`, šablon, tokenů nebo generátoru a výsledek rovnou commitne, takže přehled je po
+  úpravě zadání aktuální bez ručního kroku. Commituje celou složku `docs/` a po commitu ověří,
+  že v ní nezůstaly nezapsané změny — jinak by se mohlo stát, že se přegeneruje jen část stránek
+  a zbytek bude hlásit novější verzi.
+
+`docs/version.json` nese otisk obsahu. Otevřená stránka si ho po návratu do záložky
+a jednou za pět minut porovná se svým vlastním otiskem a při rozdílu nabídne obnovení,
+takže z mezipaměti prohlížeče neuvidíš starý stav. Otisk se počítá z obsahu, ne z času
+sestavení — beze změny zadání zůstává stejný a stránka se zbytečně necommituje.
+
+Stránka je publikovaná přes GitHub Pages ze složky `docs/` (nasazuje ji workflow
+z `DT-grafika-TV/docs/`):
+<https://kabelkac77.github.io/SVDT2027/>. Repozitář je veřejný, takže je veřejná
+i stránka; má proto `noindex`, aby se neobjevovala ve vyhledávačích. Aktuální podobu
+zobrazuje až po sloučení změn do `main`.
+
+## Aktuální stav
+
+- G02 — karta jezdce: aktuální verze **06.5**, vodorovná a rohová karta, obě s portrétem i bez něj. Celý reliéf, jemná MTB stopa a menší bílý nápis z loga pod reliéfem.
+- G05 — karta hosta: funkční jmenovka se jménem a funkcí, společné generování s kartou jezdce.
+- G01 — karta výsledků: funkční HTML/CSS generátor podle studie 04; [zdroje a návod](karta-vysledky/README.md), [zadání](karta-vysledky/ZADANI_KARTA_VYSLEDKU.md). Živá data a editor rozmístění log navazují později.
+- G04 — časomíra: HTML/CSS editor a PNG generátor, rovný levý okraj, bez reliéfu; [návod](časomíra/README.md). Živé napojení a animace zbývají.
+- G03, G06 a G07: jsou vymezeny v zadání, ale zatím nemají vlastní implementaci.
+- G08 — split time: editor a PNG generátor podle návrhu 04; dva mezičasy vůči lídrovi, cílový čas a pořadí. Živá integrace závisí na dostupnosti dat.
+- Produkční formát, napojení časomíry a způsob odbavení musí být potvrzeny s režií.
+
+## Jak otevřít kartu jezdce
+
+1. Stáhněte nebo naklonujte repozitář.
+2. Otevřete `karta-jezdce/index.html` v aktuálním Chrome nebo Edge.
+3. Náhled funguje lokálně bez serveru a bez připojení k internetu.
+
+Všechny čtyři varianty najdete v [přehledové kompozici](karta-jezdce/nahledy/SVDT-srovnani-A-B.png) nebo v `karta-jezdce/srovnani.html`.
+
+Podrobnosti, použité podklady a kontrolní scénáře jsou popsány v [dokumentaci karty jezdce](karta-jezdce/README.md).
+
+## Generování náhledů z iPadu
+
+Náhledy není nutné generovat přímo na iPadu. V záložce **Actions** lze ručně spustit workflow **SVDT — generování náhledů**. GitHub na vzdáleném počítači nainstaluje potřebné nástroje, vytvoří náhledy, provede kontroly a zpřístupní výsledný ZIP jako artefakt běhu.
+
+Stejné ověření probíhá automaticky při změnách karty jezdce v Pull Requestu. Pro lokální spuštění na počítači slouží příkazy `npm install`, `npx playwright install chromium` a `npm run render`.
+
+## Pravidla pro další grafické části
+
+- Každá grafická část G01–G07 dostane vlastní složku a vlastní `README.md`.
+- Společné barvy, typografie a vizuální principy vycházejí z `../design-system/` (sdíleno napříč repozitářem).
+- Zdrojové soubory, editovatelné podklady a exporty musí být jasně rozlišené.
+- Externí nebo neveřejné podklady se v dokumentaci označí jako podklady mimo repozitář.
+- Ukázková data musí být označena jako fiktivní a nesmí se zaměnit za skutečné výsledky.
+- Produkční rozhodnutí se nezafixují, dokud je nepotvrdí režie, časomíra nebo zadavatel.
+
+## Grafické soubory a velikost repozitáře
+
+GitHub blokuje běžné Git soubory nad 100 MB a u velkých souborů může zobrazovat varování. Velké editovatelné zdroje, například PSD, AI nebo TIFF, proto později uložíme přes Git LFS nebo do dohodnutého úložiště.
+
+Vygenerované náhledy se mají udržovat pouze v rozsahu potřebném pro kontrolu a schválení. Pravidla pro exporty a automatické kontroly doplníme v navazujícím technickém kroku.
+
+## Společný generátor
+
+Otevřete `index.html` pro výběr karty jezdce, hosta, výsledků nebo časomíry. `npm run render` generuje všechny čtyři grafiky, `npm run render:host` pouze hosta a `npm run render:jezdec` pouze jezdce. V Actions můžete při ručním spuštění zadat jméno a funkci hosta; PNG všech karet najdete v balíčku `svdt-grafika-nahledy`. Úpravy v prohlížeči se nepřenášejí automaticky do Actions — použijte vstupní pole workflow nebo změňte data.js.
+
+
+Výsledky samostatně: `npm run render:vysledky`. V Actions lze zadat `results_category`, `results_run_type` a kompletní `results_json`. [Návod k výsledkové kartě](karta-vysledky/README.md).
+
+
+## Společný styl — 9. 9. 2026
+
+Všechny čtyři varianty jezdce, host a výsledková tabulka používají menší nápis SVATOHORSKÝ / DOWN / TOWN centrovaný pod celým reliéfem. Bez kruhu, přidané linky a letopočtu. Písmo je převzaté z původního loga ve společném `../design-system/brand/event-wordmark.svg`. Host je mírně menší (620 px). Aktuální zdrojové náhledy jsou ve složkách karet; animace zadavatel upřesní později.
+
+## Časomíra — 13. 9. 2026
+
+Nová složka [časomíra/](časomíra/README.md) obsahuje editor a generátor G04. Samostatně: `npm run render:casomira`. Actions podporují vstup `timer_time` (např. `1:23.456`). Čas je zatím pouze ukázkový; živý datový zdroj se napojí po dohodě s poskytovatelem.
+
+## G08 — split time
+
+[Generátor a návod](split-time/README.md): karta jezdce, lídr, dva mezičasy se stopkami a čísly 1/2, cíl a pořadí. Start se nezobrazuje. `npm run render:split-time`, také ve společném generování a Actions (vstup `split_json`). Živé napojení následuje po dohodě s časomírou.

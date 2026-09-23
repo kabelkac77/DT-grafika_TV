@@ -4,19 +4,19 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "ZADANI.md"
-      - "ODKAZY.md"
-      - "docs/*.template.html"
-      - "docs/tokens.css"
-      - "scripts/build-dashboard.cjs"
+      - "DT-grafika-TV/ZADANI.md"
+      - "DT-grafika-TV/ODKAZY.md"
+      - "DT-grafika-TV/docs/*.template.html"
+      - "DT-grafika-TV/docs/tokens.css"
+      - "DT-grafika-TV/scripts/build-dashboard.cjs"
       - ".github/workflows/dashboard.yml"
   pull_request:
     paths:
-      - "ZADANI.md"
-      - "ODKAZY.md"
-      - "docs/*.template.html"
-      - "docs/tokens.css"
-      - "scripts/build-dashboard.cjs"
+      - "DT-grafika-TV/ZADANI.md"
+      - "DT-grafika-TV/ODKAZY.md"
+      - "DT-grafika-TV/docs/*.template.html"
+      - "DT-grafika-TV/docs/tokens.css"
+      - "DT-grafika-TV/scripts/build-dashboard.cjs"
       - ".github/workflows/dashboard.yml"
 
 permissions:
@@ -44,10 +44,12 @@ jobs:
           node-version: 22
 
       - name: Vygenerovat dashboard
+        working-directory: DT-grafika-TV
         run: node scripts/build-dashboard.cjs
 
       - name: Zapsat přegenerovaný dashboard
         if: github.event_name != 'pull_request'
+        working-directory: DT-grafika-TV
         run: |
           if git diff --quiet -- docs/; then
             echo "Dashboard je aktuální, není co zapisovat."
@@ -66,6 +68,7 @@ jobs:
 
       - name: Zkontrolovat aktuálnost v Pull Requestu
         if: github.event_name == 'pull_request'
+        working-directory: DT-grafika-TV
         run: node scripts/build-dashboard.cjs --check
 
       - name: Uložit stránku ke stažení
@@ -73,6 +76,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: svdt-dashboard-zadani
-          path: docs/index.html
+          path: DT-grafika-TV/docs/index.html
           if-no-files-found: error
           retention-days: 30
