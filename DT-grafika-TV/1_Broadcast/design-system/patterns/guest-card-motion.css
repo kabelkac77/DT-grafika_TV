@@ -1,0 +1,19 @@
+/* Chování animace převzaté od karty jezdce (stejné křivky, stejné pořadí vrstev, stejná délka).
+   Karta hosta má jen čtyři vrstvy — tvar, značková linka, kresba siluety, text —
+   proto se z rodinné sekvence vypouští portrét, číslo a sekundární lišta a krok se zhušťuje.
+   Keyframes žijí v patterns/rider-card-motion.css; tady jsou jen přiřazení. */
+.guest-card.anim-in{animation:svdt-rise var(--svdt-tv-in-shell) var(--svdt-tv-ease-settle) both}
+.guest-card.anim-in .guest-shell{-webkit-mask-image:linear-gradient(90deg,#000 0 66%,transparent 100%);mask-image:linear-gradient(90deg,#000 0 66%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:svdt-wipe var(--svdt-tv-in-shell) var(--svdt-tv-ease-wipe) var(--svdt-tv-delay-shell) both}
+.guest-card.anim-in .guest-shell:after{transform-origin:left center;animation:svdt-rule var(--svdt-tv-in-rule) var(--svdt-tv-ease-wipe) var(--svdt-tv-delay-rule) both}
+.guest-card.anim-in .architecture{animation:svdt-fade 160ms linear var(--svdt-tv-delay-relief) both,svdt-rise-relief 620ms var(--svdt-tv-ease-settle) var(--svdt-tv-delay-relief) both}
+.guest-card.anim-in .architecture .edge{animation:svdt-draw var(--svdt-tv-in-relief) var(--svdt-tv-ease-draw) var(--svdt-tv-delay-relief) both}
+.guest-card.anim-in .architecture .face{animation:svdt-draw var(--svdt-tv-in-relief-fill) var(--svdt-tv-ease-draw) var(--svdt-tv-delay-relief-fill) both}
+.guest-card.anim-in .architecture .tip{animation:svdt-tip var(--svdt-tv-in-relief) var(--svdt-tv-ease-draw) var(--svdt-tv-delay-relief) both}
+.guest-card.anim-in .guest-name{animation:svdt-rise-text var(--svdt-tv-in-name) var(--svdt-tv-ease-settle) var(--svdt-tv-delay-name) both}
+.guest-card.anim-in .guest-role{animation:svdt-rise-text var(--svdt-tv-in-name) var(--svdt-tv-ease-settle) 300ms both}
+.guest-card.anim-out{animation:svdt-leave var(--svdt-tv-out-body) var(--svdt-tv-ease-leave) var(--svdt-tv-delay-out-body) forwards}
+.guest-card.anim-out .architecture .edge,.guest-card.anim-out .architecture .face{animation:svdt-undraw var(--svdt-tv-out-relief) var(--svdt-tv-ease-leave) both}
+@media(prefers-reduced-motion:reduce){
+.guest-card.anim-in,.guest-card.anim-in *,.guest-card.anim-out .architecture *{animation:none!important;clip-path:none!important}
+.guest-card.anim-in .guest-shell{-webkit-mask-image:none!important;mask-image:none!important}
+}

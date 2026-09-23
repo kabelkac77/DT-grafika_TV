@@ -1,0 +1,32 @@
+/* TV / velkoplošné obrazovky — hodnoty verze 06.4 karty jezdce.
+   Pracovní plátno 1920 × 1080. Webové rozměry design systému nejsou předpisem pro TV. */
+:root{
+/* plátno a bezpečné okraje */
+--svdt-tv-stage-w:1920px;--svdt-tv-stage-h:1080px;
+--svdt-tv-safe-x:96px;--svdt-tv-safe-y:54px;
+--svdt-tv-card-left:96px;--svdt-tv-card-bottom:80px;
+/* šířky karty */
+--svdt-tv-card-a:1120px;--svdt-tv-card-a-np:940px;--svdt-tv-card-b:610px;--svdt-tv-card-b-np:470px;
+/* grafitové plochy karty */
+--svdt-tv-surface:#19232e;--svdt-tv-surface-tread:#17212c;--svdt-tv-surface-top:#26323f;
+--svdt-tv-meta-ink:#101a25;
+/* reliéf */
+--svdt-tv-relief-edge:#8795a3;
+/* linky */
+--svdt-tv-hairline:#83919e80;--svdt-tv-divider:#a9b5c050;--svdt-tv-meta-line:#8c9aa54d;--svdt-tv-meta-sep:#b2bdc45c;
+/* text */
+--svdt-tv-text:#ffffff;--svdt-tv-text-meta:#e2e7ec;--svdt-tv-text-label:#c1cad3;
+/* typografie karty */
+--svdt-tv-fs-label:16px; /* @kind other */--svdt-tv-fs-bib:74px;--svdt-tv-fs-bib-b:68px;
+--svdt-tv-fs-first:42px;--svdt-tv-fs-last:44px;--svdt-tv-fs-first-b:32px;--svdt-tv-fs-last-b:34px;
+--svdt-tv-fs-meta:23px;--svdt-tv-fs-meta-a:22px;--svdt-tv-fs-long:36px;--svdt-tv-fs-long-b:31px;
+/* portrét a stopa pneumatiky */
+--svdt-tv-portrait-w:170px;--svdt-tv-portrait-h:198px;--svdt-tv-portrait-w-b:185px;--svdt-tv-portrait-h-b:248px;
+--svdt-tv-tread:url('../assets/mtb-tread.svg'); /* @kind other */
+--svdt-tv-tread-size:168px;--svdt-tv-tread-opacity:.35; /* @kind other */
+/* pohyb — nástup a odchod karty */
+--svdt-tv-transition:.35s ease; /* @kind other */
+--svdt-tv-enter-shift:24px;
+/* semantic aliases */
+--surface-broadcast-card:var(--svdt-tv-surface);--accent-bib:var(--svdt-red);--rule-brand:var(--svdt-brand);
+}

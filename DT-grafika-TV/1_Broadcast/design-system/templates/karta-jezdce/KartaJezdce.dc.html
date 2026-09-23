@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Karta jezdce (TV překryv)" description="Plátno 1920 × 1080 se schválenou kartou jezdce 06.5 — varianty A/B, s portrétem i bez." -->
+<helmet><script src="./ds-base.js"></script></helmet>
+<div style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#05060a;font-family:Exo,'Segoe UI',Helvetica,Arial,sans-serif">
+<img src="../../assets/zavod-skocny-zaber.jpg" alt="Závodní záběr — podklad náhledu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom">
+<div style="position:absolute;right:40px;top:32px;font-size:16px;letter-spacing:.12em;font-weight:800;color:#ffffff;background:#05060ac0;padding:10px 14px">UKÁZKOVÁ DATA · PRACOVNÍ 1920 × 1080</div>
+<x-import component-from-global-scope="SVDTKartaJezdceBroadcastDesignSystem_683f4a.RiderCard" variant="{{ variant }}" first="{{ first }}" last="{{ last }}" number="{{ number }}" team="{{ team }}" country="{{ country }}" category="{{ category }}" portraitSrc="{{ portraitSrc }}" hint-size="1120px,250px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1080},
+&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;A&quot;,&quot;B&quot;],&quot;default&quot;:&quot;A&quot;,&quot;tsType&quot;:&quot;'A' | 'B'&quot;,&quot;section&quot;:&quot;Rozložení&quot;},
+&quot;showPortrait&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Rozložení&quot;},
+&quot;first&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Adam&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Jezdec&quot;},
+&quot;last&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Novák&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Jezdec&quot;},
+&quot;number&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;27&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Jezdec&quot;},
+&quot;team&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Ukázkový tým&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Jezdec&quot;},
+&quot;country&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;CZE&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Jezdec&quot;},
+&quot;category&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Elite&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Jezdec&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    return {
+      variant: p.variant ?? 'A',
+      first: p.first ?? 'Adam',
+      last: p.last ?? 'Novák',
+      number: p.number ?? '27',
+      team: p.team ?? 'Ukázkový tým',
+      country: p.country ?? 'CZE',
+      category: p.category ?? 'Elite',
+      portraitSrc: (p.showPortrait ?? true) ? '../../assets/portrait.png' : '',
+    };
+  }
+}
+</script>
+</body>
+</html>

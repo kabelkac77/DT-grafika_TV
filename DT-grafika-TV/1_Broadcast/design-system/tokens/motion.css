@@ -1,0 +1,41 @@
+/* Animace TV karet — pravidla platí pro celou rodinu grafik (jezdec, výsledky, časomíra).
+   Nahrazuje dosavadní pracovní výchozí bod .35s ease; ten zůstává jen pro obsluhu náhledu. */
+:root{
+/* křivky */
+--svdt-tv-ease-settle:cubic-bezier(.16,.84,.24,1); /* @kind other */ /* nástup — dlouhý doběh */
+--svdt-tv-ease-leave:cubic-bezier(.4,0,.7,.2); /* @kind other */     /* odchod — zrychlení pryč */
+--svdt-tv-ease-wipe:cubic-bezier(.22,1,.3,1); /* @kind other */      /* odkrývání ploch */
+/* délky nástupu */
+--svdt-tv-in-shell:520ms; /* @kind other */
+--svdt-tv-in-rule:340ms; /* @kind other */
+--svdt-tv-in-relief:560ms; /* @kind other */      /* kresba světlé hrany */
+--svdt-tv-in-relief-fill:500ms; /* @kind other */ /* výplň grafitového těla za hranou */
+--svdt-tv-in-portrait:480ms; /* @kind other */
+--svdt-tv-in-name:380ms; /* @kind other */
+--svdt-tv-in-bib:260ms; /* @kind other */
+--svdt-tv-in-meta:300ms; /* @kind other */
+--svdt-tv-in-total:760ms; /* @kind other */ /* poslední prvek dosedne */
+/* pořadí odkrývání */
+--svdt-tv-delay-shell:0ms; /* @kind other */
+--svdt-tv-delay-rule:90ms; /* @kind other */
+--svdt-tv-delay-relief:120ms; /* @kind other */
+--svdt-tv-delay-relief-fill:260ms; /* @kind other */
+--svdt-tv-delay-portrait:200ms; /* @kind other */
+--svdt-tv-delay-name:240ms; /* @kind other */
+--svdt-tv-delay-bib:320ms; /* @kind other */
+--svdt-tv-delay-meta:400ms; /* @kind other */
+--svdt-tv-stagger:60ms; /* @kind other */ /* krok mezi vrstvami, 60–80 ms */
+/* odchod */
+--svdt-tv-out-relief:300ms; /* @kind other */
+--svdt-tv-out-body:320ms; /* @kind other */
+--svdt-tv-delay-out-body:60ms; /* @kind other */ /* silueta odchází první */
+--svdt-tv-out-total:380ms; /* @kind other */
+/* kresba siluety */
+--svdt-tv-ease-draw:cubic-bezier(.34,.06,.2,1); /* @kind other */ /* tah tužkou — plynulý, na konci dosedá */
+--svdt-tv-tip-width:11%; /* @kind other */
+/* dráhy */
+--svdt-tv-rise:18px;--svdt-tv-rise-relief:26px;--svdt-tv-rise-text:8px;--svdt-tv-rise-portrait:12px;
+--svdt-tv-leave:14px;--svdt-tv-tuck:20px;
+/* klid */
+--svdt-tv-hold-min:3500ms; /* @kind other */ /* minimální doba klidu mezi nástupem a odchodem */
+}

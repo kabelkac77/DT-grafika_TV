@@ -1,0 +1,47 @@
+/* Fázované odkrývání karty. Bez třídy je karta staticky viditelná (náhledy, tisk, export).
+   .anim-in = nástup, .anim-out = odchod, .off = schovaná. Kompozice se nikdy nemění — jen viditelnost a dráha. */
+@keyframes svdt-wipe{from{-webkit-mask-position:100% 0;mask-position:100% 0}to{-webkit-mask-position:0 0;mask-position:0 0}}
+@keyframes svdt-rise{from{opacity:0;transform:translateY(var(--svdt-tv-rise))}to{opacity:1;transform:none}}
+@keyframes svdt-rise-relief{from{opacity:0;transform:translateY(var(--svdt-tv-rise-relief))}to{opacity:1;transform:none}}
+@keyframes svdt-rise-text{from{opacity:0;transform:translateY(var(--svdt-tv-rise-text))}to{opacity:1;transform:none}}
+@keyframes svdt-rise-portrait{from{opacity:0;transform:translateY(var(--svdt-tv-rise-portrait))}to{opacity:1;transform:none}}
+@keyframes svdt-fade{from{opacity:0}to{opacity:1}}
+@keyframes svdt-fade-out{from{opacity:1}to{opacity:0}}
+@keyframes svdt-rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes svdt-leave{to{opacity:0;transform:translateY(var(--svdt-tv-leave))}}
+@keyframes svdt-tuck{to{opacity:0;transform:translateY(var(--svdt-tv-tuck))}}
+/* kresba siluety — odkrývání podél vlastní geometrie masky, žádná dokreslená vektorová náhrada */
+@keyframes svdt-draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes svdt-undraw{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 100% 0 0)}}
+@keyframes svdt-tip{0%{opacity:0;transform:translateX(0)}14%{opacity:1}88%{opacity:1}100%{opacity:0;transform:translateX(830%)}}
+
+/* --- nástup ------------------------------------------------------------- */
+.rider-card.anim-in{animation:svdt-rise var(--svdt-tv-in-shell) var(--svdt-tv-ease-settle) both}
+.rider-card.anim-in .shell{-webkit-mask-image:linear-gradient(90deg,#000 0 66%,transparent 100%);mask-image:linear-gradient(90deg,#000 0 66%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:svdt-wipe var(--svdt-tv-in-shell) var(--svdt-tv-ease-wipe) var(--svdt-tv-delay-shell) both}
+.rider-card.anim-in .shell:after{transform-origin:left center;animation:svdt-rule var(--svdt-tv-in-rule) var(--svdt-tv-ease-wipe) var(--svdt-tv-delay-rule) both}
+.rider-card.anim-in .architecture{animation:svdt-fade 160ms linear var(--svdt-tv-delay-relief) both,svdt-rise-relief 620ms var(--svdt-tv-ease-settle) var(--svdt-tv-delay-relief) both}
+.rider-card.anim-in .architecture .edge{animation:svdt-draw var(--svdt-tv-in-relief) var(--svdt-tv-ease-draw) var(--svdt-tv-delay-relief) both}
+.rider-card.anim-in .architecture .face{animation:svdt-draw var(--svdt-tv-in-relief-fill) var(--svdt-tv-ease-draw) var(--svdt-tv-delay-relief-fill) both}
+.architecture .tip{opacity:0;left:0;right:auto;width:var(--svdt-tv-tip-width);background:linear-gradient(90deg,transparent,#e8eef4 42%,#ffffff 58%,transparent)}
+.rider-card.anim-in .architecture .tip{animation:svdt-tip var(--svdt-tv-in-relief) var(--svdt-tv-ease-draw) var(--svdt-tv-delay-relief) both}
+.rider-card.anim-in .portrait-area{animation:svdt-rise-portrait var(--svdt-tv-in-portrait) var(--svdt-tv-ease-settle) var(--svdt-tv-delay-portrait) both}
+.rider-card.anim-in .name{animation:svdt-rise-text var(--svdt-tv-in-name) var(--svdt-tv-ease-settle) var(--svdt-tv-delay-name) both}
+.rider-card.anim-in .bib{animation:svdt-fade var(--svdt-tv-in-bib) linear var(--svdt-tv-delay-bib) both}
+.rider-card.anim-in .meta{-webkit-mask-image:linear-gradient(90deg,#000 0 70%,transparent 100%);mask-image:linear-gradient(90deg,#000 0 70%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:svdt-wipe var(--svdt-tv-in-meta) var(--svdt-tv-ease-wipe) var(--svdt-tv-delay-meta) both,svdt-fade 160ms linear var(--svdt-tv-delay-meta) both}
+
+/* --- odchod ------------------------------------------------------------- */
+.rider-card.anim-out{animation:svdt-leave var(--svdt-tv-out-body) var(--svdt-tv-ease-leave) var(--svdt-tv-delay-out-body) forwards}
+.rider-card.anim-out .architecture .edge,.rider-card.anim-out .architecture .face{animation:svdt-undraw var(--svdt-tv-out-relief) var(--svdt-tv-ease-leave) both}
+
+/* --- nápis akce 06.5 -----------------------------------------------------
+   Naskočí, až je silueta dokreslená, a odchází spolu s ní. Platí pro kartu jezdce i hosta. */
+.anim-in .event-wordmark{animation:svdt-fade 260ms linear calc(var(--svdt-tv-delay-relief) + 400ms) both}
+.anim-out .event-wordmark{animation:svdt-fade-out var(--svdt-tv-out-relief) var(--svdt-tv-ease-leave) forwards}
+
+@media(prefers-reduced-motion:reduce){
+.rider-card.anim-in,.rider-card.anim-in *,.rider-card.anim-out .architecture *{animation:none!important;clip-path:none!important}
+.rider-card.anim-in .shell,.rider-card.anim-in .meta{-webkit-mask-image:none!important;mask-image:none!important}
+.architecture .tip{display:none}
+.anim-in .event-wordmark{animation:none!important}
+.rider-card.anim-out{animation:svdt-fade var(--svdt-tv-out-body) linear reverse forwards}
+}

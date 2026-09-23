@@ -9,7 +9,7 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | Cesta | Obsah |
 | --- | --- |
 | `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
-| `1_Broadcast/` | Režijní pult — ukázka ovládání nad hotovými grafikami, bez napojení na provoz |
+| `1_Broadcast/` | Režijní pult — ukázka ovládání nad hotovými grafikami, bez napojení na provoz; v `design-system/` snímek Broadcast Design System z Claude Design |
 | `karta-vysledky/` | G01 — deset výsledků, loga, HTML/CSS generátor a zadání |
 | `split-time/` | G08 — dva mezičasy vůči lídrovi, cílový čas a pořadí, editor a PNG |
 | `časomíra/` | G04 — editor ukázkového času vpravo dole a generátor PNG |

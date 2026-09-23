@@ -66,8 +66,8 @@ s textem, který přetéká.
 - **Formát výstupu do režie není zvolen.** Monitory jsou webový náhled, nic víc.
 - **Animace jsou schválené jen zčásti.** Karta jezdce a karta hosta mají nástup
   a odchod převzaté z Claude Design (projekt „SVDT grafika TV — Broadcast Design
-  System“) do `karta-jezdce/motion.css`. Výsledky, časomíra a mezičasy mají pohyb jen
-  odvozený z pravidel rodiny — design system je nerozkresluje, čeká to na schválení.
+  System“) do `karta-jezdce/motion.css`. Výsledky, časomíra a mezičasy mají pohyb
+  odvozený z pravidel rodiny; je zapsaný i v design systemu, ale čeká na schválení.
 - **Role, počet pracovišť a hardwarové ovladače** nejsou řešeny (čeká: režie).
 
 ## Pohyb
@@ -118,6 +118,7 @@ Grafika → pult:
 | `style.css` | Vzhled pultu |
 | `serve.cjs` | Místní server pro zkoušku; kořenem je celý repozitář |
 | `../karta-jezdce/motion.css` | Nástup a odchod karet — sdílí ho všech pět grafik |
+| `design-system/` | Snímek Broadcast Design System z Claude Design — tokeny, vzory, komponenty a animace; viz [ZDROJ.md](design-system/ZDROJ.md) |
 
 ## Otázky, které z ukázky vyplynuly
 

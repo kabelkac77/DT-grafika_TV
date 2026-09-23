@@ -1,0 +1,30 @@
+/* G01 výsledky — 1:1 z DT-grafika-TV/karta-vysledky/style.css.
+   V repozitáři jsou pravidla tabulky a reliéfu platná pro celou stránku karty; tady jsou
+   zapouzdřená pod .results-card, aby nezasahovala do ostatních karet. Základ, který karta
+   v repozitáři dědí ze společného stylu (box-sizing, nadpis, písmo), je doplněn tamtéž. */
+.results-card{position:absolute;left:96px;top:190px;width:1728px;color:#fff;isolation:isolate;font-family:var(--svdt-font)}
+.results-card,.results-card *{box-sizing:border-box}
+.results-card[hidden]{display:none}
+.results-card h2{margin:0;font-weight:900;text-transform:uppercase;line-height:1.05}
+.results-shell{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;padding:26px 28px 24px;background:#12212a;clip-path:polygon(16px 0,calc(100% - 16px) 0,100% 16px,100% calc(100% - 16px),calc(100% - 16px) 100%,16px 100%,0 calc(100% - 16px),0 16px);border-top:1px solid #869aa46b}
+.results-shell:before{content:'';position:absolute;inset:0;z-index:-1;opacity:.14;background:linear-gradient(110deg,#12212a 40%,transparent),url('../assets/mtb-tread.svg') right top/180px}
+.results-card .standings{min-width:0}
+.results-card .table-title{display:flex;align-items:center;gap:28px;height:98px;border-bottom:1px solid #82939a70;position:relative}
+.results-card .table-title:after{content:'';position:absolute;left:0;bottom:-2px;width:164px;height:5px;background:var(--svdt-brand)}
+.results-card .table-title h2{font-size:58px;white-space:nowrap}
+.results-card .table-title>span{font-size:32px;line-height:1.15;border-left:1px solid #bac5ca;padding-left:28px;white-space:nowrap}
+.results-card table{border-collapse:collapse;table-layout:fixed;width:100%;font-variant-numeric:tabular-nums}
+.results-card th{text-align:left;font-weight:400;color:#b4c1c7;font-size:20px;height:60px;padding:0 20px}
+.results-card td{height:57px;padding:0 20px;border-bottom:1px solid #a0b0b42b;font-size:31px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.results-card th:last-child,.results-card td:last-child{text-align:right}
+.results-card .number-col{width:12%}.results-card .name-col{width:47%}.results-card .country-col{width:12%}.results-card .time-col{width:29%}
+.results-card td:first-child{font-weight:900}.results-card td strong{font-weight:900;text-transform:uppercase}.results-card td.country{font-size:26px;color:#e4e9ec}
+.results-card tr.leader{background:#ffffff08}.results-card tr.leader td:first-child{color:var(--svdt-red);box-shadow:inset 5px 0 var(--svdt-brand)}.results-card tr.leader td:last-child{font-weight:900}
+.results-card .logos{border-left:1px solid #aebec65c;padding:140px 0 22px 24px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:120px 100px 95px 95px;align-content:center;gap:22px 18px;min-width:0}
+.results-card .logo-slot{display:flex;align-items:center;justify-content:center;min-width:0;min-height:0}
+.results-card .logo-slot:nth-child(1),.results-card .logo-slot:nth-child(4),.results-card .logo-slot:nth-child(5){grid-column:span 2}
+.results-card .logo-slot img{display:block;max-width:100%;max-height:100%;object-fit:contain}
+.results-card .logo-slot.placeholder{border:1px solid #b3c2c746;color:#a8b9c2;font-size:18px;letter-spacing:.08em}
+.results-card .architecture{position:absolute;right:16px;top:-115px;width:300px;height:117px;z-index:-1;pointer-events:none}
+.results-card .architecture i{position:absolute;inset:0;mask-position:center top;mask-size:100% auto;mask-repeat:no-repeat;-webkit-mask-position:center top;-webkit-mask-size:100% auto;-webkit-mask-repeat:no-repeat}
+.results-card .architecture .edge{transform:translateY(-1px);background:#82929b}.results-card .architecture .face{background:#12212a}

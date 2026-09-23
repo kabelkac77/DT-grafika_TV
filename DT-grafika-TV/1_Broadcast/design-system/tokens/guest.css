@@ -1,0 +1,16 @@
+/* Karta hosta 01 — jmenovka mluvící osoby. Hodnoty 1:1 z karta-hosta/style.css.
+   Navazuje na kartu jezdce 06.5, ale má vlastní světlejší grafit a vlastní rozměry.
+   Aktualizace 9. 9. 2026: karta zmenšená, vpravo místo pro nápis akce, menší reliéf. */
+:root{
+--svdt-guest-w:620px;
+--svdt-guest-surface:#1c2732;
+--svdt-guest-hairline:#91a1af70;
+--svdt-guest-relief-edge:#8292a0;
+--svdt-guest-role-ink:#d1d9e0;
+--svdt-guest-fs-name:36px;--svdt-guest-lh-name:1.18; /* @kind other */
+--svdt-guest-fs-role:24px;--svdt-guest-lh-role:1.25; /* @kind other */
+--svdt-guest-rule-w:110px;--svdt-guest-rule-h:4px;
+--svdt-guest-tread-size:148px;--svdt-guest-tread-opacity:.3; /* @kind other */
+--svdt-guest-relief-w:160px;--svdt-guest-relief-h:60px;--svdt-guest-relief-top:-58px;--svdt-guest-relief-right:18px;
+--svdt-guest-pad:16px 184px 14px 24px; /* @kind other */
+}

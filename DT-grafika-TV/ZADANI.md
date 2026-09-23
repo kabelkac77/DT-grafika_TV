@@ -295,6 +295,7 @@ Obě roviny jsou proto vedené zvlášť — plánované kroky níže a hotová 
 | 5 | `05_BROADCAST_SYSTEM_A_REZIE.md` | Architektura centrálního broadcast systému, společný datový model, Preview → Take → Program → Out, jednoduché ovládání režie, řízené IN/OUT, TV a LED varianty, makra a automatizovaná workflow. Zahrne posouzení a začlenění současných HTML grafik. Vyžaduje technické parametry od režie, LED dodavatele a dohodu o datech. | Blokováno režií a LED |
 | 6 | `06_ZALOHOVANI_A_OBNOVA.md` | Zálohování dat a nastavení, ověřená obnova a dohodnuté chování při výpadku. Navazuje na konkrétní funkční řešení. | Po funkčním řešení |
 | 7 | `07_ZKOUSKA_A_PREDANI.md` | Zkouška průběhu závodu a všech grafik v prostředí režie, kontrola TV i velkoplošného výstupu, opravy, finální soubory a schválení zadavatelem. Rozsah návodu se ještě dohodne. | Po dohodě termínu zkoušky |
+| 8 | `1_Broadcast/design-system/` | Broadcast Design System TV grafiky jako snímek z Claude Design: tokeny, vzory, komponenty G01, G02, G04, G05, G08 a jejich nástup a odchod podle pravidel rodiny. Pohyb G02 a G05 je rozkreslený, G01, G04 a G08 čeká na schválení. Podkladem pro krok 5 — ukázka ovládání v `1_Broadcast/` z něj už čerpá. | Rozpracováno |
 
 ### Dílčí zadání jednotlivých karet
 

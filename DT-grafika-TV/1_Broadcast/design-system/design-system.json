@@ -1,0 +1,94 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "Other": {
+      "files": {},
+      "name": "Other",
+      "order": []
+    },
+    "fonts": {
+      "files": {},
+      "name": "fonts",
+      "order": []
+    },
+    "nahledy": {
+      "files": {},
+      "name": "nahledy",
+      "order": []
+    },
+    "notes": {
+      "files": {},
+      "name": "notes",
+      "order": []
+    },
+    "Brand": {
+      "name": "Brand",
+      "tile": "l",
+      "order": [
+        "event-wordmark.png"
+      ],
+      "files": {
+        "event-wordmark.png": {
+          "name": "event-wordmark.png",
+          "blob": "bd6de8983cf012596f4401b82925f291",
+          "size": 148194,
+          "type": "image/png"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-09-20T13:33:02.462Z",
+    "v": 1
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": [
+      "project/github.md",
+      "project/ui_kits/karta-hosta/README.md",
+      "project/ui_kits/karta-jezdce/README.md",
+      "project/uploads/PROMPT_CLAUDE_DESIGN_ANIMACE.md",
+      "project/uploads/ZADANI_ANIMACE_KARTY.md"
+    ]
+  },
+  "groups": [
+    "Brand",
+    "fonts",
+    "Other",
+    "nahledy",
+    "notes"
+  ],
+  "layout": "files",
+  "libraries": [
+    {
+      "file": "components/lib/react.production.min.js",
+      "global": "React",
+      "name": "react",
+      "version": "18.3.1"
+    },
+    {
+      "file": "components/lib/react-dom.production.min.js",
+      "global": "ReactDOM",
+      "name": "react-dom",
+      "version": "18.3.1"
+    }
+  ],
+  "namespace": "SVDTKartaJezdceBroadcastDesignSystem_683f4a",
+  "sections": {},
+  "source": {
+    "app": "claude-design",
+    "exportedAt": "2026-09-20T13:33:02.462Z",
+    "map": "project/migration-map.json",
+    "projectId": "683f4a05-5d0f-44cb-8043-16ee00ad510c",
+    "url": "https://claude.ai/design/p/683f4a05-5d0f-44cb-8043-16ee00ad510c",
+    "v": 1
+  },
+  "title": "SVDT grafika TV — Broadcast Design System",
+  "lastChange": {
+    "by": "kabelkac77",
+    "at": "2026-09-23T18:10:00Z",
+    "via": "GitHub · kabelkac77/SVDT2027 · claude/nifty-dijkstra-1kgfej",
+    "note": "Zařazeny G01 výsledky, G04 časomíra a G08 split time (ResultsCard, TimerCard, SplitTime, zapouzdřené styly, živé náhledy) s pohybem podle pravidel rodiny — čeká na schválení; náhledy 06.5 přegenerované."
+  }
+}

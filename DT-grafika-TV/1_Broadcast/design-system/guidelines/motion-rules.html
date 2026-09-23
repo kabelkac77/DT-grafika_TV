@@ -1,0 +1,13 @@
+<!-- @dsCard group="Motion" viewport="700x250" name="Pravidla pro celou rodinu" subtitle="Přenositelné na výsledky, časomíru i jmenovky — stejné křivky, stejné pořadí vrstev" -->
+<!doctype html><html lang="cs"><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>html,body{margin:0}body{background:var(--svdt-bg);color:#fff;font-family:var(--svdt-font);padding:18px 22px;box-sizing:border-box}
+table{border-collapse:collapse;width:100%;font-size:12px}td{padding:7px 0;border-bottom:1px solid var(--svdt-border);color:var(--svdt-text-mid);vertical-align:top}
+td:first-child{color:#fff;font-weight:800;font-size:10px;letter-spacing:.08em;width:180px}tr:last-child td{border:0}</style>
+<body><table>
+<tr><td>POŘADÍ VRSTEV</td><td>tvar → značková linka → značkový podpis (kresba siluety) → obraz → hlavní text → klíčové číslo → sekundární lišta</td></tr>
+<tr><td>KROK MEZI VRSTVAMI</td><td>60–80 ms, nikdy méně (splyne) a nikdy více (rozpadne se na samostatné animace)</td></tr>
+<tr><td>DÉLKY</td><td>nástup do 760 ms, odchod do 380 ms, klid nejméně 3,5 s</td></tr>
+<tr><td>ČÍSLICE</td><td>klíčové číslo se nikdy neposouvá — jen prolne. Tabulární číslice se nesmí rozjet.</td></tr>
+<tr><td>ZNAČKOVÝ PODPIS</td><td>kreslí se: obrys nejdřív, výplň dobíhá 140 ms za ním, světelný hrot vede tah a na konci zhasne</td></tr>
+<tr><td>ODCHOD</td><td>nikdy zrcadlové „odkrytí zpět“ celé karty — tělo odchází jedním pohybem dolů, značkový podpis se rozkreslí zpět a začíná první</td></tr>
+<tr><td>ZAKÁZÁNO</td><td>opakované animace v klidu, pružinové dojezdy, rotace, blur, změna kompozice, záměna obou červených</td></tr>
+</table></body></html>

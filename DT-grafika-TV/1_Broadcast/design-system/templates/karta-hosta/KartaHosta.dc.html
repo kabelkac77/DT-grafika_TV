@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Karta hosta (TV jmenovka)" description="Plátno 1920 × 1080 s jmenovkou mluvící osoby — jméno a funkce, schválený návrh 01." -->
+<helmet><script src="./ds-base.js"></script></helmet>
+<div style="position:relative;width:1920px;height:1080px;overflow:hidden;background:linear-gradient(125deg,#a8b4bd,#62717f);font-family:Exo,'Segoe UI',Helvetica,Arial,sans-serif">
+<div style="position:absolute;right:40px;top:32px;font-size:16px;letter-spacing:.12em;font-weight:800;color:#ffffff;background:#05060ac0;padding:10px 14px">UKÁZKOVÁ DATA · PRACOVNÍ 1920 × 1080</div>
+<x-import component-from-global-scope="SVDTKartaJezdceBroadcastDesignSystem_683f4a.GuestCard" name="{{ name }}" role="{{ role }}" hint-size="620px,150px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1080},
+&quot;name&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Jan Novák&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Host&quot;},
+&quot;role&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;moderátor&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Host&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      name: this.props.name ?? 'Jan Novák',
+      role: this.props.role ?? 'moderátor',
+    };
+  }
+}
+</script>
+</body>
+</html>

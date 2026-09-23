@@ -1,0 +1,7 @@
+/* G04 časomíra — 1:1 z DT-grafika-TV/časomíra/style.css. Tichý trvalý překryv vpravo dole:
+   rovná levá hrana, bez reliéfu, nápisu a textury. */
+.timer-card{position:absolute;right:96px;bottom:80px;width:344px;height:112px;padding:13px 24px 14px;background:#1c2732;color:#fff;border-top:1px solid #91a1af70;border-bottom:4px solid var(--svdt-brand);font-family:var(--svdt-font)}
+.timer-card,.timer-card *{box-sizing:border-box}
+.timer-card[hidden]{display:none}
+.timer-label{display:block;font-size:14px;font-weight:700;letter-spacing:.14em;color:#d1d9e0;line-height:20px}
+.timer-time{display:block;font-size:48px;font-weight:900;line-height:60px;white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:0}
