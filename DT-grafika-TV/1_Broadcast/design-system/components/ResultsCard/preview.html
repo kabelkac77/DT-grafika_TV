@@ -1,0 +1,9 @@
+<!-- @dsCard group="Components" height=1080 width=1920 subtitle="G01 — deset výsledků, lídr s časem, ostatní ztráta; rezervy log jen v náhledu" -->
+<div id="root"></div>
+<script>
+const NS = window.SVDTKartaJezdceBroadcastDesignSystem_683f4a, h = React.createElement;
+// Ukázková data jsou fiktivní (DT-grafika-TV/*/data.js). Nástup se přehraje jednou po načtení.
+ReactDOM.createRoot(document.getElementById("root")).render(
+  h("div", { className: "stage" }, h("div", { className: "scene" }), h(NS.ResultsCard, { category: "ELITE", runType: "KVALIFIKACE", showPlaceholders: true, phase: "in", results: [{ number: "27", firstName: "Adam", lastName: "Novák", country: "CZE", timeMs: 104114 }, { number: "12", firstName: "Jakub", lastName: "Dvořák", country: "CZE", timeMs: 104364 }, { number: "84", firstName: "Martin", lastName: "Černý", country: "CZE", timeMs: 104801 }, { number: "6", firstName: "Tomáš", lastName: "Veselý", country: "CZE", timeMs: 105256 }, { number: "35", firstName: "David", lastName: "Svoboda", country: "CZE", timeMs: 106019 }, { number: "19", firstName: "Petr", lastName: "Procházka", country: "CZE", timeMs: 106432 }, { number: "42", firstName: "Michal", lastName: "Kučera", country: "CZE", timeMs: 106878 }, { number: "8", firstName: "Lukáš", lastName: "Horák", country: "CZE", timeMs: 107240 }, { number: "53", firstName: "Ondřej", lastName: "Němec", country: "CZE", timeMs: 107694 }, { number: "21", firstName: "Filip", lastName: "Marek", country: "CZE", timeMs: 108126 }] }))
+);
+</script>

@@ -1,0 +1,58 @@
+/* Nástup a odchod G01, G04 a G08 — čeká na schválení.
+   Totéž používá zdrojový repozitář v DT-grafika-TV/karta-jezdce/motion.css.
+   Keyframes a tokeny žijí v patterns/rider-card-motion.css a tokens/motion.css. */
+/* ---------- G01, G04, G08 — podle pravidel rodiny, čeká na schválení ----------
+   Tento systém pro tyto grafiky nemá hotovou choreografii, jen pravidla rodiny
+   (guidelines/deep-dive-animace.html, oddíl 6, a guidelines/motion-rules.html): pořadí vrstev tvar →
+   značková linka → značkový podpis → hlavní text → klíčové číslo → sekundární lišta,
+   krok 60–80 ms, nástup do 760 ms, odchod do 380 ms, klíčové číslo se jen prolne,
+   řádky tabulky se odkrývají shora dolů jedním tahem — nikdy každý řádek zvlášť. */
+@keyframes svdt-wipe-down{from{-webkit-mask-position:0 100%;mask-position:0 100%}to{-webkit-mask-position:0 0;mask-position:0 0}}
+
+/* G01 výsledky: tvar → linka pod nadpisem → reliéf a nápis → nadpis → tabulka shora dolů → loga */
+.results-card.anim-in{animation:svdt-rise var(--svdt-tv-in-shell) var(--svdt-tv-ease-settle) both}
+.results-card.anim-in .results-shell{-webkit-mask-image:linear-gradient(90deg,#000 0 66%,transparent 100%);mask-image:linear-gradient(90deg,#000 0 66%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:svdt-wipe var(--svdt-tv-in-shell) var(--svdt-tv-ease-wipe) var(--svdt-tv-delay-shell) both}
+.results-card.anim-in .table-title:after{transform-origin:left center;animation:svdt-rule var(--svdt-tv-in-rule) var(--svdt-tv-ease-wipe) var(--svdt-tv-delay-rule) both}
+.results-card.anim-in .architecture{animation:svdt-fade 160ms linear var(--svdt-tv-delay-relief) both,svdt-rise-relief 620ms var(--svdt-tv-ease-settle) var(--svdt-tv-delay-relief) both}
+.results-card.anim-in .architecture .edge{animation:svdt-draw var(--svdt-tv-in-relief) var(--svdt-tv-ease-draw) var(--svdt-tv-delay-relief) both}
+.results-card.anim-in .architecture .face{animation:svdt-draw var(--svdt-tv-in-relief-fill) var(--svdt-tv-ease-draw) var(--svdt-tv-delay-relief-fill) both}
+.results-card.anim-in .architecture .tip{animation:svdt-tip var(--svdt-tv-in-relief) var(--svdt-tv-ease-draw) var(--svdt-tv-delay-relief) both}
+.results-card.anim-in .table-title h2,.results-card.anim-in .table-title>span{animation:svdt-rise-text var(--svdt-tv-in-name) var(--svdt-tv-ease-settle) var(--svdt-tv-delay-name) both}
+.results-card.anim-in .standings table{-webkit-mask-image:linear-gradient(180deg,#000 0 66%,transparent 100%);mask-image:linear-gradient(180deg,#000 0 66%,transparent 100%);-webkit-mask-size:100% 300%;mask-size:100% 300%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:svdt-wipe-down 360ms var(--svdt-tv-ease-wipe) 300ms both}
+.results-card.anim-in .logos{animation:svdt-fade var(--svdt-tv-in-meta) linear var(--svdt-tv-delay-meta) both}
+.results-card.anim-out{animation:svdt-leave var(--svdt-tv-out-body) var(--svdt-tv-ease-leave) var(--svdt-tv-delay-out-body) forwards}
+.results-card.anim-out .architecture .edge,.results-card.anim-out .architecture .face{animation:svdt-undraw var(--svdt-tv-out-relief) var(--svdt-tv-ease-leave) both}
+
+/* G04 časomíra: tvar s linkou → popisek → čas jen prolnutím (tabulární číslice se nehýbou) */
+.timer-card.anim-in{-webkit-mask-image:linear-gradient(90deg,#000 0 66%,transparent 100%);mask-image:linear-gradient(90deg,#000 0 66%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:svdt-rise var(--svdt-tv-in-shell) var(--svdt-tv-ease-settle) both,svdt-wipe var(--svdt-tv-in-shell) var(--svdt-tv-ease-wipe) both}
+.timer-card.anim-in .timer-label{animation:svdt-rise-text var(--svdt-tv-in-name) var(--svdt-tv-ease-settle) var(--svdt-tv-delay-name) both}
+.timer-card.anim-in .timer-time{animation:svdt-fade var(--svdt-tv-in-bib) linear var(--svdt-tv-delay-bib) both}
+.timer-card.anim-out{animation:svdt-leave var(--svdt-tv-out-body) var(--svdt-tv-ease-leave) var(--svdt-tv-delay-out-body) forwards}
+
+/* G08 mezičasy: karta jezdce má vlastní nástup; vedle ní dva úseky po 60 ms,
+   jejich linka, popisek a čísla jen prolnutím, cílová karta, nakonec lišta lídra. */
+.split-time .split-layer.anim-in .split{animation:svdt-rise var(--svdt-tv-in-shell) var(--svdt-tv-ease-settle) 60ms both}
+.split-time .split-layer.anim-in .split+.split{animation-delay:120ms}
+.split-time .split-layer.anim-in .split .rail{transform-origin:left center;animation:svdt-rule var(--svdt-tv-in-rule) var(--svdt-tv-ease-wipe) 150ms both}
+.split-time .split-layer.anim-in .split+.split .rail{animation-delay:210ms}
+.split-time .split-layer.anim-in .split .label{animation:svdt-fade 160ms linear 240ms both}
+.split-time .split-layer.anim-in .split+.split .label{animation-delay:300ms}
+.split-time .split-layer.anim-in .split .duration,.split-time .split-layer.anim-in .split .delta{animation:svdt-fade var(--svdt-tv-in-bib) linear 320ms both}
+.split-time .split-layer.anim-in .split+.split .duration,.split-time .split-layer.anim-in .split+.split .delta{animation-delay:380ms}
+.split-time .split-layer.anim-in .timer-card{animation:svdt-rise var(--svdt-tv-in-shell) var(--svdt-tv-ease-settle) 180ms both}
+.split-time .split-layer.anim-in .totaldelta,.split-time .split-layer.anim-in .timer-card .timer-time{animation:svdt-fade var(--svdt-tv-in-bib) linear 440ms both}
+.split-time .split-layer.anim-in .rank{animation:svdt-fade var(--svdt-tv-in-bib) linear 500ms both}
+.split-time .split-layer.anim-in .leader{-webkit-mask-image:linear-gradient(90deg,#000 0 70%,transparent 100%);mask-image:linear-gradient(90deg,#000 0 70%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:svdt-wipe var(--svdt-tv-in-meta) var(--svdt-tv-ease-wipe) var(--svdt-tv-delay-meta) both,svdt-fade 160ms linear var(--svdt-tv-delay-meta) both}
+.split-time .split-layer.anim-out{animation:svdt-leave var(--svdt-tv-out-body) var(--svdt-tv-ease-leave) var(--svdt-tv-delay-out-body) forwards}
+
+/* G08: karta jezdce je zmenšená na 60 %; nástup a odchod musí měřítko zachovat. */
+@keyframes svdt-rise-g08{from{opacity:0;transform:translateY(var(--svdt-tv-rise)) scale(.6)}to{opacity:1;transform:scale(.6)}}
+@keyframes svdt-leave-g08{from{transform:scale(.6)}to{opacity:0;transform:translateY(var(--svdt-tv-leave)) scale(.6)}}
+.split-time .rider-card.A.anim-in{animation-name:svdt-rise-g08}
+.split-time .rider-card.A.anim-out{animation-name:svdt-leave-g08}
+
+@media(prefers-reduced-motion:reduce){
+.results-card.anim-in,.results-card.anim-in *,.timer-card.anim-in,.timer-card.anim-in *,.split-layer.anim-in,.split-layer.anim-in *{animation:none!important;clip-path:none!important}
+.results-card.anim-in .results-shell,.results-card.anim-in .standings table,.timer-card.anim-in,.split-layer.anim-in .leader{-webkit-mask-image:none!important;mask-image:none!important}
+.results-card.anim-out,.timer-card.anim-out,.split-layer.anim-out{animation:svdt-fade-out var(--svdt-tv-out-body) linear forwards!important}
+}

@@ -1,0 +1,66 @@
+<!doctype html><html lang="cs"><meta charset="utf-8"><title>SVDT — animace karet, rozhodnutí</title><link rel="stylesheet" href="../styles.css"><style>html,body{margin:0}body{background:var(--svdt-bg);color:var(--svdt-text-mid);font-family:var(--svdt-font);font-size:15px;line-height:1.8}
+main{max-width:820px;margin:auto;padding:56px 28px 90px}h1{font-size:40px;font-weight:900;text-transform:uppercase;line-height:1.05;color:#fff;margin:0 0 8px}
+h2{font-size:20px;font-weight:900;text-transform:uppercase;color:#fff;margin:44px 0 12px}p{margin:0 0 16px}
+.eyebrow{margin-bottom:16px}b{color:#fff}code{color:var(--svdt-red);font-family:ui-monospace,monospace;font-size:13px}
+ul{padding-left:20px;margin:0 0 16px}li{margin-bottom:8px}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 16px}td,th{padding:8px 10px 8px 0;border-bottom:1px solid var(--svdt-border);text-align:left}th{color:#fff;font-size:11px;letter-spacing:.08em}
+.q{color:#fff;font-weight:800}</style>
+<body><main>
+<p class="eyebrow">SVDT / ANIMACE KARET / ROZHODNUTÍ</p>
+<h1>Nástup, klid, odchod.</h1>
+<p>Zápis odpovědí na otevřené otázky ze zadání <b>ZADANI_ANIMACE_KARTY.md</b>. Hodnoty žijí v <code>tokens/motion.css</code>, provedení v <code>patterns/rider-card-motion.css</code>. Karta jezdce je referenční vzor; stejná pravidla se přenášejí na výsledky, časomíru a jmenovky.</p>
+
+<h2>1. Směr vstupu — tři varianty</h2>
+<table>
+<tr><th>Varianta</th><th>Provedení</th><th>Verdikt</th></tr>
+<tr><td><b>A · Odkrytí na místě</b><br>doporučeno</td><td>Měkká maska přejede plochu od levé hrany vpravo (520 ms) a karta při tom stoupne o 18 px.</td><td><span class="q">Hlavní směr.</span> Karta je ukotvená vlevo dole — odkrytí na místě nepotřebuje žádný prostor mimo svůj výřez, takže do volného hlavního obrazu nikdy nezasahuje. Hmota se skoro nehne, práci odvede odkrytí — to je ten rozdíl mezi „widget vjel do obrazu“ a „grafika se otevřela“.</td></tr>
+<tr><td><b>B · Přisunutí od levého okraje</b></td><td>Karta vyjede za levý okraj obrazu, dráha ~120 px, 600 ms.</td><td>Zamítnuto. Fyzikálně čitelné, ale karta začíná 32 px od okraje plátna — dráha je tak krátká, že příjezd vypadá usečnutě, a při delší dráze musí karta zmizet za bezpečnou zónou, což není spolehlivé při různých overscanech.</td></tr>
+<tr><td><b>C · Jemný posun zdola</b></td><td>Celá karta stoupne o 40–60 px s prolnutím, 560 ms.</td><td>Zamítnuto jako hlavní směr, přežilo v něm jen zeštíhlených 18 px uvnitř varianty A. Samotný posun zdola je nejčastější webový vzorec a při větší dráze protne spodní třetinu obrazu, kde bývá jezdec.</td></tr>
+</table>
+<p>Příjezd zprava nebyl vůbec ve hře: musel by projít středem obrazu přes živý závěr.</p>
+
+<h2>2. Fázované odkrývání vs. jeden pohyb</h2>
+<p><span class="q">Rozhodnutí: fázované, ale v jedné souvislé vlně.</span> Sedm vrstev v pořadí tvar → značková linka → silueta → portrét → jméno → číslo → údaje, s krokem 60–80 ms. Krok pod 60 ms splyne v jeden fade, nad 80 ms se rozpadne na sedm samostatných animací. Divák tak vnímá jedno gesto s vnitřní hierarchií: nejdřív ví, že něco přišlo, pak koho vidí, pak s jakým číslem.</p>
+<p>Dvě výjimky, které nejsou libovolné:</p>
+<ul>
+<li><b>Startovní číslo se neposouvá.</b> Jen prolne (260 ms, lineárně). Je to hlavní čtený údaj a tabulární číslice nesmí rozjet.</li>
+<li><b>Značková 170 × 4 px linka</b> nevyjede spolu s plochou — vyjede z levé hrany jako samostatný tah (<code>scaleX</code> 0→1, 340 ms, start 90 ms). Je to podpis, ne dekorace.</li>
+</ul>
+
+<h2>3. Kresba siluety</h2>
+<p><span class="q">Rozhodnutí: silueta se kreslí, a to současně s tělem karty — ne před ním, ne po něm.</span> Reliéf Svaté Hory leží za tělem karty a má vlastní čas i vlastní křivku:</p>
+<ul>
+<li><b>Obrys</b> — světlá hrana se odkrývá podél své vlastní geometrie od 120 ms, 560 ms, křivka <code>cubic-bezier(.34,.06,.2,1)</code>.</li>
+<li><b>Hrot</b> — úzký světelný pás (11 % šířky) putuje v čele tahu a na konci zhasne. To je ten prvek, který dělá z odkrývání <b>kresbu</b>.</li>
+<li><b>Výplň</b> — grafitové tělo dobíhá 140 ms za hranou (od 260 ms, 500 ms), takže plocha vzniká <i>za</i> již nakresleným obrysem.</li>
+<li><b>Vrstva</b> — celý reliéf navíc stoupne o 26 px (delší dráha než 18 px karty). Parallax vzniká sám z rozdílu dráhy, není třeba samostatná křivka.</li>
+</ul>
+<p>Proč souběžně a ne před kartou: kdyby se silueta kreslila do prázdna, divák by nejdřív sledoval abstraktní obrys bez kontextu a až pak dostal informaci. Souběžně naopak čte jako jedno gesto — karta se otevírá a její podpis se u toho dokresluje. Kresba začíná 120 ms po ploše a dobíhá nejdéle, takže má v sekvenci poslední slovo, ne první.</p>
+<p><b>Technická výhrada, kterou je třeba znát.</b> Zadání počítá s <code>stroke-dasharray</code> tahem po obrysu. Zdrojový reliéf ale <b>není vektorová kresba</b> — je to maskovaný rastr z originálního loga (<code>assets/svata-hora-relief.svg</code> obsahuje <code>&lt;image&gt;</code> s filtrem, ne <code>&lt;path&gt;</code> obrysu). Kreslený dojem je proto udělán odkrýváním skutečné geometrie masky plus světelným hrotem — nikoli dokresleným vektorovým obrysem. Vektorový obrys jsem záměrně <b>nedomaloval</b>: byla by to nově nakreslená verze znaků značky. Pro literální tah tužkou potřebujeme <b>vektorový obrys siluety Svaté Hory</b> od gráfika; pak se do <code>SvataHoraRelief</code> přidá <code>&lt;path&gt;</code> a křivky i časování zůstanou beze změny.</p>
+<p>Při odchodu se silueta <b>rozkreslí zpět</b> (300 ms, obrácený tah, bez hrotu) a tělo karty odchází o 60 ms později. Karta tak neopouští obraz jako jeden plochý objekt.</p>
+<p>Horní hranice je dojem, ne číslo: dokud poslední prvek dosedne do <b>760 ms</b>, sekvence působí sebejistě. Nad ~900 ms začne divák čekat, a čekání je v přenosu chyba.</p>
+
+<h2>4. Délky a křivky</h2>
+<table>
+<tr><th>Role</th><th>Křivka</th><th>Proč</th></tr>
+<tr><td>Nástup</td><td><code>cubic-bezier(.16,.84,.24,1)</code></td><td>Rychlý začátek a velmi dlouhý doběh. Prvek nedojede „na cíl“, on se do něj usadí — to je celý rozdíl proti webovému <code>ease-out</code>.</td></tr>
+<tr><td>Odchod</td><td><code>cubic-bezier(.4,0,.7,.2)</code></td><td>Pozdržený rozjezd a zrychlení pryč. Odchod je úmyslný, ne zmizení.</td></tr>
+<tr><td>Odkrývání</td><td><code>cubic-bezier(.22,1,.3,1)</code></td><td>Téměř bez rozjezdu, aby hrana masky nikdy nestála v obraze.</td></tr>
+<tr><td>Kresba siluety</td><td><code>cubic-bezier(.34,.06,.2,1)</code></td><td>Tah tužkou: plynulá střední část, konec dosedá. Nečte se jako mechanický wipe.</td></tr>
+</table>
+<p>Odchod je záměrně kratší (320 ms + 60 ms zpoždění) a <b>není zrcadlem nástupu</b>. Zrcadlové „odkrytí zpět“ se čte jako oprava omylu.</p>
+
+<h2>5. Jeden jezdec, jeden cyklus</h2>
+<p>Na obrazovce je vždy jen jedna karta. Přechod na dalšího jezdce je proto vždy plný cyklus <b>odchod → pauza → nástup</b>, nikdy přepis dat uvnitř zobrazené karty. Minimální klid mezi nástupem a odchodem je <b>3,5 s</b> (<code>--svdt-tv-hold-min</code>); dobu setrvání řídí obsluha ručně.</p>
+
+<h2>6. Přenos na další grafiky</h2>
+<p>Animace je zapsaná jako <b>sada pravidel</b>, ne jako kód jedné karty. Pro výsledkovou tabulku, časomíru nebo jmenovku platí totéž: stejné tři křivky, stejné pořadí vrstev (tvar → značková linka → značkový podpis → obraz → hlavní text → klíčové číslo → sekundární lišta), krok 60–80 ms, nástup do 760 ms, odchod do 380 ms. Řádky výsledkové tabulky se odkrývají stejným krokem po vrstvách shora dolů — nikdy každý řádek vlastní animací.</p>
+
+<h2>7. Co zůstává otevřené</h2>
+<ul>
+<li>Způsob přehrávání a keyingu v režii — dokud není znám, sekvence běží jako CSS animace nad průhledným plátnem a je tak snímatelná i po jednotlivých snímcích.</li>
+<li>Zda produkce chce automatické spuštění podle startu, nebo ruční nástup obsluhou.</li>
+<li><b>Vektorový obrys siluety Svaté Hory</b> — bez něj je kresba řešena odkrýváním masky a světelným hrotem, ne literálním tahem po obrysu.</li>
+<li>Kontrola nad čistým závodním záběrem: čitelnost hrany masky nad světlou dlažbou zbývá ověřit v pohybu.</li>
+</ul>
+</main></body></html>

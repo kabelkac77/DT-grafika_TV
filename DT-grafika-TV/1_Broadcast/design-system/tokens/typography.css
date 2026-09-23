@@ -1,0 +1,26 @@
+/* Exo — skutečné lokální soubory z repozitáře (OFL, assets/fonts/Exo-OFL.txt). Bez náhradního písma. */
+@font-face{font-family:Exo;font-style:normal;font-weight:400;font-display:swap;src:url('../assets/fonts/exo-400.ttf') format('truetype')}
+@font-face{font-family:Exo;font-style:normal;font-weight:500;font-display:swap;src:url('../assets/fonts/exo-500.ttf') format('truetype')}
+@font-face{font-family:Exo;font-style:normal;font-weight:700;font-display:swap;src:url('../assets/fonts/exo-700.ttf') format('truetype')}
+@font-face{font-family:Exo;font-style:normal;font-weight:800;font-display:swap;src:url('../assets/fonts/exo-800.ttf') format('truetype')}
+@font-face{font-family:Exo;font-style:normal;font-weight:900;font-display:swap;src:url('../assets/fonts/exo-900.ttf') format('truetype')}
+:root{
+--svdt-font:Exo,'Exo 2','Segoe UI',Helvetica,Arial,sans-serif;
+--svdt-fw-regular:400; /* @kind other */
+--svdt-fw-medium:500; /* @kind other */
+--svdt-fw-bold:700; /* @kind other */
+--svdt-fw-heavy:800; /* @kind other */
+--svdt-fw-black:900; /* @kind other */
+--svdt-fs-display:64px;--svdt-lh-display:.95; /* @kind other */
+--svdt-fs-h1:54px;--svdt-lh-h1:.98; /* @kind other */
+--svdt-fs-h2:42px;--svdt-lh-h2:1.06; /* @kind other */
+--svdt-fs-h3:24px;--svdt-lh-h3:1.2; /* @kind other */
+--svdt-fs-h4:18px;--svdt-lh-h4:1.2; /* @kind other */
+--svdt-fs-stat:38px;--svdt-lh-stat:1; /* @kind other */
+--svdt-fs-lead:17px;--svdt-lh-lead:1.7; /* @kind other */
+--svdt-fs-body:15px;--svdt-lh-body:2; /* @kind other */
+--svdt-fs-small:13px;--svdt-lh-small:1.6; /* @kind other */
+--svdt-fs-label:12px;--svdt-ls-label:.14em; /* @kind other */
+--svdt-fs-btn:13px;--svdt-ls-btn:.04em; /* @kind other */
+--font-core:var(--svdt-font);--text-numeric:tabular-nums; /* @kind other */
+}

@@ -1,0 +1,8 @@
+/* Nápis akce 06.5 — 1:1 z design-system/brand/event-wordmark.css zdrojového repozitáře.
+   Jeden soubor pro všechny karty; osa nápisu je vždy shodná s osou reliéfu. */
+.event-wordmark{position:absolute;display:block;width:var(--wordmark-width);height:auto;right:calc(var(--relief-right) + (var(--relief-width) - var(--wordmark-width))/2);top:var(--wordmark-top,18px);z-index:4;pointer-events:none}
+.rider-card{--relief-width:290px;--relief-right:16px;--wordmark-width:136px;--wordmark-top:24px}
+.rider-card.B{--relief-width:280px;--relief-right:18px;--wordmark-width:96px;--wordmark-top:16px}
+.rider-card.B.no-portrait{--relief-right:16px}
+.guest-card{--relief-width:160px;--relief-right:18px;--wordmark-width:90px;--wordmark-top:22px}
+.results-card{--relief-width:300px;--relief-right:16px;--wordmark-width:132px;--wordmark-top:24px}

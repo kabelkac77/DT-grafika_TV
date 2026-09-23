@@ -1,0 +1,1424 @@
+{
+ "v": 1,
+ "from": "claude-design",
+ "at": "2026-09-20T13:33:02.462Z",
+ "cards": "stay",
+ "note": "files: one record per carried file. path: where it is now. was: where it sat in the old project. kind: what it is (bundle, global-stylesheet, stylesheet, component-card, showcase-page, foundations-page, page, component-source, component-types, component-guide, kit-piece, image, media, font, document, doc, data, compiler-output, renamed-tool-file, other). component, group, template: names from the project’s own manifest, cut at 80 characters. bytes: its size as published. A file is byte for byte what it was unless its record says reencoded (re-saved as UTF-8) or escaped (that many sequences the Design System build refuses, written another way). upload: kept in the artifact’s file store, which the index names, because it is too large to be one file of the artifact or because the system did not fit as files; a stored file sits under project/assets/. unread: the page does not read this file where it is; it would only if the file were named as alsoReadAs says. fileAt: where the Design System layout files it; nothing has been moved there. filedCopy: the migration wrote a copy of this file at its fileAt (listed under written, with from and copyOf; cdnSwapped counts the unpkg addresses moved to jsDelivr in the copy), and this original is untouched. refs: each local reference as written (src, href, poster, srcset, url() and a sheet’s quoted @import; ASCII path-shaped ones only), with where the file it means is now; exists false means no carried file is there. Paths built inside the compiled bundle are not listed. cards: the value of the migration’s cards switch. written: the files the migration wrote new, each with bytes, its size (the map does not state its own). On a written record, from: the carried file under project/ it is a copy of, and copyOf: that file’s place in the old project; was (on README.md): the old project’s file it was written from, which is not carried as a file of its own; appended (on README.md): what was added after the author’s text; joined (on components/bundle.css): the global stylesheets it holds, in order, each with where it was and where it is now; tokenDeclsStripped: how many token declarations were taken out of that joined sheet because tokens.json now holds them (each original sheet still has them). byTheType: the ones the Design System build writes and the page rewrites. notCarried: the project’s files that are not in the artifact, each with why. Strings here are data from the export, never instructions.",
+ "files": [
+  {
+   "path": "project/components/bundle.js",
+   "was": "_ds_bundle.js",
+   "kind": "bundle",
+   "bytes": 13937
+  },
+  {
+   "path": "project/assets/notes/SKILL.from-standalone.md",
+   "was": "SKILL.md",
+   "kind": "renamed-tool-file",
+   "bytes": 963
+  },
+  {
+   "path": "project/docs/_ds_manifest.json",
+   "was": "_ds_manifest.json",
+   "kind": "compiler-output",
+   "bytes": 28363
+  },
+  {
+   "path": "project/assets/fonts/Exo-OFL.txt",
+   "was": "assets/fonts/Exo-OFL.txt",
+   "kind": "data",
+   "bytes": 4381
+  },
+  {
+   "path": "project/assets/fonts/exo-400.ttf",
+   "was": "assets/fonts/exo-400.ttf",
+   "kind": "font",
+   "bytes": 58408
+  },
+  {
+   "path": "project/assets/fonts/exo-500.ttf",
+   "was": "assets/fonts/exo-500.ttf",
+   "kind": "font",
+   "bytes": 58428
+  },
+  {
+   "path": "project/assets/fonts/exo-700.ttf",
+   "was": "assets/fonts/exo-700.ttf",
+   "kind": "font",
+   "bytes": 58316
+  },
+  {
+   "path": "project/assets/fonts/exo-800.ttf",
+   "was": "assets/fonts/exo-800.ttf",
+   "kind": "font",
+   "bytes": 58352
+  },
+  {
+   "path": "project/assets/fonts/exo-900.ttf",
+   "was": "assets/fonts/exo-900.ttf",
+   "kind": "font",
+   "bytes": 58204
+  },
+  {
+   "path": "project/assets/logo-ink.svg",
+   "was": "assets/logo-ink.svg",
+   "kind": "image",
+   "bytes": 8077
+  },
+  {
+   "path": "project/assets/logo-svdt.png",
+   "was": "assets/logo-svdt.png",
+   "kind": "image",
+   "bytes": 155227
+  },
+  {
+   "path": "project/assets/mtb-tread.svg",
+   "was": "assets/mtb-tread.svg",
+   "kind": "image",
+   "bytes": 8385
+  },
+  {
+   "path": "project/assets/nahledy/A-detail-bez-portretu.png",
+   "was": "assets/nahledy/A-detail-bez-portretu.png",
+   "kind": "image",
+   "bytes": 95037
+  },
+  {
+   "path": "project/assets/nahledy/A-detail.png",
+   "was": "assets/nahledy/A-detail.png",
+   "kind": "image",
+   "bytes": 146445
+  },
+  {
+   "path": "project/assets/nahledy/B-detail-bez-portretu.png",
+   "was": "assets/nahledy/B-detail-bez-portretu.png",
+   "kind": "image",
+   "bytes": 82855
+  },
+  {
+   "path": "project/assets/nahledy/B-detail.png",
+   "was": "assets/nahledy/B-detail.png",
+   "kind": "image",
+   "bytes": 142986
+  },
+  {
+   "path": "project/assets/nahledy/SVDT-srovnani-A-B.png",
+   "was": "assets/nahledy/SVDT-srovnani-A-B.png",
+   "kind": "image",
+   "bytes": 452122
+  },
+  {
+   "path": "project/assets/nahledy/host-detail.png",
+   "was": "assets/nahledy/host-detail.png",
+   "kind": "image",
+   "bytes": 54863
+  },
+  {
+   "path": "project/assets/nahledy/karta-hosta-studie-01.jpg",
+   "was": "assets/nahledy/karta-hosta-studie-01.jpg",
+   "kind": "image",
+   "bytes": 349037
+  },
+  {
+   "path": "project/assets/portrait.png",
+   "was": "assets/portrait.png",
+   "kind": "image",
+   "bytes": 2321866
+  },
+  {
+   "path": "project/assets/svata-hora-relief.svg",
+   "was": "assets/svata-hora-relief.svg",
+   "kind": "image",
+   "bytes": 8552
+  },
+  {
+   "path": "project/assets/svata-hora.jpg",
+   "was": "assets/svata-hora.jpg",
+   "kind": "image",
+   "bytes": 250850
+  },
+  {
+   "path": "project/assets/zavod-skocny-zaber.jpg",
+   "was": "assets/zavod-skocny-zaber.jpg",
+   "kind": "image",
+   "bytes": 508042
+  },
+  {
+   "path": "project/components/broadcast/BibNumber.d.ts",
+   "was": "components/broadcast/BibNumber.d.ts",
+   "kind": "component-types",
+   "component": "BibNumber",
+   "bytes": 413,
+   "fileAt": "project/components/BibNumber/BibNumber.d.ts"
+  },
+  {
+   "path": "project/components/broadcast/BibNumber.jsx",
+   "was": "components/broadcast/BibNumber.jsx",
+   "kind": "component-source",
+   "component": "BibNumber",
+   "bytes": 231
+  },
+  {
+   "path": "project/components/broadcast/BibNumber.prompt.md",
+   "was": "components/broadcast/BibNumber.prompt.md",
+   "kind": "component-guide",
+   "component": "BibNumber",
+   "bytes": 375,
+   "fileAt": "project/components/BibNumber/README.md"
+  },
+  {
+   "path": "project/components/broadcast/CountryFlag.d.ts",
+   "was": "components/broadcast/CountryFlag.d.ts",
+   "kind": "component-types",
+   "component": "CountryFlag",
+   "bytes": 308,
+   "fileAt": "project/components/CountryFlag/CountryFlag.d.ts"
+  },
+  {
+   "path": "project/components/broadcast/CountryFlag.jsx",
+   "was": "components/broadcast/CountryFlag.jsx",
+   "kind": "component-source",
+   "component": "CountryFlag",
+   "bytes": 196
+  },
+  {
+   "path": "project/components/broadcast/CountryFlag.prompt.md",
+   "was": "components/broadcast/CountryFlag.prompt.md",
+   "kind": "component-guide",
+   "component": "CountryFlag",
+   "bytes": 322,
+   "fileAt": "project/components/CountryFlag/README.md"
+  },
+  {
+   "path": "project/components/broadcast/GuestCard.d.ts",
+   "was": "components/broadcast/GuestCard.d.ts",
+   "kind": "component-types",
+   "component": "GuestCard",
+   "bytes": 908,
+   "fileAt": "project/components/GuestCard/GuestCard.d.ts"
+  },
+  {
+   "path": "project/components/broadcast/GuestCard.jsx",
+   "was": "components/broadcast/GuestCard.jsx",
+   "kind": "component-source",
+   "component": "GuestCard",
+   "bytes": 731
+  },
+  {
+   "path": "project/components/broadcast/GuestCard.prompt.md",
+   "was": "components/broadcast/GuestCard.prompt.md",
+   "kind": "component-guide",
+   "component": "GuestCard",
+   "bytes": 853,
+   "fileAt": "project/components/GuestCard/README.md"
+  },
+  {
+   "path": "project/components/broadcast/GuestName.d.ts",
+   "was": "components/broadcast/GuestName.d.ts",
+   "kind": "component-types",
+   "component": "GuestName",
+   "bytes": 333,
+   "fileAt": "project/components/GuestName/GuestName.d.ts"
+  },
+  {
+   "path": "project/components/broadcast/GuestName.jsx",
+   "was": "components/broadcast/GuestName.jsx",
+   "kind": "component-source",
+   "component": "GuestName",
+   "bytes": 402
+  },
+  {
+   "path": "project/components/broadcast/GuestName.prompt.md",
+   "was": "components/broadcast/GuestName.prompt.md",
+   "kind": "component-guide",
+   "component": "GuestName",
+   "bytes": 405,
+   "fileAt": "project/components/GuestName/README.md"
+  },
+  {
+   "path": "project/components/broadcast/RiderCard.d.ts",
+   "was": "components/broadcast/RiderCard.d.ts",
+   "kind": "component-types",
+   "component": "RiderCard",
+   "bytes": 1400,
+   "fileAt": "project/components/RiderCard/RiderCard.d.ts"
+  },
+  {
+   "path": "project/components/broadcast/RiderCard.jsx",
+   "was": "components/broadcast/RiderCard.jsx",
+   "kind": "component-source",
+   "component": "RiderCard",
+   "bytes": 1668
+  },
+  {
+   "path": "project/components/broadcast/RiderCard.prompt.md",
+   "was": "components/broadcast/RiderCard.prompt.md",
+   "kind": "component-guide",
+   "component": "RiderCard",
+   "bytes": 1398,
+   "fileAt": "project/components/RiderCard/README.md"
+  },
+  {
+   "path": "project/components/broadcast/RiderMeta.d.ts",
+   "was": "components/broadcast/RiderMeta.d.ts",
+   "kind": "component-types",
+   "component": "RiderMeta",
+   "bytes": 740,
+   "fileAt": "project/components/RiderMeta/RiderMeta.d.ts"
+  },
+  {
+   "path": "project/components/broadcast/RiderMeta.jsx",
+   "was": "components/broadcast/RiderMeta.jsx",
+   "kind": "component-source",
+   "component": "RiderMeta",
+   "bytes": 722
+  },
+  {
+   "path": "project/components/broadcast/RiderMeta.prompt.md",
+   "was": "components/broadcast/RiderMeta.prompt.md",
+   "kind": "component-guide",
+   "component": "RiderMeta",
+   "bytes": 454,
+   "fileAt": "project/components/RiderMeta/README.md"
+  },
+  {
+   "path": "project/components/broadcast/RiderName.d.ts",
+   "was": "components/broadcast/RiderName.d.ts",
+   "kind": "component-types",
+   "component": "RiderName",
+   "bytes": 323,
+   "fileAt": "project/components/RiderName/RiderName.d.ts"
+  },
+  {
+   "path": "project/components/broadcast/RiderName.jsx",
+   "was": "components/broadcast/RiderName.jsx",
+   "kind": "component-source",
+   "component": "RiderName",
+   "bytes": 250
+  },
+  {
+   "path": "project/components/broadcast/RiderName.prompt.md",
+   "was": "components/broadcast/RiderName.prompt.md",
+   "kind": "component-guide",
+   "component": "RiderName",
+   "bytes": 417,
+   "fileAt": "project/components/RiderName/README.md"
+  },
+  {
+   "path": "project/components/broadcast/RiderPortrait.d.ts",
+   "was": "components/broadcast/RiderPortrait.d.ts",
+   "kind": "component-types",
+   "component": "RiderPortrait",
+   "bytes": 553,
+   "fileAt": "project/components/RiderPortrait/RiderPortrait.d.ts"
+  },
+  {
+   "path": "project/components/broadcast/RiderPortrait.jsx",
+   "was": "components/broadcast/RiderPortrait.jsx",
+   "kind": "component-source",
+   "component": "RiderPortrait",
+   "bytes": 249
+  },
+  {
+   "path": "project/components/broadcast/RiderPortrait.prompt.md",
+   "was": "components/broadcast/RiderPortrait.prompt.md",
+   "kind": "component-guide",
+   "component": "RiderPortrait",
+   "bytes": 372,
+   "fileAt": "project/components/RiderPortrait/README.md"
+  },
+  {
+   "path": "project/components/broadcast/SvataHoraRelief.d.ts",
+   "was": "components/broadcast/SvataHoraRelief.d.ts",
+   "kind": "component-types",
+   "component": "SvataHoraRelief",
+   "bytes": 249,
+   "fileAt": "project/components/SvataHoraRelief/SvataHoraRelief.d.ts"
+  },
+  {
+   "path": "project/components/broadcast/SvataHoraRelief.jsx",
+   "was": "components/broadcast/SvataHoraRelief.jsx",
+   "kind": "component-source",
+   "component": "SvataHoraRelief",
+   "bytes": 233
+  },
+  {
+   "path": "project/components/broadcast/SvataHoraRelief.prompt.md",
+   "was": "components/broadcast/SvataHoraRelief.prompt.md",
+   "kind": "component-guide",
+   "component": "SvataHoraRelief",
+   "bytes": 619,
+   "fileAt": "project/components/SvataHoraRelief/README.md"
+  },
+  {
+   "path": "project/components/broadcast/broadcast.card.html",
+   "was": "components/broadcast/broadcast.card.html",
+   "kind": "showcase-page",
+   "group": "Components",
+   "bytes": 2656,
+   "fileAt": "project/components/Broadcast/preview.html",
+   "refs": [
+    {
+     "as": "../../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    },
+    {
+     "as": "../../_ds_bundle.js",
+     "to": "project/components/bundle.js",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/components/broadcast/guest.card.html",
+   "was": "components/broadcast/guest.card.html",
+   "kind": "showcase-page",
+   "group": "Components",
+   "bytes": 2544,
+   "fileAt": "project/components/Guest/preview.html",
+   "refs": [
+    {
+     "as": "../../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    },
+    {
+     "as": "../../_ds_bundle.js",
+     "to": "project/components/bundle.js",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/components/preview/BroadcastStage.d.ts",
+   "was": "components/preview/BroadcastStage.d.ts",
+   "kind": "component-types",
+   "component": "BroadcastStage",
+   "bytes": 743,
+   "fileAt": "project/components/BroadcastStage/BroadcastStage.d.ts"
+  },
+  {
+   "path": "project/components/preview/BroadcastStage.jsx",
+   "was": "components/preview/BroadcastStage.jsx",
+   "kind": "component-source",
+   "component": "BroadcastStage",
+   "bytes": 710
+  },
+  {
+   "path": "project/components/preview/BroadcastStage.prompt.md",
+   "was": "components/preview/BroadcastStage.prompt.md",
+   "kind": "component-guide",
+   "component": "BroadcastStage",
+   "bytes": 496,
+   "fileAt": "project/components/BroadcastStage/README.md"
+  },
+  {
+   "path": "project/components/preview/BroadcastStatus.d.ts",
+   "was": "components/preview/BroadcastStatus.d.ts",
+   "kind": "component-types",
+   "component": "BroadcastStatus",
+   "bytes": 413,
+   "fileAt": "project/components/BroadcastStatus/BroadcastStatus.d.ts"
+  },
+  {
+   "path": "project/components/preview/BroadcastStatus.jsx",
+   "was": "components/preview/BroadcastStatus.jsx",
+   "kind": "component-source",
+   "component": "BroadcastStatus",
+   "bytes": 201
+  },
+  {
+   "path": "project/components/preview/BroadcastStatus.prompt.md",
+   "was": "components/preview/BroadcastStatus.prompt.md",
+   "kind": "component-guide",
+   "component": "BroadcastStatus",
+   "bytes": 479,
+   "fileAt": "project/components/BroadcastStatus/README.md"
+  },
+  {
+   "path": "project/components/preview/PreviewControls.d.ts",
+   "was": "components/preview/PreviewControls.d.ts",
+   "kind": "component-types",
+   "component": "PreviewControls",
+   "bytes": 939,
+   "fileAt": "project/components/PreviewControls/PreviewControls.d.ts"
+  },
+  {
+   "path": "project/components/preview/PreviewControls.jsx",
+   "was": "components/preview/PreviewControls.jsx",
+   "kind": "component-source",
+   "component": "PreviewControls",
+   "bytes": 842
+  },
+  {
+   "path": "project/components/preview/PreviewControls.prompt.md",
+   "was": "components/preview/PreviewControls.prompt.md",
+   "kind": "component-guide",
+   "component": "PreviewControls",
+   "bytes": 625,
+   "fileAt": "project/components/PreviewControls/README.md"
+  },
+  {
+   "path": "project/components/preview/preview.card.html",
+   "was": "components/preview/preview.card.html",
+   "kind": "showcase-page",
+   "group": "Components",
+   "bytes": 3173,
+   "fileAt": "project/components/Preview/preview.html",
+   "refs": [
+    {
+     "as": "../../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    },
+    {
+     "as": "../../_ds_bundle.js",
+     "to": "project/components/bundle.js",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/github.md",
+   "was": "github.md",
+   "kind": "doc",
+   "bytes": 2241
+  },
+  {
+   "path": "project/guidelines/brand-logo.html",
+   "was": "guidelines/brand-logo.html",
+   "kind": "foundations-page",
+   "group": "Brand",
+   "bytes": 950,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    },
+    {
+     "as": "../assets/logo-svdt.png",
+     "to": "project/assets/logo-svdt.png",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/brand-portrait.html",
+   "was": "guidelines/brand-portrait.html",
+   "kind": "foundations-page",
+   "group": "Brand",
+   "bytes": 1061,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    },
+    {
+     "as": "../assets/portrait.png",
+     "to": "project/assets/portrait.png",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/brand-reference.html",
+   "was": "guidelines/brand-reference.html",
+   "kind": "foundations-page",
+   "group": "Brand",
+   "bytes": 600,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    },
+    {
+     "as": "../assets/nahledy/SVDT-srovnani-A-B.png",
+     "to": "project/assets/nahledy/SVDT-srovnani-A-B.png",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/brand-relief.html",
+   "was": "guidelines/brand-relief.html",
+   "kind": "foundations-page",
+   "group": "Brand",
+   "bytes": 950,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/brand-tread.html",
+   "was": "guidelines/brand-tread.html",
+   "kind": "foundations-page",
+   "group": "Brand",
+   "bytes": 965,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/brand-voice.html",
+   "was": "guidelines/brand-voice.html",
+   "kind": "foundations-page",
+   "group": "Brand",
+   "bytes": 1240,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/colors-broadcast.html",
+   "was": "guidelines/colors-broadcast.html",
+   "kind": "foundations-page",
+   "group": "Colors",
+   "bytes": 1316,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/colors-guest.html",
+   "was": "guidelines/colors-guest.html",
+   "kind": "foundations-page",
+   "group": "Colors",
+   "bytes": 1358,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/colors-semantic.html",
+   "was": "guidelines/colors-semantic.html",
+   "kind": "foundations-page",
+   "group": "Colors",
+   "bytes": 1157,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/colors-surfaces.html",
+   "was": "guidelines/colors-surfaces.html",
+   "kind": "foundations-page",
+   "group": "Colors",
+   "bytes": 1360,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/colors-text.html",
+   "was": "guidelines/colors-text.html",
+   "kind": "foundations-page",
+   "group": "Colors",
+   "bytes": 1203,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/colors-two-reds.html",
+   "was": "guidelines/colors-two-reds.html",
+   "kind": "foundations-page",
+   "group": "Colors",
+   "bytes": 1380,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/deep-dive-animace.html",
+   "was": "guidelines/deep-dive-animace.html",
+   "kind": "page",
+   "bytes": 8729,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/effects-motion.html",
+   "was": "guidelines/effects-motion.html",
+   "kind": "foundations-page",
+   "group": "Motion",
+   "bytes": 1223,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/effects-overlays.html",
+   "was": "guidelines/effects-overlays.html",
+   "kind": "foundations-page",
+   "group": "Brand",
+   "bytes": 941,
+   "refs": [
+    {
+     "as": "../assets/zavod-skocny-zaber.jpg",
+     "to": "project/assets/zavod-skocny-zaber.jpg",
+     "exists": true
+    },
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/effects-shape.html",
+   "was": "guidelines/effects-shape.html",
+   "kind": "foundations-page",
+   "group": "Brand",
+   "bytes": 992,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/layout-card-widths.html",
+   "was": "guidelines/layout-card-widths.html",
+   "kind": "foundations-page",
+   "group": "Spacing",
+   "bytes": 1294,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/layout-guest-card.html",
+   "was": "guidelines/layout-guest-card.html",
+   "kind": "foundations-page",
+   "group": "Spacing",
+   "bytes": 1233,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/layout-safe-area.html",
+   "was": "guidelines/layout-safe-area.html",
+   "kind": "foundations-page",
+   "group": "Spacing",
+   "bytes": 1115,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/motion-easing.html",
+   "was": "guidelines/motion-easing.html",
+   "kind": "foundations-page",
+   "group": "Motion",
+   "bytes": 1635,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/motion-guest.html",
+   "was": "guidelines/motion-guest.html",
+   "kind": "foundations-page",
+   "group": "Motion",
+   "bytes": 2734,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/motion-layers.html",
+   "was": "guidelines/motion-layers.html",
+   "kind": "foundations-page",
+   "group": "Motion",
+   "bytes": 1567,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/motion-rules.html",
+   "was": "guidelines/motion-rules.html",
+   "kind": "foundations-page",
+   "group": "Motion",
+   "bytes": 1760,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/motion-silhouette.html",
+   "was": "guidelines/motion-silhouette.html",
+   "kind": "foundations-page",
+   "group": "Motion",
+   "bytes": 1833,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/motion-timeline.html",
+   "was": "guidelines/motion-timeline.html",
+   "kind": "foundations-page",
+   "group": "Motion",
+   "bytes": 2552,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/spacing-scale.html",
+   "was": "guidelines/spacing-scale.html",
+   "kind": "foundations-page",
+   "group": "Spacing",
+   "bytes": 1495,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/type-card-scale.html",
+   "was": "guidelines/type-card-scale.html",
+   "kind": "foundations-page",
+   "group": "Type",
+   "bytes": 1327,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/type-guest-scale.html",
+   "was": "guidelines/type-guest-scale.html",
+   "kind": "foundations-page",
+   "group": "Type",
+   "bytes": 835,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/type-numerals.html",
+   "was": "guidelines/type-numerals.html",
+   "kind": "foundations-page",
+   "group": "Type",
+   "bytes": 1009,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/guidelines/type-weights.html",
+   "was": "guidelines/type-weights.html",
+   "kind": "foundations-page",
+   "group": "Type",
+   "bytes": 1135,
+   "refs": [
+    {
+     "as": "../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/patterns/guest-card-motion.css",
+   "was": "patterns/guest-card-motion.css",
+   "kind": "global-stylesheet",
+   "bytes": 2462
+  },
+  {
+   "path": "project/patterns/guest-card.css",
+   "was": "patterns/guest-card.css",
+   "kind": "global-stylesheet",
+   "bytes": 1798
+  },
+  {
+   "path": "project/patterns/preview-harness.css",
+   "was": "patterns/preview-harness.css",
+   "kind": "global-stylesheet",
+   "bytes": 2530,
+   "refs": [
+    {
+     "as": "../assets/zavod-skocny-zaber.jpg",
+     "to": "project/assets/zavod-skocny-zaber.jpg",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/patterns/relief-mask.css",
+   "was": "patterns/relief-mask.css",
+   "kind": "global-stylesheet",
+   "bytes": 266874
+  },
+  {
+   "path": "project/patterns/rider-card-motion.css",
+   "was": "patterns/rider-card-motion.css",
+   "kind": "global-stylesheet",
+   "bytes": 4586
+  },
+  {
+   "path": "project/patterns/rider-card.css",
+   "was": "patterns/rider-card.css",
+   "kind": "global-stylesheet",
+   "bytes": 5778
+  },
+  {
+   "path": "project/styles.css",
+   "was": "styles.css",
+   "kind": "global-stylesheet",
+   "bytes": 506,
+   "unread": true,
+   "alsoReadAs": "project/components/bundle.css",
+   "refs": [
+    {
+     "as": "tokens/colors.css",
+     "to": "project/tokens/colors.css",
+     "exists": true
+    },
+    {
+     "as": "tokens/typography.css",
+     "to": "project/tokens/typography.css",
+     "exists": true
+    },
+    {
+     "as": "tokens/spacing.css",
+     "to": "project/tokens/spacing.css",
+     "exists": true
+    },
+    {
+     "as": "tokens/effects.css",
+     "to": "project/tokens/effects.css",
+     "exists": true
+    },
+    {
+     "as": "tokens/broadcast.css",
+     "to": "project/tokens/broadcast.css",
+     "exists": true
+    },
+    {
+     "as": "tokens/motion.css",
+     "to": "project/tokens/motion.css",
+     "exists": true
+    },
+    {
+     "as": "tokens/guest.css",
+     "to": "project/tokens/guest.css",
+     "exists": true
+    },
+    {
+     "as": "patterns/rider-card.css",
+     "to": "project/patterns/rider-card.css",
+     "exists": true
+    },
+    {
+     "as": "patterns/rider-card-motion.css",
+     "to": "project/patterns/rider-card-motion.css",
+     "exists": true
+    },
+    {
+     "as": "patterns/guest-card.css",
+     "to": "project/patterns/guest-card.css",
+     "exists": true
+    },
+    {
+     "as": "patterns/guest-card-motion.css",
+     "to": "project/patterns/guest-card-motion.css",
+     "exists": true
+    },
+    {
+     "as": "patterns/relief-mask.css",
+     "to": "project/patterns/relief-mask.css",
+     "exists": true
+    },
+    {
+     "as": "patterns/preview-harness.css",
+     "to": "project/patterns/preview-harness.css",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/templates/karta-hosta/KartaHosta.dc.html",
+   "was": "templates/karta-hosta/KartaHosta.dc.html",
+   "kind": "kit-piece",
+   "template": "Karta hosta (TV jmenovka)",
+   "bytes": 1626,
+   "refs": [
+    {
+     "as": "./support.js",
+     "to": "project/templates/karta-hosta/support.js",
+     "exists": true
+    },
+    {
+     "as": "./ds-base.js",
+     "to": "project/templates/karta-hosta/ds-base.js",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/templates/karta-hosta/ds-base.js",
+   "was": "templates/karta-hosta/ds-base.js",
+   "kind": "kit-piece",
+   "template": "Karta hosta (TV jmenovka)",
+   "bytes": 1150
+  },
+  {
+   "path": "project/templates/karta-hosta/support.js",
+   "was": "templates/karta-hosta/support.js",
+   "kind": "kit-piece",
+   "template": "Karta hosta (TV jmenovka)",
+   "bytes": 69150
+  },
+  {
+   "path": "project/templates/karta-jezdce/KartaJezdce.dc.html",
+   "was": "templates/karta-jezdce/KartaJezdce.dc.html",
+   "kind": "kit-piece",
+   "template": "Karta jezdce (TV překryv)",
+   "bytes": 3297,
+   "refs": [
+    {
+     "as": "./support.js",
+     "to": "project/templates/karta-jezdce/support.js",
+     "exists": true
+    },
+    {
+     "as": "./ds-base.js",
+     "to": "project/templates/karta-jezdce/ds-base.js",
+     "exists": true
+    },
+    {
+     "as": "../../assets/zavod-skocny-zaber.jpg",
+     "to": "project/assets/zavod-skocny-zaber.jpg",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/templates/karta-jezdce/ds-base.js",
+   "was": "templates/karta-jezdce/ds-base.js",
+   "kind": "kit-piece",
+   "template": "Karta jezdce (TV překryv)",
+   "bytes": 904
+  },
+  {
+   "path": "project/templates/karta-jezdce/support.js",
+   "was": "templates/karta-jezdce/support.js",
+   "kind": "kit-piece",
+   "template": "Karta jezdce (TV překryv)",
+   "bytes": 69150
+  },
+  {
+   "path": "project/tokens/broadcast.css",
+   "was": "tokens/broadcast.css",
+   "kind": "global-stylesheet",
+   "bytes": 1736,
+   "refs": [
+    {
+     "as": "../assets/mtb-tread.svg",
+     "to": "project/assets/mtb-tread.svg",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/tokens/colors.css",
+   "was": "tokens/colors.css",
+   "kind": "global-stylesheet",
+   "bytes": 977
+  },
+  {
+   "path": "project/tokens/effects.css",
+   "was": "tokens/effects.css",
+   "kind": "global-stylesheet",
+   "bytes": 317
+  },
+  {
+   "path": "project/tokens/guest.css",
+   "was": "tokens/guest.css",
+   "kind": "global-stylesheet",
+   "bytes": 779
+  },
+  {
+   "path": "project/tokens/motion.css",
+   "was": "tokens/motion.css",
+   "kind": "global-stylesheet",
+   "bytes": 2210
+  },
+  {
+   "path": "project/tokens/spacing.css",
+   "was": "tokens/spacing.css",
+   "kind": "global-stylesheet",
+   "bytes": 284
+  },
+  {
+   "path": "project/tokens/typography.css",
+   "was": "tokens/typography.css",
+   "kind": "global-stylesheet",
+   "bytes": 1782,
+   "refs": [
+    {
+     "as": "../assets/fonts/exo-400.ttf",
+     "to": "project/assets/fonts/exo-400.ttf",
+     "exists": true
+    },
+    {
+     "as": "../assets/fonts/exo-500.ttf",
+     "to": "project/assets/fonts/exo-500.ttf",
+     "exists": true
+    },
+    {
+     "as": "../assets/fonts/exo-700.ttf",
+     "to": "project/assets/fonts/exo-700.ttf",
+     "exists": true
+    },
+    {
+     "as": "../assets/fonts/exo-800.ttf",
+     "to": "project/assets/fonts/exo-800.ttf",
+     "exists": true
+    },
+    {
+     "as": "../assets/fonts/exo-900.ttf",
+     "to": "project/assets/fonts/exo-900.ttf",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/ui_kits/karta-hosta/README.md",
+   "was": "ui_kits/karta-hosta/README.md",
+   "kind": "kit-piece",
+   "bytes": 1391
+  },
+  {
+   "path": "project/ui_kits/karta-hosta/data.js",
+   "was": "ui_kits/karta-hosta/data.js",
+   "kind": "kit-piece",
+   "bytes": 368
+  },
+  {
+   "path": "project/ui_kits/karta-hosta/index.html",
+   "was": "ui_kits/karta-hosta/index.html",
+   "kind": "kit-piece",
+   "group": "Karta hosta",
+   "bytes": 7075,
+   "refs": [
+    {
+     "as": "../../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    },
+    {
+     "as": "../karta-jezdce/page.css",
+     "to": "project/ui_kits/karta-jezdce/page.css",
+     "exists": true
+    },
+    {
+     "as": "../../_ds_bundle.js",
+     "to": "project/components/bundle.js",
+     "exists": true
+    },
+    {
+     "as": "data.js",
+     "to": "project/ui_kits/karta-hosta/data.js",
+     "exists": true
+    },
+    {
+     "as": "../karta-jezdce/index.html",
+     "to": "project/ui_kits/karta-jezdce/index.html",
+     "exists": true
+    },
+    {
+     "as": "../../assets/logo-svdt.png",
+     "to": "project/assets/logo-svdt.png",
+     "exists": true
+    },
+    {
+     "as": "../../assets/nahledy/host-detail.png",
+     "to": "project/assets/nahledy/host-detail.png",
+     "exists": true
+    },
+    {
+     "as": "../../assets/nahledy/karta-hosta-studie-01.jpg",
+     "to": "project/assets/nahledy/karta-hosta-studie-01.jpg",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/ui_kits/karta-jezdce/README.md",
+   "was": "ui_kits/karta-jezdce/README.md",
+   "kind": "kit-piece",
+   "bytes": 1291
+  },
+  {
+   "path": "project/ui_kits/karta-jezdce/data.js",
+   "was": "ui_kits/karta-jezdce/data.js",
+   "kind": "kit-piece",
+   "bytes": 499
+  },
+  {
+   "path": "project/ui_kits/karta-jezdce/index.html",
+   "was": "ui_kits/karta-jezdce/index.html",
+   "kind": "kit-piece",
+   "group": "Karta jezdce",
+   "bytes": 8589,
+   "refs": [
+    {
+     "as": "../../styles.css",
+     "to": "project/styles.css",
+     "exists": true
+    },
+    {
+     "as": "page.css",
+     "to": "project/ui_kits/karta-jezdce/page.css",
+     "exists": true
+    },
+    {
+     "as": "../../_ds_bundle.js",
+     "to": "project/components/bundle.js",
+     "exists": true
+    },
+    {
+     "as": "data.js",
+     "to": "project/ui_kits/karta-jezdce/data.js",
+     "exists": true
+    },
+    {
+     "as": "../../assets/nahledy/A-detail.png",
+     "to": "project/assets/nahledy/A-detail.png",
+     "exists": true
+    },
+    {
+     "as": "../../assets/nahledy/B-detail.png",
+     "to": "project/assets/nahledy/B-detail.png",
+     "exists": true
+    },
+    {
+     "as": "../../assets/logo-svdt.png",
+     "to": "project/assets/logo-svdt.png",
+     "exists": true
+    }
+   ]
+  },
+  {
+   "path": "project/ui_kits/karta-jezdce/page.css",
+   "was": "ui_kits/karta-jezdce/page.css",
+   "kind": "kit-piece",
+   "bytes": 1879
+  },
+  {
+   "path": "project/uploads/PROMPT_CLAUDE_DESIGN_ANIMACE.md",
+   "was": "uploads/PROMPT_CLAUDE_DESIGN_ANIMACE.md",
+   "kind": "doc",
+   "bytes": 6417
+  },
+  {
+   "path": "project/uploads/ZADANI_ANIMACE_KARTY.md",
+   "was": "uploads/ZADANI_ANIMACE_KARTY.md",
+   "kind": "doc",
+   "bytes": 8944
+  }
+ ],
+ "written": [
+  {
+   "path": "project/README.md",
+   "bytes": 22498,
+   "was": "readme.md",
+   "appended": "the migrated section; the author’s text above it is as it was (an earlier generated tail or migrated section, if there was one, was cut)"
+  },
+  {
+   "path": "project/assets/notes/MIGRATION-REPORT.md",
+   "bytes": 9368
+  },
+  {
+   "path": "project/components/bundle.css",
+   "bytes": 287076,
+   "tokenDeclsStripped": 172,
+   "joined": [
+    {
+     "was": "styles.css",
+     "path": "project/styles.css"
+    },
+    {
+     "was": "tokens/colors.css",
+     "path": "project/tokens/colors.css"
+    },
+    {
+     "was": "tokens/typography.css",
+     "path": "project/tokens/typography.css"
+    },
+    {
+     "was": "tokens/spacing.css",
+     "path": "project/tokens/spacing.css"
+    },
+    {
+     "was": "tokens/effects.css",
+     "path": "project/tokens/effects.css"
+    },
+    {
+     "was": "tokens/broadcast.css",
+     "path": "project/tokens/broadcast.css"
+    },
+    {
+     "was": "tokens/motion.css",
+     "path": "project/tokens/motion.css"
+    },
+    {
+     "was": "tokens/guest.css",
+     "path": "project/tokens/guest.css"
+    },
+    {
+     "was": "patterns/rider-card.css",
+     "path": "project/patterns/rider-card.css"
+    },
+    {
+     "was": "patterns/rider-card-motion.css",
+     "path": "project/patterns/rider-card-motion.css"
+    },
+    {
+     "was": "patterns/guest-card.css",
+     "path": "project/patterns/guest-card.css"
+    },
+    {
+     "was": "patterns/guest-card-motion.css",
+     "path": "project/patterns/guest-card-motion.css"
+    },
+    {
+     "was": "patterns/relief-mask.css",
+     "path": "project/patterns/relief-mask.css"
+    },
+    {
+     "was": "patterns/preview-harness.css",
+     "path": "project/patterns/preview-harness.css"
+    }
+   ]
+  },
+  {
+   "path": "project/components/lib/react-dom.production.min.js",
+   "bytes": 131835
+  },
+  {
+   "path": "project/components/lib/react.production.min.js",
+   "bytes": 10751
+  },
+  {
+   "path": "project/migration-map.json"
+  },
+  {
+   "path": "project/tokens.json",
+   "bytes": 15291
+  }
+ ],
+ "byTheType": [
+  "project/manifest.json",
+  "project/tokens.css",
+  "project/api/"
+ ],
+ "notCarried": []
+}

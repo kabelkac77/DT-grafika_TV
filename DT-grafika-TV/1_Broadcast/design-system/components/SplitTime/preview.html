@@ -1,0 +1,9 @@
+<!-- @dsCard group="Components" height=1080 width=1920 subtitle="G08 — jezdec a lídr, dva mezičasy od startu, cíl a pořadí" -->
+<div id="root"></div>
+<script>
+const NS = window.SVDTKartaJezdceBroadcastDesignSystem_683f4a, h = React.createElement;
+// Ukázková data jsou fiktivní (DT-grafika-TV/*/data.js). Nástup se přehraje jednou po načtení.
+ReactDOM.createRoot(document.getElementById("root")).render(
+  h("div", { className: "stage" }, h("div", { className: "scene" }), h(NS.SplitTime, { rider: { first: "Adam", last: "Novák", number: "27", team: "Ukázkový tým", country: "CZE", category: "Elite" }, leader: "Jan Svoboda", leaderCountry: "CZE", time1: "0:31.700", delta1: "+0.447", time2: "1:13.289", delta2: "-0.144", finishTime: "1:44.114", finishDelta: "-0.026", rank: "1", phase: "in" }))
+);
+</script>

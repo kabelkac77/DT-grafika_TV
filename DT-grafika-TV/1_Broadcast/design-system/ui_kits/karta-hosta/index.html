@@ -1,0 +1,96 @@
+<!-- @dsCard group="Karta hosta" viewport="1440x900" name="Náhled karty hosta" subtitle="Obsluhovaný náhled 01 — jméno, funkce, pozadí, bezpečné okraje, nástup a odchod" -->
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SVDT — náhled karty hosta</title><link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="../karta-jezdce/page.css"></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="data.js"></script>
+<script type="text/babel">
+function App() {
+  const { GuestCard, BroadcastStage, PreviewControls, BroadcastStatus } = window.SVDTKartaJezdceBroadcastDesignSystem_683f4a;
+  const [scenario, setScenario] = React.useState('normal');
+  const [guest, setGuest] = React.useState(window.SVDT_GUEST_SCENARIOS.normal);
+  const [background, setBackground] = React.useState('neutral');
+  const [safe, setSafe] = React.useState(false);
+  const [phase, setPhase] = React.useState('in');
+  const [runId, setRunId] = React.useState(0);
+  const timers = React.useRef([]);
+  React.useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  const enter = () => { setRunId((n) => n + 1); setPhase('in'); };
+  const cycle = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    setPhase('out');
+    timers.current.push(setTimeout(enter, 580));
+  };
+  const pickScenario = (v) => { setScenario(v); setGuest(window.SVDT_GUEST_SCENARIOS[v]); };
+  const setField = (k, v) => setGuest((g) => ({ ...g, [k]: v }));
+  const ready = Boolean(guest.name.trim());
+
+  return (
+    <>
+      <header className="page-head">
+        <div>
+          <p className="eyebrow">SVDT / KARTA HOSTA / 01</p>
+          <h1>Jméno a funkce.</h1>
+          <p>Jmenovka mluvící osoby ve vstupech mezi jízdami. <a href="../karta-jezdce/index.html">Karta jezdce ↗</a></p>
+        </div>
+        <img src="../../assets/logo-svdt.png" alt="Svatohorský Downtown" />
+      </header>
+      <main>
+        <PreviewControls
+          fields={[
+            { id: 'scenario', label: 'Ukázková data', value: scenario, onChange: pickScenario, options: [{ value: 'normal', label: 'Jan Novák · moderátor' }, { value: 'long', label: 'Dlouhé jméno a funkce' }, { value: 'norole', label: 'Bez funkce' }, { value: 'invalid', label: 'Chybějící jméno' }] },
+            { id: 'background', label: 'Pozadí', value: background, onChange: setBackground, options: [{ value: 'neutral', label: 'Neutrální — vstup' }, { value: 'race', label: 'Závod — skok v ulici' }, { value: 'light', label: 'Světlé' }, { value: 'dark', label: 'Tmavé' }, { value: 'transparent', label: 'Průhledné okolí' }] },
+          ]}
+          toggles={[{ id: 'safe', label: 'Bezpečné okraje', checked: safe, onChange: setSafe }]}
+          action={{ label: 'Přehrát cyklus', onClick: cycle }}
+        >
+          <button type="button" onClick={() => (phase === 'in' ? setPhase('out') : enter())} style={{ background: 'transparent', border: '1px solid var(--svdt-border)', color: '#fff' }}>{phase === 'in' ? 'Odchod' : 'Nástup'}</button>
+        </PreviewControls>
+        <div className="preview-caption"><span>Karta hosta 01 — šířka 620 px</span><span>UKÁZKOVÁ DATA · PRACOVNÍ 1920 × 1080 · NÁSTUP 760 MS / ODCHOD 380 MS</span></div>
+        <BroadcastStage background={background} safeArea={safe}>
+          <GuestCard key={runId} name={guest.name} role={guest.role} phase={phase} />
+        </BroadcastStage>
+        <BroadcastStatus tone={ready ? 'info' : 'error'}>
+          {ready
+            ? 'Ukázková data. Fiktivní jméno neoznačuje konkrétní osobu; ilustrační fotografie ze studie není součástí overlaye.'
+            : 'NEPŘIPRAVENO K VYSÍLÁNÍ — doplňte jméno. Karta se nezobrazuje.'}
+        </BroadcastStatus>
+        <details className="editor">
+          <summary>Upravit údaje v náhledu</summary>
+          <div className="fields">
+            <label>Jméno a příjmení<input value={guest.name} onChange={(e) => setField('name', e.target.value)} /></label>
+            <label>Funkce / pozice<input value={guest.role} onChange={(e) => setField('role', e.target.value)} /></label>
+          </div>
+          <p className="small">Poslední slovo jména se sází verzálkami jako příjmení. Prázdná funkce druhý řádek úplně vypustí. Dlouhý text se zalamuje — písmo se nikdy neomezeně nezmenšuje; pokud text přesáhne bezpečný prostor, kartu je třeba potlačit a text upravit.</p>
+        </details>
+        <section className="comparison">
+          <div>
+            <p className="eyebrow">OBSAH</p>
+            <h2>Dva řádky, nic víc.</h2>
+            <p>Jméno s výraznějším příjmením a menší druhý řádek s funkcí. Bez startovního čísla, portrétu uvnitř karty, vlajky, země, týmu, kategorie i samostatného loga. Karta má nechat prostor pro sledování rozhovoru.</p>
+            <a href="../../assets/nahledy/host-detail.png">Náhled vykreslený z kódu ↗</a>
+          </div>
+          <div>
+            <p className="eyebrow">SPOLEČNÉ PODKLADY</p>
+            <h2>Navazuje na kartu jezdce.</h2>
+            <p>Stejné písmo Exo, stejná maska celého reliéfu Svaté Hory a stejná stopa MTB pneumatiky. Vlastní je jen světlejší grafit #1C2732, šířka 620 px a krátká červená linka 110 × 4 px. Nápis akce na reliéfu je společný s kartou jezdce.</p>
+            <a href="../../assets/nahledy/karta-hosta-studie-01.jpg">Schválená studie 01 ↗</a>
+          </div>
+        </section>
+        <footer>Schválený návrh 01. Ilustrační fotografie a osoba ze studie nejsou součástí vysílané karty; fiktivní jméno neoznačuje konkrétní osobu. Chování animace je sjednoceno s kartou jezdce podle pokynu zadavatele — vlastní zadání karty hosta animaci zatím neschvaluje. Formát odbavení, délku zobrazení a automatické spouštění potvrdí režie.</footer>
+      </main>
+    </>
+  );
+}
+function mount() {
+  const NS = window.SVDTKartaJezdceBroadcastDesignSystem_683f4a;
+  if (!NS || typeof NS.GuestCard !== 'function' || typeof NS.BroadcastStage !== 'function' || typeof NS.PreviewControls !== 'function' || typeof NS.BroadcastStatus !== 'function' || !window.SVDT_GUEST_SCENARIOS) return setTimeout(mount, 30);
+  window.__guestRoot = window.__guestRoot || ReactDOM.createRoot(document.getElementById('root'));
+  window.__guestRoot.render(<App />);
+}
+mount();
+</script>
+</body></html>

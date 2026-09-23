@@ -1,0 +1,29 @@
+/* G08 mezičasy — 1:1 z DT-grafika-TV/split-time/style.css, zapouzdřené pod .split-time.
+   V repozitáři je G08 samostatná stránka, takže tam pravidla (.leader, .timer-card,
+   zmenšení karty jezdce) platí globálně; tady by jinak přepsala výsledky i časomíru.
+   Cílová karta staví na patterns/timer-card.css a upravuje ji. Pravidla editoru
+   (ovládání, stavová řádka, poznámka návrhu, ztmavení scény) sem nepatří. */
+.split-time{position:absolute;inset:0;font-family:var(--svdt-font);color:#fff}
+.split-time .split-layer{position:absolute;inset:0;pointer-events:none}
+.split-time .split-layer[hidden]{display:none}
+.split-time .split-layer,.split-time .split-layer *{box-sizing:border-box}
+.split-time .rider-card.A{bottom:124px;transform:scale(.6);transform-origin:bottom left;transition:none}
+.split-time .leader{position:absolute;left:96px;bottom:80px;width:672px;height:44px;background:#101a25;display:flex;align-items:center;gap:14px;padding:0 20px;font-size:20px;border-top:1px solid #516170;overflow:hidden;white-space:nowrap}
+.split-time .leader small{font-size:13px;letter-spacing:.1em;color:#adbac7}.split-time .leader strong{font-weight:800}.split-time .leader .flag{width:25px;height:17px}.split-time .leader .vs{color:#aebac7;font-weight:900}
+.split-time .splits{position:absolute;left:784px;bottom:80px;width:728px;height:112px;display:grid;grid-template-columns:repeat(2,1fr);gap:3px}
+.split-time .split{position:relative;background:#1c2732;border-top:1px solid #83919e80;text-align:center;padding-top:10px}
+.split-time .split .label{display:flex;align-items:center;justify-content:center;gap:8px;height:20px;font-size:17px;line-height:20px;color:#d1d9e0;letter-spacing:.1em;font-weight:700}
+.split-time .split .duration{font-size:30px;font-weight:800;margin-top:4px;line-height:34px}
+.split-time .split .delta{font-size:26px;font-weight:800;line-height:27px}
+.split-time .gain{color:#43e49b}.split-time .loss{color:#ff5a65}
+.split-time .rail{position:absolute;left:0;right:0;top:-12px;height:6px;background:#e30613}
+.split-time .split .rail{background:#43e49b}.split-time .split.losing .rail{background:#e30613}.split-time .split.neutral .rail{background:#83919e}
+.split-time .stopwatch{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.split-time .timer-card{width:296px;padding:0;overflow:hidden;border-bottom:4px solid #43e49b}
+.split-time .timer-card.neutral{border-color:#83919e}.split-time .timer-card.losing{border-color:#ff5a65}
+.split-time .finish-row{display:grid;grid-template-columns:1fr 54px;gap:3px;height:53px}
+.split-time .totaldelta{height:53px;background:#126745;display:flex;align-items:center;justify-content:center;gap:8px;font-size:32px;font-weight:900;line-height:1}
+.split-time .timer-card.neutral .totaldelta{background:#1c2732}.split-time .timer-card.losing .totaldelta{background:#a31e30}
+.split-time .totaldelta small{font-size:14px;font-weight:700;letter-spacing:.04em}
+.split-time .rank{display:flex;align-items:center;justify-content:center;background:#e2e7ec;color:#19232e;font-size:30px;font-weight:900}
+.split-time .timer-time{font-size:32px;text-align:center;line-height:54px}

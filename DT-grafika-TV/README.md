@@ -9,6 +9,7 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 | Cesta | Obsah |
 | --- | --- |
 | `ZADANI.md` | Společné zadání projektu, potvrzené požadavky a otevřené otázky |
+| `1_Broadcast/` | Režijní pult — ukázka ovládání nad hotovými grafikami, bez napojení na provoz; v `design-system/` snímek Broadcast Design System z Claude Design |
 | `karta-vysledky/` | G01 — deset výsledků, loga, HTML/CSS generátor a zadání |
 | `split-time/` | G08 — dva mezičasy vůči lídrovi, cílový čas a pořadí, editor a PNG |
 | `časomíra/` | G04 — editor ukázkového času vpravo dole a generátor PNG |
@@ -19,9 +20,25 @@ Karta jezdce G02 má schválený vizuální směr 06.4 zapracovaný do zdrojové
 
 Složky pro další grafické části budou vytvořeny až při zahájení jejich realizace, aby prázdná struktura nepředstírala hotový rozsah.
 
+## Režijní pult
+
+[Ukázka ovládání](1_Broadcast/README.md) — nákres toho, jak by režie grafiku odbavovala.
+Stavy Preview → Take → Program → Out, vrstvy programu, cíle TV a LED, kontrola kolizí
+zón na obraze, auto out, nouzové skrytí, fronta z makra a protokol povelů. V monitorech
+běží skutečné komponenty G01, G02, G04, G05 a G08 z tohoto repozitáře; data do nich
+posílá pult a karta sama hlásí zpět, jestli je připravená k vysílání.
+
+```bash
+npm run pult   # http://localhost:4173/DT-grafika-TV/1_Broadcast/
+```
+
+Ukázka **není napojená na časomíru ani na režii**. Startovní listina a časy jsou
+vymyšlené, LED je pracovní ořez TV varianty a formát výstupu není zvolen. Slouží
+k tomu, abychom se nad konkrétní obrazovkou shodli na způsobu ovládání.
+
 ## Karta hosta
 
-[Schválený návrh a zadání karty hosta](karta-hosta/README.md) — studie 01. Jméno a funkce pro vstupy mezi jízdami; navazuje na kartu jezdce 06.4. HTML/CSS editor a generování PNG jsou implementované; animace následuje později.
+[Schválený návrh a zadání karty hosta](karta-hosta/README.md) — studie 01. Jméno a funkce pro vstupy mezi jízdami; navazuje na kartu jezdce 06.4. HTML/CSS editor a generování PNG jsou implementované; nástup a odchod jsou převzaté z Claude Design (`karta-jezdce/motion.css`) a čekají na potvrzení režií.
 
 ## Dashboard stavu zadání
 

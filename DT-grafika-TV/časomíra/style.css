@@ -3,4 +3,5 @@
 .timer-card[hidden]{display:none}
 .timer-label{display:block;font-size:14px;font-weight:700;letter-spacing:.14em;color:#d1d9e0;line-height:20px}
 .timer-time{display:block;font-size:48px;font-weight:900;line-height:60px;white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:0}
-/* Straight left edge; no relief, wordmark, texture or entrance animation. */
+/* Straight left edge; no relief, wordmark or texture. Entrance and exit live in
+   ../karta-jezdce/motion.css (family rules, pending approval). */

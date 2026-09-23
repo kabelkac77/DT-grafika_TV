@@ -1,0 +1,140 @@
+<!-- @dsCard group="Karta jezdce" viewport="1440x1080" name="Náhled karty jezdce" subtitle="Obsluhovaný náhled 06.4 — rozložení, ukázková data, pozadí, portrét, bezpečné okraje" -->
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SVDT — náhled karty jezdce</title><link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="page.css"></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="data.js"></script>
+<script type="text/babel">
+const KEYS = ['first', 'last', 'number', 'team', 'country', 'category'];
+const PORTRAIT = '../../assets/portrait.png';
+
+function Editor({ rider, setField, showFlag, setShowFlag, onUpload }) {
+  return (
+    <details className="editor">
+      <summary>Upravit údaje v náhledu</summary>
+      <div className="fields">
+        {[['first', 'Jméno'], ['last', 'Příjmení'], ['number', 'Startovní číslo'], ['team', 'Tým'], ['country', 'Kód země'], ['category', 'Kategorie']].map(([k, label]) => (
+          <label key={k}>{label}<input value={rider[k]} onChange={(e) => setField(k, e.target.value)} /></label>
+        ))}
+        <label className="check"><input type="checkbox" checked={showFlag} onChange={(e) => setShowFlag(e.target.checked)} />Zobrazit dostupnou vlajku</label>
+        <label>Vlastní portrét<input type="file" accept="image/*" onChange={onUpload} /></label>
+      </div>
+      <p className="small">Změny se projeví okamžitě. Data jsou fiktivní a slouží jen k návrhu; neukládají se automaticky.</p>
+    </details>
+  );
+}
+
+function Comparison() {
+  return (
+    <section className="comparison">
+      <div>
+        <p className="eyebrow">A / HORIZONTÁLNÍ LIŠTA</p>
+        <h2>Šířka pro jméno.</h2>
+        <p>Portrét vystupuje nad spodní lištu. Červené číslo navazuje na portrét; jméno a příjmení jsou v jedné úrovni. Celý reliéf Svaté Hory vystupuje z horní hrany. Grafitový podklad obsahuje jemnou stopu MTB pneumatiky.</p>
+        <a href="../../assets/nahledy/A-detail.png">Statický náhled A ↗</a>
+      </div>
+      <div>
+        <p className="eyebrow">B / KOMPAKTNÍ BLOK</p>
+        <h2>Volná pravá strana.</h2>
+        <p>Portrét vlevo, číslo a jméno vpravo. Celý reliéf je vidět nad kartou, bez opakovaného loga. Bez portrétu se blok zúží a údaje přeskládají.</p>
+        <a href="../../assets/nahledy/B-detail.png">Statický náhled B ↗</a>
+      </div>
+    </section>
+  );
+}
+
+function App() {
+  const { RiderCard, BroadcastStage, PreviewControls, BroadcastStatus } = window.SVDTKartaJezdceBroadcastDesignSystem_683f4a;
+  const [scenario, setScenario] = React.useState('normal');
+  const [rider, setRider] = React.useState(window.SVDT_DATA.normal);
+  const [variant, setVariant] = React.useState('A');
+  const [background, setBackground] = React.useState('race');
+  const [portrait, setPortrait] = React.useState(true);
+  const [portraitURL, setPortraitURL] = React.useState(PORTRAIT);
+  const [safe, setSafe] = React.useState(false);
+  const [showFlag, setShowFlag] = React.useState(true);
+  const [phase, setPhase] = React.useState('in');
+  const [runId, setRunId] = React.useState(0);
+  const timers = React.useRef([]);
+  React.useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  const after = (ms, fn) => timers.current.push(setTimeout(fn, ms));
+  const enter = () => { setRunId((n) => n + 1); setPhase('in'); };
+  const cycle = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    setPhase('out');
+    after(580, enter);
+  };
+
+  const setField = (k, v) => setRider((r) => ({ ...r, [k]: v }));
+  const pickScenario = (v) => { setScenario(v); setRider(window.SVDT_DATA[v]); };
+  const onUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setPortraitURL(URL.createObjectURL(file));
+    setPortrait(true);
+  };
+
+  const ready = Boolean((rider.first || rider.last) && rider.number);
+  const caption = variant === 'A' ? 'A — Horizontální lišta' : 'B — Kompaktní blok';
+
+  return (
+    <>
+      <header className="page-head">
+        <div>
+          <p className="eyebrow">SVDT / G02 / VERZE 06.5</p>
+          <h1>Jezdec v hlavní roli.</h1>
+          <p>Čtyři varianty. Jedna identita. Svatohorský Downtown Příbram.</p>
+        </div>
+        <img src="../../assets/logo-svdt.png" alt="Svatohorský Downtown" />
+      </header>
+      <main>
+        <PreviewControls
+          fields={[
+            { id: 'variant', label: 'Rozložení', value: variant, onChange: setVariant, options: [{ value: 'A', label: 'A — horizontální lišta' }, { value: 'B', label: 'B — kompaktní blok' }] },
+            { id: 'scenario', label: 'Ukázková data', value: scenario, onChange: pickScenario, options: [{ value: 'normal', label: 'Adam Novák' }, { value: 'long', label: 'Dlouhé jméno a tým' }, { value: 'incomplete', label: 'Chybějící volitelné údaje' }, { value: 'invalid', label: 'Chybějící jméno / číslo' }] },
+            { id: 'background', label: 'Pozadí', value: background, onChange: setBackground, options: [{ value: 'race', label: 'Závod — skok v ulici' }, { value: 'light', label: 'Světlé' }, { value: 'dark', label: 'Tmavé' }, { value: 'transparent', label: 'Průhledné okolí' }] },
+          ]}
+          toggles={[
+            { id: 'portrait', label: 'Ilustrační portrét', checked: portrait, onChange: setPortrait },
+            { id: 'safe', label: 'Bezpečné okraje', checked: safe, onChange: setSafe },
+          ]}
+          action={{ label: 'Přehrát cyklus', onClick: cycle }}
+        >
+          <button type="button" onClick={() => (phase === 'in' ? setPhase('out') : enter())} style={{ background: 'transparent', border: '1px solid var(--svdt-border)', color: '#fff' }}>{phase === 'in' ? 'Odchod' : 'Nástup'}</button>
+        </PreviewControls>
+        <div className="preview-caption"><span>{caption}</span><span>UKÁZKOVÁ DATA · ILUSTRAČNÍ POSTAVA · PRACOVNÍ 1920 × 1080 · NÁSTUP 760 MS / ODCHOD 380 MS</span></div>
+        <BroadcastStage background={background} safeArea={safe}>
+          <RiderCard
+            key={runId}
+            variant={variant}
+            {...rider}
+            showFlag={showFlag}
+            portraitSrc={portrait ? portraitURL : ''}
+            phase={phase}
+          />
+        </BroadcastStage>
+        <BroadcastStatus tone={ready ? 'info' : 'error'}>
+          {ready
+            ? 'Ukázková data. Závodní fotografie je podklad náhledu, fiktivní údaje neoznačují jezdce na fotografii. Portrét je ilustrační.'
+            : 'NEPŘIPRAVENO K VYSÍLÁNÍ — doplňte jméno a startovní číslo. Karta se nezobrazuje.'}
+        </BroadcastStatus>
+        <Editor rider={rider} setField={setField} showFlag={showFlag} setShowFlag={setShowFlag} onUpload={onUpload} />
+        <Comparison />
+        <footer>Aktuální zdrojová verze 06.5 podle schváleného návrhu. Formát odbavení musí ověřit režie. Závodní fotografie a logo: <a href="https://svdtpribram.cz/fotogalerie/">oficiální galerie SVDT</a>. Fotografie je pouze podklad náhledu; fiktivní jméno neoznačuje jezdce na záběru. Ilustrační portrét: AI.</footer>
+      </main>
+    </>
+  );
+}
+
+function mount() {
+  if (!window.SVDTKartaJezdceBroadcastDesignSystem_683f4a || typeof window.SVDTKartaJezdceBroadcastDesignSystem_683f4a.RiderCard !== 'function' || typeof window.SVDTKartaJezdceBroadcastDesignSystem_683f4a.BroadcastStage !== 'function' || typeof window.SVDTKartaJezdceBroadcastDesignSystem_683f4a.PreviewControls !== 'function' || typeof window.SVDTKartaJezdceBroadcastDesignSystem_683f4a.BroadcastStatus !== 'function' || !window.SVDT_DATA) return setTimeout(mount, 30);
+  const el = document.getElementById('root');
+  window.__svdtRoot = window.__svdtRoot || ReactDOM.createRoot(el);
+  window.__svdtRoot.render(<App />);
+}
+mount();
+</script>
+</body></html>

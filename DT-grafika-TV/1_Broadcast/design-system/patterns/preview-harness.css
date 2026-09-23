@@ -1,0 +1,25 @@
+/* Náhledová obsluha — plátno 1920 × 1080, bezpečné okraje, ovládání, stav.
+   Tyto prvky NEJSOU součástí vysílaného obrazu. Přeneseno z karta-jezdce/style.css. */
+.viewport{position:relative;aspect-ratio:16/9;width:100%;overflow:hidden;background:var(--svdt-bg-card-soft)}
+.stage{width:var(--svdt-tv-stage-w);height:var(--svdt-tv-stage-h);position:absolute;left:0;top:0;transform-origin:top left;overflow:hidden}
+.scene{position:absolute;inset:0;background:url('../assets/zavod-skocny-zaber.jpg') center bottom/cover no-repeat}
+.stage.light .scene{background:#eff0f2}
+.stage.neutral .scene{background:linear-gradient(125deg,#a8b4bd,#62717f)}
+.stage.dark .scene{background:var(--svdt-bg)}
+.stage.transparent .scene{background:none}
+.viewport:has(.transparent){background:repeating-conic-gradient(#1b222b 0 25%,#303944 0 50%) 0 / 24px 24px}
+.safe-area{display:none;position:absolute;inset:var(--svdt-tv-safe-y) var(--svdt-tv-safe-x);border:2px dashed #fff8;pointer-events:none;z-index:9}
+.stage.safe .safe-area{display:block}
+.controls{padding:22px;background:var(--svdt-bg-card);border:1px solid var(--svdt-border);display:flex;gap:18px;align-items:end;flex-wrap:wrap}
+.controls label{display:flex;flex-direction:column;gap:7px;color:var(--svdt-text-mid);font-size:12px;font-weight:700;letter-spacing:.02em}
+.controls select,.controls input:not([type=checkbox]){background:var(--svdt-bg-elevated);color:#fff;border:1px solid #36404b;border-radius:var(--svdt-radius-sm);padding:10px 12px;min-width:120px;font:inherit}
+.controls input[type=checkbox]{accent-color:var(--svdt-brand);width:16px;height:16px}
+.controls .check{flex-direction:row;align-items:center;min-height:40px}
+.controls button{cursor:pointer;border:0;padding:12px 22px;font:inherit;font-weight:800;background:var(--svdt-brand);color:var(--svdt-brand-ink);transition:background var(--svdt-transition)}
+.controls button:hover{background:var(--svdt-brand-hover)}
+.controls button:focus-visible,.controls select:focus-visible,.controls input:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.preview-caption{display:flex;justify-content:space-between;gap:12px;margin:28px 0 12px;color:var(--svdt-text-mid);font-size:11px;letter-spacing:.08em}
+.preview-caption>span:first-child{color:#fff;font-weight:800}
+.status{min-height:32px;color:var(--svdt-text-mid);font-size:13px;padding-top:8px}
+.status.error{color:var(--svdt-err)}
+.eyebrow{font-size:var(--svdt-fs-label);letter-spacing:.16em;font-weight:800;color:var(--svdt-red);margin-bottom:18px}

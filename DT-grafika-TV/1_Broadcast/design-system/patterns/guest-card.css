@@ -1,0 +1,14 @@
+/* Karta hosta 01, aktualizace 9. 9. 2026 — zmenšená karta s nápisem akce. Hodnoty 1:1 z karta-hosta/style.css.
+   Reliéf používá masku karty jezdce (patterns/relief-mask.css); nic se neduplikuje. */
+.guest-card{position:absolute;left:var(--svdt-tv-card-left);bottom:var(--svdt-tv-card-bottom);width:var(--svdt-guest-w);color:#fff;font-family:var(--svdt-font);isolation:isolate}
+.guest-card[hidden]{display:none}
+.guest-shell{position:relative;isolation:isolate;padding:var(--svdt-guest-pad);min-height:102px;background:var(--svdt-guest-surface);clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);border-top:1px solid var(--svdt-guest-hairline)}
+.guest-shell:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#1c2732 15%,#1c2732e8 50%,transparent),var(--svdt-tv-tread) right center/var(--svdt-guest-tread-size);opacity:var(--svdt-guest-tread-opacity)}
+.guest-shell:after{content:'';position:absolute;bottom:0;left:0;width:var(--svdt-guest-rule-w);height:var(--svdt-guest-rule-h);background:var(--svdt-brand)}
+.guest-name{font-size:var(--svdt-guest-fs-name);font-weight:400;line-height:var(--svdt-guest-lh-name);overflow-wrap:anywhere}
+.guest-name strong{font-weight:900;text-transform:uppercase}
+.guest-role{font-size:var(--svdt-guest-fs-role);color:var(--svdt-guest-role-ink);font-weight:400;line-height:var(--svdt-guest-lh-role);margin-top:6px;overflow-wrap:anywhere}
+.guest-role[hidden]{display:none}
+.guest-card .architecture{position:absolute;right:var(--svdt-guest-relief-right);top:var(--svdt-guest-relief-top);width:var(--svdt-guest-relief-w);height:var(--svdt-guest-relief-h);z-index:-1;pointer-events:none}
+.guest-card .architecture .edge{background:var(--svdt-guest-relief-edge)}
+.guest-card .architecture .face{background:var(--svdt-guest-surface)}

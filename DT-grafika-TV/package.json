@@ -12,7 +12,8 @@
     "dashboard": "node scripts/build-dashboard.cjs",
     "dashboard:check": "node scripts/build-dashboard.cjs --check",
     "render:casomira": "node časomíra/render.cjs",
-    "render:split-time": "node split-time/render.cjs"
+    "render:split-time": "node split-time/render.cjs",
+    "pult": "node 1_Broadcast/serve.cjs"
   },
   "devDependencies": {
     "playwright": "1.55.0"
