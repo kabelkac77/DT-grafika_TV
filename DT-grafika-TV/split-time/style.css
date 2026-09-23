@@ -13,3 +13,10 @@
 
 body.capture .split-controls,body.capture #split-status{display:none}.split-controls{margin-top:18px}.split-controls input{width:160px}.leader{overflow:hidden;white-space:nowrap}.timer-card.neutral{border-color:#83919e}.timer-card.neutral .totaldelta{background:#1c2732}.timer-card.losing{border-color:#ff5a65}.timer-card.losing .totaldelta{background:#a31e30}.split.neutral .rail{background:#83919e}
 #split-layer{position:absolute;inset:0;pointer-events:none}#split-layer[hidden]{display:none}.rank{font-size:30px}
+
+/* Karta jezdce je v G08 zmenšená na 60 %. Nástup a odchod z karta-jezdce/motion.css
+   končí na transform:none, proto tady tytéž pohyby s měřítkem zachovaným. */
+@keyframes svdt-rise-g08{from{opacity:0;transform:translateY(var(--svdt-tv-rise)) scale(.6)}to{opacity:1;transform:scale(.6)}}
+@keyframes svdt-leave-g08{from{transform:scale(.6)}to{opacity:0;transform:translateY(var(--svdt-tv-leave)) scale(.6)}}
+.rider-card.A.anim-in{animation-name:svdt-rise-g08}
+.rider-card.A.anim-out{animation-name:svdt-leave-g08}
