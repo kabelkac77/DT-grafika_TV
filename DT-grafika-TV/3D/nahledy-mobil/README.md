@@ -4,6 +4,8 @@ Výběr snímků verze 07. JPG v rozlišení 1920 × 1080 pro snadné otevření
 
 ## 1. Svatá Hora a start
 
+Aktualizovaný pohled po dokončení dalších 804 detailních stromů kolem areálu, v okolí do 100 m. Olistění odpovídá červnu 2027.
+
 ![Svatá Hora a start](01-svata-hora.jpg)
 
 [Otevřít snímek samostatně](01-svata-hora.jpg)
